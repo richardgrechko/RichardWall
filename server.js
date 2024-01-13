@@ -36,11 +36,13 @@ function checkHash(hash, pass) {
 
 
 var server = http.createServer(function(req, res) {
-  var filePath = `${__dirname}/client/static/${req.path}`;
+  var filePath = `${__dirname}/client/static${res.path}`;
   if (!fs.existsSync(filePath)) {
     res.writeHead(404);
-    res.end("404 Not Found");
+    res.send("404 Not Found");
   }
+  var fileType = "application/octet-stream";
+  if 
 	res.end();
 })
 

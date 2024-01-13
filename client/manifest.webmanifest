@@ -4,7 +4,7 @@
     "description": "Multiplayer text editor.",
     "icons": [
       {
-        "src": "https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/icon.png?v=1705148941918",
+        "src": "static/icons/icon.png",
         "type": "image/png",
         "sizes": "512x512",
         "purpose": "any maskable"
