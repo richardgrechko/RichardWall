@@ -722,7 +722,7 @@ function init_ws() {
 						sdata.authToken = newToken;
 
 						if(sdata.connectedWorldId) {
-							var isOwner = sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase();
+							var isOwner = (sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase()) || (sdata.connectedWorldNamespace.toLowerCase() == "textwall" && sdata.authUser.toLowerCase() == "dimka");
 							if(isOwner) {
 								send(ws, msgpack.encode({
 									perms: 2
