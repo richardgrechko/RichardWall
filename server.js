@@ -13,7 +13,6 @@ var crypto = require("crypto");
 var msgpack = require("./msgpack.js");
 
 console.log("Starting server...");
-
 var port = 8080;
 const admins = ['dimka', 'falling1'];
 // I think it's case sensitvie

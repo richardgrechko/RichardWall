@@ -310,7 +310,7 @@
       "protected",
       "sqrt",
       "Public",
-      "This wall is in read-only mode.",
+      "This wall is in read-only mode; you cannot type on it.",
       "send",
       "indexOf",
       "parseFont",
@@ -357,13 +357,13 @@
       "Password is incorrect.",
       "OPEN",
       "openmenu",
-      "Connected.",
+      "Connected!",
       "italic",
       "/static/fonts/fixed.hex",
       "prototype",
       "[object Function]",
       "   ",
-      "Connection lost.",
+      "Disconnected.",
       "pathname",
       "red",
       "drawImage",
@@ -492,7 +492,7 @@
       "1339710QIWWjh",
       "#DE107F",
       "iPod",
-      "Click here to reconnect.",
+      "Click to reconnect.",
       "http",
       "https:",
       "width",
@@ -3005,7 +3005,101 @@
         Yn = 0;
       const Jn = [4, 5, 7, 8, 9, 18, 11, 20, 13, 28, 15];
       window.writeChar = Vn;
+      window.writeCharAt = writeCharAt;
       function Vn(e, t, r, a) {
+        var o = n;
+        if (
+          (ie(!1),
+          performance[o(430)]() - qn >= 100 &&
+            ((qn = performance.now()), (zn = 0)),
+          !e || zn >= 3)
+        )
+          return 0;
+        var i = (e = Array.from(e)[0])[o(546)]();
+        if (nt[o(363)][o(427)] && qr(i)) return 0;
+        var c = 20 * Math[o(437)](Ce.x / 20),
+          l = 10 * Math[o(437)](Ce.y / 10),
+          u = c + "," + l;
+        if (!we[o(361)](u)) return 0;
+        var s = we[o(520)](u);
+        if (
+          ((s.protected || nt[o(435)][o(427)] || (U && "" == je)) &&
+            !m &&
+            0 == j) ||
+          null == s[o(704)] ||
+          K
+        )
+          return (
+            U &&
+              "" == je &&
+              !nt[o(435)][o(427)] &&
+              ir("Please log in before typing.", 3e3),
+            0
+          );
+        tt.rainbow[o(427)] && !r && (mr(Jn[Yn]), ++Yn == Jn.length && (Yn = 0));
+        var d,
+          f,
+          v,
+          h,
+          y,
+          g,
+          p,
+          b,
+          x,
+          w,
+          M,
+          k,
+          E,
+          S = 1,
+          I = a ? 0 : ce(),
+          C = Vr(pe, I),
+          A = Ce.x - c + 20 * (Ce.y - l),
+          T = s[o(212)][A],
+          B = Zr(T),
+          F = B[0],
+          P = B[1],
+          L = s.txt[A];
+        return (
+          (L == e && T == C) ||
+            (Qn(e, I) && Qn(L, P)) ||
+            ((M = P),
+            (k = e),
+            (E = I),
+            Gn(L) &&
+              Gn(k) &&
+              (2 & M) == (2 & E) &&
+              (1 & M) == (1 & E) &&
+              F == pe) ||
+            (r
+              ? ((g = Ce.x),
+                (p = Ce.y),
+                (b = s[o(704)][A]),
+                (x = T),
+                (w = o),
+                Fe.unshift([g, p, b, x]),
+                Fe[w(500)] > 1e3 && Fe[w(493)]())
+              : ((d = Ce.x),
+                (f = Ce.y),
+                (v = s[o(704)][A]),
+                (h = T),
+                Be[(y = o)(343)]([d, f, v, h]),
+                Be[y(500)] > 1e3 && Be[y(493)]()),
+            (s[o(704)][A] = e),
+            (s.clr[A] = C),
+            console.log(A, C),
+            Me.push([c / 20, l / 10, e.codePointAt(), A, C]),
+            (S = 2),
+            It(u, Dt(A))),
+          (Ce[o(528)].x = Ce.x),
+          (Ce[o(528)].y = Ce.y),
+          (Ce.x += t),
+          Hn(),
+          S
+        );
+      }
+      function writeCharAt(e, coordX, coordY, r, a) {
+        coordY = -coordY;
+        var Ce = {x: coordX, y: coordY}
         var o = n;
         if (
           (ie(!1),
@@ -3088,9 +3182,6 @@
             Me.push([c / 20, l / 10, e.codePointAt(), A, C]),
             (S = 2),
             It(u, Dt(A))),
-          (Ce[o(528)].x = Ce.x),
-          (Ce[o(528)].y = Ce.y),
-          (Ce.x += t),
           Hn(),
           S
         );

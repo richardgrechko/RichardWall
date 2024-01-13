@@ -1,7 +1,7 @@
 {
     "short_name": "TextWall",
-    "name": "TextWall",
-    "description": "Multiplayer text editor.",
+    "name": "Dimka's TextWall",
+    "description": "Multiplayer text editor with freedom.",
     "icons": [
       {
         "src": "static/icons/icon.png",
