@@ -1,3 +1,7 @@
+// Thanks to falling1 for helping out!
+// Check him out or explode 💥💥💥
+// https://glitch.com/@falling1
+
 var fs = require("fs");
 var express = require("express");
 var http = require("http");
@@ -640,6 +644,7 @@ function init_ws() {
 				var message = data.msg;
 				
 				if(typeof message != "string") return;
+        if (!message.trim()) return;
 				if(message.length > 256) return;
 				
 				var nick = sdata.clientId;
