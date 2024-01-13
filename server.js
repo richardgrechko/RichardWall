@@ -36,6 +36,11 @@ function checkHash(hash, pass) {
 
 
 var server = http.createServer(function(req, res) {
+  var filePath = `${__dirname}/client/static/${req.path}`;
+  if (!fs.existsSync(filePath)) {
+    res.writeHead(404);
+    res.end("404 Not Found");
+  }
 	res.end();
 })
 
