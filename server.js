@@ -638,6 +638,7 @@ function init_ws() {
 				}));
 			} else if("msg" in data) {
 				var message = data.msg;
+        console.log(message);
 				
 				if(typeof message != "string") return;
 				if(message.length > 256) return;
