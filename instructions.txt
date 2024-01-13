@@ -1,0 +1,42 @@
+tw.2s4.me
+=========
+
+requirements:
+node.js
+
+to run:
+npm install
+node server.js
+
+The client will only work under HTTPS, thus you'd need a domain (whether added via 'hosts').
+
+Sample nginx config:
+
+server {
+	listen		443 ssl http2;
+	server_name	tw.2s4.me;
+
+	ssl_certificate		/path/to/cer;
+	ssl_certificate_key	/path/to/key;
+
+	location /ws {
+			proxy_http_version 1.1;
+			proxy_set_header X-Real-IP $remote_addr;
+			proxy_pass http://127.0.0.1:8080;
+			proxy_set_header Upgrade $http_upgrade;
+			proxy_set_header Connection $http_connection;
+			proxy_read_timeout    100m;
+			proxy_send_timeout    100m;
+
+	}
+
+	location /static {
+		root   /path/to/tw.2s4.me
+		index  index.html index.htm;
+	}
+
+	location / {
+		root   /path/to/tw.2s4.me;
+		try_files $uri /index.html;
+	}
+}
