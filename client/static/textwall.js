@@ -3004,6 +3004,7 @@
         qn = performance[n(430)](),
         Yn = 0;
       const Jn = [4, 5, 7, 8, 9, 18, 11, 20, 13, 28, 15];
+      window.writeChar = Vn;
       function Vn(e, t, r, a) {
         var o = n;
         if (
@@ -3013,7 +3014,6 @@
           !e || zn >= 3)
         )
           return 0;
-        zn++;
         var i = (e = Array.from(e)[0])[o(546)]();
         if (nt[o(363)][o(427)] && qr(i)) return 0;
         var c = 20 * Math[o(437)](Ce.x / 20),
