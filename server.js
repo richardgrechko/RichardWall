@@ -1,7 +1,7 @@
 // Thanks to falling1 for helping out!
-// Check him out or explode 💥💥💥
+ Check him out or explode 💥💥💥
 // https://glitch.com/@falling1
-
+//eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 var fs = require("fs");
 var express = require("express");
 var http = require("http");
@@ -14,7 +14,7 @@ var msgpack = require("./msgpack.js");
 
 console.log("Starting server...");
 var port = 8080;
-const admins = ['dimka', 'falling1'];
+const admins = ['dimka'];
 // I think it's case sensitvie
 //nvm it is, it just must be lowercase
 
