@@ -3086,7 +3086,6 @@
                 Be[y(500)] > 1e3 && Be[y(493)]()),
             (s[o(704)][A] = e),
             (s.clr[A] = C),
-            console.log(A, C),
             Me.push([c / 20, l / 10, e.codePointAt(), A, C]),
             (S = 2),
             It(u, Dt(A))),
