@@ -11,9 +11,9 @@ var msgpack = require("./msgpack.js");
 console.log("Starting server...");
 
 var port = 8080;
-const admins = ['Dimka', 'falling1'];
+const admins = ['dimka', 'falling1'];
 // I think it's case sensitvie
-//nvm it is, it must be lowercase
+//nvm it is, it just must be lowercase
 
 var db = sql("./data.sqlite3");
 
@@ -441,11 +441,11 @@ function init_ws() {
 					}), ws);
 				}
 				
-				if (admins.includes(sdata.authUser.toLowerCase())) sdata.isAdmin = true;
+				sdata.isAdmin = admins.includes(sdata.authUser.toLowerCase());
 				var world = db.prepare("SELECT * FROM worlds WHERE namespace=? COLLATE NOCASE AND name=? COLLATE NOCASE").get(namespace, pathname);
 				if(!world) {
 					sdata.worldAttr = {};
-					if((sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase()) || (sdata.connectedWorldNamespace.toLowerCase() == "textwall" && admins.includes(sdata.authUser.toLowerCase()))) {
+					if((sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase()) || (sdata.connectedWorldNamespace.toLowerCase() == "textwall" && sdata.isAdmin)) {
 						var insertInfo = db.prepare("INSERT INTO 'worlds' VALUES(null, ?, ?, ?)").run(sdata.authUser, pathname, JSON.stringify({
 							readonly: false,
 							private: false,
