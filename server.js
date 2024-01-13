@@ -1,5 +1,5 @@
 // Thanks to falling1 for helping out!
- Check him out or explode 💥💥💥
+// Check him out or explode 💥💥💥
 // https://glitch.com/@falling1
 //eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
 var fs = require("fs");
@@ -15,8 +15,7 @@ var msgpack = require("./msgpack.js");
 console.log("Starting server...");
 var port = 8080;
 const admins = ['dimka'];
-// I think it's case sensitvie
-//nvm it is, it just must be lowercase
+// falling1 did some gay shit
 
 var db = sql("./data.sqlite3");
 
