@@ -1,7 +1,7 @@
 // Thanks to falling1 for helping out!
 // Check him out or explode 💥💥💥
 // https://glitch.com/@falling1
-//eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+// Shutdown servers: Remove the two slashes
 var fs = require("fs");
 var express = require("express");
 var http = require("http");
