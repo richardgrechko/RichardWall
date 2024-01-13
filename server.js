@@ -36,14 +36,23 @@ function checkHash(hash, pass) {
 
 
 var server = http.createServer(function(req, res) {
-  var filePath = `${__dirname}/client/static${res.path}`;
+  var filePath = `${__dirname}/client${req.url == "/" ? "/index.html" : req.url}`;
+  console.log(filePath);
   if (!fs.existsSync(filePath)) {
     res.writeHead(404);
-    res.send("404 Not Found");
+    res.end("404 Not Found");
   }
-  var fileType = "application/octet-stream";
-  if 
-	res.end();
+  var fileTypes = {
+    "html": "text/html",
+    "svg": "image/svg+xml",
+    "css": "text/css",
+    "js": "text/javascript",
+  };
+  
+  var fileExtension = req.url.split(".").pop();
+  var fileType = fileTypes[fileExtension] || "application/octet-stream";
+  res.writeHead(200, {"Content-Type": fileType})
+	res.end(fs.readFileSync(filePath));
 })
 
 async function runserver() {
