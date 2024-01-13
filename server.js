@@ -490,7 +490,7 @@ function init_ws() {
 					j: [sdata.connectedWorldNamespace, sdata.connectedWorldName]
 				}));
 				
-				var isOwner = sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase();
+				var isOwner = (sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase()) || (sdata.connectedWorldNamespace.toLowerCase() == "textwall" && sdata.isAdmin);
 				if(isOwner) {
 					send(ws, msgpack.encode({
 						perms: 2
@@ -740,7 +740,7 @@ function init_ws() {
 						sdata.authToken = newToken;
 
 						if(sdata.connectedWorldId) {
-							var isOwner = (sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase()) || (sdata.connectedWorldNamespace.toLowerCase() == "textwall" && admins.includes(sdata.authUser.toLowerCase()));
+							var isOwner = (sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase()) || (sdata.connectedWorldNamespace.toLowerCase() == "textwall" && sdata.isAdmin);
 							if(isOwner) {
 								send(ws, msgpack.encode({
 									perms: 2
