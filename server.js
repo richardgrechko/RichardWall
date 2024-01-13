@@ -11,7 +11,9 @@ var msgpack = require("./msgpack.js");
 console.log("Starting server...");
 
 var port = 8080;
-
+const admins = ['Dimka', 'falling1'];
+// I think it's case sensitvie
+//nvm it is, it must be lowercase
 
 var db = sql("./data.sqlite3");
 
@@ -322,6 +324,14 @@ function worldBroadcast(connectedWorldId, data, excludeWs) {
 	});
 }
 
+function emit(data, excludeWs) {
+	wss.clients.forEach(function(sock) {
+		if(!sock || !sock.sdata) return;
+		if(sock == excludeWs) return;
+		send(sock, data);
+	});
+}
+
 function dumpCursors(ws) {
 	wss.clients.forEach(function(sock) {
 		if(!sock || !sock.sdata) return;
@@ -431,11 +441,11 @@ function init_ws() {
 					}), ws);
 				}
 				
-				
+				if (admins.includes(sdata.authUser.toLowerCase())) sdata.isAdmin = true;
 				var world = db.prepare("SELECT * FROM worlds WHERE namespace=? COLLATE NOCASE AND name=? COLLATE NOCASE").get(namespace, pathname);
 				if(!world) {
 					sdata.worldAttr = {};
-					if(sdata.isAuthenticated && namespace.toLowerCase() == sdata.authUser.toLowerCase()) {
+					if((sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase()) || (sdata.connectedWorldNamespace.toLowerCase() == "textwall" && admins.includes(sdata.authUser.toLowerCase()))) {
 						var insertInfo = db.prepare("INSERT INTO 'worlds' VALUES(null, ?, ?, ?)").run(sdata.authUser, pathname, JSON.stringify({
 							readonly: false,
 							private: false,
@@ -636,6 +646,14 @@ function init_ws() {
 				if(sdata.isAuthenticated) {
 					nick = sdata.authUser;
 				}
+				var args = message.split(" ");
+				var cmd = args.shift();
+				if (cmd == "/announce" && sdata.isAdmin) {
+					emit(msgpack.encode({
+						alert: args.join(" ")
+					}));
+          return;
+				}
 				worldBroadcast(sdata.connectedWorldId, msgpack.encode({
 					msg: [nick, sdata.cursorColor, message, sdata.isAuthenticated]
 				}));
@@ -722,7 +740,7 @@ function init_ws() {
 						sdata.authToken = newToken;
 
 						if(sdata.connectedWorldId) {
-							var isOwner = (sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase()) || (sdata.connectedWorldNamespace.toLowerCase() == "textwall" && sdata.authUser.toLowerCase() == "dimka");
+							var isOwner = (sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase()) || (sdata.connectedWorldNamespace.toLowerCase() == "textwall" && admins.includes(sdata.authUser.toLowerCase()));
 							if(isOwner) {
 								send(ws, msgpack.encode({
 									perms: 2
