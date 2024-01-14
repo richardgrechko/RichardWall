@@ -3036,7 +3036,7 @@ var client = {
       client.chat = {send: (msg) => a.send(Or({msg}))};
       window.writeChar = Vn;
       window.writeCharAt = writeCharAt;
-      client.we = we; //temp
+      client.chunks = we;
       function Vn(e, t, r, a) {
         var o = n;
         if (
