@@ -48,7 +48,7 @@ var server = http.createServer(app);
 async function runserver() {
 	server.listen(port, function() {
 		var addr = server.address();
-		console.log("M4k server is hosted on " + addr.address + ":" + addr.port);
+		console.log("Server is hosted on " + addr.address + ":" + addr.port);
 	});
 	init_ws();
 }
