@@ -2695,7 +2695,7 @@ var client = {
                 l = document.createElement("a");
               (l[o(537)] = e),
                 (l.style[o(327)] = o(315) == se[n] ? o(282) : se[n]),
-                a && ((l[o(497)] = "/~" + e), l[o(216)]("click", wn)), l.title = id,
+                a && ((l[o(497)] = "/~" + e), l[o(216)]("click", wn)), l.title = "(" + id + ")"
                 c[o(454)](l),
                 c.appendChild(document.createTextNode(o(412) + r));
               var u = Math[o(330)](i[o(712)] - i[o(403)] - i[o(503)]) < 5;
