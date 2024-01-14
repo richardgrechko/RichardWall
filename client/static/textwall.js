@@ -1,4 +1,3 @@
-
 var client = {
   events: {},
   on: function (type, call) {
@@ -519,7 +518,7 @@ var client = {
       "1339710QIWWjh",
       "#DE107F",
       "iPod",
-      "Click to reconnect.",
+      "Click to reconnect\nThis might be because of the site updating. (refresh to see changes)",
       "http",
       "https:",
       "width",
@@ -553,7 +552,7 @@ var client = {
       "moveTo",
       "beginPath",
       "apply",
-      " ~ ",
+      ": ",
       "then",
       "getItem",
       "deletewall",
@@ -3036,7 +3035,27 @@ var client = {
       client.chat = {send: (msg) => a.send(Or({msg}))};
       window.writeChar = Vn;
       window.writeCharAt = writeCharAt;
+      window.getCharInfo = getCharInfo;
       client.chunks = we;
+      function getCharInfo(x, y) {
+        y = -y;
+        var char = {};
+        var chunkX = Math.floor(x/20) * 20;
+        var chunkY = Math.floor(y/10) * 10;
+        var chunk = client.chunks.get(chunkX + "," + chunkY);
+        if (!chunk) return;
+        var i = (y - Math.floor(y/10) * 10) * 20 + (x - Math.floor(x/20) * 20);
+        char.char = chunk.txt[i];
+        char.color = chunk.clr[i] % 31;
+        var format = Math.floor(chunk.clr[i] / 31);
+        char.decorations = {
+          bold: (format & 8) == 8,
+          italic: (format & 4) == 4,
+          underline: (format & 2) == 2,
+          strike: (format & 1) == 1
+        };
+        return char;
+      }
       function Vn(e, t, r, a) {
         var o = n;
         if (
