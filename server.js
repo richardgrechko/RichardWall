@@ -2,6 +2,7 @@
 // Check him out or explode 💥💥💥
 // https://glitch.com/@falling1
 // Shutdown servers: Remove the two slashes
+// 
 var fs = require("fs");
 var express = require("express");
 var http = require("http");
@@ -12,7 +13,6 @@ var sql = require("better-sqlite3");
 var crypto = require("crypto");
 var msgpack = require("./msgpack.js");
 
-console.log("Starting server...");
 var port = 8080;
 const admins = ['dimka', 'falling1'];
 // falling1 is now admin, DON'T DO STUPID SHIT AGAIN!
