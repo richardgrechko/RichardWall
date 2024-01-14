@@ -14,8 +14,8 @@ var msgpack = require("./msgpack.js");
 
 console.log("Starting server...");
 var port = 8080;
-const admins = ['dimka'];
-// falling1 announced some gay shit/harassment, he will be admin soon/later
+const admins = ['dimka', 'falling1'];
+// falling1 is now admin, DON'T DO STUPID SHIT AGAIN!
 
 var db = sql("./data.sqlite3");
 
@@ -652,8 +652,14 @@ function init_ws() {
 				var args = message.split(" ");
 				var cmd = args.shift();
 				if (cmd == "/announce" && sdata.isAdmin) {
+          var json;
+          var message;
+          try {
+            json = JSON.parse(args.join(" "));
+          } catch {}
+          if (typeof json == "string") message = json; else message = args.join(" ");
 					emit(msgpack.encode({
-						alert: args.join(" ")
+						alert: message
 					}));
           return;
 				}
