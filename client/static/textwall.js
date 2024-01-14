@@ -2537,7 +2537,7 @@ var client = {
         var t = n,
           r = new Uint8Array(e[t(698)]).buffer,
           a = Rr(new Uint8Array(r));
-        client.emit(Object.keys(a)[0], Object.values(a)[0]);
+        client.emit("wsmessage", a);
         switch (Object[t(611)](a)[0]) {
           case "b":
             var i = a.b;
