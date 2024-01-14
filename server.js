@@ -327,10 +327,16 @@ function worldBroadcast(connectedWorldId, data, excludeWs) {
 	});
 }
 
-function worldBroadcast(connectedWorldId, data, excludeWs) {
+function serverMessage(ws, msg) {
+  send(ws, msgpack.encode({
+    msg: ["Server", 0, msg, false]
+  }));
+}
+
+function getClientById(id) {
 	wss.clients.forEach(function(sock) {
 		if(!sock || !sock.sdata) return;
-		if(sock.clientId ) return;
+		if(sock.sdata.clientId == id) return sock;
 	});
 }
 
@@ -674,7 +680,13 @@ function init_ws() {
 				}
         // kick people command
         if (cmd == "/kick" && sdata.isAdmin) {
-          
+          var id = parseInt(args[0]);
+          if (isNaN(id)) return serverMessage(ws, "Invalid id");
+          var client = getClientById(id);
+          if (!client) return serverMessage(ws, "Client not found")
+          client.terminate();
+          serverMessage(ws, "Kicked client!");
+          return;
         }
 				worldBroadcast(sdata.connectedWorldId, msgpack.encode({
 					msg: [nick, sdata.cursorColor, message, sdata.isAuthenticated]

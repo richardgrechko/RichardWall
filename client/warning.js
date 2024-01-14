@@ -7,3 +7,4 @@ console.log("%cOfficial walls:", "font-size: 30px");
 console.log("%chttps://dimkatextwall.glitch.me/rules", "font-size: 18px");
 console.log("%chttps://dimkatextwall.glitch.me/feedback", "font-size: 18px");
 console.log("%chttps://dimkatextwall.glitch.me/scripting", "font-size: 18px");
+console.log("%chttps://dimkatextwall.glitch.me/help", "font-size: 18px");
