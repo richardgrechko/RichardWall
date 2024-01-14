@@ -2688,6 +2688,7 @@ var client = {
             break;
           case t(477):
             var T = a.msg;
+            client.emit("chat", {username: T[0], color: T[1], message: T[2], registered: T[3]})
             !(function (e, n, r, a) {
               var o = t,
                 i = document.getElementById("chatbox"),

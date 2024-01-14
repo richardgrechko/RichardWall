@@ -15,7 +15,7 @@ var msgpack = require("./msgpack.js");
 console.log("Starting server...");
 var port = 8080;
 const admins = ['dimka'];
-// falling1 announced some gay shit/harassment, he will be admin ssoon/later
+// falling1 announced some gay shit/harassment, he will be admin soon/later
 
 var db = sql("./data.sqlite3");
 
