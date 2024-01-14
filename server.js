@@ -2,7 +2,7 @@
 // Check him out or explode 💥💥💥
 // https://glitch.com/@falling1
 // Shutdown servers: Remove the two slashes
-// Restart Servers: Type something or remove here:
+// Restart Servers: Type something or remove here: eeeeeeee
 // It automatically restarts when you modify, remove or add an character to any of the files
 var fs = require("fs");
 var express = require("express");
