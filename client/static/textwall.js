@@ -352,7 +352,7 @@
       "rawx",
       "imageSmoothingEnabled",
       "goto",
-      " nearby)",
+      " around)",
       "px Special",
       "Password is incorrect.",
       "OPEN",
