@@ -84,7 +84,7 @@ var client = {
       "block",
       "strikethrough",
       "password",
-      "New passwords do not match.",
+      "New passwords are not the same.",
       "opacity",
       "0,-10",
       "\\p{Extended_Pictographic}",
@@ -336,7 +336,7 @@ var client = {
       "protected",
       "sqrt",
       "Public",
-      "This wall is in read-only mode; you cannot type on it.",
+      "This wall is read-only; you cannot type on it.",
       "send",
       "indexOf",
       "parseFont",
@@ -3358,7 +3358,7 @@ var client = {
       function cr() {
         (Ce.x = Ce.start), Ce.y++, Hn();
       }
-      null == navigator[n(345)][n(340)] &&
+      null == navigator?.clipboard?.readText &&
         (document[n(628)](n(462)).style[n(550)] = n(507));
       var lr = 0;
       function ur(e) {
