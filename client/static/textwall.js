@@ -1,3 +1,30 @@
+
+var client = {
+  events: {},
+  on: function (type, call) {
+    if (typeof call != "function") {
+      throw "Callback is not a function";
+    }
+    type = type.toLowerCase();
+    if (!client.events[type]) client.events[type] = [];
+    client.events[type].push(call);
+  },
+  off: function (type, call) {
+    type = type.toLowerCase();
+    if (!client.events[type]) return;
+    while (true) {
+      var idx = client.events[type].indexOf(call);
+      if (idx == -1) break;
+      client.events[type].splice(idx, 1);
+    }
+  },
+  emit: function (type, data) {
+    type = type.toLowerCase();
+    var evt = client.events[type];
+    if (!evt) return;
+    evt.forEach((func) => func(data));
+  },
+};
 !(function (e) {
   function t(e, n) {
     var a = r();
@@ -2511,6 +2538,7 @@
         var t = n,
           r = new Uint8Array(e[t(698)]).buffer,
           a = Rr(new Uint8Array(r));
+        client.emit(Object.keys(a)[0], Object.values(a)[0]);
         switch (Object[t(611)](a)[0]) {
           case "b":
             var i = a.b;
@@ -3004,6 +3032,7 @@
         qn = performance[n(430)](),
         Yn = 0;
       const Jn = [4, 5, 7, 8, 9, 18, 11, 20, 13, 28, 15];
+      client.chat = {send: (msg) => a.send(Or({msg}))};
       window.writeChar = Vn;
       window.writeCharAt = writeCharAt;
       function Vn(e, t, r, a) {

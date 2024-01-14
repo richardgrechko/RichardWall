@@ -15,7 +15,7 @@ var msgpack = require("./msgpack.js");
 console.log("Starting server...");
 var port = 8080;
 const admins = ['dimka'];
-// falling1 did some gay shit
+// falling1 announced some gay shit/harassment, he will be admin ssoon/later
 
 var db = sql("./data.sqlite3");
 
@@ -40,7 +40,7 @@ function checkHash(hash, pass) {
 
 var app = express();
 app.use(express.static("client"));
-app.get("/", (req, res) => {
+app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/client/index.html");
 });
 var server = http.createServer(app);
