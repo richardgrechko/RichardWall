@@ -4551,4 +4551,4 @@ var client = {
         }, 400);
     })(n(677) == typeof browser ? (browser = {}) : browser);
 })("undefined" == typeof browser ? (browser = {}) : browser);
-console.log("if you're seeing this, the javascript should have loaded");
+console.log("if you're seeing this, the textwall.js file should have loaded");
