@@ -640,7 +640,7 @@ function init_ws() {
 				}));
 			} else if("msg" in data) {
 				var message = data.msg;
-        console.log(sdata.authUser, ":", message);
+        console.log(sdata.authUser + ":", message);
 				
 				if(typeof message != "string") return;
         if (!message.trim()) return;

@@ -3036,6 +3036,13 @@ var client = {
       window.writeChar = Vn;
       window.writeCharAt = writeCharAt;
       window.getCharInfo = getCharInfo;
+      window.teleportTo = teleportTo;
+      function teleportTo(wall) {
+        var path = wall.split("/");
+        var wallOwner = path[0].startsWith("~") ? path.shift().slice(1) : "~textwall";
+        if (!path[1] && path.length < 2) path[1] = "main";
+        Cn(wallOwner, path.join("/"));
+      }
       client.chunks = we;
       function getCharInfo(x, y) {
         y = -y;
