@@ -2687,22 +2687,22 @@ var client = {
             break;
           case t(477):
             var T = a.msg;
-            client.emit("chat", {username: T[0], color: T[1], message: T[2], registered: T[3]})
-            !(function (e, n, r, a) {
+            client.emit("chat", {username: T[0], color: T[1], message: T[2], registered: T[3], id: T[4]})
+            !(function (e, n, r, a, id) {
               var o = t,
                 i = document.getElementById("chatbox"),
                 c = document[o(581)]("p"),
                 l = document.createElement("a");
               (l[o(537)] = e),
                 (l.style[o(327)] = o(315) == se[n] ? o(282) : se[n]),
-                a && ((l[o(497)] = "/~" + e), l[o(216)]("click", wn)),
+                a && ((l[o(497)] = "/~" + e), l[o(216)]("click", wn)), l.title = id,
                 c[o(454)](l),
                 c.appendChild(document.createTextNode(o(412) + r));
               var u = Math[o(330)](i[o(712)] - i[o(403)] - i[o(503)]) < 5;
               i.appendChild(c),
                 u && gn(),
                 hn[o(676)][o(551)](o(452)) || yn[o(676)][o(608)](o(259));
-            })(T[0], T[1], T[2], T[3]);
+            })(T[0], T[1], T[2], T[3], T[4]);
             break;
           case "rc":
             Pe[t(639)](a.rc), (ge = !0), On();

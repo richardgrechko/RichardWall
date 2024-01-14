@@ -334,10 +334,12 @@ function serverMessage(ws, msg) {
 }
 
 function getClientById(id) {
+  var client;
 	wss.clients.forEach(function(sock) {
 		if(!sock || !sock.sdata) return;
-		if(sock.sdata.clientId == id) return sock;
+		if(sock.sdata.clientId == id) client = sock;
 	});
+  return client;
 }
 
 function emit(data, excludeWs) {
@@ -689,7 +691,7 @@ function init_ws() {
           return;
         }
 				worldBroadcast(sdata.connectedWorldId, msgpack.encode({
-					msg: [nick, sdata.cursorColor, message, sdata.isAuthenticated]
+					msg: [nick, sdata.cursorColor, message, sdata.isAuthenticated, sdata.clientId]
 				}));
 			} else if("register" in data) {
 				if(sdata.isAuthenticated) return;
