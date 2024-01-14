@@ -1144,3 +1144,4 @@ process.once("SIGINT", function() {
 	commitChunks();
 	process.exit();
 });
+console.log("the server.js file has loaded")
