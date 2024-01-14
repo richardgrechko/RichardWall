@@ -2671,6 +2671,7 @@ var client = {
             })((i = a.c)[0], i[1], i[2], i[3]);
             break;
           case "cu":
+            client.emit("cu", a.cu);
             var I = a.cu,
               C = I.id;
             Pe.has(C) ||
