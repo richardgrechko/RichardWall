@@ -386,7 +386,7 @@ function init_ws() {
 			connectedWorldNamespace: "",
 			connectedWorldName: "",
 			connectedWorldId: 0,
-			clientId: Math.floor(Math.random() * 1000000000).toString(),
+			clientId: Math.floor(Math.random() * 10000).toString(),
 			cursorX: 0,
 			cursorY: 0,
 			cursorColor: 0,
@@ -645,7 +645,7 @@ function init_ws() {
 				
 				if(typeof message != "string") return;
         if (!message.trim()) return;
-				if(message.length > 256) return;
+				if(message.length > 400) return;
 				
 				var nick = sdata.clientId;
 				if(sdata.isAuthenticated) {
