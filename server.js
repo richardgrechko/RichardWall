@@ -327,6 +327,13 @@ function worldBroadcast(connectedWorldId, data, excludeWs) {
 	});
 }
 
+function worldBroadcast(connectedWorldId, data, excludeWs) {
+	wss.clients.forEach(function(sock) {
+		if(!sock || !sock.sdata) return;
+		if(sock.clientId ) return;
+	});
+}
+
 function emit(data, excludeWs) {
 	wss.clients.forEach(function(sock) {
 		if(!sock || !sock.sdata) return;
@@ -345,7 +352,7 @@ function dumpCursors(ws) {
 					id: sock.sdata.clientId,
 					l: [sock.sdata.cursorX, sock.sdata.cursorY],
 					c: sock.sdata.cursorColor,
-					n: sock.sdata.cursorAnon ? "" : (sock.sdata.isAuthenticated ? sock.sdata.authUser : "")
+					n: sock.sdata.cursorAnon ? `(${sock.sdata.clientId})` : (sock.sdata.isAuthenticated ? sock.sdata.authUser : `(${sock.sdata.clientId})`)
 				}
 			}));
 		}
@@ -589,7 +596,7 @@ function init_ws() {
 						id: sdata.clientId,
 						l: [sdata.cursorX, sdata.cursorY],
 						c: sdata.cursorColor,
-						n: sdata.cursorAnon ? "" : (sdata.isAuthenticated ? sdata.authUser : "")
+						n: sdata.cursorAnon ? `(${sdata.clientId})` : (sdata.isAuthenticated ? sdata.authUser : `(${sdata.clientId})`)
 					}
 				}), ws);
 			} else if("e" in data) { // write edit
@@ -665,6 +672,10 @@ function init_ws() {
 					}));
           return;
 				}
+        // kick people command
+        if (cmd == "/kick" && sdata.isAdmin) {
+          
+        }
 				worldBroadcast(sdata.connectedWorldId, msgpack.encode({
 					msg: [nick, sdata.cursorColor, message, sdata.isAuthenticated]
 				}));
@@ -790,7 +801,7 @@ function init_ws() {
 						id: sdata.clientId,
 						l: [sdata.cursorX, sdata.cursorY],
 						c: sdata.cursorColor,
-						n: sdata.cursorAnon ? "" : (sdata.isAuthenticated ? sdata.authUser : "")
+						n: sdata.cursorAnon ? `(${sdata.clientId})` : (sdata.isAuthenticated ? sdata.authUser : `(${sdata.clientId})`)
 					}
 				}), ws);
 			} else if("token" in data) {
@@ -838,7 +849,7 @@ function init_ws() {
 						id: sdata.clientId,
 						l: [sdata.cursorX, sdata.cursorY],
 						c: sdata.cursorColor,
-						n: sdata.cursorAnon ? "" : (sdata.isAuthenticated ? sdata.authUser : "")
+						n: sdata.cursorAnon ? `(${sdata.clientId})` : (sdata.isAuthenticated ? sdata.authUser : `(${sdata.clientId})`)
 					}
 				}), ws);
 			} else if("addmem" in data) {
