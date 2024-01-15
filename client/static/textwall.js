@@ -3858,7 +3858,7 @@ var client = {
           var t = e(204) + location.host + e(189);
           e(380) !== location.protocol &&
             (t = e(641) + location[e(653)] + e(189)),
-            ((a = new WebSocket(t))[e(518)] = e(648)),
+            ((window.ws = a = new WebSocket(t))[e(518)] = e(648)),
             (a.onmessage = Tn),
             (a[e(211)] = An),
             (a[e(701)] = An),

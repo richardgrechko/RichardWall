@@ -170,14 +170,14 @@
     <h3>
       Debug
     </h3>
-    <button onclick="disconnectfromServer">
+    <button onclick="disconnectfromServer()">
       Disconnect from server
     </button>
     <script>
     function disconnectfromServer() {
         // Your script logic here
         ws.close();
-        alert("Disconnected!");
+        console.warn("Disconnected! (through debug menu)");
     }
     </script>
   </div>
