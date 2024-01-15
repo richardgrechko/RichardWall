@@ -2,7 +2,7 @@
 // Check him out or explode 💥💥💥
 // https://glitch.com/@falling1
 // Shutdown servers: Remove the two slashes
-// Restart Servers: Type something or remove here: eeeeeeeee
+// Restart Servers: Type something or remove here: eeeeeeeeee
 // It automatically restarts when you modify, remove or add an character to any of the files
 var fs = require("fs");
 var express = require("express");
@@ -49,7 +49,12 @@ var server = http.createServer(app);
 async function runserver() {
 	server.listen(port, function() {
 		var addr = server.address();
-		console.log("Server is hosted on " + addr.address + ":" + addr.port);
+		console.log("Server is hosted on " + addr.address + ":" + addr.port + " (useless thing: " + getRandomNumber(1, 10) + "\u0029");
+
+function getRandomNumber(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 	});
 	init_ws();
 }
