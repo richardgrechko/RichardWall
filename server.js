@@ -334,12 +334,8 @@ function serverMessage(ws, msg) {
 }
 
 function getClientById(id) {
-  var client;
-	wss.clients.forEach(function(sock) {
-		if(!sock || !sock.sdata) return;
-		if(sock.sdata.clientId == id) client = sock;
-	});
-  return client;
+  console.log(wss.clients);
+  return wss.clients.find(client => client.clientId == id);
 }
 
 function dumpCursors(ws) {
@@ -499,7 +495,6 @@ function init_ws() {
 				send(ws, msgpack.encode({
 					j: [sdata.connectedWorldNamespace, sdata.connectedWorldName]
 				}));
-				
 				var isOwner = (sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase()) || (sdata.connectedWorldNamespace.toLowerCase() == "textwall" && sdata.isAdmin);
 				if(isOwner) {
 					send(ws, msgpack.encode({
@@ -766,7 +761,7 @@ function init_ws() {
 							token: [sdata.authUser, newToken]
 						}));
 						sdata.authToken = newToken;
-
+            sdata.isAdmin = admins.includes(sdata.authUser.toLowerCase());
 						if(sdata.connectedWorldId) {
 							var isOwner = (sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase()) || (sdata.connectedWorldNamespace.toLowerCase() == "textwall" && sdata.isAdmin);
 							if(isOwner) {
@@ -849,6 +844,7 @@ function init_ws() {
 				sdata.isAuthenticated = false;
 				sdata.authUser = "";
 				sdata.authUserId = 0;
+        sdata.isAdmin = false;
 				sdata.isMember = false;
 				worldBroadcast(sdata.connectedWorldId, msgpack.encode({
 					cu: {

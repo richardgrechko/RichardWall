@@ -2471,18 +2471,17 @@ var client = {
         (document[e(628)]("connecting1")[e(537)] = e(243)),
           (document[e(628)]("connecting2")[e(537)] = ""),
           (document[e(628)](e(696))[e(270)][e(550)] = e(507)),
-          "" == je &&
-            null != localStorage[e(414)](e(301)) &&
-            null != localStorage[e(414)]("token") &&
-            (vn(!0),
-            a[e(197)](
-              Or({
-                token: [
-                  localStorage[e(414)]("username"),
-                  localStorage[e(414)](e(323)),
-                ],
-              })
-            ));
+          null != localStorage[e(414)](e(301)) &&
+          null != localStorage[e(414)]("token") &&
+          (vn(!0),
+          a[e(197)](
+            Or({
+              token: [
+                localStorage[e(414)]("username"),
+                localStorage[e(414)](e(323)),
+              ],
+            })
+          ));
         var t = e(391),
           r = "main",
           o = location[e(250)][e(668)]("/")[e(643)](1, 2);
