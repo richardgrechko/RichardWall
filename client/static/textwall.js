@@ -518,7 +518,7 @@ var client = {
       "1339710QIWWjh",
       "#DE107F",
       "iPod",
-      "Click to reconnect\nThis might be because of the site updating. (refresh to see changes)\nHaving issues? Tell us in the server! https://discord.gg/rDXPEgFA6m",
+      "Click to reconnect\nThis might be because of the site updating. (refresh to see changes)\nHaving issues? Tell us in the server! https:\u002f\u002fdiscord.gg\u002frDXPEgFA6m",
       "http",
       "https:",
       "width",
@@ -1929,7 +1929,7 @@ var client = {
                 e.ctrlKey && (e[r(423)](), br(r(583)), ie(!0));
                 break;
               case 73:
-                e.ctrlKey && (e.preventDefault(), br("italic"), ie(!0));
+                e.ctrlKey && !e.shiftKey (e.preventDefault(), br("italic"), ie(!0));
                 break;
               case 85:
                 e.ctrlKey && (e[r(423)](), br("underline"), ie(!0));
