@@ -1016,7 +1016,7 @@ var client = {
       function dt(e, t) {
         var r = n;
         e && (localStorage.removeItem(r(301)), localStorage[r(673)]("token")),
-          (je = ""),
+          (je = "(" + client.id + ")"),
           (j = 0),
           (X.style[r(550)] = r(507)),
           a.readyState != a[r(241)] ||
@@ -2843,7 +2843,8 @@ var client = {
           case "t":
             document[t(628)]("t").value = a.t;
           case "id":
-            je = "(" + a.id + ")";
+            client.id = a.id;
+            je = "(" + client.id + ")";
             Bn();
             ge = true;
         }
