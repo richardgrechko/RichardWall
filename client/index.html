@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta property="og:description" content="Multiplayer text editor, but better.">
 <meta property="og:url" content="https://textwall.cc/">
-<meta property="og:image" content="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/image%20(3).png?v=1705305911443">
+<meta property="og:image" content="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/uycrpj.gif?v=1705309497280">
 <link rel="stylesheet" href="/static/textwall.css">
 <script src="/warning.js"></script>
 </head>
@@ -166,6 +166,21 @@
 </div>
 <input id="deletewall" type="button" value="Delete wall"> <small>(Dangerous!)</small>
 </div>
+  <div>
+    <h3>
+      Debug
+    </h3>
+    <button onclick="disconnectfromServer">
+      Disconnect from server
+    </button>
+    <script>
+    function disconnectfromServer() {
+        // Your script logic here
+        ws.close();
+        alert("Disconnected!");
+    }
+    </script>
+  </div>
 <div id="admin">
 <h3>Admin</h3>
   <p>
