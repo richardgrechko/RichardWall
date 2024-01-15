@@ -13,7 +13,7 @@ var ws = require("ws");
 var sql = require("better-sqlite3");
 var crypto = require("crypto");
 var msgpack = require("./msgpack.js");
-
+var bannedIps = {};
 var port = 8080;
 const admins = ['dimka', 'falling1'];
 // falling1 is now admin, DON'T DO STUPID SHIT AGAIN!
@@ -334,8 +334,11 @@ function serverMessage(ws, msg) {
 }
 
 function getClientById(id) {
-  console.log(wss.clients);
-  return wss.clients.find(client => client.clientId == id);
+  var client;
+  wss.clients.forEach(function(sock) {
+    if (sock.sdata.clientId == id) return (client = sock);
+  });
+  return client;
 }
 
 function dumpCursors(ws) {
@@ -369,7 +372,7 @@ function init_ws() {
 		}
 		var connObj = ipConnLim[ipAddr];
 		
-		if(connObj[0] >= 50) {
+		if(connObj[0] >= 50 || Object.values(bannedIps).includes(ipAddr)) {
 			ws.close();
 			return;
 		}
@@ -672,10 +675,17 @@ function init_ws() {
           var id = parseInt(args[0]);
           if (isNaN(id)) return serverMessage(ws, "Invalid id");
           var client = getClientById(id);
-          if (!client) return serverMessage(ws, "Client not found")
+          if (!client) return serverMessage(ws, "Client not found");
           client.terminate();
           serverMessage(ws, "Kicked client!");
           return;
+        }
+        if (cmd == "/ban" && sdata.isAdmin) {
+          var id = parseInt(args[0]);
+          if (isNaN(id)) return serverMessage(ws, "Invalid id");
+          var client = getClientById(id);
+          if (!client) return serverMessage(ws, "Client not found");
+          bannedIps[client.sdata.clientId] = 
         }
 				worldBroadcast(sdata.connectedWorldId, msgpack.encode({
 					msg: [nick, sdata.cursorColor, message, sdata.isAuthenticated, sdata.clientId]
