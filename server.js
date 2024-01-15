@@ -342,14 +342,6 @@ function getClientById(id) {
   return client;
 }
 
-function emit(data, excludeWs) {
-	wss.clients.forEach(function(sock) {
-		if(!sock || !sock.sdata) return;
-		if(sock == excludeWs) return;
-		send(sock, data);
-	});
-}
-
 function dumpCursors(ws) {
 	wss.clients.forEach(function(sock) {
 		if(!sock || !sock.sdata) return;
@@ -675,7 +667,7 @@ function init_ws() {
             json = JSON.parse(args.join(" "));
           } catch {}
           if (typeof json == "string") message = json; else message = args.join(" ");
-					emit(msgpack.encode({
+					broadcast(msgpack.encode({
 						alert: message
 					}));
           return;
