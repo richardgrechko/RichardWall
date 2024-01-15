@@ -401,7 +401,7 @@ function init_ws() {
 			worldAttr: {}
 		};
 		ws.sdata = sdata;
-		
+		send(ws, msgpack.encode({id: sdata.clientId}));
 		ws.on("message", function(message, binary) {
 			
 			if(!binary) return;
