@@ -397,7 +397,8 @@ function init_ws() {
 			cursorY: 0,
 			cursorColor: 0,
 			cursorAnon: false,
-			worldAttr: {}
+			worldAttr: {},
+      ipAddr: ipAddr,
 		};
 		ws.sdata = sdata;
 		send(ws, msgpack.encode({id: sdata.clientId}));
@@ -685,7 +686,20 @@ function init_ws() {
           if (isNaN(id)) return serverMessage(ws, "Invalid id");
           var client = getClientById(id);
           if (!client) return serverMessage(ws, "Client not found");
-          bannedIps[client.sdata.clientId] = 
+          bannedIps[client.sdata.clientId] = client.sdata.ipAddr;
+          client.terminate();
+          serverMessage(ws, "Banned client!");
+          return;
+        }
+        if (cmd == "/unban" && sdata.isAdmin) {
+          var id = parseInt(args[0]);
+          if (isNaN(id)) return serverMessage(ws, "Invalid id");
+          delete bannedIps[id];
+          serverMessage(ws, "Unbanned client!");
+          return;
+        }
+        if (cmd == "/bans" && sdata.isAdmin) {
+          return serverMessage(ws, Object.keys(bannedIps).join(", "));
         }
 				worldBroadcast(sdata.connectedWorldId, msgpack.encode({
 					msg: [nick, sdata.cursorColor, message, sdata.isAuthenticated, sdata.clientId]
