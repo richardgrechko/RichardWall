@@ -518,7 +518,7 @@ var client = {
       "1339710QIWWjh",
       "#DE107F",
       "iPod",
-      "Click to reconnect\nThis might be because of the site updating. (refresh to see changes)\nHaving issues? Tell us in the server! https:\u002f\u002fdiscord.gg\u002frDXPEgFA6m",
+      "Click to reconnect\nThis might be because of the site updating. (refresh to see changes)\nHaving issues? Run joinDiscord() in the console and ask in the Discord server!",
       "http",
       "https:",
       "width",
