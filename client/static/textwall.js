@@ -2846,6 +2846,8 @@ var client = {
             je = "(" + client.id + ")";
             Bn();
             ge = true;
+          case "banned":
+            client.banned = true;
         }
       }
       function Bn() {
