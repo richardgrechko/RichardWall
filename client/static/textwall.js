@@ -3051,7 +3051,7 @@ var client = {
         var chunkY = Math.floor(y/10) * 10;
         var chunk = client.chunks.get(chunkX + "," + chunkY);
         if (!chunk) return;
-        var i = (y - Math.floor(y/10) * 10) * 20 + (x - Math.floor(x/20) * 20);
+        var i = (y - chunkY) * 20 + (x - chunkX);
         char.char = chunk.txt[i];
         char.color = chunk.clr[i] % 31;
         var format = Math.floor(chunk.clr[i] / 31);

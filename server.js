@@ -377,10 +377,18 @@ function init_ws() {
 		}
 		var connObj = ipConnLim[ipAddr];
 		
-		if(connObj[0] >= 50 || Object.values(bannedIps).includes(ipAddr)) {
+		if(connObj[0] >= 50) {
 			ws.close();
 			return;
 		}
+    
+    if (Object.values(bannedIps).includes(ipAddr)) {
+      send(ws, msgpack.encode({
+        banned: true,
+      }));
+      ws.close();
+      return;
+    }
 		
 		connObj[0]++;
 		
