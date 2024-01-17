@@ -518,7 +518,7 @@ var client = {
       "1339710QIWWjh",
       "#DE107F",
       "iPod",
-      "Click to reconnect\nThis might be because of the site updating. (refresh to see changes)\nHaving issues? Run joinDiscord() in the console and ask in the Discord server!",
+      "Click to reconnect\nThis might be because of the site updating. (refresh to see changes)\nHaving issues? Ask in the Discord server!\n",
       "http",
       "https:",
       "width",
@@ -2531,15 +2531,15 @@ var client = {
           if (client.banned) {
             document.getElementById("connecting1").innerText = "You are banned.";
             document.getElementById("connecting2").innerText = "Refresh to reconnect\nYou can appeal in the server\n";
-            var a = document.createElement('a');
-            a.href = "https://discord.gg/rDXPEgFA6m";
-            a.innerText = "https://discord.gg/rDXPEgFA6m";
-            a.target = "_blank";
-            document.getElementById("connecting2").append(a);
           } else {
             (document[e(628)](e(544))[e(537)] = e(378)); //connecting2 text
             (document[e(628)](e(387)).innerText = e(249)); //connecting1 text
           }
+          var a = document.createElement('a');
+          a.href = "https://discord.gg/rDXPEgFA6m";
+          a.innerText = "https://discord.gg/rDXPEgFA6m";
+          a.target = "_blank";
+          document.getElementById("connecting2").append(a);
           (c.onclick = Kr);
       }
       function Tn(e) {
