@@ -2527,9 +2527,14 @@ var client = {
           clearInterval(he),
           clearInterval(ye),
           nr(),
-          dt(!1),
-          (document[e(628)](e(387)).innerText = e(249)),
-          (document[e(628)](e(544))[e(537)] = e(378)),
+          dt(!1);
+          if (client.banned) {
+            document.querySelector("connecting1").innerText = "You are banned.";
+            document.querySelector("connecting2").innerText = "Refresh to reconnect\nYou can appeal in the server\n";
+            
+          }
+            (document[e(628)](e(544))[e(537)] = e(378)); //connecting2 text
+            (document[e(628)](e(387)).innerText = e(249)); //connecting1 text
           (c.onclick = Kr);
       }
       function Tn(e) {
@@ -3853,6 +3858,7 @@ var client = {
           (Ce.x = Hr.x), (Ce.y = Hr.y);
         }
       function Kr() {
+        if (client.banned) return;
         var e = n;
         if (
           null == a ||
