@@ -2529,12 +2529,17 @@ var client = {
           nr(),
           dt(!1);
           if (client.banned) {
-            document.querySelector("connecting1").innerText = "You are banned.";
-            document.querySelector("connecting2").innerText = "Refresh to reconnect\nYou can appeal in the server\n";
-            
-          }
+            document.getElementById("connecting1").innerText = "You are banned.";
+            document.getElementById("connecting2").innerText = "Refresh to reconnect\nYou can appeal in the server\n";
+            var a = document.createElement('a');
+            a.href = "https://discord.gg/rDXPEgFA6m";
+            a.innerText = "https://discord.gg/rDXPEgFA6m";
+            a.target = "_blank";
+            document.getElementById("connecting2").append(a);
+          } else {
             (document[e(628)](e(544))[e(537)] = e(378)); //connecting2 text
             (document[e(628)](e(387)).innerText = e(249)); //connecting1 text
+          }
           (c.onclick = Kr);
       }
       function Tn(e) {
@@ -2846,13 +2851,16 @@ var client = {
             break;
           case "t":
             document[t(628)]("t").value = a.t;
+            break;
           case "id":
             client.id = a.id;
             je = "(" + client.id + ")";
             Bn();
             ge = true;
+            break;
           case "banned":
             client.banned = true;
+            break;
         }
       }
       function Bn() {
