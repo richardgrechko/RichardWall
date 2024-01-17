@@ -699,8 +699,10 @@ function init_ws() {
           if (isNaN(id)) return serverMessage(ws, "Invalid id");
           var client = getClientById(id);
           if (!client) return serverMessage(ws, "Client not found");
-          bannedIps[client.sdata.clientId] = client.sdata.ipAddr;
-          client.terminate();
+          bannedIps[client.sdata.clientId] = 
+          client.sdata.ipAddr;
+          send(client,msgpack.encode({banned: true}));
+          client.close();
           serverMessage(ws, "Banned client!");
           return;
         }
