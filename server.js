@@ -1,9 +1,10 @@
 // Thanks to falling1 for helping out!
-// Check him out or explode 💥💥💥
 // https://glitch.com/@falling1
- Shutdown servers: Remove the two slashes
+var maintenanceMode = true;
+// 💥 Remove the two slashes at the start, above to shutdown servers! 💥
 // Restart Servers: Type something or remove here: eeeeeeeeee
 // It automatically restarts when you modify, remove or add an character to any of the files
+
 var fs = require("fs");
 var express = require("express");
 var http = require("http");
@@ -44,7 +45,10 @@ app.use(express.static("client"));
 app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/client/index.html");
 });
-var server = http.createServer(app);
+var server = http.createServer(maintenanceMode ? (req, res) => {
+  res.writeHead(503);
+  res.end("Dimka's TextWall is currently under maintenance for now.\nYou can join the Discord server at https://discord.gg/rDXPEgFA6m");
+} : app);
 
 async function runserver() {
 	server.listen(port, function() {
@@ -56,7 +60,7 @@ function getRandomNumber(min, max) {
 }
 
 	});
-	init_ws();
+	if (!maintenanceMode) init_ws();
 }
 
 function is_whole_number(x) {
