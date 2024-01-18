@@ -4,7 +4,7 @@ var maintenanceMode = false;
 // 💥 Turn it to "true" to shutdown the servers! 💥
 // actually you just need to change the true to false
 // Restart Servers: Type something or remove here: eeeeeeeeee
-// It automatically restarts when you modify, remove or add an character to any of the files
+// It automatically restarts when you modify, remove or add an character to any of the files except html ones
 
 var fs = require("fs");
 var express = require("express");
