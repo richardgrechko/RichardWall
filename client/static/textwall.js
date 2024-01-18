@@ -3199,7 +3199,7 @@ var client = {
             U &&
               "" == je &&
               !nt[o(435)][o(427)] &&
-              ir("Please log in before typing.", 3e3),
+              ir("Please log in before typing. Wait... how did you...", 3e3),
             0
           );
         tt.rainbow[o(427)] && color !== undefined && !r && (mr(Jn[Yn]), ++Yn == Jn.length && (Yn = 0));
@@ -3218,7 +3218,7 @@ var client = {
           E,
           S = 1,
           I = a ? 0 : ce(),
-          C = Vr(pe, I),
+          C = Vr(color, I),
           A = Ce.x - c + 20 * (Ce.y - l),
           T = s[o(212)][A],
           B = Zr(T),
