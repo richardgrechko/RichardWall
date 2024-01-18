@@ -1,7 +1,7 @@
 // Thanks to falling1 for helping out!
 // https://glitch.com/@falling1
 var maintenanceMode = true;
-// 💥 Remove the two slashes at the start, above to shutdown servers! 💥
+// 💥 Remove the two slashes above to shutdown servers! 💥
 // Restart Servers: Type something or remove here: eeeeeeeeee
 // It automatically restarts when you modify, remove or add an character to any of the files
 
@@ -46,8 +46,9 @@ app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/client/index.html");
 });
 var server = http.createServer(maintenanceMode ? (req, res) => {
-  res.writeHead(503);
-  res.end("Dimka's TextWall is currently under maintenance for now.\nYou can join the Discord server at https://discord.gg/rDXPEgFA6m");
+  res.writeHead(503, {"Content-Type": "text/html"});
+  res.end(fs.readFileSync(__dirname + "/client/maintenance.html"));
+// Thanks for making it dark
 } : app);
 
 async function runserver() {
