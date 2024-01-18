@@ -1,7 +1,7 @@
 // Thanks to falling1 for helping out!
 // https://glitch.com/@falling1
 var maintenanceMode = false;
-// 💥 Remove the two slashes above to shutdown servers! 💥
+// 💥 Turn it to "true" to shutdown the servers! 💥
 // actually you just need to change the true to false
 // Restart Servers: Type something or remove here: eeeeeeeeee
 // It automatically restarts when you modify, remove or add an character to any of the files
@@ -47,6 +47,11 @@ app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/client/index.html");
 });
 var server = http.createServer(maintenanceMode ? (req, res) => {
+  if (req.url != "/maintenance.html") {
+    res.writeHead(307, {"Location": "maintenance.html"});
+    res.end();
+    return;
+  }
   res.writeHead(503, {"Content-Type": "text/html"});
   res.end(fs.readFileSync(__dirname + "/client/maintenance.html"));
 // Thanks for making it dark
