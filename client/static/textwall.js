@@ -3059,6 +3059,8 @@ var client = {
       window.teleportTo = vr;
       client.chunks = we;
       client.cursors = Pe;
+      client.getColor = () => pe;
+      client.cursor = Ce;
       function getCharInfo(x, y) {
         y = -y;
         var char = {};
@@ -3168,7 +3170,7 @@ var client = {
           S
         );
       }
-      function writeCharAt(e, coordX, coordY, r, a) {
+      function writeCharAt(e, coordX, coordY, color = pe, r, a) {
         coordY = -coordY;
         var Ce = {x: coordX, y: coordY}
         var o = n;
@@ -3200,7 +3202,7 @@ var client = {
               ir("Please log in before typing.", 3e3),
             0
           );
-        tt.rainbow[o(427)] && !r && (mr(Jn[Yn]), ++Yn == Jn.length && (Yn = 0));
+        tt.rainbow[o(427)] && color !== undefined && !r && (mr(Jn[Yn]), ++Yn == Jn.length && (Yn = 0));
         var d,
           f,
           v,
