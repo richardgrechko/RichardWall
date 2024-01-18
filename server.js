@@ -1,7 +1,7 @@
 // Thanks to falling1 for helping out!
 // Check him out or explode 💥💥💥
 // https://glitch.com/@falling1
-// Shutdown servers: Remove the two slashes
+ Shutdown servers: Remove the two slashes
 // Restart Servers: Type something or remove here: eeeeeeeeee
 // It automatically restarts when you modify, remove or add an character to any of the files
 var fs = require("fs");
