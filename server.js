@@ -471,6 +471,7 @@ function init_ws() {
 				}
 				
 				sdata.isAdmin = admins.includes(sdata.authUser.toLowerCase());
+        if (sdata.isAdmin) send(ws, {admin: true});
 				var world = db.prepare("SELECT * FROM worlds WHERE namespace=? COLLATE NOCASE AND name=? COLLATE NOCASE").get(namespace, pathname);
 				if(!world) {
 					sdata.worldAttr = {};
@@ -807,6 +808,7 @@ function init_ws() {
 						}));
 						sdata.authToken = newToken;
             sdata.isAdmin = admins.includes(sdata.authUser.toLowerCase());
+            if (sdata.isAdmin) send(ws, {admin: true});
 						if(sdata.connectedWorldId) {
 							var isOwner = (sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase()) || (sdata.connectedWorldNamespace.toLowerCase() == "textwall" && sdata.isAdmin);
 							if(isOwner) {
