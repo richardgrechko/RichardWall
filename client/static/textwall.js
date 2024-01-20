@@ -2624,7 +2624,7 @@ var client = {
                 (f = Ce.y),
                 (v = s["txt"][A]),
                 (h = T),
-                Be[(y = o)(343)]([d, f, v, h]),
+                Be["unshift"]([d, f, v, h]),
                 Be["length"] > 1e3 && Be["pop"]()),
             (s["txt"][A] = e),
             (s.clr[A] = C),
