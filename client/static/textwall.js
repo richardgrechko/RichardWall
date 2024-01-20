@@ -3311,7 +3311,7 @@ var client = {
                 var u = t;
                 if (n == r[u(500)] || !Ie)
                   return nr(), (er = !1), mr(c), void le(l);
-                if ("\n" == r[n]) return cr(), setTimeout(e, 20, n + 1, o);
+                if ("\n" == r[n]) return cr(), setTimeout(e, 20 / 1.5, n + 1, o);
                 var s,
                   d,
                   f = r[n];
@@ -3327,11 +3327,11 @@ var client = {
                 switch (((zn = 0), Vn(f, 1))) {
                   case 0:
                   case 1:
-                    return setTimeout(e, 10, n + 1, o);
+                    return setTimeout(e, 10 / 1.5, n + 1, o);
                   default:
                     return setTimeout(
                       e,
-                      36 * Math[u(396)](Math.E, _n * o),
+                      36 * Math[u(396)](Math.E, _n * o) / 1.5,
                       n + 1,
                       o + 1
                     );
