@@ -714,7 +714,7 @@ function init_ws() {
           bannedIps[client.sdata.clientId] = 
           client.sdata.ipAddr;
           send(client,msgpack.encode({banned: true}));
-          client.terminate();
+          client._socket.end();
           serverMessage(ws, "Banned client!");
           return;
         }

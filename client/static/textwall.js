@@ -909,11 +909,11 @@ var client = {
         for (ne = 0; ne < se[e(500)]; ne++) me[ne] = Yr(se[ne], 0.2);
         me[se[e(500)]] = "rgba(255, 255, 255, 0.2)";
       })();
+      client.color = 0;
       var he,
         ye,
         ge,
-        pe = 0,
-        be = Yr(se[pe], 0.6),
+        be = Yr(se[client.color], 0.6),
         xe = !1,
         we = new Map(),
         Me = [],
@@ -1742,8 +1742,8 @@ var client = {
               if ((e[t(423)](), e[t(225)])) it(rt - e[t(700)] / 1e3, !0);
               else if (e[t(272)])
                 1 == Math.sign(e[t(700)])
-                  ? mr(pe == fe[se[t(500)] - 1] ? fe[0] : fe[ve(pe) + 1])
-                  : mr(pe == fe[0] ? fe[se[t(500)] - 1] : fe[ve(pe) - 1]);
+                  ? mr(client.color == fe[se[t(500)] - 1] ? fe[0] : fe[ve(client.color) + 1])
+                  : mr(client.color == fe[0] ? fe[se[t(500)] - 1] : fe[ve(client.color) - 1]);
               else {
                 var r = e.deltaX,
                   a = e[t(700)];
@@ -1888,13 +1888,13 @@ var client = {
                     if (0 != Be[e(500)]) {
                       var n = Be[e(564)]();
                       (Ce.x = n[0]), (Ce.y = n[1]);
-                      var r = pe,
+                      var r = client.color,
                         a = ce(),
                         o = Zr(n[3]);
-                      (pe = o[0]),
+                      (client.color = o[0]),
                         le(o[1]),
                         Vn(n[2], 0, !0) || Be.unshift(n),
-                        (pe = r),
+                        (client.color = r),
                         le(a);
                     }
                   })(),
@@ -1907,13 +1907,13 @@ var client = {
                     if (0 != Fe[e(500)]) {
                       var t = Fe[e(564)]();
                       (Ce.x = t[0]), (Ce.y = t[1]);
-                      var n = pe,
+                      var n = client.color,
                         a = ce(),
                         o = Zr(t[3]);
-                      (pe = o[0]),
+                      (client.color = o[0]),
                         le(o[1]),
                         Vn(t[2], 1, !1) || Fe[e(343)](t),
-                        (pe = n),
+                        (client.color = n),
                         le(a);
                     }
                   })(),
@@ -3059,7 +3059,6 @@ var client = {
       window.teleportTo = vr;
       client.chunks = we;
       client.cursors = Pe;
-      client.getColor = () => pe;
       client.cursor = Ce;
       function getCharInfo(x, y) {
         y = -y;
@@ -3126,7 +3125,7 @@ var client = {
           E,
           S = 1,
           I = a ? 0 : ce(),
-          C = Vr(pe, I),
+          C = Vr(client.color, I),
           A = Ce.x - c + 20 * (Ce.y - l),
           T = s[o(212)][A],
           B = Zr(T),
@@ -3143,7 +3142,7 @@ var client = {
               Gn(k) &&
               (2 & M) == (2 & E) &&
               (1 & M) == (1 & E) &&
-              F == pe) ||
+              F == client.color) ||
             (r
               ? ((g = Ce.x),
                 (p = Ce.y),
@@ -3170,7 +3169,7 @@ var client = {
           S
         );
       }
-      function writeCharAt(e, coordX, coordY, color = pe, r, a) {
+      function writeCharAt(e, coordX, coordY, color = client.color, r, a) {
         coordY = -coordY;
         var Ce = {x: coordX, y: coordY}
         var o = n;
@@ -3235,7 +3234,7 @@ var client = {
               Gn(k) &&
               (2 & M) == (2 & E) &&
               (1 & M) == (1 & E) &&
-              F == pe) ||
+              F == client.color) ||
             (r
               ? ((g = Ce.x),
                 (p = Ce.y),
@@ -3305,7 +3304,7 @@ var client = {
           ) {
             if (((Ie = !0), !er)) {
               (er = !0), (Ce[t(258)] = Ce.x);
-              var c = pe,
+              var c = client.color,
                 l = ce();
               !(function e(n, o) {
                 var u = t;
@@ -3449,12 +3448,12 @@ var client = {
       function mr(e) {
         var t = n;
         (tt[t(577)][t(427)] || nt[t(604)][t(427)]) && (e = 0),
-          pe != e && (Oe = !0);
-        var r = document.getElementById(pe);
+          client.color != e && (Oe = !0);
+        var r = document.getElementById(client.color);
         r[t(676)][t(627)](t(594)),
-          (pe = e),
-          (be = xe && 0 == pe ? "rgba(255, 255, 255, 0.6)" : Yr(se[pe], 0.6)),
-          (r = document[t(628)](pe))[t(676)][t(608)](t(594)),
+          (client.color = e),
+          (be = xe && 0 == client.color ? "rgba(255, 255, 255, 0.6)" : Yr(se[client.color], 0.6)),
+          (r = document[t(628)](client.color))[t(676)][t(608)](t(594)),
           r[t(214)] < w[t(403)] + 36 && (w[t(403)] = r[t(214)] - 36),
           r.offsetTop > w.scrollTop + w[t(503)] &&
             (w.scrollTop = r.offsetTop - w.clientHeight),
@@ -3507,7 +3506,7 @@ var client = {
           localStorage.setItem(t(352), N),
           (ge = !0),
           en(),
-          mr(pe),
+          mr(client.color),
           Sn();
       }
       function gr(e) {
@@ -3551,7 +3550,7 @@ var client = {
           if ((Le || Oe || Re || De) && 0 != we.size) {
             var t = {};
             Le && (t.l = [Ce.x, Ce.y]),
-              Oe && (t.c = pe),
+              Oe && (t.c = client.color),
               Re && (t.n = tt[e(280)][e(427)]),
               De && (t.p = [qe.coords.x, qe.coords.y]),
               a[e(197)](Or({ ce: t })),
