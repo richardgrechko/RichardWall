@@ -3057,6 +3057,7 @@ var client = {
       window.writeCharAt = writeCharAt;
       window.getCharInfo = getCharInfo;
       window.teleportTo = vr;
+      window.n = n;
       client.chunks = we;
       client.cursors = Pe;
       client.cursor = Ce;
