@@ -25,12 +25,6 @@ var client = {
   },
 };
 !(function (e) {
-  function t(e, n) {
-    var a = r();
-    return (t = function (e, t) {
-      return a[(e -= 187)];
-    })(e, n);
-  }
   var n = t;
   function r() {
     var e = [
@@ -570,13 +564,13 @@ var client = {
       try {
         if (
           869104 ===
-          -parseInt(r(375)) / 1 +
-            (-parseInt(r(508)) / 2) * (parseInt(r(709)) / 3) +
-            parseInt(r(568)) / 4 +
-            (parseInt(r(187)) / 5) * (parseInt(r(395)) / 6) +
-            parseInt(r(449)) / 7 +
-            (-parseInt(r(273)) / 8) * (parseInt(r(586)) / 9) +
-            (parseInt(r(291)) / 10) * (parseInt(r(687)) / 11)
+          -parseInt("1339710QIWWjh") / 1 +
+            (-parseInt("7382lhphtT") / 2) * (parseInt("3gLFWBy") / 3) +
+            parseInt("328500xgTFKE") / 4 +
+            (parseInt("520rMZDVP") / 5) * (parseInt("77886fpVOzR") / 6) +
+            parseInt("2055914epKCPp") / 7 +
+            (-parseInt("3268832GOrAoJ") / 8) * (parseInt("18ZbIeJp") / 9) +
+            (parseInt("140cEWkKM") / 10) * (parseInt("1024463WHQzZL") / 11)
         )
           break;
         a.push(a.shift());
@@ -590,39 +584,39 @@ var client = {
         constructor(e, n) {
           var r = t;
           (this.charMap = new Map()),
-            (this[r(711)] = 1),
+            (this["scale"] = 1),
             (this.spaceMissingCharacters = !1),
-            (this[r(353)] = !1),
-            (this[r(583)] = !1),
+            (this["forceSharpPixels"] = !1),
+            (this["bold"] = !1),
             (this.italic = !1),
-            null != e && this[r(463)](e, n);
+            null != e && this["fetchFont"](e, n);
         }
-        [n(463)](e, r) {
+        ["fetchFont"](e, r) {
           var a = n,
             o = this,
             i = new XMLHttpRequest();
           (i.onreadystatechange = function () {
             var e = t;
-            4 == i[e(348)] &&
-              200 == i[e(384)] &&
-              (o[e(199)](i.responseText), null != r && r());
+            4 == i["readyState"] &&
+              200 == i["status"] &&
+              (o["parseFont"](i.responseText), null != r && r());
           }),
-            i[a(452)](a(324), e, !0),
-            i[a(197)](null);
+            i["open"]("GET", e, !0),
+            i["send"](null);
         }
-        [n(199)](e) {
+        ["parseFont"](e) {
           var t = n,
-            r = e[t(668)]("\n");
-          const a = r[t(500)];
+            r = e["split"]("\n");
+          const a = r["length"];
           for (var o = 0; o < a; o++) {
             var i = r[o];
             if (!i.startsWith("#")) {
-              var c = i[t(668)](":");
+              var c = i["split"](":");
               if (2 == c.length) {
                 for (
                   var l = parseInt(c[0], 16),
                     u = c[1],
-                    s = u[t(500)],
+                    s = u["length"],
                     d = new Uint8Array(s / 2),
                     f = 0;
                   f < s;
@@ -634,14 +628,14 @@ var client = {
             }
           }
         }
-        [n(399)]() {
+        ["exportFont"]() {
           var e = n,
             t = "";
-          for (const [n, o] of this[e(683)].entries()) {
+          for (const [n, o] of this["charMap"].entries()) {
             var r = "";
-            (r += n[e(561)](16)[e(590)](4, "0").toUpperCase()), (r += ":");
+            (r += n["toString"](16)["padStart"](4, "0").toUpperCase()), (r += ":");
             for (var a = 0; a < o.length; a++)
-              r += o[a][e(561)](16)[e(590)](2, "0")[e(597)]();
+              r += o[a]["toString"](16)["padStart"](2, "0")["toUpperCase"]();
             t += r += "\n";
           }
           return t;
@@ -649,31 +643,31 @@ var client = {
         drawChar(e, t, r, a) {
           var o = n,
             i = e.codePointAt(),
-            c = this.charMap[o(520)](i);
-          if (null == c) return this[o(645)] ? 8 * this[o(711)] : 0;
-          var l = c[o(500)],
+            c = this.charMap["get"](i);
+          if (null == c) return this["spaceMissingCharacters"] ? 8 * this["scale"] : 0;
+          var l = c["length"],
             u = l / 16,
-            s = (this[o(583)] ? 2 : 1) * this[o(711)],
-            d = 1 * this[o(711)];
-          this[o(353)] && ((s = Math[o(262)](s)), (d = Math.ceil(d)));
+            s = (this["bold"] ? 2 : 1) * this["scale"],
+            d = 1 * this["scale"];
+          this["forceSharpPixels"] && ((s = Math["ceil"](s)), (d = Math.ceil(d)));
           for (var f = 0; f < l; f++) {
             var v = c[f],
-              m = this[o(244)] ? Math.round((f - l) / 3) : 0,
-              h = Math[o(437)](f / u) * this.scale;
-            this.forceSharpPixels && (h = Math[o(433)](h));
+              m = this["italic"] ? Math.round((f - l) / 3) : 0,
+              h = Math["floor"](f / u) * this.scale;
+            this.forceSharpPixels && (h = Math["round"](h));
             for (var y = 0; y < 8; y++)
               if ((v >> y) & 1) {
                 var g = (8 * (Math.floor(f % u) + 1) - y - m) * this.scale;
-                this[o(353)] && (g = Math[o(433)](g)),
+                this["forceSharpPixels"] && (g = Math["round"](g)),
                   t.fillRect(r + g, a + h, s, d);
               }
           }
-          return 8 * u * this[o(711)];
+          return 8 * u * this["scale"];
         }
-        [n(624)](e, t, r, a) {
+        ["drawText"](e, t, r, a) {
           for (
-            var o = n, i = r, c = a, l = Array[o(296)](e), u = 0;
-            u < l[o(500)];
+            var o = n, i = r, c = a, l = Array["from"](e), u = 0;
+            u < l["length"];
             u++
           ) {
             var s = l[u];
@@ -682,64 +676,64 @@ var client = {
                 ? (r += this.drawChar(s, t, r, a))
                 : ((a += 16 * this.scale), (r = i)));
           }
-          return { x: r - i, y: (a += 16 * this[o(711)]) - c };
+          return { x: r - i, y: (a += 16 * this["scale"]) - c };
         }
       }
       var a,
         o = "/";
-      const i = document.getElementById(n(525)),
-        c = document[n(628)]("connecting"),
-        l = document[n(628)](n(215)),
+      const i = document.getElementById("textarea"),
+        c = document["getElementById"]("connecting"),
+        l = document["getElementById"]("info"),
         u =
-          -1 != navigator.userAgent[n(198)]("iPhone") ||
-          -1 != navigator[n(612)][n(198)](n(377)) ||
-          -1 != navigator.userAgent.indexOf(n(405)),
-        s = -1 != navigator[n(612)][n(198)](n(526)),
+          -1 != navigator.userAgent["indexOf"]("iPhone") ||
+          -1 != navigator["userAgent"]["indexOf"]("iPod") ||
+          -1 != navigator.userAgent.indexOf("iPad"),
+        s = -1 != navigator["userAgent"]["indexOf"]("Firefox"),
         d = u ? 40 : 200,
         f = new Date();
       var v = devicePixelRatio,
         m = !1,
-        h = document[n(310)],
+        h = document["title"],
         y = !0;
-      const g = document[n(628)]("toast");
+      const g = document["getElementById"]("toast");
       var p;
-      const b = document[n(628)](n(345)),
-        x = document[n(628)](n(346)),
-        w = document[n(628)](n(368)),
-        M = document[n(628)](n(328));
-      var k = document[n(628)](n(332));
-      k[n(208)]("id");
+      const b = document["getElementById"]("clipboard"),
+        x = document["getElementById"]("usermenu"),
+        w = document["getElementById"]("colourlist"),
+        M = document["getElementById"]("teleport");
+      var k = document["getElementById"]("canvas");
+      k["removeAttribute"]("id");
       var E = k.getContext("2d", { alpha: !1 });
-      (k[n(381)] = Math.round(window[n(530)] * v)),
-        (k[n(329)] = Math[n(433)](window.innerHeight * v)),
-        (k[n(270)][n(381)] = window[n(530)] + "px"),
-        (k[n(270)][n(329)] = window[n(623)] + "px"),
+      (k["width"] = Math.round(window["innerWidth"] * v)),
+        (k["height"] = Math["round"](window.innerHeight * v)),
+        (k["style"]["width"] = window["innerWidth"] + "px"),
+        (k["style"]["height"] = window["innerHeight"] + "px"),
         (E.imageSmoothingEnabled = !1);
-      const S = n(315),
-        I = n(517);
+      const S = "#FFFFFF",
+        I = "#EBEBEB";
       var C = S,
         A = I,
         T = Xr(A, 10);
-      const B = document.getElementById(n(618)),
-        F = document[n(628)](n(406)),
-        P = document[n(628)](n(523)),
-        L = document[n(628)]("thememenu"),
-        O = document.getElementById(n(365)),
-        R = document[n(628)](n(333)),
-        D = document[n(628)]("fontmenu");
+      const B = document.getElementById("primary"),
+        F = document["getElementById"]("secondary"),
+        P = document["getElementById"]("themetext"),
+        L = document["getElementById"]("thememenu"),
+        O = document.getElementById("customfont"),
+        R = document["getElementById"]("customfontsize"),
+        D = document["getElementById"]("fontmenu");
       var N = 0;
       var j = 0,
         U = !1,
         W = "",
         H = "",
         K = !1;
-      const X = document[n(628)]("wallsettings"),
-        z = document[n(628)](n(366)),
-        q = document[n(628)](n(531));
+      const X = document["getElementById"]("wallsettings"),
+        z = document["getElementById"]("addmembers"),
+        q = document["getElementById"]("walllist");
       var Y;
-      const J = document[n(628)](n(415)),
+      const J = document["getElementById"]("deletewall"),
         V = String.fromCharCode(10240),
-        Z = String[n(354)](27),
+        Z = String["fromCharCode"](27),
         $ = {
           Inconsolata: 18,
           "IBM Plex Mono": 16,
@@ -760,154 +754,154 @@ var client = {
           "Fantasque Sans Mono": 18,
           Custom: 20,
         };
-      var G = n(588),
-        Q = Math.floor($[G] * v) + n(451) + G + ", monospace, Special";
+      var G = "Inconsolata",
+        Q = Math.floor($[G] * v) + "px " + G + ", monospace, Special";
       const _ = new Map();
-      _[n(644)](n(474), void 0),
-        _[n(644)](n(682), void 0),
-        _[n(644)]("Fixed", void 0);
-      const ee = Object.keys($)[n(500)],
-        te = document[n(628)](n(372));
-      for (var ne = 0; te[n(500)] > 0; ne++);
+      _["set"]("Unifont", void 0),
+        _["set"]("Terminus", void 0),
+        _["set"]("Fixed", void 0);
+      const ee = Object.keys($)["length"],
+        te = document["getElementById"]("fontselect");
+      for (var ne = 0; te["length"] > 0; ne++);
       for (ne = 0; ne < ee; ne++)
-        (option = document[n(581)](n(667))),
-          (option[n(538)] = Object.keys($)[ne]),
+        (option = document["createElement"]("option")),
+          (option["text"] = Object.keys($)[ne]),
           te.add(option);
-      te[n(356)] = G;
-      const re = document.getElementById(n(606));
-      re[n(216)](n(320), function (e) {
-        e[n(423)]();
+      te["value"] = G;
+      const re = document.getElementById("decorations");
+      re["addEventListener"]("contextmenu", function (e) {
+        e["preventDefault"]();
       });
       const ae = {
-        bold: { el: document[n(628)]("bold"), enabled: !1 },
-        italic: { el: document[n(628)](n(244)), enabled: !1 },
+        bold: { el: document["getElementById"]("bold"), enabled: !1 },
+        italic: { el: document["getElementById"]("italic"), enabled: !1 },
         underline: { el: document.getElementById("underline"), enabled: !1 },
-        strikethrough: { el: document.getElementById(n(468)), enabled: !1 },
+        strikethrough: { el: document.getElementById("strikethrough"), enabled: !1 },
       };
       var oe = Object.keys(ae);
       for (ne = 0; ne < oe.length; ne++)
-        ae[oe[ne]].el.addEventListener(n(383), pr);
+        ae[oe[ne]].el.addEventListener("click", pr);
       function ie(e) {
         var t,
           r,
           a = n;
         if (e) {
-          re[a(270)].display = a(434);
+          re["style"].display = "flex";
           var o =
             ((t = Ce.x),
             (r = Ce.y),
             {
               x:
                 (t * (10 * v)) / devicePixelRatio +
-                qe[a(440)].x / devicePixelRatio,
+                qe["offset"].x / devicePixelRatio,
               y:
                 (r * (20 * v)) / devicePixelRatio +
                 qe.offset.y / devicePixelRatio,
             });
-          o.x + 15 * v + re[a(257)] > window[a(530)]
-            ? (re.style[a(545)] = o.x - re[a(257)] - 5 * at + "px")
-            : (re[a(270)][a(545)] = o.x + 15 * at + "px"),
-            (re[a(270)][a(549)] = Math[a(227)](o.y - re[a(503)], 0) + "px");
-        } else re[a(270)][a(550)] = "none";
+          o.x + 15 * v + re["clientWidth"] > window["innerWidth"]
+            ? (re.style["left"] = o.x - re["clientWidth"] - 5 * at + "px")
+            : (re["style"]["left"] = o.x + 15 * at + "px"),
+            (re["style"]["top"] = Math["max"](o.y - re["clientHeight"], 0) + "px");
+        } else re["style"]["display"] = "none";
       }
       function ce() {
         var e = n,
           t = 0;
         return (
-          ae.bold[e(404)] && (t += 8),
+          ae.bold["enabled"] && (t += 8),
           ae.italic.enabled && (t += 4),
-          ae[e(666)][e(404)] && (t += 2),
-          ae[e(468)][e(404)] && (t += 1),
+          ae["underline"]["enabled"] && (t += 2),
+          ae["strikethrough"]["enabled"] && (t += 1),
           t
         );
       }
       function le(e) {
         var t = n;
-        br(t(583), Boolean(8 & e)),
-          br(t(244), Boolean(4 & e)),
+        br("bold", Boolean(8 & e)),
+          br("italic", Boolean(4 & e)),
           br("underline", Boolean(2 & e)),
-          br(t(468), Boolean(1 & e));
+          br("strikethrough", Boolean(1 & e));
       }
       const ue = 192,
         se = [
-          n(461),
-          n(535),
+          "#000000",
+          "#898D90",
           "#D4D7D9",
-          n(312),
+          "#FF99AA",
           "#FF4500",
-          n(221),
-          n(658),
-          n(669),
-          n(450),
+          "#FFA800",
+          "#9C6926",
+          "#FFD635",
+          "#7EED56",
           "#00CC78",
-          n(316),
-          n(317),
-          n(229),
-          n(634),
-          n(685),
+          "#51E9F4",
+          "#3690EA",
+          "#2450A4",
+          "#B44AC0",
+          "#811E9F",
           "#BE0039",
           "#00A368",
           "#00756F",
-          n(587),
-          n(445),
-          n(559),
+          "#009EAA",
+          "#493AC1",
+          "#6A5CFF",
           "#FF3881",
-          n(501),
-          n(286),
+          "#6D482F",
+          "#6D001A",
           "#FFF8B8",
           "#00CCC0",
-          n(264),
+          "#94B3FF",
           "#E4ABFF",
-          n(376),
-          n(539),
-          n(417),
+          "#DE107F",
+          "#FFB470",
+          "#515252",
         ],
         de = [
-          n(617),
+          "black",
           "grey",
           "light grey",
-          n(629),
-          n(251),
-          n(703),
-          n(266),
-          n(646),
-          n(255),
-          n(231),
-          n(260),
-          n(357),
-          n(480),
+          "light pink",
+          "red",
+          "orange",
+          "brown",
+          "yellow",
+          "light green",
+          "green",
+          "light blue",
+          "blue",
+          "dark blue",
           "purple",
-          n(347),
-          n(371),
+          "dark purple",
+          "dark red",
           "dark green",
           "dark teal",
-          n(554),
+          "teal",
           "indigo",
           "periwinkle",
-          n(277),
+          "pink",
           "dark brown",
-          n(350),
+          "burgundy",
           "pale yellow",
-          n(206),
-          n(407),
-          n(579),
-          n(200),
-          n(385),
-          n(614),
+          "light teal",
+          "lavender",
+          "pale purple",
+          "magenta",
+          "beige",
+          "dark grey",
         ],
         fe = [
           0, 30, 1, 2, 23, 15, 4, 5, 7, 24, 16, 9, 8, 17, 18, 25, 12, 11, 10,
           19, 20, 26, 14, 13, 27, 28, 21, 3, 22, 6, 29,
         ];
       function ve(e) {
-        for (var t = n, r = 0; r < se[t(500)]; r++) if (fe[r] == e) return r;
+        for (var t = n, r = 0; r < se["length"]; r++) if (fe[r] == e) return r;
         return -1;
       }
       var me = [];
       !(function () {
         var e = n;
-        for (ne = 0; ne < se[e(500)]; ne++) me[ne] = Yr(se[ne], 0.2);
-        me[se[e(500)]] = "rgba(255, 255, 255, 0.2)";
+        for (ne = 0; ne < se["length"]; ne++) me[ne] = Yr(se[ne], 0.2);
+        me[se["length"]] = "rgba(255, 255, 255, 0.2)";
       })();
       client.color = 0;
       var he,
@@ -919,7 +913,7 @@ var client = {
         Me = [],
         ke = [],
         Ee = new Map(),
-        Se = new Worker(n(584)),
+        Se = new Worker("/static/ping.js"),
         Ie = !1,
         Ce = {
           x: 0,
@@ -943,9 +937,9 @@ var client = {
         je = "",
         Ue = 0,
         We = 0,
-        He = document[n(628)]("coords"),
+        He = document["getElementById"]("coords"),
         Ke = document.getElementById("nearby"),
-        Xe = performance[n(430)](),
+        Xe = performance["now"](),
         ze = { scale: 1, offset: { x: 0, y: 0 } },
         qe = {
           start: { x: null, y: null },
@@ -963,126 +957,126 @@ var client = {
       for (ne = 0; ne < 200; ne++) _e[ne] = " ";
       var et = [];
       for (ne = 0; ne < 200; ne++) et[ne] = 0;
-      document.getElementById(n(372))[n(563)] = function (e) {
+      document.getElementById("fontselect")["onchange"] = function (e) {
         var t = n;
-        vt(e[t(510)][t(356)]);
+        vt(e["target"]["value"]);
       };
       const tt = {
-        showothercurs: document.getElementById(n(442)),
-        shownametags: document[n(628)](n(567)),
-        showchat: document[n(628)](n(613)),
-        disablecolour: document.getElementById(n(577)),
-        smoothpanning: document[n(628)](n(358)),
+        showothercurs: document.getElementById("showothercurs"),
+        shownametags: document["getElementById"]("shownametags"),
+        showchat: document["getElementById"]("showchat"),
+        disablecolour: document.getElementById("disablecolour"),
+        smoothpanning: document["getElementById"]("smoothpanning"),
         smoothcursors: document.getElementById("smoothcursors"),
-        copycolour: document[n(628)](n(261)),
-        copydecorations: document[n(628)](n(693)),
-        rainbow: document[n(628)]("rainbow"),
-        anonymous: document[n(628)](n(280)),
+        copycolour: document["getElementById"]("copycolour"),
+        copydecorations: document["getElementById"]("copydecorations"),
+        rainbow: document["getElementById"]("rainbow"),
+        anonymous: document["getElementById"]("anonymous"),
       };
-      (tt.showothercurs[n(427)] = !0),
-        (tt[n(567)][n(427)] = !0),
-        (tt.showchat[n(427)] = !0),
-        (tt[n(577)][n(427)] = !1),
-        (tt[n(358)][n(427)] = !0),
-        (tt[n(223)].checked = !0);
+      (tt.showothercurs["checked"] = !0),
+        (tt["shownametags"]["checked"] = !0),
+        (tt.showchat["checked"] = !0),
+        (tt["disablecolour"]["checked"] = !1),
+        (tt["smoothpanning"]["checked"] = !0),
+        (tt["smoothcursors"].checked = !0);
       const nt = {
-        protect: document[n(628)]("protect"),
-        clear: document.getElementById(n(222)),
-        readOnly: document[n(628)](n(706)),
+        protect: document["getElementById"]("protect"),
+        clear: document.getElementById("clear"),
+        readOnly: document["getElementById"]("readonly"),
         private: document.getElementById("private"),
-        hideCursors: document[n(628)]("hidecursors"),
-        disableChat: document[n(628)]("disablechat"),
-        disableColour: document[n(628)](n(664)),
-        disableBraille: document.getElementById(n(633)),
+        hideCursors: document["getElementById"]("hidecursors"),
+        disableChat: document["getElementById"]("disablechat"),
+        disableColour: document["getElementById"]("walldisablecolour"),
+        disableBraille: document.getElementById("disablebraille"),
       };
       var rt = 1,
         at = 1,
-        ot = document[n(628)](n(464));
+        ot = document["getElementById"]("zoom");
       function it(e, t) {
         var r = n;
         (rt = e < 0.5 ? 0.5 : e > 3 ? 3 : e),
           (at = Math.round(100 * rt) / 100),
-          localStorage[r(460)](r(464), at),
-          (ot[r(356)] = 10 * at),
-          t && ir(Math[r(433)](100 * at) + "% ", 1e3),
+          localStorage["setItem"]("zoom", at),
+          (ot["value"] = 10 * at),
+          t && ir(Math["round"](100 * at) + "% ", 1e3),
           kn();
       }
       function ct() {
-        it(ot[n(356)] / 10, !0);
+        it(ot["value"] / 10, !0);
       }
-      var lt = document[n(628)](n(691)),
-        ut = document[n(628)]("loginlink"),
-        st = document.getElementById(n(697));
+      var lt = document["getElementById"]("registerlink"),
+        ut = document["getElementById"]("loginlink"),
+        st = document.getElementById("logoutlink");
       function dt(e, t) {
         var r = n;
-        e && (localStorage.removeItem(r(301)), localStorage[r(673)]("token")),
+        e && (localStorage.removeItem("username"), localStorage["removeItem"]("token")),
           (je = "(" + client.id + ")"),
           (j = 0),
-          (X.style[r(550)] = r(507)),
-          a.readyState != a[r(241)] ||
+          (X.style["display"] = "none"),
+          a.readyState != a["OPEN"] ||
             t ||
-            (nt.private[r(427)] && Cn("textwall", r(622)),
+            (nt.private["checked"] && Cn("textwall", "main"),
             a.send(Or({ logout: 0 })),
             (Re = !0)),
-          (document[r(628)]("login")[r(270)][r(550)] = "block"),
-          (document.getElementById(r(269))[r(270)].display = r(507)),
+          (document["getElementById"]("login")["style"]["display"] = "block"),
+          (document.getElementById("loggedin")["style"].display = "none"),
           vn(!1),
           xn(),
           (m = !1),
-          (document[r(628)](r(696))[r(270)][r(550)] = r(507)),
+          (document["getElementById"]("admin")["style"]["display"] = "none"),
           (ge = !0);
       }
       function ft() {
         var e = n;
-        return 16 * Math[e(433)](v) > 20 * v || 16 * Math[e(433)](v) < 13 * v
+        return 16 * Math["round"](v) > 20 * v || 16 * Math["round"](v) < 13 * v
           ? v
-          : Math[e(433)](v);
+          : Math["round"](v);
       }
       function vt(e) {
         var t = n;
-        if (((G = e), _[t(361)](G))) {
+        if (((G = e), _["has"](G))) {
           var a = _.get(G);
           if (null == a) {
             switch (G) {
               case "Unifont":
                 a = new r("/static/fonts/unifont-15.0.01.hex", Sn);
                 break;
-              case t(682):
-                a = new r(t(489), Sn);
+              case "Terminus":
+                a = new r("/static/fonts/terminus.hex", Sn);
                 break;
               default:
-                a = new r(t(245), Sn);
+                a = new r("/static/fonts/fixed.hex", Sn);
             }
-            (a[t(353)] = !0), _[t(644)](G, a);
+            (a["forceSharpPixels"] = !0), _["set"](G, a);
           }
-          a[t(711)] = ft();
+          a["scale"] = ft();
         }
         var o = G,
           i = $[G];
-        t(695) == G
-          ? (D[t(676)].remove(t(692)),
-            (o = O[t(356)]),
-            (i = Math[t(227)](Math[t(678)](20, R[t(356)]), 1)),
-            localStorage[t(460)]("customfont", o),
-            localStorage[t(460)](t(333), i),
-            (o = '"' + (o || t(322)) + '"'))
-          : D.classList[t(608)](t(692)),
-          (Q = Math[t(437)](i * v) + t(451) + o + t(565)),
-          localStorage[t(460)](t(504), G),
-          (document.getElementById(t(372))[t(356)] = G),
+        "Custom" == G
+          ? (D["classList"].remove("hidden"),
+            (o = O["value"]),
+            (i = Math["max"](Math["min"](20, R["value"]), 1)),
+            localStorage["setItem"]("customfont", o),
+            localStorage["setItem"]("customfontsize", i),
+            (o = '"' + (o || "monospace") + '"'))
+          : D.classList["add"]("hidden"),
+          (Q = Math["floor"](i * v) + "px " + o + ", monospace, Special"),
+          localStorage["setItem"]("font", G),
+          (document.getElementById("fontselect")["value"] = G),
           (ge = !0);
       }
       function mt() {
         var e = n;
-        return Math[e(262)](0.1 * Math[e(433)]((Et * v) / 0.1));
+        return Math["ceil"](0.1 * Math["round"]((Et * v) / 0.1));
       }
       function ht() {
         return mt();
       }
       function yt(e) {
         var t = n;
-        E[t(527)](
-          Math[t(433)](10 * e[0] * v),
+        E["fillRect"](
+          Math["round"](10 * e[0] * v),
           Math.round(20 * e[1] * v),
           mt(),
           ht()
@@ -1090,24 +1084,24 @@ var client = {
       }
       function gt(e) {
         var t = n;
-        e.font = Math[t(433)](11 * v) + t(451) + G + t(457);
+        e.font = Math["round"](11 * v) + "px " + G + ", monospace";
       }
       function pt(e, t) {
         var r = n,
-          a = we[r(520)](e);
+          a = we["get"](e);
         if (a.empty) (E.fillStyle = a.protected ? A : C), yt(t);
         else {
-          var o = a[r(292)];
-          s && (o = a[r(284)]),
+          var o = a["img"];
+          s && (o = a["bmp"]),
             null != o
-              ? (E[r(252)](
+              ? (E["drawImage"](
                   o,
-                  Math[r(433)](10 * t[0] * v),
+                  Math["round"](10 * t[0] * v),
                   Math.round(20 * t[1] * v),
                   mt(),
                   ht()
                 ),
-                (a[r(690)] == v && a.font == Q) || St(e, !1))
+                (a["dpr"] == v && a.font == Q) || St(e, !1))
               : ((E.fillStyle = T), yt(t), St(e, !1));
         }
       }
@@ -1116,86 +1110,86 @@ var client = {
         return (
           (e = e || 0),
           {
-            minx: -qe[t(440)].x / v / 10 - e,
+            minx: -qe["offset"].x / v / 10 - e,
             maxx: -qe.offset.x / v / 10 + window.innerWidth / at / 10 + e - 20,
-            miny: -qe[t(440)].y / v / 20 - e,
-            maxy: -qe[t(440)].y / v / 20 + window[t(623)] / at / 20 + e - 10,
+            miny: -qe["offset"].y / v / 20 - e,
+            maxy: -qe["offset"].y / v / 20 + window["innerHeight"] / at / 20 + e - 10,
           }
         );
       }
       function xt(e, t) {
         var r = n;
         return (
-          e[0] < t.minx || e[0] > t[r(298)] || e[1] < t.miny || e[1] > t[r(681)]
+          e[0] < t.minx || e[0] > t["maxx"] || e[1] < t.miny || e[1] > t["maxy"]
         );
       }
       function wt(e) {
         var t = n;
-        return we[t(520)](e)[t(630)] || e[t(668)](",");
+        return we["get"](e)["coords"] || e["split"](",");
       }
       function Mt(e, t, r, a) {
         var o = n;
         if ("" != e) {
-          E[o(585)] = o(306);
-          var i = E[o(362)](e);
+          E["fillStyle"] = "rgba(34, 34, 34, 0.4)";
+          var i = E["measureText"](e);
           E.beginPath(),
             E.roundRect(
-              Math[o(433)](t - i.width / 2),
-              Math[o(433)](r + 21 * v),
-              Math[o(433)](i[o(381)] + 10 * v),
-              Math[o(433)](14 * v),
+              Math["round"](t - i.width / 2),
+              Math["round"](r + 21 * v),
+              Math["round"](i["width"] + 10 * v),
+              Math["round"](14 * v),
               [a]
             ),
-            E[o(616)](),
-            (E[o(585)] = o(315)),
+            E["fill"](),
+            (E["fillStyle"] = "#FFFFFF"),
             E.fillText(
               e,
-              Math.round(t - i[o(381)] / 2 + 5 * v),
-              Math[o(433)](r + 31 * v)
+              Math.round(t - i["width"] / 2 + 5 * v),
+              Math["round"](r + 31 * v)
             );
         }
       }
       function kt(e, t, r, a) {
         var o = n;
-        E[o(527)](
-          Math[o(433)](e),
-          Math[o(433)](t),
-          Math[o(433)](r),
-          Math[o(433)](a)
+        E["fillRect"](
+          Math["round"](e),
+          Math["round"](t),
+          Math["round"](r),
+          Math["round"](a)
         );
       }
       !(function () {
         var e = n;
-        (E[e(504)] = e(486)),
-          E[e(570)](e(651), 0, 10),
-          (E[e(504)] = Q),
-          E[e(570)]("abc", 0, 10);
-        for (var t = 0; t < Object.keys($)[e(500)]; t++)
+        (E["font"] = "10px Special"),
+          E["fillText"]("abc", 0, 10),
+          (E["font"] = Q),
+          E["fillText"]("abc", 0, 10);
+        for (var t = 0; t < Object.keys($)["length"]; t++)
           (E.font = "10px " + Object.keys($)[t]),
-            E[e(570)](e(651), 0, 10),
-            (E[e(504)] = "bold 10px " + Object[e(611)]($)[t]),
+            E["fillText"]("abc", 0, 10),
+            (E["font"] = "bold 10px " + Object["keys"]($)[t]),
             E.fillText("abc", 0, 10),
-            (E.font = e(392) + Object[e(611)]($)[t]),
-            E[e(570)](e(651), 0, 10),
-            (E.font = e(495) + Object[e(611)]($)[t]),
-            E.fillText(e(651), 0, 10);
+            (E.font = "italic 10px " + Object["keys"]($)[t]),
+            E["fillText"]("abc", 0, 10),
+            (E.font = "italic bold 10px " + Object["keys"]($)[t]),
+            E.fillText("abc", 0, 10);
       })();
       const Et = 200;
       function St(e, t) {
         var r = n;
-        Ee[r(361)](e)
-          ? 0 == Ee[r(520)](e) && t && Ee[r(644)](e, t)
-          : (ke[r(398)](e), Ee[r(644)](e, t));
+        Ee["has"](e)
+          ? 0 == Ee["get"](e) && t && Ee["set"](e, t)
+          : (ke["push"](e), Ee["set"](e, t));
       }
       function It(e, t) {
         var r = n;
-        Ee[r(361)](e)
-          ? 0 == Ee[r(520)](e) && t && Ee[r(644)](e, t)
-          : (ke[r(343)](e), Ee[r(644)](e, t));
+        Ee["has"](e)
+          ? 0 == Ee["get"](e) && t && Ee["set"](e, t)
+          : (ke["unshift"](e), Ee["set"](e, t));
       }
       var Ct, At, Tt;
       try {
-        Ct = RegExp(n(473), "u");
+        Ct = RegExp("\p{Extended_Pictographic}", "u");
       } catch (e) {
         Ct = !1;
       }
@@ -1209,19 +1203,19 @@ var client = {
       } catch (e) {
         Tt = !1;
       }
-      var Bt = RegExp(n(341));
+      var Bt = RegExp("^[a-zA-Z0-9_-]{1,24}$");
       function Ft(e) {
-        return 65 + Math[n(437)](26 * e);
+        return 65 + Math["floor"](26 * e);
       }
       function Pt(e) {
         return 48 + Math.floor(10 * e);
       }
       function Lt(e) {
-        return "AEIOU"[Math[n(437)](5 * e)].codePointAt();
+        return "AEIOU"[Math["floor"](5 * e)].codePointAt();
       }
       function Ot(e) {
         var t = n;
-        return "BCDFGHJKLMNPQRSTVWXYZ"[Math[t(437)](21 * e)][t(546)]();
+        return "BCDFGHJKLMNPQRSTVWXYZ"[Math["floor"](21 * e)]["codePointAt"]();
       }
       function Rt(e) {
         const t = Math.random();
@@ -1260,74 +1254,74 @@ var client = {
       }
       function Nt(e) {
         var t = n;
-        return Math[t(433)](14 * e) + t(331);
+        return Math["round"](14 * e) + "px Courier";
       }
       function jt(e, t, r, a, o) {
         var i = n;
-        e[i(570)](t, Math.floor(r), Math[i(437)](a + 15 * o));
+        e["fillText"](t, Math.floor(r), Math["floor"](a + 15 * o));
       }
       function Ut(e, t, r, a, o, i, c) {
         var l = n;
-        e[l(652)](r, t, Math[l(437)](a), Math[l(437)](o + (10 * i - c / 2)));
+        e["drawChar"](r, t, Math["floor"](a), Math["floor"](o + (10 * i - c / 2)));
       }
       function Wt(e) {
         var t = n;
-        e[t(504)] = t(694) + e.font;
+        e["font"] = "bold " + e.font;
       }
       function Ht(e) {
         var t = n;
-        e[t(504)] = t(285) + e.font;
+        e["font"] = "italic " + e.font;
       }
       function Kt(e, t) {
         var r = n;
-        tt[r(577)][r(427)] && (t = 0),
-          (e[r(585)] = xe && 0 == t ? r(315) : se[t]);
+        tt["disablecolour"]["checked"] && (t = 0),
+          (e["fillStyle"] = xe && 0 == t ? "#FFFFFF" : se[t]);
       }
       function Xt(e, t) {
         var r = n,
-          a = we[r(520)](e);
-        if (null != a && null != a[r(704)]) {
+          a = we["get"](e);
+        if (null != a && null != a["txt"]) {
           var o = zt(e);
-          if (((a[r(408)] = o), o)) {
+          if (((a["empty"] = o), o)) {
             qt(e);
             var i = wt(e),
               c = i[0] + 20 + "," + i[1];
-            if (we[r(361)](c)) {
+            if (we["has"](c)) {
               var l = we.get(c);
-              null != l[r(704)] &&
-                (zt(c) ? ((l[r(408)] = !0), qt(c)) : t && It(c, !1));
+              null != l["txt"] &&
+                (zt(c) ? ((l["empty"] = !0), qt(c)) : t && It(c, !1));
             }
           } else {
             var u = mt(),
               d = ht();
-            null == a[r(292)] &&
-              (null != window[r(513)]
-                ? (a[r(292)] = new OffscreenCanvas(u, d))
-                : (a[r(292)] = document[r(581)](r(332)))),
-              (a.img[r(381)] = u),
-              (a.img[r(329)] = d),
+            null == a["img"] &&
+              (null != window["OffscreenCanvas"]
+                ? (a["img"] = new OffscreenCanvas(u, d))
+                : (a["img"] = document["createElement"]("canvas"))),
+              (a.img["width"] = u),
+              (a.img["height"] = d),
               (function (e, t, n, a, o) {
                 var i = r,
-                  c = we[i(520)](a);
-                (e[i(236)] = !1),
+                  c = we["get"](a);
+                (e["imageSmoothingEnabled"] = !1),
                   (e.textBaseline = "alphabetic"),
-                  (e[i(369)] = i(545)),
+                  (e["textAlign"] = "left"),
                   (e.fillStyle = c.protected ? A : C),
-                  e[i(527)](0, 0, t, n);
+                  e["fillRect"](0, 0, t, n);
                 var l,
                   u,
                   s = {},
                   d = !1,
                   f = wt(a),
                   v = f[0] - 20 + "," + f[1];
-                if (we[i(361)](v)) {
+                if (we["has"](v)) {
                   var m = we.get(v);
                   null == m.edge ||
-                    (!m.protected && c[i(193)]) ||
-                    (l = m[i(660)]);
+                    (!m.protected && c["protected"]) ||
+                    (l = m["edge"]);
                 }
                 for (
-                  var h, y = t / Et, g = _[i(520)](G), p = 16 * ft(), b = 0;
+                  var h, y = t / Et, g = _["get"](G), p = 16 * ft(), b = 0;
                   b < 10;
                   b++
                 )
@@ -1339,24 +1333,24 @@ var client = {
                       if (null != l[k]) {
                         var E = l[k];
                         Kt(e, E[2]),
-                          null != g && g[i(683)][i(361)](E[0][i(546)]())
-                            ? ((g[i(583)] = E[3]),
-                              (g[i(244)] = E[4]),
+                          null != g && g["charMap"]["has"](E[0]["codePointAt"]())
+                            ? ((g["bold"] = E[3]),
+                              (g["italic"] = E[4]),
                               Ut(g, e, E[0], w, M, y, p))
-                            : ((e[i(504)] = E[1] ? Nt(y) : Q),
+                            : ((e["font"] = E[1] ? Nt(y) : Q),
                               E[3] && Wt(e),
                               E[4] && Ht(e),
                               jt(e, E[0], w, M, y));
                       }
                     }
                     if (!(x < 0)) {
-                      var S = c[i(704)][x + 20 * b],
+                      var S = c["txt"][x + 20 * b],
                         I = Zr(c.clr[x + 20 * b]),
                         T = I[1];
                       if (!Qn(S, T)) {
-                        var B = S[i(546)](),
+                        var B = S["codePointAt"](),
                           F = I[0];
-                        Kt(e, F), (e[i(504)] = Q);
+                        Kt(e, F), (e["font"] = Q);
                         var P = !1;
                         8 & T && ((P = !0), Wt(e));
                         var L = !1;
@@ -1364,7 +1358,7 @@ var client = {
                           (4 & T && ((L = !0), Ht(e)),
                           (h = B) >= 58112 &&
                             h <= 58124 &&
-                            ((B = Rt(B)), (S = String[i(438)](B))),
+                            ((B = Rt(B)), (S = String["fromCodePoint"](B))),
                           ((u = B) >= 9472 &&
                             u <= 9632 &&
                             !(u >= 9476 && u <= 9483) &&
@@ -1372,20 +1366,20 @@ var client = {
                             (u >= 9698 && u <= 9701) ||
                             qr(B))
                         )
-                          (e[i(504)] = Math[i(433)](20 * y) + i(239)),
-                            e[i(570)](
+                          (e["font"] = Math["round"](20 * y) + "px Special"),
+                            e["fillText"](
                               S,
-                              Math[i(433)](w),
-                              Math[i(437)](M + 15 * y)
+                              Math["round"](w),
+                              Math["floor"](M + 15 * y)
                             );
                         else {
                           var O = !1;
                           Ct &&
-                            Ct[i(674)](S) &&
-                            ((O = !0), (e[i(504)] = Nt(y))),
-                            null != g && g[i(683)][i(361)](B)
-                              ? ((g[i(583)] = P),
-                                (g[i(244)] = L),
+                            Ct["test"](S) &&
+                            ((O = !0), (e["font"] = Nt(y))),
+                            null != g && g["charMap"]["has"](B)
+                              ? ((g["bold"] = P),
+                                (g["italic"] = L),
                                 Ut(g, e, S, w, M, y, p))
                               : jt(e, S, w, M, y),
                             x >= 18 &&
@@ -1393,61 +1387,61 @@ var client = {
                               (d = !0));
                         }
                         2 & T &&
-                          e[i(527)](
-                            Math[i(437)](w - 0.5 * y),
-                            Math[i(433)](M + 17.5 * y),
-                            Math[i(262)](11 * y),
-                            Math[i(262)](y)
+                          e["fillRect"](
+                            Math["floor"](w - 0.5 * y),
+                            Math["round"](M + 17.5 * y),
+                            Math["ceil"](11 * y),
+                            Math["ceil"](y)
                           ),
                           1 & T &&
                             e.fillRect(
-                              Math[i(437)](w - 0.5 * y),
-                              Math[i(437)](M + 9 * y),
+                              Math["floor"](w - 0.5 * y),
+                              Math["floor"](M + 9 * y),
                               Math.ceil(11 * y),
-                              Math[i(262)](y)
+                              Math["ceil"](y)
                             );
                       }
                     }
                   }
-                if (((c[i(660)] = d ? s : void 0), o)) {
+                if (((c["edge"] = d ? s : void 0), o)) {
                   var R = f[0] + 20 + "," + f[1];
-                  we.has(R) && null != we[i(520)](R)[i(704)] && It(R, !1);
+                  we.has(R) && null != we["get"](R)["txt"] && It(R, !1);
                 }
-              })(a[r(292)][r(632)]("2d", { alpha: !1 }), u, d, e, t),
-              (a[r(690)] = v),
-              (a[r(504)] = Q),
+              })(a["img"]["getContext"]("2d", { alpha: !1 }), u, d, e, t),
+              (a["dpr"] = v),
+              (a["font"] = Q),
               s &&
-                createImageBitmap(a[r(292)])[r(413)](function (t) {
+                createImageBitmap(a["img"])["then"](function (t) {
                   var n = r;
-                  if (we[n(361)](e)) {
-                    var a = we[n(520)](e);
-                    null != a.bmp && a[n(284)][n(226)](),
-                      (a[n(284)] = t),
+                  if (we["has"](e)) {
+                    var a = we["get"](e);
+                    null != a.bmp && a["bmp"]["close"](),
+                      (a["bmp"] = t),
                       (ge = !0);
                   }
                 }),
-              (a[r(408)] = !1);
+              (a["empty"] = !1);
           }
         }
       }
       function zt(e) {
-        for (var t = n, r = we[t(520)](e), a = !0, o = 0; o < 200; o++)
-          if (!Qn(r.txt[o], Zr(r[t(212)][o])[1])) {
+        for (var t = n, r = we["get"](e), a = !0, o = 0; o < 200; o++)
+          if (!Qn(r.txt[o], Zr(r["clr"][o])[1])) {
             a = !1;
             break;
           }
-        if ((a && (r[t(660)] = void 0), a)) {
+        if ((a && (r["edge"] = void 0), a)) {
           var i = wt(e),
             c = i[0] - 20 + "," + i[1];
-          we[t(361)](c) && null != we[t(520)](c).edge && (a = !1);
+          we["has"](c) && null != we["get"](c).edge && (a = !1);
         }
         return a;
       }
       function qt(e) {
         var t = n;
         if (we.has(e)) {
-          var r = we[t(520)](e);
-          null != r[t(292)] && delete r.img;
+          var r = we["get"](e);
+          null != r["img"] && delete r.img;
         }
       }
       var Yt = null;
@@ -1455,10 +1449,10 @@ var client = {
         var r = n;
         return (
           null != Yt &&
-          Yt[r(319)] <= e &&
+          Yt["minx"] <= e &&
           e < Yt.maxx &&
-          Yt[r(374)] <= t &&
-          t < Yt[r(681)]
+          Yt["miny"] <= t &&
+          t < Yt["maxy"]
         );
       }
       function Vt(e, t) {
@@ -1469,7 +1463,7 @@ var client = {
           var t = n,
             r = innerWidth / innerHeight,
             a = [],
-            o = qe[t(630)].x,
+            o = qe["coords"].x,
             i = 2 * qe.coords.y * r,
             c = 0;
           c < e.length;
@@ -1477,10 +1471,10 @@ var client = {
         ) {
           var l = e[c] + 10,
             u = 2 * (e[c + 1] + 5) * r,
-            s = Math[t(194)](Jr(o - l) + Jr(i - u));
-          a[t(398)]([s, c]);
+            s = Math["sqrt"](Jr(o - l) + Jr(i - u));
+          a["push"]([s, c]);
         }
-        return a[t(389)](Vt), a;
+        return a["sort"](Vt), a;
       }
       var $t,
         Gt = !1;
@@ -1488,14 +1482,14 @@ var client = {
         var e = n;
         if (!Gt) {
           for (
-            var t = -120 - 20 * Math[e(437)](qe[e(440)].x / (200 * v)),
-              r = -60 - 10 * Math[e(437)](qe[e(440)].y / (200 * v)),
+            var t = -120 - 20 * Math["floor"](qe["offset"].x / (200 * v)),
+              r = -60 - 10 * Math["floor"](qe["offset"].y / (200 * v)),
               o = r,
               i = Math.floor(
-                window.innerWidth / (10 * at) - qe[e(440)].x / (10 * v) + 120
+                window.innerWidth / (10 * at) - qe["offset"].x / (10 * v) + 120
               ),
               c = Math.floor(
-                window[e(623)] / (20 * at) - qe[e(440)].y / (20 * v) + 60
+                window["innerHeight"] / (20 * at) - qe["offset"].y / (20 * v) + 60
               ),
               l = [];
             t < i;
@@ -1503,26 +1497,26 @@ var client = {
           ) {
             for (; r < c; ) {
               var u = t + "," + r;
-              !we[e(361)](u) && Jt(t, r) && l[e(398)](t, r), (r += 10);
+              !we["has"](u) && Jt(t, r) && l["push"](t, r), (r += 10);
             }
             (r = o), (t += 20);
           }
-          if (0 != l[e(500)]) {
+          if (0 != l["length"]) {
             var s = Zt(l);
             $t = [];
-            for (var d = 0, f = 0; f < s[e(500)]; f++) {
+            for (var d = 0, f = 0; f < s["length"]; f++) {
               var m = s[f][1],
                 h = l[m],
                 y = l[m + 1];
               if (
                 ((u = h + "," + y),
-                $t[e(398)](h / 20, y / 10),
-                we[e(644)](u, {}),
+                $t["push"](h / 20, y / 10),
+                we["set"](u, {}),
                 100 == ++d)
               )
                 break;
             }
-            d > 0 && (a[e(197)](Or({ r: $t })), (Gt = !0), (ge = !0));
+            d > 0 && (a["send"](Or({ r: $t })), (Gt = !0), (ge = !0));
           }
         }
       }
@@ -1530,7 +1524,7 @@ var client = {
         var e,
           t = n,
           r = bt(250);
-        for (const n of we[t(611)]()) {
+        for (const n of we["keys"]()) {
           var a = wt(n);
           !xt(a, r) ||
             ((e = a)[0] > Ce.x - 20 &&
@@ -1542,160 +1536,160 @@ var client = {
       }
       function en() {
         var e = n;
-        e(401) in window || i[e(456)]();
+        "ontouchstart" in window || i["focus"]();
       }
       var tn = !1;
       function nn(e) {
         var t = n;
         if (e.isTrusted) {
-          var r = 20 * Math[t(437)](Ce.x / 20),
-            o = 10 * Math[t(437)](Ce.y / 10),
+          var r = 20 * Math["floor"](Ce.x / 20),
+            o = 10 * Math["floor"](Ce.y / 10),
             c = r + "," + o;
-          we[t(361)](c) &&
-            (Ve && a[t(197)](Or({ p: c })),
+          we["has"](c) &&
+            (Ve && a["send"](Or({ p: c })),
             Ze &&
-              (tn ? (tn = !1) : a[t(197)](Or({ c: [r, o, r + 19, o + 9] }))),
-            i[t(456)]());
+              (tn ? (tn = !1) : a["send"](Or({ c: [r, o, r + 19, o + 9] }))),
+            i["focus"]());
         }
       }
       function rn(e) {
         var t = n;
-        return e.target[t(370)][t(370)].dataset.id;
+        return e.target["parentElement"]["parentElement"].dataset.id;
       }
       function an(e) {
-        m && a[n(197)](Or({ i: rn(e) }));
+        m && a["send"](Or({ i: rn(e) }));
       }
       function on(e) {
         var t = n;
-        m && a[t(197)](Or({ a: [rn(e), e[t(510)][t(427)]] }));
+        m && a["send"](Or({ a: [rn(e), e["target"]["checked"]] }));
       }
       function cn(e) {
-        m && a[n(197)](Or({ aa: rn(e) }));
+        m && a["send"](Or({ aa: rn(e) }));
       }
       function ln(e) {
         var t = n,
           r = rn(e),
-          a = Pe[t(520)](r);
-        null != a && m && ((a[t(572)] = e[t(510)][t(427)]), (ge = !0));
+          a = Pe["get"](r);
+        null != a && m && ((a["highlighted"] = e["target"]["checked"]), (ge = !0));
       }
       function un(e) {
         var t = n,
-          r = e[t(510)][t(370)][t(439)].id,
+          r = e["target"]["parentElement"]["dataset"].id,
           a = Pe.get(r);
         null != a &&
           m &&
-          ir((a.n || r) + t(213) + a.l[0] + ", " + -a.l[1] + ")", 3e3);
+          ir((a.n || r) + ": (" + a.l[0] + ", " + -a.l[1] + ")", 3e3);
       }
       function sn(e) {
         var t = n,
-          r = e[t(510)].parentElement[t(439)].id,
-          a = Pe[t(520)](r);
+          r = e["target"].parentElement["dataset"].id,
+          a = Pe["get"](r);
         null != a && m && Zn(a.l[0], a.l[1]);
       }
       function dn(e) {
         var t = n,
-          r = document[t(581)]("tr"),
-          a = document[t(581)]("td"),
-          o = document[t(581)]("td"),
-          i = document[t(581)]("td"),
-          c = document.createElement(t(205)),
-          l = document.createElement(t(205)),
-          u = document.createElement(t(305)),
-          s = document[t(581)](t(305));
-        (l[t(289)] = t(335)),
-          (l[t(427)] = !1),
-          (u[t(537)] = "2"),
+          r = document["createElement"]("tr"),
+          a = document["createElement"]("td"),
+          o = document["createElement"]("td"),
+          i = document["createElement"]("td"),
+          c = document.createElement("input"),
+          l = document.createElement("input"),
+          u = document.createElement("button"),
+          s = document["createElement"]("button");
+        (l["type"] = "checkbox"),
+          (l["checked"] = !1),
+          (u["innerText"] = "2"),
           (s.innerText = "3"),
-          l[t(216)](t(383), on),
-          u[t(216)](t(383), cn),
-          s[t(216)](t(383), an),
-          c.addEventListener(t(383), ln);
-        var d = Pe[t(520)](e);
-        (c[t(289)] = t(335)), (c[t(427)] = 1 == d[t(572)]), a.appendChild(c);
+          l["addEventListener"]("click", on),
+          u["addEventListener"]("click", cn),
+          s["addEventListener"]("click", an),
+          c.addEventListener("click", ln);
+        var d = Pe["get"](e);
+        (c["type"] = "checkbox"), (c["checked"] = 1 == d["highlighted"]), a.appendChild(c);
         var f = d.c;
-        (o[t(270)].backgroundColor = t(315) == se[f] ? t(282) : se[f]),
-          (o.style[t(210)] = t(649)),
-          (o[t(270)].userSelect = "all"),
-          (o[t(537)] = d.n || e),
-          o.addEventListener(t(383), un),
-          o[t(216)](t(432), sn),
+        (o["style"].backgroundColor = "#FFFFFF" == se[f] ? "#222222" : se[f]),
+          (o.style["fontSize"] = "10px"),
+          (o["style"].userSelect = "all"),
+          (o["innerText"] = d.n || e),
+          o.addEventListener("click", un),
+          o["addEventListener"]("dblclick", sn),
           i.appendChild(l),
-          i[t(454)](u),
-          i[t(454)](s),
-          (r[t(439)].id = e),
-          r[t(454)](a),
-          r[t(454)](o),
-          r[t(454)](i),
-          document[t(628)]("admintable")[t(454)](r);
+          i["appendChild"](u),
+          i["appendChild"](s),
+          (r["dataset"].id = e),
+          r["appendChild"](a),
+          r["appendChild"](o),
+          r["appendChild"](i),
+          document["getElementById"]("admintable")["appendChild"](r);
       }
       function fn(e) {
-        e[n(423)]();
+        e["preventDefault"]();
       }
       function vn(e) {
         for (
           var t = n,
             r = [
-              t(483),
+              "loginbtn",
               "registerbtn",
-              t(268),
-              t(382),
-              t(301),
-              t(469),
-              t(580),
-              t(475),
-              t(626),
-              t(393),
+              "loginname",
+              "loginpass",
+              "username",
+              "password",
+              "password2",
+              "registerbtn",
+              "chngusername",
+              "chngeusrpass",
               "submitnamechange",
-              t(548),
-              t(424),
-              t(533),
-              t(603),
-              t(637),
-              t(441),
+              "oldpass",
+              "newpass",
+              "newpass2",
+              "submitpasschange",
+              "deletepassword",
+              "deleteaccount",
             ],
             a = 0;
-          a < r[t(500)];
+          a < r["length"];
           a++
         )
           document.getElementById(r[a]).disabled = e;
         if (!e) {
           var o = [
             "loginname",
-            t(382),
-            t(301),
-            t(469),
-            t(580),
+            "loginpass",
+            "username",
+            "password",
+            "password2",
             "chngusername",
             "chngeusrpass",
             "oldpass",
-            t(424),
-            t(533),
-            t(637),
+            "newpass",
+            "newpass2",
+            "deletepassword",
           ];
-          for (a = 0; a < o[t(500)]; a++) document[t(628)](o[a])[t(356)] = "";
+          for (a = 0; a < o["length"]; a++) document["getElementById"](o[a])["value"] = "";
         }
       }
-      k[n(216)](n(325), function (e) {
+      k["addEventListener"]("pointerdown", function (e) {
         var t = n;
         e.preventDefault(),
-          e[t(294)] &&
+          e["isTrusted"] &&
             (ie(!1),
             (null != Dn && 1 != e.pointerId) ||
               Nn ||
-              ((Dn = e[t(426)]),
+              ((Dn = e["pointerId"]),
               (Te = Wn(e)),
               Je
-                ? (($e[t(258)] = Te), ($e[t(571)] = $e.start))
+                ? (($e["start"] = Te), ($e["end"] = $e.start))
                 : ((Ye = !0),
-                  (qe[t(258)].x = e[t(699)] * v),
-                  (qe[t(258)].y = e[t(536)] * v),
+                  (qe["start"].x = e["clientX"] * v),
+                  (qe["start"].y = e["clientY"] * v),
                   (Ge = []),
                   (Qe = null),
                   Rn(e),
-                  (k.style[t(522)] = "move"),
+                  (k.style["cursor"] = "move"),
                   (function (e) {
                     var n = t;
-                    if (e[n(426)] == Dn) {
+                    if (e["pointerId"] == Dn) {
                       nr();
                       var r = Wn(e);
                       if (
@@ -1703,7 +1697,7 @@ var client = {
                         (Ce.x = r.x),
                         (Ce.y = r.y),
                         (Ce.start = Ce.x),
-                        e[n(272)])
+                        e["altKey"])
                       ) {
                         var a = rr();
                         a && (Qn(a[0], Zr(a[1])[1]) ? mr(0) : mr(Zr(a[1])[0]));
@@ -1713,58 +1707,58 @@ var client = {
                   })(e)),
               (ge = !0)));
       }),
-        k[n(216)]("contextmenu", function (e) {
-          e[n(423)](), ie(!0);
+        k["addEventListener"]("contextmenu", function (e) {
+          e["preventDefault"](), ie(!0);
         }),
-        document.addEventListener(n(359), function (e) {
+        document.addEventListener("pointermove", function (e) {
           var t = n;
           if (
-            e[t(294)] &&
-            ((Te = Wn(e)), (Ve || Ze) && (ge = !0), e[t(426)] == Dn && !Nn)
+            e["isTrusted"] &&
+            ((Te = Wn(e)), (Ve || Ze) && (ge = !0), e["pointerId"] == Dn && !Nn)
           ) {
-            if ((e[t(423)](), Je)) $e[t(571)] = Te;
+            if ((e["preventDefault"](), Je)) $e["end"] = Te;
             else if (Ye) {
               var r = e.clientX * devicePixelRatio - qe.start.x / at,
-                a = e[t(536)] * devicePixelRatio - qe[t(258)].y / at;
-              (qe[t(440)].x = Math[t(433)](ze[t(440)].x + r)),
-                (qe[t(440)].y = Math[t(433)](ze[t(440)].y + a)),
-                tt[t(358)][t(427)] && Rn(e);
+                a = e["clientY"] * devicePixelRatio - qe["start"].y / at;
+              (qe["offset"].x = Math["round"](ze["offset"].x + r)),
+                (qe["offset"].y = Math["round"](ze["offset"].y + a)),
+                tt["smoothpanning"]["checked"] && Rn(e);
             }
             ge = !0;
           }
         }),
-        k[n(216)]("click", nn),
+        k["addEventListener"]("click", nn),
         k.addEventListener(
-          n(589),
+          "wheel",
           function (e) {
             var t = n;
-            if (e[t(294)] && (ie(!1), !Ye)) {
-              if ((e[t(423)](), e[t(225)])) it(rt - e[t(700)] / 1e3, !0);
-              else if (e[t(272)])
-                1 == Math.sign(e[t(700)])
-                  ? mr(client.color == fe[se[t(500)] - 1] ? fe[0] : fe[ve(client.color) + 1])
-                  : mr(client.color == fe[0] ? fe[se[t(500)] - 1] : fe[ve(client.color) - 1]);
+            if (e["isTrusted"] && (ie(!1), !Ye)) {
+              if ((e["preventDefault"](), e["ctrlKey"])) it(rt - e["deltaY"] / 1e3, !0);
+              else if (e["altKey"])
+                1 == Math.sign(e["deltaY"])
+                  ? mr(client.color == fe[se["length"] - 1] ? fe[0] : fe[ve(client.color) + 1])
+                  : mr(client.color == fe[0] ? fe[se["length"] - 1] : fe[ve(client.color) - 1]);
               else {
                 var r = e.deltaX,
-                  a = e[t(700)];
+                  a = e["deltaY"];
                 e.shiftKey && ((r ^= a), (r ^= a ^= r)),
-                  Mn(qe[t(440)].x - r, qe.offset.y - a);
+                  Mn(qe["offset"].x - r, qe.offset.y - a);
               }
               ge = !0;
             }
           },
           { passive: !1 }
         ),
-        document[n(216)](n(679), function (e) {
+        document["addEventListener"]("pointerup", function (e) {
           var t = n;
-          if (e[t(294)] && (e[t(423)](), e[t(426)] == Dn && !Nn)) {
-            if (Je && $e[t(258)] && $e[t(571)]) {
-              var r = Math.min($e.start.x, $e[t(571)].x),
-                o = Math[t(678)]($e.start.y, $e[t(571)].y),
-                i = Math[t(227)]($e.start.x, $e[t(571)].x),
-                c = Math[t(227)]($e.start.y, $e[t(571)].y);
+          if (e["isTrusted"] && (e["preventDefault"](), e["pointerId"] == Dn && !Nn)) {
+            if (Je && $e["start"] && $e["end"]) {
+              var r = Math.min($e.start.x, $e["end"].x),
+                o = Math["min"]($e.start.y, $e["end"].y),
+                i = Math["max"]($e.start.x, $e["end"].x),
+                c = Math["max"]($e.start.y, $e["end"].y);
               if (((Je = !1), ($e = {}), m && Ze))
-                (tn = !0), a[t(197)](Or({ c: [r, o, i, c] }));
+                (tn = !0), a["send"](Or({ c: [r, o, i, c] }));
               else {
                 var l = Ce.x,
                   u = Ce.y;
@@ -1775,109 +1769,109 @@ var client = {
                     if (g) {
                       g[0] == Z ? (s += " ") : (s += g[0]);
                       var [p, b] = Zr(g[1]);
-                      tt[t(261)][t(427)] && tt[t(693)][t(427)]
-                        ? (d += String[t(354)](ue + g[1]))
-                        : tt.copycolour[t(427)]
-                        ? (d += String[t(354)](ue + p))
-                        : tt[t(693)].checked &&
-                          (d += String[t(354)](ue + Vr(0, b))),
+                      tt["copycolour"]["checked"] && tt["copydecorations"]["checked"]
+                        ? (d += String["fromCharCode"](ue + g[1]))
+                        : tt.copycolour["checked"]
+                        ? (d += String["fromCharCode"](ue + p))
+                        : tt["copydecorations"].checked &&
+                          (d += String["fromCharCode"](ue + Vr(0, b))),
                         Qn(g[0], b) || (0 != b && (v = !0), 0 != p && (f = !0)),
                         Ce.x++;
                     }
                   }
                   (Ce.x = r), Ce.y++, (s += "\n"), (d += "�");
                 }
-                (s = s[t(386)](0, -1)),
-                  (d = d[t(386)](0, -1)),
-                  s[t(482)](t(379)) && (f = v = !1),
-                  (tt[t(261)][t(427)] && f) || (tt[t(693)][t(427)] && v)
+                (s = s["slice"](0, -1)),
+                  (d = d["slice"](0, -1)),
+                  s["startsWith"]("http") && (f = v = !1),
+                  (tt["copycolour"]["checked"] && f) || (tt["copydecorations"]["checked"] && v)
                     ? ar(s + Z + d)
                     : ar(s),
                   (Ce.x = l),
                   (Ce.y = u),
                   ir("Copied selection.", 1500);
-                var x = document[t(628)](t(420));
-                (x.src = t(207)),
+                var x = document["getElementById"]("copyico");
+                (x.src = "/static/done.svg"),
                   setTimeout(function () {
                     var e = t;
-                    x[e(615)] = e(416);
+                    x["src"] = "/static/copy.svg";
                   }, 1e3);
               }
             } else if (
               ((Dn = void 0),
               (Ye = !1),
-              (qe[t(258)].x = null),
-              (qe[t(258)].y = null),
-              Mn(qe[t(440)].x, qe.offset.y),
-              tt.smoothpanning[t(427)])
+              (qe["start"].x = null),
+              (qe["start"].y = null),
+              Mn(qe["offset"].x, qe.offset.y),
+              tt.smoothpanning["checked"])
             ) {
               Rn(e);
-              var w = Ge[t(500)] - 1;
+              var w = Ge["length"] - 1;
               ((Qe = {
                 dx: Ge[0][0] - Ge[w][0],
                 dy: Ge[0][1] - Ge[w][1],
                 dt: Ge[0][2] - Ge[w][2],
               }).dt > 90 ||
-                (Math.abs(Qe.dx) < 5 && Math[t(330)](Qe.dy) < 5)) &&
+                (Math.abs(Qe.dx) < 5 && Math["abs"](Qe.dy) < 5)) &&
                 (Qe = null);
             }
-            (k[t(270)][t(522)] = t(538)), (ge = !0);
+            (k["style"]["cursor"] = "text"), (ge = !0);
           }
         }),
-        document[n(216)]("pointerleave", Un),
-        document[n(216)](n(487), Un),
-        i[n(216)](n(205), function (e) {
+        document["addEventListener"]("pointerleave", Un),
+        document["addEventListener"]("pointercancel", Un),
+        i["addEventListener"]("input", function (e) {
           var t = n;
-          if ((e.preventDefault(), e[t(294)])) {
-            if (t(595) != e[t(448)])
-              return t(543) == e[t(448)]
+          if ((e.preventDefault(), e["isTrusted"])) {
+            if ("insertLineBreak" != e["inputType"])
+              return "deleteContentBackward" == e["inputType"]
                 ? ((Ce.x -= 1), Vn(" ", 0, !1, !0) || (Ce.x += 1), void nr())
                 : void (
-                    null != e[t(698)] &&
-                    "" != e[t(698)] &&
-                    t(321) != e[t(448)] &&
+                    null != e["data"] &&
+                    "" != e["data"] &&
+                    "insertFromPaste" != e["inputType"] &&
                     (nr(),
-                    Array[t(296)](e.data).length > 1
-                      ? tr(e[t(698)])
-                      : Vn(e[t(698)], 1))
+                    Array["from"](e.data).length > 1
+                      ? tr(e["data"])
+                      : Vn(e["data"], 1))
                   );
             cr();
           }
         }),
-        i[n(216)](n(689), function (e) {
+        i["addEventListener"]("keydown", function (e) {
           var t = n;
-          if (e[t(294)]) {
-            switch (e[t(232)]) {
+          if (e["isTrusted"]) {
+            switch (e["keyCode"]) {
               case 38:
-                (Ce.y -= 1), nr(), ie(!1), e[t(423)]();
+                (Ce.y -= 1), nr(), ie(!1), e["preventDefault"]();
                 break;
               case 40:
-                (Ce.y += 1), nr(), ie(!1), e[t(423)]();
+                (Ce.y += 1), nr(), ie(!1), e["preventDefault"]();
                 break;
               case 37:
                 (Ce.x -= 1), nr(), ie(!1), e.preventDefault();
                 break;
               case 39:
-                (Ce.x += 1), nr(), ie(!1), e[t(423)]();
+                (Ce.x += 1), nr(), ie(!1), e["preventDefault"]();
                 break;
               case 9:
                 (Ce.x += 3), nr(), ie(!1), e.preventDefault();
                 break;
               case 36:
-                (Ce.x = Ce[t(258)]), nr(), ie(!1), e[t(423)]();
+                (Ce.x = Ce["start"]), nr(), ie(!1), e["preventDefault"]();
                 break;
               case 46:
-                Vn(" ", 0, !1, !0), nr(), e[t(423)]();
+                Vn(" ", 0, !1, !0), nr(), e["preventDefault"]();
             }
-            ((!e[t(225)] && !e[t(288)] && !e[t(272)]) ||
-              37 == e[t(232)] ||
-              38 == e[t(232)] ||
-              39 == e[t(232)] ||
-              40 == e[t(232)]) &&
+            ((!e["ctrlKey"] && !e["shiftKey"] && !e["altKey"]) ||
+              37 == e["keyCode"] ||
+              38 == e["keyCode"] ||
+              39 == e["keyCode"] ||
+              40 == e["keyCode"]) &&
               Hn();
           }
         }),
-        document[n(216)](n(689), function (e) {
+        document["addEventListener"]("keydown", function (e) {
           var r = n;
           if (e.isTrusted)
             switch (e.keyCode) {
@@ -1885,8 +1879,8 @@ var client = {
                 e.ctrlKey &&
                   ((function () {
                     var e = t;
-                    if (0 != Be[e(500)]) {
-                      var n = Be[e(564)]();
+                    if (0 != Be["length"]) {
+                      var n = Be["shift"]();
                       (Ce.x = n[0]), (Ce.y = n[1]);
                       var r = client.color,
                         a = ce(),
@@ -1898,542 +1892,542 @@ var client = {
                         le(a);
                     }
                   })(),
-                  e[r(423)]());
+                  e["preventDefault"]());
                 break;
               case 89:
-                e[r(225)] &&
+                e["ctrlKey"] &&
                   ((function () {
                     var e = r;
-                    if (0 != Fe[e(500)]) {
-                      var t = Fe[e(564)]();
+                    if (0 != Fe["length"]) {
+                      var t = Fe["shift"]();
                       (Ce.x = t[0]), (Ce.y = t[1]);
                       var n = client.color,
                         a = ce(),
                         o = Zr(t[3]);
                       (client.color = o[0]),
                         le(o[1]),
-                        Vn(t[2], 1, !1) || Fe[e(343)](t),
+                        Vn(t[2], 1, !1) || Fe["unshift"](t),
                         (client.color = n),
                         le(a);
                     }
                   })(),
-                  e[r(423)]());
+                  e["preventDefault"]());
                 break;
               case 67:
-                e[r(272)] && or(e);
+                e["altKey"] && or(e);
                 break;
               case 71:
-                e[r(225)] && (e[r(423)](), dr());
+                e["ctrlKey"] && (e["preventDefault"](), dr());
                 break;
               case 66:
-                e.ctrlKey && (e[r(423)](), br(r(583)), ie(!0));
+                e.ctrlKey && (e["preventDefault"](), br("bold"), ie(!0));
                 break;
               case 73:
                 e.ctrlKey && !e.shiftKey (e.preventDefault(), br("italic"), ie(!0));
                 break;
               case 85:
-                e.ctrlKey && (e[r(423)](), br("underline"), ie(!0));
+                e.ctrlKey && (e["preventDefault"](), br("underline"), ie(!0));
                 break;
               case 83:
-                e[r(225)] && (e[r(423)](), br(r(468)), ie(!0));
+                e["ctrlKey"] && (e["preventDefault"](), br("strikethrough"), ie(!0));
                 break;
               case 18:
-                e[r(423)]();
+                e["preventDefault"]();
                 break;
               case 27:
                 Je &&
                   ((Je = !1),
                   ($e = {}),
-                  (k.style[r(522)] = "text"),
-                  e[r(423)]()),
-                  M[r(676)][r(627)]("open"),
+                  (k.style["cursor"] = "text"),
+                  e["preventDefault"]()),
+                  M["classList"]["remove"]("open"),
                   ie(!1),
                   nr();
                 break;
               case 107:
               case 187:
-                e[r(225)] && (e[r(423)](), it(rt + 0.1, !0));
+                e["ctrlKey"] && (e["preventDefault"](), it(rt + 0.1, !0));
                 break;
               case 109:
               case 189:
-                e[r(225)] && (e.preventDefault(), it(rt - 0.1, !0));
+                e["ctrlKey"] && (e.preventDefault(), it(rt - 0.1, !0));
             }
         }),
-        i.addEventListener(n(462), function (e) {
+        i.addEventListener("paste", function (e) {
           var t = n;
-          e[t(294)] && tr((e[t(573)] || window[t(573)]).getData(t(538)));
+          e["isTrusted"] && tr((e["clipboardData"] || window["clipboardData"]).getData("text"));
         }),
-        i[n(216)](n(650), function (e) {
+        i["addEventListener"]("copy", function (e) {
           var t = n,
             r = rr();
           if (r) {
-            ar(r[0]), e[t(423)](), e[t(573)] || ir("Copied character.", 1e3);
-            var a = document[t(628)](t(420));
-            (a[t(615)] = t(207)),
+            ar(r[0]), e["preventDefault"](), e["clipboardData"] || ir("Copied character.", 1e3);
+            var a = document["getElementById"]("copyico");
+            (a["src"] = "/static/done.svg"),
               setTimeout(function () {
                 var e = t;
-                a[e(615)] = e(416);
+                a["src"] = "/static/copy.svg";
               }, 1e3),
-              i[t(456)]();
+              i["focus"]();
           }
         }),
-        Ke[n(216)](n(383), function () {
+        Ke["addEventListener"]("click", function () {
           ir(We + " online", 3e3);
         }),
-        He.addEventListener(n(383), function () {
+        He.addEventListener("click", function () {
           var e = n;
-          history[e(308)]({}, null, o),
+          history["pushState"]({}, null, o),
             ar(
               location.protocol +
                 "//" +
-                location[e(653)] +
+                location["host"] +
                 o +
                 "?x=" +
                 Ce.x +
-                e(465) +
+                "&y=" +
                 -Ce.y
             ),
-            ir(e(400), 1e3),
-            i[e(456)]();
+            ir("Copied link to current coordinates.", 1e3),
+            i["focus"]();
         }),
-        document[n(628)](n(610))[n(216)]("click", function () {
+        document["getElementById"]("closemenu")["addEventListener"]("click", function () {
           ur(0);
         }),
-        document[n(628)](n(242)).addEventListener(n(383), function () {
+        document["getElementById"]("openmenu").addEventListener("click", function () {
           ur(1);
         }),
-        document.getElementById("options")[n(216)](n(383), function () {
+        document.getElementById("options")["addEventListener"]("click", function () {
           ur(2);
         }),
-        document[n(628)](n(228))[n(216)]("click", function () {
+        document["getElementById"]("home")["addEventListener"]("click", function () {
           $n(), Zn(0, 0);
         }),
-        document[n(628)](n(228))[n(216)](n(320), function (e) {
+        document["getElementById"]("home")["addEventListener"]("contextmenu", function (e) {
           var t = n;
-          e[t(423)](), Cn(t(391), t(622)) && Zn(0, 0);
+          e["preventDefault"](), Cn("textwall", "main") && Zn(0, 0);
         }),
-        document[n(628)](n(650))[n(216)](n(383), or),
-        document[n(628)](n(462))[n(216)](n(383), function () {
+        document["getElementById"]("copy")["addEventListener"]("click", or),
+        document["getElementById"]("paste")["addEventListener"]("click", function () {
           var e = n;
-          navigator[e(345)][e(340)]()[e(413)](function (t) {
+          navigator["clipboard"]["readText"]()["then"](function (t) {
             var n = e;
             tr(t);
-            var r = document[n(628)](n(326));
-            (r.src = n(207)),
+            var r = document["getElementById"]("pasteico");
+            (r.src = "/static/done.svg"),
               setTimeout(function () {
-                r[n(615)] = "/static/paste.svg";
+                r["src"] = "/static/paste.svg";
               }, 1e3),
               en();
           });
         }),
-        document.getElementById(n(352)).addEventListener(n(383), function () {
+        document.getElementById("theme").addEventListener("click", function () {
           yr();
         }),
-        B[n(216)](n(205), gr),
-        F[n(216)]("input", gr),
-        P[n(216)](n(506), function (e) {
+        B["addEventListener"]("input", gr),
+        F["addEventListener"]("input", gr),
+        P["addEventListener"]("change", function (e) {
           gr(e), yr(2);
         }),
-        O.addEventListener(n(205), function () {
+        O.addEventListener("input", function () {
           vt(G);
         }),
-        R[n(216)]("input", function () {
+        R["addEventListener"]("input", function () {
           vt(G);
         }),
-        document[n(628)](n(237))[n(216)](n(383), dr),
-        x[n(216)](n(383), function (e) {
+        document["getElementById"]("goto")["addEventListener"]("click", dr),
+        x["addEventListener"]("click", function (e) {
           var t = n,
-            r = JSON[t(351)](e[t(510)][t(427)]);
+            r = JSON["stringify"](e["target"]["checked"]);
           switch (e.target) {
-            case tt[t(442)]:
-              localStorage[t(460)]("showothercurs", r), (ge = !0);
+            case tt["showothercurs"]:
+              localStorage["setItem"]("showothercurs", r), (ge = !0);
               break;
-            case tt[t(567)]:
+            case tt["shownametags"]:
               localStorage.setItem("shownametags", r), (ge = !0);
               break;
-            case tt[t(613)]:
-              localStorage[t(460)](t(613), r),
-                e[t(510)][t(427)]
-                  ? hn[t(676)][t(627)]("hidden")
-                  : hn.classList[t(608)](t(692));
+            case tt["showchat"]:
+              localStorage["setItem"]("showchat", r),
+                e["target"]["checked"]
+                  ? hn["classList"]["remove"]("hidden")
+                  : hn.classList["add"]("hidden");
               break;
             case tt.disablecolour:
-              localStorage.setItem(t(577), r),
-                nt.disableColour[t(427)] || hr(tt[t(577)].checked),
+              localStorage.setItem("disablecolour", r),
+                nt.disableColour["checked"] || hr(tt["disablecolour"].checked),
                 (ge = !0),
                 Sn();
               break;
-            case tt[t(358)]:
-              localStorage[t(460)](t(358), r), (ge = !0);
+            case tt["smoothpanning"]:
+              localStorage["setItem"]("smoothpanning", r), (ge = !0);
               break;
-            case tt[t(223)]:
-              localStorage[t(460)]("smoothcursors", r);
+            case tt["smoothcursors"]:
+              localStorage["setItem"]("smoothcursors", r);
               break;
-            case tt[t(261)]:
-              localStorage[t(460)](t(261), r);
+            case tt["copycolour"]:
+              localStorage["setItem"]("copycolour", r);
               break;
-            case tt[t(693)]:
-              localStorage[t(460)](t(693), r);
+            case tt["copydecorations"]:
+              localStorage["setItem"]("copydecorations", r);
               break;
-            case tt[t(598)]:
-              localStorage[t(460)](t(598), r);
+            case tt["rainbow"]:
+              localStorage["setItem"]("rainbow", r);
               break;
             case tt.anonymous:
-              localStorage[t(460)]("anonymous", r), (Re = !0), (ge = !0);
+              localStorage["setItem"]("anonymous", r), (Re = !0), (ge = !0);
               break;
             case lt:
-              (document[t(628)](t(680))[t(270)][t(550)] = t(507)),
-                (document[t(628)](t(459)).style.display = t(467));
+              (document["getElementById"]("login")["style"]["display"] = "none"),
+                (document["getElementById"]("register").style.display = "block");
               break;
             case ut:
-              (document[t(628)]("login")[t(270)].display = t(467)),
-                (document[t(628)](t(459))[t(270)][t(550)] = t(507));
+              (document["getElementById"]("login")["style"].display = "block"),
+                (document["getElementById"]("register")["style"]["display"] = "none");
               break;
             case st:
               dt(!0);
           }
         }),
-        document[n(628)]("closeteleport").addEventListener(n(383), function () {
+        document["getElementById"]("closeteleport").addEventListener("click", function () {
           var e = n;
-          M.classList[e(627)](e(452));
+          M.classList["remove"]("open");
         }),
-        document.getElementById(n(569))[n(216)]("click", function (e) {
+        document.getElementById("tpwordgo")["addEventListener"]("click", function (e) {
           var t = n;
-          e[t(423)]();
-          var r = document[t(628)](t(314));
-          vr(r[t(356)]), r.blur();
+          e["preventDefault"]();
+          var r = document["getElementById"]("tpword");
+          vr(r["value"]), r.blur();
         }),
-        document[n(628)]("tpword")[n(216)](n(205), function () {
+        document["getElementById"]("tpword")["addEventListener"]("input", function () {
           var e = n,
-            t = document[e(628)]("tpword").value[e(217)](/^\/|\/$/g, ""),
-            r = 0 == t || t[e(482)]("~") ? { x: 0, y: 0 } : Lr(t);
-          (document[e(628)](e(342))[e(356)] = r.x),
-            (document[e(628)](e(702))[e(356)] = -r.y);
+            t = document["getElementById"]("tpword").value["replace"](/^\/|\/$/g, ""),
+            r = 0 == t || t["startsWith"]("~") ? { x: 0, y: 0 } : Lr(t);
+          (document["getElementById"]("tpx")["value"] = r.x),
+            (document["getElementById"]("tpy")["value"] = -r.y);
         }),
-        document[n(628)](n(640)).addEventListener(n(383), function (e) {
+        document["getElementById"]("tpcoordgo").addEventListener("click", function (e) {
           var t = n;
-          e[t(423)]();
-          var r = document[t(628)](t(342)),
-            a = document[t(628)]("tpy"),
-            i = parseInt(r[t(356)], 10),
+          e["preventDefault"]();
+          var r = document["getElementById"]("tpx"),
+            a = document["getElementById"]("tpy"),
+            i = parseInt(r["value"], 10),
             c = parseInt(a.value, 10);
           (isNaN(i) && isNaN(c)) ||
             (0 !== i && (i = i || Ce.x),
             0 !== c && (c = c || Ce.y),
             Zn(
-              (i = Math[t(227)](Math[t(678)](i, Yt.maxx - 1), Yt[t(319)])),
-              (c = Math[t(227)](Math[t(678)](-c, Yt[t(681)] - 1), Yt[t(374)]))
+              (i = Math["max"](Math["min"](i, Yt.maxx - 1), Yt["minx"])),
+              (c = Math["max"](Math["min"](-c, Yt["maxy"] - 1), Yt["miny"]))
             ),
-            history[t(308)]({}, null, o),
-            M[t(676)][t(627)](t(452)),
-            r[t(334)](),
-            a[t(334)]());
+            history["pushState"]({}, null, o),
+            M["classList"]["remove"]("open"),
+            r["blur"](),
+            a["blur"]());
         }),
-        window[n(216)](n(275), kn),
-        window[n(216)](n(684), kn),
-        window[n(216)](n(672), function () {
+        window["addEventListener"]("resize", kn),
+        window["addEventListener"]("orientationchange", kn),
+        window["addEventListener"]("popstate", function () {
           vr(Pr());
         }),
-        window.addEventListener(n(456), function () {
+        window.addEventListener("focus", function () {
           (y = !0), En(), Kr();
         }),
-        window.addEventListener(n(334), function () {
+        window.addEventListener("blur", function () {
           (y = !1), En();
         }),
-        ot[n(216)](n(205), ct),
-        ot.addEventListener(n(506), ct),
-        Se[n(216)]("message", function (e) {
+        ot["addEventListener"]("input", ct),
+        ot.addEventListener("change", ct),
+        Se["addEventListener"]("message", function (e) {
           var t = n;
-          a && a[t(348)] == a.OPEN && a[t(197)](e[t(698)]);
+          a && a["readyState"] == a.OPEN && a["send"](e["data"]);
         }),
-        document[n(628)]("chatbutton")[n(216)](n(383), function () {
+        document["getElementById"]("chatbutton")["addEventListener"]("click", function () {
           var e = n;
-          hn[e(676)][e(551)](e(452))
-            ? hn[e(676)].remove(e(452))
-            : (hn[e(676)][e(608)](e(452)), yn[e(676)][e(627)](e(259)), gn());
+          hn["classList"]["contains"]("open")
+            ? hn["classList"].remove("open")
+            : (hn["classList"]["add"]("open"), yn["classList"]["remove"]("show"), gn());
         }),
-        document[n(628)]("sendmsg")[n(216)](n(383), bn),
-        document[n(628)]("chatmsg")[n(216)]("keyup", function (e) {
-          13 == e[n(232)] && bn(e);
+        document["getElementById"]("sendmsg")["addEventListener"]("click", bn),
+        document["getElementById"]("chatmsg")["addEventListener"]("keyup", function (e) {
+          13 == e["keyCode"] && bn(e);
         }),
-        document[n(628)](n(483))[n(216)](n(383), function (e) {
+        document["getElementById"]("loginbtn")["addEventListener"]("click", function (e) {
           var t = n;
           if (e.isTrusted) {
-            var r = document[t(628)](t(268)),
-              o = document[t(628)](t(382));
-            mn.test(r[t(356)])
+            var r = document["getElementById"]("loginname"),
+              o = document["getElementById"]("loginpass");
+            mn.test(r["value"])
               ? 0 != r.value.length
-                ? 0 != o.value[t(500)]
-                  ? (vn(!0), a.send(Or({ login: [r[t(356)], o[t(356)]] })))
+                ? 0 != o.value["length"]
+                  ? (vn(!0), a.send(Or({ login: [r["value"], o["value"]] })))
                   : ir("Please type your password.", 3e3)
-                : ir(t(556), 3e3)
-              : ir(t(287), 3e3);
-          }
-        }),
-        document.getElementById(n(475))[n(216)](n(383), function (e) {
-          var t = n;
-          if (e.isTrusted) {
-            var r = document.getElementById("username"),
-              o = document[t(628)]("password"),
-              i = document[t(628)](t(580));
-            mn[t(674)](r[t(356)])
-              ? 0 != r.value.length
-                ? 0 != o[t(356)][t(500)]
-                  ? o.value == i[t(356)]
-                    ? (vn(!0),
-                      a[t(197)](Or({ register: [r[t(356)], o.value] })))
-                    : ir("Passwords do not match.", 3e3)
-                  : ir(t(488), 3e3)
-                : ir(t(336), 3e3)
+                : ir("Please type your username.", 3e3)
               : ir("Username is invalid.", 3e3);
           }
         }),
-        document.getElementById("login")[n(216)](n(293), fn),
-        document[n(628)](n(459))[n(216)](n(293), fn),
-        document.getElementById("accsettinglink")[n(216)](n(383), function () {
-          var e = n,
-            t = document[e(628)](e(542));
-          (t[e(270)][e(550)] = e(467) == t[e(270)][e(550)] ? e(507) : e(467)),
-            (document.getElementById(e(605))[e(403)] = t[e(503)] - 60);
-        }),
-        document[n(628)]("changenameform")[n(216)](n(293), fn),
-        document[n(628)](n(192)).addEventListener(n(383), function (e) {
-          var t = n;
-          if (e[t(294)]) {
-            var r = document[t(628)](t(626)),
-              o = document[t(628)](t(393));
-            mn[t(674)](r.value)
-              ? 0 != r[t(356)][t(500)]
-                ? je != r.value
-                  ? 0 != o[t(356)].length
-                    ? (vn(!0),
-                      a[t(197)](Or({ namechange: [r.value, o.value] })))
-                    : ir("Please type your password.", 3e3)
-                  : ir(t(661), 3e3)
-                : ir("Please type a new username.", 3e3)
-              : ir(t(287), 3e3);
-          }
-        }),
-        document[n(628)]("changepassform").addEventListener(n(293), fn),
-        document[n(628)](n(603))[n(216)](n(383), function (e) {
+        document.getElementById("registerbtn")["addEventListener"]("click", function (e) {
           var t = n;
           if (e.isTrusted) {
-            var r = document[t(628)](t(548)),
-              o = document[t(628)](t(424)),
-              i = document[t(628)](t(533));
-            0 != r[t(356)][t(500)]
-              ? 0 != o[t(356)].length
-                ? 0 != i[t(356)].length
-                  ? o.value == i[t(356)]
+            var r = document.getElementById("username"),
+              o = document["getElementById"]("password"),
+              i = document["getElementById"]("password2");
+            mn["test"](r["value"])
+              ? 0 != r.value.length
+                ? 0 != o["value"]["length"]
+                  ? o.value == i["value"]
                     ? (vn(!0),
-                      a[t(197)](Or({ passchange: [r[t(356)], o[t(356)]] })))
-                    : ir(t(470), 3e3)
-                  : ir(t(309), 3e3)
-                : ir(t(705), 3e3)
+                      a["send"](Or({ register: [r["value"], o.value] })))
+                    : ir("Passwords do not match.", 3e3)
+                  : ir("Please type a password.", 3e3)
+                : ir("Please type a username.", 3e3)
+              : ir("Username is invalid.", 3e3);
+          }
+        }),
+        document.getElementById("login")["addEventListener"]("submit", fn),
+        document["getElementById"]("register")["addEventListener"]("submit", fn),
+        document.getElementById("accsettinglink")["addEventListener"]("click", function () {
+          var e = n,
+            t = document["getElementById"]("accountsettings");
+          (t["style"]["display"] = "block" == t["style"]["display"] ? "none" : "block"),
+            (document.getElementById("optionsmenu")["scrollTop"] = t["clientHeight"] - 60);
+        }),
+        document["getElementById"]("changenameform")["addEventListener"]("submit", fn),
+        document["getElementById"]("submitnamechange").addEventListener("click", function (e) {
+          var t = n;
+          if (e["isTrusted"]) {
+            var r = document["getElementById"]("chngusername"),
+              o = document["getElementById"]("chngeusrpass");
+            mn["test"](r.value)
+              ? 0 != r["value"]["length"]
+                ? je != r.value
+                  ? 0 != o["value"].length
+                    ? (vn(!0),
+                      a["send"](Or({ namechange: [r.value, o.value] })))
+                    : ir("Please type your password.", 3e3)
+                  : ir("You have typed in your current username.", 3e3)
+                : ir("Please type a new username.", 3e3)
+              : ir("Username is invalid.", 3e3);
+          }
+        }),
+        document["getElementById"]("changepassform").addEventListener("submit", fn),
+        document["getElementById"]("submitpasschange")["addEventListener"]("click", function (e) {
+          var t = n;
+          if (e.isTrusted) {
+            var r = document["getElementById"]("oldpass"),
+              o = document["getElementById"]("newpass"),
+              i = document["getElementById"]("newpass2");
+            0 != r["value"]["length"]
+              ? 0 != o["value"].length
+                ? 0 != i["value"].length
+                  ? o.value == i["value"]
+                    ? (vn(!0),
+                      a["send"](Or({ passchange: [r["value"], o["value"]] })))
+                    : ir("New passwords are not the same.", 3e3)
+                  : ir("Please type your new password again.", 3e3)
+                : ir("Please type your new password.", 3e3)
               : ir("Please type your password.", 3e3);
           }
         }),
-        document[n(628)](n(304))[n(216)](n(293), fn),
-        document[n(628)](n(441))[n(216)](n(383), function (e) {
+        document["getElementById"]("delaccountform")["addEventListener"]("submit", fn),
+        document["getElementById"]("deleteaccount")["addEventListener"]("click", function (e) {
           var t = n;
           if (e.isTrusted) {
-            var r = document[t(628)](t(637));
-            0 != r.value[t(500)]
-              ? (vn(!0), a.send(Or({ deleteaccount: r[t(356)] })))
-              : ir(t(373), 3e3);
+            var r = document["getElementById"]("deletepassword");
+            0 != r.value["length"]
+              ? (vn(!0), a.send(Or({ deleteaccount: r["value"] })))
+              : ir("Please type your password.", 3e3);
           }
         }),
-        nt[n(708)][n(216)](n(383), function (e) {
-          (Ve = e[n(510)].checked), (ge = !0);
+        nt["protect"]["addEventListener"]("click", function (e) {
+          (Ve = e["target"].checked), (ge = !0);
         }),
-        nt[n(222)][n(216)]("click", function (e) {
+        nt["clear"]["addEventListener"]("click", function (e) {
           var t = n;
-          (Ze = e.target[t(427)]), (ge = !0);
+          (Ze = e.target["checked"]), (ge = !0);
         }),
-        nt[n(435)][n(216)]("click", function (e) {
+        nt["readOnly"]["addEventListener"]("click", function (e) {
           var t = n;
-          a.send(Or({ ro: e[t(510)][t(427)] }));
+          a.send(Or({ ro: e["target"]["checked"] }));
         }),
-        nt.private[n(216)](n(383), function (e) {
+        nt.private["addEventListener"]("click", function (e) {
           var t = n;
-          a[t(197)](Or({ priv: e[t(510)][t(427)] }));
+          a["send"](Or({ priv: e["target"]["checked"] }));
         }),
-        nt[n(476)].addEventListener(n(383), function (e) {
+        nt["hideCursors"].addEventListener("click", function (e) {
           var t = n;
-          a[t(197)](Or({ ch: e.target[t(427)] }));
+          a["send"](Or({ ch: e.target["checked"] }));
         }),
-        nt.disableChat[n(216)](n(383), function (e) {
+        nt.disableChat["addEventListener"]("click", function (e) {
           var t = n;
-          a.send(Or({ dc: e[t(510)][t(427)] }));
+          a.send(Or({ dc: e["target"]["checked"] }));
         }),
-        nt[n(604)][n(216)](n(383), function (e) {
+        nt["disableColour"]["addEventListener"]("click", function (e) {
           var t = n;
-          a[t(197)](Or({ dcl: e[t(510)].checked }));
+          a["send"](Or({ dcl: e["target"].checked }));
         }),
-        nt[n(363)][n(216)]("click", function (e) {
+        nt["disableBraille"]["addEventListener"]("click", function (e) {
           var t = n;
-          a[t(197)](Or({ db: e[t(510)][t(427)] }));
+          a["send"](Or({ db: e["target"]["checked"] }));
         }),
-        document[n(628)](n(515))[n(216)]("click", function (e) {
+        document["getElementById"]("addmemberbtn")["addEventListener"]("click", function (e) {
           var t = n;
-          e[t(423)](), document[t(628)](t(605));
-          var r = document[t(628)](t(478)),
-            o = document[t(628)](t(446)),
+          e["preventDefault"](), document["getElementById"]("optionsmenu");
+          var r = document["getElementById"]("inputmember"),
+            o = document["getElementById"]("memberlist"),
             i = r.value.toLowerCase();
-          (r[t(356)] = ""),
+          (r["value"] = ""),
             (i.length =
               (function (e) {
                 for (
-                  var n = t, r = document[n(628)]("memberlist"), a = 0;
-                  a < r[n(625)];
+                  var n = t, r = document["getElementById"]("memberlist"), a = 0;
+                  a < r["childElementCount"];
                   a++
                 )
-                  if (r.children[a][n(537)] == e) return !0;
+                  if (r.children[a]["innerText"] == e) return !0;
                 return !1;
               })(i) || i == je) ||
-              (mn[t(674)](i)
+              (mn["test"](i)
                 ? o.childElementCount >= 20
-                  ? ir(t(553), 3e3)
-                  : a[t(197)](Or({ addmem: i }))
-                : ir(t(287), 3e3));
+                  ? ir("You cannot add more than 20 members.", 3e3)
+                  : a["send"](Or({ addmem: i }))
+                : ir("Username is invalid.", 3e3));
         }),
-        J[n(216)](n(383), function (e) {
+        J["addEventListener"]("click", function (e) {
           var t = n,
-            r = document[t(628)]("deletewallconfirm");
+            r = document["getElementById"]("deletewallconfirm");
           if (null == r) {
-            var o = document[t(581)]("br");
+            var o = document["createElement"]("br");
             return (
-              e[t(510)][t(278)].insertBefore(o, e.target[t(364)]),
-              ((r = document[t(581)](t(205))).type = t(538)),
-              (r[t(638)] = t(663)),
-              (r[t(529)] = 7),
-              (r.id = t(253)),
-              o.parentNode[t(496)](r, o[t(364)]),
+              e["target"]["parentNode"].insertBefore(o, e.target["nextSibling"]),
+              ((r = document["createElement"]("input")).type = "text"),
+              (r["placeholder"] = "type 'confirm' here"),
+              (r["maxLength"] = 7),
+              (r.id = "deletewallconfirm"),
+              o.parentNode["insertBefore"](r, o["nextSibling"]),
               void r.focus()
             );
           }
-          "confirm" == r[t(356)].toLowerCase()
-            ? (r.parentElement[t(436)](r.previousSibling),
-              r.parentNode[t(436)](r),
-              a[t(197)](Or({ dw: 0 })),
-              Cn(t(391), t(622)),
+          "confirm" == r["value"].toLowerCase()
+            ? (r.parentElement["removeChild"](r.previousSibling),
+              r.parentNode["removeChild"](r),
+              a["send"](Or({ dw: 0 })),
+              Cn("textwall", "main"),
               ir("Deleting wall...", 3e3))
-            : ir(t(492), 3e3);
+            : ir("Please type 'confirm' in the text box if you would like to delete your wall.", 3e3);
         }),
-        document[n(628)]("l")[n(216)]("click", function (e) {
+        document["getElementById"]("l")["addEventListener"]("click", function (e) {
           var t = n;
-          m && a[t(197)](Or({ l: e[t(510)][t(427)] }));
+          m && a["send"](Or({ l: e["target"]["checked"] }));
         }),
-        document[n(628)](n(509)).addEventListener(n(383), function () {
+        document["getElementById"]("refresh").addEventListener("click", function () {
           var e = n;
           if (m) {
-            document[e(628)](e(290))[e(230)] = "";
+            document["getElementById"]("admintable")["innerHTML"] = "";
             var t = !1;
-            for (const n of Pe[e(611)]()) dn(n), (t = !0);
+            for (const n of Pe["keys"]()) dn(n), (t = !0);
             if (t) {
-              var r = document.getElementById(e(605));
-              r[e(403)] = r[e(712)];
+              var r = document.getElementById("optionsmenu");
+              r["scrollTop"] = r["scrollHeight"];
             }
           }
         }),
-        document[n(628)]("sendalert")[n(216)](n(383), function () {
+        document["getElementById"]("sendalert")["addEventListener"]("click", function () {
           var e = n,
-            t = document[e(628)]("alerttext")[e(356)];
-          m && 0 != t[e(500)] && a.send(Or({ alert: t }));
+            t = document["getElementById"]("alerttext")["value"];
+          m && 0 != t["length"] && a.send(Or({ alert: t }));
         }),
-        document[n(628)](n(233))[n(216)](n(383), function () {
-          m && a[n(197)](Or({ reload: !0 }));
+        document["getElementById"]("reload")["addEventListener"]("click", function () {
+          m && a["send"](Or({ reload: !0 }));
         }),
-        document[n(628)]("delete").addEventListener(n(383), function () {
+        document["getElementById"]("delete").addEventListener("click", function () {
           var e = n;
           if (m) {
-            var t = document[e(628)](e(188)).value;
-            0 != t[e(500)] && a[e(197)](Or({ aaa: t }));
+            var t = document["getElementById"]("deletename").value;
+            0 != t["length"] && a["send"](Or({ aaa: t }));
           }
         }),
-        document.getElementById(n(283))[n(216)](n(383), function () {
+        document.getElementById("free")["addEventListener"]("click", function () {
           var e = n;
           if (m) {
-            var t = document[e(628)](e(657))[e(356)];
-            0 != t[e(500)] && a[e(197)](Or({ aaaa: t }));
+            var t = document["getElementById"]("freename")["value"];
+            0 != t["length"] && a["send"](Or({ aaaa: t }));
           }
         }),
-        b[n(388)]("id", n(525)),
-        i.setAttribute("id", n(345));
+        b["setAttribute"]("id", "textarea"),
+        i.setAttribute("id", "clipboard");
       var mn = /^[\w.-]+$/;
-      const hn = document[n(628)](n(394)),
-        yn = document[n(628)](n(220));
+      const hn = document["getElementById"]("chat"),
+        yn = document["getElementById"]("unread");
       function gn() {
         var e = n,
-          t = document[e(628)](e(576));
-        t.scrollTop = t[e(712)];
+          t = document["getElementById"]("chatbox");
+        t.scrollTop = t["scrollHeight"];
       }
       function pn() {
         var e = n,
-          t = document[e(628)](e(576));
-        null != t[e(318)] &&
-          "HR" != t[e(318)][e(190)] &&
-          (t.appendChild(document[e(581)]("hr")), gn());
+          t = document["getElementById"]("chatbox");
+        null != t["lastElementChild"] &&
+          "HR" != t["lastElementChild"]["tagName"] &&
+          (t.appendChild(document["createElement"]("hr")), gn());
       }
       function bn(e) {
         var t = n;
-        if (e[t(294)]) {
-          var r = document[t(628)](t(302));
+        if (e["isTrusted"]) {
+          var r = document["getElementById"]("chatmsg");
           gn(),
-            Xe + 300 > performance[t(430)]()
-                ? (r[t(356)] = "")
-                : (a.send(Or({ msg: r[t(356)][t(274)](0, 180) })),
-                  (Xe = performance[t(430)]()),
+            Xe + 300 > performance["now"]()
+                ? (r["value"] = "")
+                : (a.send(Or({ msg: r["value"]["substr"](0, 180) })),
+                  (Xe = performance["now"]()),
                   (r.value = ""),
                   r.focus());
         }
       }
       function xn() {
         var e = n,
-          t = document[e(276)](e(707))[0];
-        (nt[e(435)].checked && 0 == j) || (U && "" == je)
-          ? t[e(676)].add(e(692))
-          : t[e(676)][e(627)]("hidden");
+          t = document["getElementsByClassName"]("msgcontainer")[0];
+        (nt["readOnly"].checked && 0 == j) || (U && "" == je)
+          ? t["classList"].add("hidden")
+          : t["classList"]["remove"]("hidden");
       }
       function wn(e) {
         var t = n;
-        e[t(423)](), Cn(e.target[t(537)][t(499)](), t(622)) && Zn(0, 0);
+        e["preventDefault"](), Cn(e.target["innerText"]["toLowerCase"](), "main") && Zn(0, 0);
       }
       function Mn(e, t, r) {
         var a = n;
         r
-          ? ((qe[a(440)].x = e), (qe[a(440)].y = t))
-          : ((qe[a(440)].x = Math[a(262)](e)), (qe[a(440)].y = Math.ceil(t))),
-          (ze[a(440)].x = qe.offset.x),
-          (ze[a(440)].y = qe[a(440)].y);
-        var o = qe[a(630)].x,
+          ? ((qe["offset"].x = e), (qe["offset"].y = t))
+          : ((qe["offset"].x = Math["ceil"](e)), (qe["offset"].y = Math.ceil(t))),
+          (ze["offset"].x = qe.offset.x),
+          (ze["offset"].y = qe["offset"].y);
+        var o = qe["coords"].x,
           i = qe.coords.y;
-        (qe[a(630)].x = Math[a(437)](
-          window.innerWidth / at / 20 - qe[a(440)].x / 10 / v
+        (qe["coords"].x = Math["floor"](
+          window.innerWidth / at / 20 - qe["offset"].x / 10 / v
         )),
-          (qe[a(630)].y = Math[a(437)](
-            window[a(623)] / at / 40 - qe.offset.y / 20 / v
+          (qe["coords"].y = Math["floor"](
+            window["innerHeight"] / at / 40 - qe.offset.y / 20 / v
           )),
-          (De = o != qe.coords.x || i != qe[a(630)].y);
+          (De = o != qe.coords.x || i != qe["coords"].y);
       }
       function kn() {
         var e = n,
           t = v;
         if (
           ((v = devicePixelRatio * at),
-          (k[e(381)] = Math[e(433)](window.innerWidth * devicePixelRatio)),
-          (k.height = Math.round(window[e(623)] * devicePixelRatio)),
-          (k.style[e(381)] = Math[e(433)](k.width / devicePixelRatio) + "px"),
-          (k[e(270)][e(329)] = Math.round(k[e(329)] / devicePixelRatio) + "px"),
-          (E[e(236)] = !1),
+          (k["width"] = Math["round"](window.innerWidth * devicePixelRatio)),
+          (k.height = Math.round(window["innerHeight"] * devicePixelRatio)),
+          (k.style["width"] = Math["round"](k.width / devicePixelRatio) + "px"),
+          (k["style"]["height"] = Math.round(k["height"] / devicePixelRatio) + "px"),
+          (E["imageSmoothingEnabled"] = !1),
           (ge = !0),
           t != v)
         ) {
           ie(!1);
-          var r = Math[e(437)]((qe[e(440)].x - k.width / 2) / t),
-            a = Math[e(437)]((qe.offset.y - k[e(329)] / 2) / t);
+          var r = Math["floor"]((qe["offset"].x - k.width / 2) / t),
+            a = Math["floor"]((qe.offset.y - k["height"] / 2) / t);
           Mn(
-            (r + window[e(530)] / at / 2) * v,
+            (r + window["innerWidth"] / at / 2) * v,
             (a + window.innerHeight / at / 2) * v
           ),
             vt(G);
@@ -2442,14 +2436,14 @@ var client = {
       function En() {
         var e = n,
           t = h;
-        e(391) != W && ((t = "~" + W), e(622) != H && (t += "/" + H)),
-          null == a || a[e(348)] == a.CLOSED
-            ? (document[e(310)] = h + e(299))
-            : (document[e(310)] = y
-                ? e(391) != W
+        "textwall" != W && ((t = "~" + W), "main" != H && (t += "/" + H)),
+          null == a || a["readyState"] == a.CLOSED
+            ? (document["title"] = h + " (disconnected)")
+            : (document["title"] = y
+                ? "textwall" != W
                   ? t
                   : h
-                : t + " (" + Ue + e(238));
+                : t + " (" + Ue + " around)");
       }
       function Sn(e) {
         var t = n;
@@ -2457,36 +2451,36 @@ var client = {
         var r = [];
         for (const e of we.keys()) {
           var a = wt(e);
-          r[t(398)](a[0], a[1]);
+          r["push"](a[0], a[1]);
         }
-        for (var o = Zt(r), i = 0; i < o[t(500)]; i++) {
+        for (var o = Zt(r), i = 0; i < o["length"]; i++) {
           var c = o[i][1],
             l = r[c] + "," + r[c + 1],
-            u = we[t(520)](l);
-          e ? u.protected && St(l, !1) : u[t(408)] || St(l, !1);
+            u = we["get"](l);
+          e ? u.protected && St(l, !1) : u["empty"] || St(l, !1);
         }
       }
       function In() {
         var e = n;
-        (document[e(628)]("connecting1")[e(537)] = e(243)),
-          (document[e(628)]("connecting2")[e(537)] = ""),
-          (document[e(628)](e(696))[e(270)][e(550)] = e(507)),
-          null != localStorage[e(414)](e(301)) &&
-          null != localStorage[e(414)]("token") &&
+        (document["getElementById"]("connecting1")["innerText"] = "Connected!"),
+          (document["getElementById"]("connecting2")["innerText"] = ""),
+          (document["getElementById"]("admin")["style"]["display"] = "none"),
+          null != localStorage["getItem"]("username") &&
+          null != localStorage["getItem"]("token") &&
           (vn(!0),
-          a[e(197)](
+          a["send"](
             Or({
               token: [
-                localStorage[e(414)]("username"),
-                localStorage[e(414)](e(323)),
+                localStorage["getItem"]("username"),
+                localStorage["getItem"]("token"),
               ],
             })
           ));
-        var t = e(391),
+        var t = "textwall",
           r = "main",
-          o = location[e(250)][e(668)]("/")[e(643)](1, 2);
-        o[0][e(482)]("~") && "" == (t = o[0][e(217)]("~", "")) && (t = e(391)),
-          2 == o[e(500)] && (r = o[1]),
+          o = location["pathname"]["split"]("/")["splice"](1, 2);
+        o[0]["startsWith"]("~") && "" == (t = o[0]["replace"]("~", "")) && (t = "textwall"),
+          2 == o["length"] && (r = o[1]),
           Cn(t, r);
       }
       function Cn(e, t) {
@@ -2495,17 +2489,17 @@ var client = {
           (W == e && H == t) ||
           K ||
           ((K = !0),
-          (e = e[r(499)]()),
-          (t = t[r(499)]()),
+          (e = e["toLowerCase"]()),
+          (t = t["toLowerCase"]()),
           clearInterval(he),
           clearInterval(ye),
           nr(),
           pn(),
           (Yt = null),
-          a[r(197)](Or({ j: [e, t] })),
+          a["send"](Or({ j: [e, t] })),
           Xn(),
-          we[r(222)](),
-          Pe[r(222)](),
+          we["clear"](),
+          Pe["clear"](),
           (Me = []),
           0)
         );
@@ -2519,10 +2513,10 @@ var client = {
           (W = ""),
           pn(),
           gn(),
-          (c[e(270)][e(550)] = e(434)),
+          (c["style"]["display"] = "flex"),
           setTimeout(function () {
             var t = e;
-            c[t(270)][t(471)] = t(593);
+            c["style"]["opacity"] = "100%";
           }, 50),
           clearInterval(he),
           clearInterval(ye),
@@ -2532,8 +2526,8 @@ var client = {
             document.getElementById("connecting1").innerText = "You are banned.";
             document.getElementById("connecting2").innerText = "Refresh to reconnect\nYou can appeal in the server\n";
           } else {
-            (document[e(628)](e(544))[e(537)] = e(378)); //connecting2 text
-            (document[e(628)](e(387)).innerText = e(249)); //connecting1 text
+            (document["getElementById"]("connecting2")["innerText"] = "Click to reconnect\nThis might be because of the site updating. (refresh to see changes)\nHaving issues? Ask in the Discord server!\n"); //connecting2 text
+            (document["getElementById"]("connecting1").innerText = "Disconnected."); //connecting1 text
           }
           var a = document.createElement('a');
           a.href = "https://discord.gg/rDXPEgFA6m";
@@ -2544,10 +2538,10 @@ var client = {
       }
       function Tn(e) {
         var t = n,
-          r = new Uint8Array(e[t(698)]).buffer,
+          r = new Uint8Array(e["data"]).buffer,
           a = Rr(new Uint8Array(r));
         client.emit("wsmessage", a);
-        switch (Object[t(611)](a)[0]) {
+        switch (Object["keys"](a)[0]) {
           case "b":
             var i = a.b;
             (Yt = { minx: i[0], maxx: i[1], miny: i[2], maxy: i[3] }),
@@ -2559,95 +2553,95 @@ var client = {
             (W = l[0]),
               (H = l[1]),
               En(),
-              "textwall" == W && (nt[t(479)][t(599)] = !0),
-              t(391) != W
+              "textwall" == W && (nt["private"]["disabled"] = !0),
+              "textwall" != W
                 ? "main" != H
-                  ? ((o = "/~" + W + "/" + H), history[t(308)]({}, null, o))
-                  : ((o = "/~" + W), history[t(308)]({}, null, o))
+                  ? ((o = "/~" + W + "/" + H), history["pushState"]({}, null, o))
+                  : ((o = "/~" + W), history["pushState"]({}, null, o))
                 : ((o = "/"),
-                  Pr()[t(482)]("~") && history[t(308)]({}, null, o),
-                  (J[t(270)][t(550)] = "none")),
+                  Pr()["startsWith"]("~") && history["pushState"]({}, null, o),
+                  (J["style"]["display"] = "none")),
               (Gt = !1),
               (he = setInterval(Qt, 250)),
               (ye = setInterval(_t, 2e3)),
               Qt(),
               nr(),
-              (c[t(270)][t(471)] = "0%"),
+              (c["style"]["opacity"] = "0%"),
               (Je = !1),
               ($e = {}),
-              (k[t(270)][t(522)] = t(538)),
-              Pe[t(222)](),
+              (k["style"]["cursor"] = "text"),
+              Pe["clear"](),
               (Me = []),
               (K = !1),
               On(),
-              tt[t(613)][t(427)] && hn[t(676)].remove(t(692)),
-              x[t(676)][t(627)](t(692)),
-              (q[t(230)] = ""),
+              tt["showchat"]["checked"] && hn["classList"].remove("hidden"),
+              x["classList"]["remove"]("hidden"),
+              (q["innerHTML"] = ""),
               (Le = !0),
               (Oe = !0),
               (Re = !0),
               setTimeout(function () {
-                c[t(270)].display = "none";
+                c["style"].display = "none";
               }, 500);
             break;
-          case t(647):
-            ir(a[t(647)], 8e3);
+          case "alert":
+            ir(a["alert"], 8e3);
             break;
           case "online":
-            (We = a[t(338)]), (Ke[t(310)] = We + t(295));
+            (We = a["online"]), (Ke["title"] = We + " online");
             break;
           case "e":
-            for (var u = a.e.e, s = 0; s < u[t(500)]; s++) {
+            for (var u = a.e.e, s = 0; s < u["length"]; s++) {
               var d = (w = 20 * u[s][0]) + "," + (M = 10 * u[s][1]);
-              if (we[t(361)](d) && null != (E = we[t(520)](d))[t(704)])
-                for (var f = 2; f < u[s][t(500)]; f += 3) {
-                  var v = String[t(438)](u[s][f]),
+              if (we["has"](d) && null != (E = we["get"](d))["txt"])
+                for (var f = 2; f < u[s]["length"]; f += 3) {
+                  var v = String["fromCodePoint"](u[s][f]),
                     h = u[s][f + 1],
                     y = u[s][f + 2];
-                  (E[t(704)][h] == v && E[t(212)][h] == y) ||
-                    ((E[t(704)][h] = v), (E[t(212)][h] = y), It(d, Dt(h))),
+                  (E["txt"][h] == v && E["clr"][h] == y) ||
+                    ((E["txt"][h] = v), (E["clr"][h] = y), It(d, Dt(h))),
                     setTimeout(
                       Kn,
                       ((f - 2) / 3) * 25,
-                      w + (h - 20 * Math[t(437)](h / 20)),
-                      M + Math[t(437)](h / 20),
+                      w + (h - 20 * Math["floor"](h / 20)),
+                      M + Math["floor"](h / 20),
                       y,
                       a.e.a
                     );
                 }
             }
             break;
-          case t(655):
-            var g = (a = a.chunks)[t(500)];
+          case "chunks":
+            var g = (a = a.chunks)["length"];
             for (s = 0; s < g; s += 5) {
               var p = (w = 20 * a[s]) + "," + (M = 10 * a[s + 1]);
-              if (we[t(361)](p))
+              if (we["has"](p))
                 if (
-                  (((E = we[t(520)](p))[t(630)] = [w, M]),
-                  a[s + 4] && (E[t(193)] = !0),
+                  (((E = we["get"](p))["coords"] = [w, M]),
+                  a[s + 4] && (E["protected"] = !0),
                   0 !== a[s + 2])
                 )
                   for (
                     St(p, !0),
-                      E[t(704)] = Array[t(296)](a[s + 2]),
-                      E.clr = Array[t(296)](a[s + 3]),
+                      E["txt"] = Array["from"](a[s + 2]),
+                      E.clr = Array["from"](a[s + 3]),
                       f = 0;
                     f < 200;
                     f++
                   )
-                    E[t(212)][f] = E[t(212)][f][t(546)]() - ue;
+                    E["clr"][f] = E["clr"][f]["codePointAt"]() - ue;
                 else
-                  (E.txt = _e[t(386)]()),
-                    (E.clr = et[t(386)]()),
+                  (E.txt = _e["slice"]()),
+                    (E.clr = et["slice"]()),
                     (E.empty = !0);
             }
-            var b = $t[t(500)];
+            var b = $t["length"];
             for (s = 0; s < b; s += 2) {
               var w, M, E;
               (p = (w = 20 * $t[s]) + "," + (M = 10 * $t[s + 1])),
                 we.has(p) &&
-                  null == (E = we[t(520)](p))[t(704)] &&
-                  we[t(644)](p, {
+                  null == (E = we["get"](p))["txt"] &&
+                  we["set"](p, {
                     txt: _e.slice(),
                     clr: et.slice(),
                     empty: !0,
@@ -2659,20 +2653,20 @@ var client = {
           case "p":
             var S = a.p;
             (p = S[0]),
-              we[t(361)](p) && ((we.get(p)[t(193)] = S[1]), It(p, !0));
+              we["has"](p) && ((we.get(p)["protected"] = S[1]), It(p, !0));
             break;
           case "c":
             !(function (e, n, r, a) {
               for (var o = t, i = n; i <= a; i++)
                 for (var c = e; c <= r; c++) {
-                  var l = 20 * Math[o(437)](c / 20),
-                    u = 10 * Math[o(437)](i / 10),
+                  var l = 20 * Math["floor"](c / 20),
+                    u = 10 * Math["floor"](i / 10),
                     s = l + "," + u;
-                  if (we[o(361)](s)) {
-                    var d = we[o(520)](s);
-                    if (null != d[o(704)]) {
+                  if (we["has"](s)) {
+                    var d = we["get"](s);
+                    if (null != d["txt"]) {
                       var f = c - l + 20 * (i - u);
-                      (d[o(704)][f] = " "), (d.clr[f] = 0), St(s, Dt(f));
+                      (d["txt"][f] = " "), (d.clr[f] = 0), St(s, Dt(f));
                     }
                   }
                 }
@@ -2685,107 +2679,107 @@ var client = {
               C = I.id;
             Pe.has(C) ||
               Pe.set(C, { c: 0, n: "", l: [0, 0], rawx: 0, rawy: 0 });
-            var A = Pe[t(520)](C);
+            var A = Pe["get"](C);
             null != I.l &&
               ((A.l = I.l),
-              tt[t(223)][t(427)] ||
-                ((A[t(235)] = A.l[0]), (A[t(201)] = A.l[1]))),
+              tt["smoothcursors"]["checked"] ||
+                ((A["rawx"] = A.l[0]), (A["rawy"] = A.l[1]))),
               null != I.c && (A.c = I.c),
               null != I.n && (A.n = I.n),
               (ge = !0),
               On();
             break;
-          case t(477):
+          case "msg":
             var T = a.msg;
             client.emit("chat", {username: T[0], color: T[1], message: T[2], registered: T[3], id: T[4]})
             !(function (e, n, r, a, id) {
               var o = t,
                 i = document.getElementById("chatbox"),
-                c = document[o(581)]("p"),
+                c = document["createElement"]("p"),
                 l = document.createElement("a");
-              (l[o(537)] = e),
-                (l.style[o(327)] = o(315) == se[n] ? o(282) : se[n]),
-                a && ((l[o(497)] = "/~" + e), l[o(216)]("click", wn)), l.title = "(" + id + ")"
-                c[o(454)](l),
-                c.appendChild(document.createTextNode(o(412) + r));
-              var u = Math[o(330)](i[o(712)] - i[o(403)] - i[o(503)]) < 5;
+              (l["innerText"] = e),
+                (l.style["color"] = "#FFFFFF" == se[n] ? "#222222" : se[n]),
+                a && ((l["href"] = "/~" + e), l["addEventListener"]("click", wn)), l.title = "(" + id + ")"
+                c["appendChild"](l),
+                c.appendChild(document.createTextNode(": " + r));
+              var u = Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
               i.appendChild(c),
                 u && gn(),
-                hn[o(676)][o(551)](o(452)) || yn[o(676)][o(608)](o(259));
+                hn["classList"]["contains"]("open") || yn["classList"]["add"]("show");
             })(T[0], T[1], T[2], T[3], T[4]);
             break;
           case "rc":
-            Pe[t(639)](a.rc), (ge = !0), On();
+            Pe["delete"](a.rc), (ge = !0), On();
             break;
           case "ro":
             var B = a.ro;
-            (nt[t(435)].checked = B), B && ir(t(196), 3e3), xn();
+            (nt["readOnly"].checked = B), B && ir("This wall is read-only; you cannot type on it.", 3e3), xn();
             break;
           case "priv":
-            (nt[t(479)][t(427)] = a[t(263)]),
+            (nt["private"]["checked"] = a["priv"]),
               (function () {
                 var e = t;
                 if (null != Y)
-                  for (var n = 0; n < Y[e(500)]; n += 2)
+                  for (var n = 0; n < Y["length"]; n += 2)
                     if (Y[n] == H)
-                      return (Y[n + 1] = nt[e(479)][e(427)]), void Ln(Y);
+                      return (Y[n + 1] = nt["private"]["checked"]), void Ln(Y);
               })();
             break;
           case "ch":
             var F = a.ch;
-            (nt[t(476)].checked = F),
+            (nt["hideCursors"].checked = F),
               m ||
-                ((tt[t(442)][t(599)] = F),
-                (tt[t(442)].checked =
-                  !F && t(256) != localStorage.getItem(t(442)))),
+                ((tt["showothercurs"]["disabled"] = F),
+                (tt["showothercurs"].checked =
+                  !F && "false" != localStorage.getItem("showothercurs"))),
               (ge = !0);
             break;
           case "dc":
             var P = a.dc;
-            (nt[t(490)][t(427)] = P),
-              (tt[t(613)].disabled = P),
+            (nt["disableChat"]["checked"] = P),
+              (tt["showchat"].disabled = P),
               P
-                ? ((tt[t(613)][t(427)] = !1), hn[t(676)][t(608)](t(692)))
-                : ((tt[t(613)][t(427)] =
-                    "false" != localStorage[t(414)](t(613))),
-                  tt.showchat.checked && hn[t(676)].remove(t(692)));
+                ? ((tt["showchat"]["checked"] = !1), hn["classList"]["add"]("hidden"))
+                : ((tt["showchat"]["checked"] =
+                    "false" != localStorage["getItem"]("showchat")),
+                  tt.showchat.checked && hn["classList"].remove("hidden"));
             break;
           case "dcl":
-            var L = a[t(271)];
-            (nt[t(604)][t(427)] = L), hr(!!L || tt[t(577)][t(427)]);
+            var L = a["dcl"];
+            (nt["disableColour"]["checked"] = L), hr(!!L || tt["disablecolour"]["checked"]);
             break;
           case "db":
             var O = a.db;
-            nt[t(363)][t(427)] = O;
+            nt["disableBraille"]["checked"] = O;
             break;
           case "l":
-            (U = !0), (document.getElementById("l")[t(427)] = !0), xn();
+            (U = !0), (document.getElementById("l")["checked"] = !0), xn();
             break;
-          case t(547):
-            (j = a[t(547)]),
-              (X[t(270)][t(550)] = 2 == j || 1 == j ? t(467) : "none"),
+          case "perms":
+            (j = a["perms"]),
+              (X["style"]["display"] = 2 == j || 1 == j ? "block" : "none"),
               2 == j
-                ? ((z[t(270)][t(550)] = t(467)), (J.style.display = t(467)))
-                : ((z[t(270)][t(550)] = t(507)), (J.style[t(550)] = "none")),
-              (nt[t(435)][t(599)] =
-                nt[t(479)].disabled =
-                nt[t(476)].disabled =
-                nt.disableChat[t(599)] =
-                nt[t(604)][t(599)] =
-                nt[t(363)].disabled =
+                ? ((z["style"]["display"] = "block"), (J.style.display = "block"))
+                : ((z["style"]["display"] = "none"), (J.style["display"] = "none")),
+              (nt["readOnly"]["disabled"] =
+                nt["private"].disabled =
+                nt["hideCursors"].disabled =
+                nt.disableChat["disabled"] =
+                nt["disableColour"]["disabled"] =
+                nt["disableBraille"].disabled =
                   !(2 == j || m)),
-              m && (J[t(270)][t(550)] = t(391) != W || K ? t(467) : t(507)),
+              m && (J["style"]["display"] = "textwall" != W || K ? "block" : "none"),
               0 == j && ((Ve = !1), (Ze = !1)),
               (ge = !0),
               xn();
             break;
           case "addmem":
-            Fn(a[t(591)]), (optionsmenu.scrollTop = optionsmenu[t(503)]);
+            Fn(a["addmem"]), (optionsmenu.scrollTop = optionsmenu["clientHeight"]);
             break;
           case "ml":
             for (
-              memberList = a.ml, document[t(628)](t(446))[t(230)] = "", s = 0;
-              s < memberList[t(500)];
+              memberList = a.ml, document["getElementById"]("memberlist")["innerHTML"] = "", s = 0;
+              s < memberList["length"];
               s++
             )
               Fn(memberList[s]);
@@ -2793,64 +2787,64 @@ var client = {
           case "wl":
             Ln((Y = a.wl));
             break;
-          case t(621):
+          case "nametaken":
             ir("Username is already in use.", 3e3), vn(!1);
             break;
-          case t(710):
+          case "noreg":
             ir("Registration is closed.", 3e3), vn(!1);
             break;
-          case t(602):
-            ir(t(240), 3e3), vn(!1);
+          case "wrongpass":
+            ir("Password is incorrect.", 3e3), vn(!1);
             break;
-          case t(534):
-            ir(t(532), 3e3), vn(!1);
+          case "loginfail":
+            ir("Username/Password is incorrect.", 3e3), vn(!1);
             break;
           case "tokenfail":
             vn(!1),
-              localStorage[t(673)]("username"),
-              localStorage.removeItem(t(323));
+              localStorage["removeItem"]("username"),
+              localStorage.removeItem("token");
             break;
           case "namechanged":
             vn(!1),
-              ir(t(675) + (je = a.namechanged), 3e3),
-              localStorage[t(460)]("username", je),
+              ir("Your username is now: " + (je = a.namechanged), 3e3),
+              localStorage["setItem"]("username", je),
               Bn(),
               (ge = !0),
               (Re = !0);
             break;
-          case t(224):
-            ir(t(552), 3e3), vn(!1);
+          case "passchanged":
+            ir("Password has been changed.", 3e3), vn(!1);
             break;
-          case t(502):
+          case "accountdeleted":
             ir("Your account has been deleted.", 3e3),
               vn(!1),
               (Re = !0),
               dt(!0, !0);
             break;
-          case t(421):
+          case "cool":
             ir("Rate limit", 3e3), vn(!1);
             break;
-          case t(323):
+          case "token":
             vn(!1);
-            var R = a[t(323)];
+            var R = a["token"];
             (je = R[0]),
-              localStorage[t(460)]("username", je),
-              localStorage[t(460)]("token", R[1]),
-              (document[t(628)](t(680))[t(270)][t(550)] = t(507)),
-              (document[t(628)](t(459))[t(270)][t(550)] = t(507)),
-              (document[t(628)](t(269)).style[t(550)] = t(467)),
+              localStorage["setItem"]("username", je),
+              localStorage["setItem"]("token", R[1]),
+              (document["getElementById"]("login")["style"]["display"] = "none"),
+              (document["getElementById"]("register")["style"]["display"] = "none"),
+              (document["getElementById"]("loggedin").style["display"] = "block"),
               Bn(),
               (ge = !0),
               (Re = !0);
             break;
-          case t(696):
-            a[t(696)]
-              ? ((m = !0), (document[t(628)](t(696)).style.display = "block"))
+          case "admin":
+            a["admin"]
+              ? ((m = !0), (document["getElementById"]("admin").style.display = "block"))
               : ((m = !1),
-                (document.getElementById(t(696))[t(270)].display = t(507)));
+                (document.getElementById("admin")["style"].display = "none"));
             break;
           case "t":
-            document[t(628)]("t").value = a.t;
+            document["getElementById"]("t").value = a.t;
             break;
           case "id":
             client.id = a.id;
@@ -2865,90 +2859,90 @@ var client = {
       }
       function Bn() {
         var e = n,
-          t = document[e(628)]("name");
-        (t[e(537)] = je),
-          (t[e(497)] = "/~" + je),
-          (t[e(686)] = function (e) {
+          t = document["getElementById"]("name");
+        (t["innerText"] = je),
+          (t["href"] = "/~" + je),
+          (t["onclick"] = function (e) {
             e.preventDefault(), vr("~" + je);
           });
       }
       function Fn(e) {
         var t = n,
-          r = document[t(628)](t(446)),
-          a = document[t(581)](t(443));
-        a[t(676)][t(608)](t(447)),
-          (a[t(537)] = e),
-          a[t(216)]("click", Pn),
+          r = document["getElementById"]("memberlist"),
+          a = document["createElement"]("div");
+        a["classList"]["add"]("member"),
+          (a["innerText"] = e),
+          a["addEventListener"]("click", Pn),
           r.appendChild(a);
       }
       function Pn(e) {
         var t = n,
-          r = e[t(510)][t(537)];
-        a.send(Or({ rmmem: r })), e[t(510)].remove();
+          r = e["target"]["innerText"];
+        a.send(Or({ rmmem: r })), e["target"].remove();
       }
       function Ln(e) {
-        for (var t = n, r = {}, a = [], o = !1, i = 0; i < e[t(500)]; i += 2) {
+        for (var t = n, r = {}, a = [], o = !1, i = 0; i < e["length"]; i += 2) {
           var c = e[i],
             l = e[i + 1];
-          t(622) == c ? (o = !0) : a.push(c), (r[c] = l);
+          "main" == c ? (o = !0) : a.push(c), (r[c] = l);
         }
-        a[t(389)](),
-          o && a[t(343)](t(622)),
-          (q[t(230)] = ""),
-          q[t(454)](document[t(581)]("hr"));
-        var u = document[t(581)](t(566));
-        (u[t(537)] = W + "'s walls"), q[t(454)](u);
-        var s = q.appendChild(document[t(581)]("ul"));
-        for (s.classList[t(608)](t(531)), i = 0; i < a.length; i++) {
+        a["sort"](),
+          o && a["unshift"]("main"),
+          (q["innerHTML"] = ""),
+          q["appendChild"](document["createElement"]("hr"));
+        var u = document["createElement"]("span");
+        (u["innerText"] = W + "'s walls"), q["appendChild"](u);
+        var s = q.appendChild(document["createElement"]("ul"));
+        for (s.classList["add"]("walllist"), i = 0; i < a.length; i++) {
           l = r[(c = a[i])];
-          var d = s[t(454)](document[t(581)]("li")),
-            f = document[t(581)]("a"),
-            v = document.createElement(t(292));
+          var d = s["appendChild"](document["createElement"]("li")),
+            f = document["createElement"]("a"),
+            v = document.createElement("img");
           l
-            ? ((v[t(615)] = "/static/lock.svg"),
-              (v[t(659)] = v[t(310)] = "Private"))
-            : ((v[t(615)] = t(521)), (v[t(659)] = v.title = t(195)));
-          const e = "~" + W + (t(622) == c ? "" : "/" + c);
-          f[t(454)](v),
-            f[t(454)](document[t(254)](e)),
-            (f.href = "/" + f[t(537)]),
-            f[t(676)].add(t(671)),
-            c == H && f[t(676)][t(608)](t(583)),
-            f[t(216)](t(383), function (n) {
-              n[t(423)](), vr(e);
+            ? ((v["src"] = "/static/lock.svg"),
+              (v["alt"] = v["title"] = "Private"))
+            : ((v["src"] = "/static/lock_open.svg"), (v["alt"] = v.title = "Public"));
+          const e = "~" + W + ("main" == c ? "" : "/" + c);
+          f["appendChild"](v),
+            f["appendChild"](document["createTextNode"](e)),
+            (f.href = "/" + f["innerText"]),
+            f["classList"].add("buttonlink"),
+            c == H && f["classList"]["add"]("bold"),
+            f["addEventListener"]("click", function (n) {
+              n["preventDefault"](), vr(e);
             }),
             d.appendChild(f),
-            s[t(454)](d);
+            s["appendChild"](d);
         }
-        if (W == je[t(499)]()) {
-          var m = q[t(454)](document[t(581)]("form"));
-          (m.style[t(550)] = "flex"), (m.style[t(267)] = "space-between");
-          var h = m.appendChild(document[t(581)](t(205)));
-          (h.type = t(538)),
-            (h[t(638)] = t(642)),
-            (h[t(529)] = 24),
-            (h[t(270)].width = t(593));
-          var y = m[t(454)](document[t(581)]("input"));
-          (y[t(289)] = t(293)),
-            (y[t(356)] = t(455)),
-            y.addEventListener(t(383), function (e) {
+        if (W == je["toLowerCase"]()) {
+          var m = q["appendChild"](document["createElement"]("form"));
+          (m.style["display"] = "flex"), (m.style["justifyContent"] = "space-between");
+          var h = m.appendChild(document["createElement"]("input"));
+          (h.type = "text"),
+            (h["placeholder"] = "Create a new wall"),
+            (h["maxLength"] = 24),
+            (h["style"].width = "100%");
+          var y = m["appendChild"](document["createElement"]("input"));
+          (y["type"] = "submit"),
+            (y["value"] = "Create"),
+            y.addEventListener("click", function (e) {
               var n = t;
               e.preventDefault();
-              var r = h[n(356)];
+              var r = h["value"];
               (h.value = ""),
-                Bt[n(674)](r)
-                  ? (Cn(W, r), Zn(0, 0), M.classList[n(627)]("open"))
-                  : ir(n(337), 2e3);
+                Bt["test"](r)
+                  ? (Cn(W, r), Zn(0, 0), M.classList["remove"]("open"))
+                  : ir("Invalid wall name", 2e3);
             });
         }
       }
       function On() {
         var e = n;
-        (Ue = Pe[e(429)]),
-          (Ke[e(537)] = Ue + e(540)),
-          (document.getElementById(e(302))[e(638)] =
+        (Ue = Pe["size"]),
+          (Ke["innerText"] = Ue + " around"),
+          (document.getElementById("chatmsg")["placeholder"] =
             0 == Ue
-              ? e(609)
+              ? "chat with nobody"
               : 1 == Ue
               ? "chat with 1 other user"
               : "chat with " + Ue + " other users"),
@@ -2956,75 +2950,75 @@ var client = {
       }
       function Rn(e) {
         var t = n;
-        Ge[t(343)]([
+        Ge["unshift"]([
           (e.clientX * v) / at,
           (e.clientY * v) / at,
-          performance[t(430)](),
+          performance["now"](),
         ]),
-          Ge.length > 4 && Ge[t(493)]();
+          Ge.length > 4 && Ge["pop"]();
       }
       var Dn,
         Nn = !1,
         jn = 0;
       function Un(e) {
         var t = n;
-        e[t(294)] && (e[t(423)](), e[t(426)] == Dn && (Dn = void 0));
+        e["isTrusted"] && (e["preventDefault"](), e["pointerId"] == Dn && (Dn = void 0));
       }
       function Wn(e) {
         var t = n;
         return {
-          x: Math[t(437)](
-            (e.pageX * devicePixelRatio - qe[t(440)].x) / (10 * v)
+          x: Math["floor"](
+            (e.pageX * devicePixelRatio - qe["offset"].x) / (10 * v)
           ),
-          y: Math[t(437)](
-            (e[t(367)] * devicePixelRatio - qe[t(440)].y) / (20 * v)
+          y: Math["floor"](
+            (e["pageY"] * devicePixelRatio - qe["offset"].y) / (20 * v)
           ),
         };
       }
       function Hn() {
         var e = n;
         (He.innerText = Ce.x + "," + -Ce.y),
-          Ce.x + qe[e(440)].x / v / 10 <= 0 && Mn(10 * -Ce.x * v, qe[e(440)].y),
-          Ce.x + qe[e(440)].x / v / 10 >= window[e(530)] / at / 10 - 1 &&
-            Mn((10 * -Ce.x + window.innerWidth / at - 10) * v, qe[e(440)].y),
-          Ce.y + qe.offset.y / v / 20 <= 0 && Mn(qe[e(440)].x, 20 * -Ce.y * v);
-        var t = window[e(530)] < 750 ? l.clientHeight : 0;
-        Ce.y + qe[e(440)].y / v / 20 >= (window[e(623)] - t) / at / 20 - 1 &&
+          Ce.x + qe["offset"].x / v / 10 <= 0 && Mn(10 * -Ce.x * v, qe["offset"].y),
+          Ce.x + qe["offset"].x / v / 10 >= window["innerWidth"] / at / 10 - 1 &&
+            Mn((10 * -Ce.x + window.innerWidth / at - 10) * v, qe["offset"].y),
+          Ce.y + qe.offset.y / v / 20 <= 0 && Mn(qe["offset"].x, 20 * -Ce.y * v);
+        var t = window["innerWidth"] < 750 ? l.clientHeight : 0;
+        Ce.y + qe["offset"].y / v / 20 >= (window["innerHeight"] - t) / at / 20 - 1 &&
           Mn(
-            qe[e(440)].x,
-            (20 * -Ce.y + window[e(623)] / at - 20 - t / at) * v
+            qe["offset"].x,
+            (20 * -Ce.y + window["innerHeight"] / at - 20 - t / at) * v
           ),
           (Le = Ae.x != Ce.x || Ae.y != Ce.y || Le),
           (Ae.x = Ce.x),
           (Ae.y = Ce.y),
-          tt[e(223)][e(427)] || ((Ce[e(235)] = Ce.x), (Ce.rawy = Ce.y)),
+          tt["smoothcursors"]["checked"] || ((Ce["rawx"] = Ce.x), (Ce.rawy = Ce.y)),
           (Math.abs(Ce.lastedit.x - Ce.x) > 300 ||
-            Math[e(330)](Ce[e(528)].y - Ce.y) > 300) &&
-            ((Ce[e(258)] = Ce.x), Xn()),
-          Ce.x < Ce[e(258)] && (Ce.start = Ce.x),
+            Math["abs"](Ce["lastedit"].y - Ce.y) > 300) &&
+            ((Ce["start"] = Ce.x), Xn()),
+          Ce.x < Ce["start"] && (Ce.start = Ce.x),
           (ge = !0),
-          localStorage[e(460)]("x", Ce.x),
-          localStorage[e(460)]("y", Ce.y);
+          localStorage["setItem"]("x", Ce.x),
+          localStorage["setItem"]("y", Ce.y);
       }
       function Kn(e, t, r, a) {
         var o = n;
-        tt[o(577)].checked && (r = 0),
+        tt["disablecolour"].checked && (r = 0),
           (r = Zr(r)[0]),
-          xt([e, t], bt(20)) || Ne[o(398)]([e, t, 0.1, r, a]);
+          xt([e, t], bt(20)) || Ne["push"]([e, t, 0.1, r, a]);
       }
       function Xn() {
         (Be = []), (Fe = []);
       }
       k.addEventListener(
-        n(303),
+        "touchstart",
         function (e) {
           var t = n;
-          2 === e[t(218)][t(500)] &&
-            ((Nn = !0), (Dn = void 0), (jn = 0), i[t(334)]());
+          2 === e["touches"]["length"] &&
+            ((Nn = !0), (Dn = void 0), (jn = 0), i["blur"]());
         },
         { passive: !0 }
       ),
-        k[n(216)](
+        k["addEventListener"](
           "touchmove",
           function (e) {
             var r = n;
@@ -3032,24 +3026,24 @@ var client = {
               ((function (e) {
                 var n = t;
                 if (e.touches.length > 1) {
-                  var r = Math[n(194)](
-                    Jr(e.touches[0][n(601)] - e.touches[1][n(601)]) +
-                      Jr(e.touches[0][n(367)] - e[n(218)][1][n(367)])
+                  var r = Math["sqrt"](
+                    Jr(e.touches[0]["pageX"] - e.touches[1]["pageX"]) +
+                      Jr(e.touches[0]["pageY"] - e["touches"][1]["pageY"])
                   );
                   0 != jn && it(rt - (jn - r) / 300, !0),
                     (Dn = void 0),
                     (jn = r);
                 }
               })(e),
-              i[r(334)]());
+              i["blur"]());
           },
           { passive: !0 }
         ),
-        k[n(216)](n(514), function (e) {
-          Nn && ((Dn = void 0), (jn = 0), (Nn = !1), i[n(334)]());
+        k["addEventListener"]("touchend", function (e) {
+          Nn && ((Dn = void 0), (jn = 0), (Nn = !1), i["blur"]());
         });
       var zn = 0,
-        qn = performance[n(430)](),
+        qn = performance["now"](),
         Yn = 0;
       const Jn = [4, 5, 7, 8, 9, 18, 11, 20, 13, 28, 15];
       client.chat = {send: (msg) => a.send(Or({msg}))};
@@ -3084,33 +3078,33 @@ var client = {
         var o = n;
         if (
           (ie(!1),
-          performance[o(430)]() - qn >= 100 &&
+          performance["now"]() - qn >= 100 &&
             ((qn = performance.now()), (zn = 0)),
           !e || zn >= 3)
         )
           return 0;
-        var i = (e = Array.from(e)[0])[o(546)]();
-        if (nt[o(363)][o(427)] && qr(i)) return 0;
-        var c = 20 * Math[o(437)](Ce.x / 20),
-          l = 10 * Math[o(437)](Ce.y / 10),
+        var i = (e = Array.from(e)[0])["codePointAt"]();
+        if (nt["disableBraille"]["checked"] && qr(i)) return 0;
+        var c = 20 * Math["floor"](Ce.x / 20),
+          l = 10 * Math["floor"](Ce.y / 10),
           u = c + "," + l;
-        if (!we[o(361)](u)) return 0;
-        var s = we[o(520)](u);
+        if (!we["has"](u)) return 0;
+        var s = we["get"](u);
         if (
-          ((s.protected || nt[o(435)][o(427)] || (U && "" == je)) &&
+          ((s.protected || nt["readOnly"]["checked"] || (U && "" == je)) &&
             !m &&
             0 == j) ||
-          null == s[o(704)] ||
+          null == s["txt"] ||
           K
         )
           return (
             U &&
               "" == je &&
-              !nt[o(435)][o(427)] &&
+              !nt["readOnly"]["checked"] &&
               ir("Please log in before typing.", 3e3),
             0
           );
-        tt.rainbow[o(427)] && !r && (mr(Jn[Yn]), ++Yn == Jn.length && (Yn = 0));
+        tt.rainbow["checked"] && !r && (mr(Jn[Yn]), ++Yn == Jn.length && (Yn = 0));
         var d,
           f,
           v,
@@ -3128,7 +3122,7 @@ var client = {
           I = a ? 0 : ce(),
           C = Vr(client.color, I),
           A = Ce.x - c + 20 * (Ce.y - l),
-          T = s[o(212)][A],
+          T = s["clr"][A],
           B = Zr(T),
           F = B[0],
           P = B[1],
@@ -3147,24 +3141,24 @@ var client = {
             (r
               ? ((g = Ce.x),
                 (p = Ce.y),
-                (b = s[o(704)][A]),
+                (b = s["txt"][A]),
                 (x = T),
                 (w = o),
                 Fe.unshift([g, p, b, x]),
-                Fe[w(500)] > 1e3 && Fe[w(493)]())
+                Fe["length"] > 1e3 && Fe["pop"]())
               : ((d = Ce.x),
                 (f = Ce.y),
-                (v = s[o(704)][A]),
+                (v = s["txt"][A]),
                 (h = T),
                 Be[(y = o)(343)]([d, f, v, h]),
-                Be[y(500)] > 1e3 && Be[y(493)]()),
-            (s[o(704)][A] = e),
+                Be["length"] > 1e3 && Be["pop"]()),
+            (s["txt"][A] = e),
             (s.clr[A] = C),
             Me.push([c / 20, l / 10, e.codePointAt(), A, C]),
             (S = 2),
             It(u, Dt(A))),
-          (Ce[o(528)].x = Ce.x),
-          (Ce[o(528)].y = Ce.y),
+          (Ce["lastedit"].x = Ce.x),
+          (Ce["lastedit"].y = Ce.y),
           (Ce.x += t),
           Hn(),
           S
@@ -3176,33 +3170,33 @@ var client = {
         var o = n;
         if (
           (ie(!1),
-          performance[o(430)]() - qn >= 100 &&
+          performance["now"]() - qn >= 100 &&
             ((qn = performance.now()), (zn = 0)),
           !e || zn >= 3)
         )
           return 0;
-        var i = (e = Array.from(e)[0])[o(546)]();
-        if (nt[o(363)][o(427)] && qr(i)) return 0;
-        var c = 20 * Math[o(437)](Ce.x / 20),
-          l = 10 * Math[o(437)](Ce.y / 10),
+        var i = (e = Array.from(e)[0])["codePointAt"]();
+        if (nt["disableBraille"]["checked"] && qr(i)) return 0;
+        var c = 20 * Math["floor"](Ce.x / 20),
+          l = 10 * Math["floor"](Ce.y / 10),
           u = c + "," + l;
-        if (!we[o(361)](u)) return 0;
-        var s = we[o(520)](u);
+        if (!we["has"](u)) return 0;
+        var s = we["get"](u);
         if (
-          ((s.protected || nt[o(435)][o(427)] || (U && "" == je)) &&
+          ((s.protected || nt["readOnly"]["checked"] || (U && "" == je)) &&
             !m &&
             0 == j) ||
-          null == s[o(704)] ||
+          null == s["txt"] ||
           K
         )
           return (
             U &&
               "" == je &&
-              !nt[o(435)][o(427)] &&
+              !nt["readOnly"]["checked"] &&
               ir("Please log in before typing. Wait... how did you...", 3e3),
             0
           );
-        tt.rainbow[o(427)] && color !== undefined && !r && (mr(Jn[Yn]), ++Yn == Jn.length && (Yn = 0));
+        tt.rainbow["checked"] && color !== undefined && !r && (mr(Jn[Yn]), ++Yn == Jn.length && (Yn = 0));
         var d,
           f,
           v,
@@ -3220,7 +3214,7 @@ var client = {
           I = a ? 0 : ce(),
           C = Vr(color, I),
           A = Ce.x - c + 20 * (Ce.y - l),
-          T = s[o(212)][A],
+          T = s["clr"][A],
           B = Zr(T),
           F = B[0],
           P = B[1],
@@ -3239,18 +3233,18 @@ var client = {
             (r
               ? ((g = Ce.x),
                 (p = Ce.y),
-                (b = s[o(704)][A]),
+                (b = s["txt"][A]),
                 (x = T),
                 (w = o),
                 Fe.unshift([g, p, b, x]),
-                Fe[w(500)] > 1e3 && Fe[w(493)]())
+                Fe["length"] > 1e3 && Fe["pop"]())
               : ((d = Ce.x),
                 (f = Ce.y),
-                (v = s[o(704)][A]),
+                (v = s["txt"][A]),
                 (h = T),
                 Be[(y = o)(343)]([d, f, v, h]),
-                Be[y(500)] > 1e3 && Be[y(493)]()),
-            (s[o(704)][A] = e),
+                Be["length"] > 1e3 && Be["pop"]()),
+            (s["txt"][A] = e),
             (s.clr[A] = C),
             Me.push([c / 20, l / 10, e.codePointAt(), A, C]),
             (S = 2),
@@ -3266,11 +3260,11 @@ var client = {
           (Ce.y = t),
           Mn(
             (10 * -Ce.x + window.innerWidth / at / 2) * v,
-            (20 * -Ce.y + window[r(623)] / at / 2) * v
+            (20 * -Ce.y + window["innerHeight"] / at / 2) * v
           ),
-          (document[r(628)]("tpword")[r(356)] = ""),
-          (document[r(628)](r(342)).value = 0),
-          (document[r(628)]("tpy")[r(356)] = 0),
+          (document["getElementById"]("tpword")["value"] = ""),
+          (document["getElementById"]("tpx").value = 0),
+          (document["getElementById"]("tpy")["value"] = 0),
           nr(),
           Hn(),
           en(),
@@ -3285,31 +3279,31 @@ var client = {
       function Qn(e, t) {
         return Gn(e) && 0 == (2 & t) && 0 == (1 & t);
       }
-      const _n = Math[n(494)](5 / 3) / 1e3;
+      const _n = Math["log"](5 / 3) / 1e3;
       var er = !1;
       function tr(e) {
         var t = n;
         if (!Ie) {
           var r,
             a,
-            o = (e = e[t(217)](Tt, ""))[t(668)](Z),
+            o = (e = e["replace"](Tt, ""))["split"](Z),
             i = !1;
           if (
-            (2 == o[t(500)]
+            (2 == o["length"]
               ? ((i = !0),
-                (r = Array[t(296)](o[0])),
-                (a = Array[t(296)](o[1])),
-                (r[t(500)] != a.length || tt[t(598)][t(427)]) && (i = !1))
-              : ((e = e.replace(At, t(248))), (r = Array[t(296)](e))),
-            1 != r[t(500)])
+                (r = Array["from"](o[0])),
+                (a = Array["from"](o[1])),
+                (r["length"] != a.length || tt["rainbow"]["checked"]) && (i = !1))
+              : ((e = e.replace(At, "   ")), (r = Array["from"](e))),
+            1 != r["length"])
           ) {
             if (((Ie = !0), !er)) {
-              (er = !0), (Ce[t(258)] = Ce.x);
+              (er = !0), (Ce["start"] = Ce.x);
               var c = client.color,
                 l = ce();
               !(function e(n, o) {
                 var u = t;
-                if (n == r[u(500)] || !Ie)
+                if (n == r["length"] || !Ie)
                   return nr(), (er = !1), mr(c), void le(l);
                 if ("\n" == r[n]) return cr(), setTimeout(e, 20 / 1.5, n + 1, o);
                 var s,
@@ -3318,7 +3312,7 @@ var client = {
                 if (i) {
                   var v =
                       ((s = a[n]),
-                      (d = s[u(546)]()),
+                      (d = s["codePointAt"]()),
                       ((d -= d < ue ? 65 : ue) < 0 || d > 495) && (d = 0),
                       d),
                     [m, h] = Zr(v);
@@ -3331,7 +3325,7 @@ var client = {
                   default:
                     return setTimeout(
                       e,
-                      36 * Math[u(396)](Math.E, _n * o) / 1.5,
+                      36 * Math["pow"](Math.E, _n * o) / 1.5,
                       n + 1,
                       o + 1
                     );
@@ -3346,43 +3340,43 @@ var client = {
       }
       function rr() {
         var e = n,
-          t = 20 * Math[e(437)](Ce.x / 20),
-          r = 10 * Math[e(437)](Ce.y / 10),
-          a = we[e(520)](t + "," + r);
-        if (!a || null == a[e(704)]) return !1;
+          t = 20 * Math["floor"](Ce.x / 20),
+          r = 10 * Math["floor"](Ce.y / 10),
+          a = we["get"](t + "," + r);
+        if (!a || null == a["txt"]) return !1;
         var o = Ce.x - t + 20 * (Ce.y - r);
-        return [a[e(704)][o], a[e(212)][o]];
+        return [a["txt"][o], a["clr"][o]];
       }
       function ar(e) {
         var t = n;
         navigator.clipboard
-          ? navigator[t(345)][t(512)](e)
-          : ((b[t(356)] = e),
-            b[t(456)](),
-            b[t(635)](),
-            document[t(484)](t(650)));
+          ? navigator["clipboard"]["writeText"](e)
+          : ((b["value"] = e),
+            b["focus"](),
+            b["select"](),
+            document["execCommand"]("copy"));
       }
       function or(e) {
         var t = n;
-        e[t(423)](),
+        e["preventDefault"](),
           (Je = !0),
-          (k.style.cursor = t(344)),
+          (k.style.cursor = "crosshair"),
           ir("Select an area to copy.", 1500);
       }
       function ir(e, t) {
         var r = n;
         clearTimeout(p),
           (g.innerText = e),
-          g[r(676)][r(608)](r(311)),
+          g["classList"]["add"]("toasting"),
           (p = setTimeout(function () {
-            g[r(676)].remove("toasting");
+            g["classList"].remove("toasting");
           }, t));
       }
       function cr() {
         (Ce.x = Ce.start), Ce.y++, Hn();
       }
       null == navigator?.clipboard?.readText &&
-        (document[n(628)](n(462)).style[n(550)] = n(507));
+        (document["getElementById"]("paste").style["display"] = "none");
       var lr = 0;
       function ur(e) {
         var t = n;
@@ -3390,86 +3384,86 @@ var client = {
           (ie(!1), ((2 == e && 2 == lr) || (1 == e && 1 == lr)) && (e = 0), e)
         ) {
           case 0:
-            x.style[t(557)] = t(596);
+            x.style["transform"] = "translateX(-105%)";
             break;
           case 1:
-            var r = document.getElementById(t(605))[t(257)];
-            x[t(270)][t(557)] = t(234) + -r + "px)";
+            var r = document.getElementById("optionsmenu")["clientWidth"];
+            x["style"]["transform"] = "translateX(" + -r + "px)";
             break;
           default:
-            (x.style.transform = t(519)),
-              M[t(676)][t(551)](t(452)) && M[t(676)][t(627)](t(452));
+            (x.style.transform = "translateX(0px)"),
+              M["classList"]["contains"]("open") && M["classList"]["remove"]("open");
         }
         (lr = e), en();
       }
       function sr(e) {
         var t = n,
-          r = document.createElement(t(443));
-        r[t(676)][t(608)](t(209)),
-          r.addEventListener(t(383), function (t) {
+          r = document.createElement("div");
+        r["classList"]["add"]("colour"),
+          r.addEventListener("click", function (t) {
             mr(e), nn(t);
           }),
           r.setAttribute("id", e),
-          (r[t(270)][t(524)] = se[e]),
-          (r[t(310)] = de[e]),
-          w[t(454)](r);
+          (r["style"]["backgroundColor"] = se[e]),
+          (r["title"] = de[e]),
+          w["appendChild"](r);
       }
       function dr() {
         var e = n;
         ie(!1),
-          M[e(676)][e(551)]("open")
-            ? (M.classList[e(627)](e(452)), en())
-            : (M[e(676)][e(608)](e(452)),
+          M["classList"]["contains"]("open")
+            ? (M.classList["remove"]("open"), en())
+            : (M["classList"]["add"]("open"),
               2 == lr && ur(0),
-              document.getElementById(e(314))[e(456)]());
+              document.getElementById("tpword")["focus"]());
       }
       function fr(e) {
-        return e[n(217)](/^\/|\/$/g, "");
+        return e["replace"](/^\/|\/$/g, "");
       }
       function vr(e) {
         var t = n,
-          r = (e = (e = fr(e))[t(217)](/\~\/*/, "~"))[t(668)]("/");
+          r = (e = (e = fr(e))["replace"](/\~\/*/, "~"))["split"]("/");
         if (
-          ((e = r[t(564)]()),
-          r[t(500)] > 0 && (e += "/" + r[t(564)]()),
-          (e = (e = fr(e))[t(499)]())[t(482)]("~") && "~main" != e)
+          ((e = r["shift"]()),
+          r["length"] > 0 && (e += "/" + r["shift"]()),
+          (e = (e = fr(e))["toLowerCase"]())["startsWith"]("~") && "~main" != e)
         ) {
-          var a = e[t(668)]("/"),
-            o = a[0][t(217)]("~", ""),
+          var a = e["split"]("/"),
+            o = a[0]["replace"]("~", ""),
             i = "main";
           a.length > 1 && (i = a[1]), Cn(o, i), Zn(0, 0);
         } else {
           var c = Lr(e);
           Zn(c.x, c.y),
-            Cn(t(391), t(622)),
-            0 == c.x && 0 == c.y ? $n() : history[t(308)]({}, null, e);
+            Cn("textwall", "main"),
+            0 == c.x && 0 == c.y ? $n() : history["pushState"]({}, null, e);
         }
-        M[t(676)][t(627)]("open");
+        M["classList"]["remove"]("open");
       }
       function mr(e) {
         var t = n;
-        (tt[t(577)][t(427)] || nt[t(604)][t(427)]) && (e = 0),
+        (tt["disablecolour"]["checked"] || nt["disableColour"]["checked"]) && (e = 0),
           client.color != e && (Oe = !0);
         var r = document.getElementById(client.color);
-        r[t(676)][t(627)](t(594)),
+        r["classList"]["remove"]("selected"),
           (client.color = e),
           (be = xe && 0 == client.color ? "rgba(255, 255, 255, 0.6)" : Yr(se[client.color], 0.6)),
-          (r = document[t(628)](client.color))[t(676)][t(608)](t(594)),
-          r[t(214)] < w[t(403)] + 36 && (w[t(403)] = r[t(214)] - 36),
-          r.offsetTop > w.scrollTop + w[t(503)] &&
+          (r = document["getElementById"](client.color))["classList"]["add"]("selected"),
+          r["offsetTop"] < w["scrollTop"] + 36 && (w["scrollTop"] = r["offsetTop"] - 36),
+          r.offsetTop > w.scrollTop + w["clientHeight"] &&
             (w.scrollTop = r.offsetTop - w.clientHeight),
-          document.getElementById("theme-colour")[t(388)](t(265), se[e]),
-          localStorage[t(460)](t(505), e),
+          document.getElementById("theme-colour")["setAttribute"]("content", se[e]),
+          localStorage["setItem"]("col", e),
           (ge = !0);
       }
-      for (w[n(219)].length > 0 && (a = !0), ne = 0; ne < se[n(500)]; ne++)
+      for (w["children"].length > 0 && (a = !0), ne = 0; ne < se["length"]; ne++)
         sr(fe[ne]);
       function hr(e) {
         for (var t = n, r = 0; r < w.children.length; r++)
-          "0" != w[t(219)][r].id &&
+          "0" != w["children"][r].id &&
             (e
-              ? w[t(219)][r][t(676)].add("hidden")
-              : w[t(219)][r].classList.remove("hidden"));
+              ? w["children"][r]["classList"].add("hidden")
+              : w["children"][r].classList.remove("hidden"));
         e && mr(0);
       }
       function yr(e) {
@@ -3488,23 +3482,23 @@ var client = {
           }
         0 == N &&
           ((xe = !1),
-          (document[t(628)](t(431))[t(615)] = t(202)),
+          (document["getElementById"]("themeico")["src"] = "/static/sun.svg"),
           (C = S),
           (A = I)),
           1 == N &&
             ((xe = !0),
-            (document[t(628)](t(431))[t(615)] = t(562)),
-            (C = t(461)),
-            (A = t(419))),
+            (document["getElementById"]("themeico")["src"] = "/static/moon.svg"),
+            (C = "#000000"),
+            (A = "#141414")),
           2 == N
             ? ((xe = P.checked),
-              (document.getElementById("themeico")[t(615)] = t(422)),
-              (C = B[t(356)]),
-              (A = F[t(356)]),
-              L[t(676)].remove(t(692)))
-            : L.classList[t(608)](t(692)),
+              (document.getElementById("themeico")["src"] = "/static/star.svg"),
+              (C = B["value"]),
+              (A = F["value"]),
+              L["classList"].remove("hidden"))
+            : L.classList["add"]("hidden"),
           (T = Xr(A, 10)),
-          localStorage.setItem(t(352), N),
+          localStorage.setItem("theme", N),
           (ge = !0),
           en(),
           mr(client.color),
@@ -3512,49 +3506,49 @@ var client = {
       }
       function gr(e) {
         var t = n;
-        e[t(510)] == B
-          ? ((C = B[t(356)]), Sn())
+        e["target"] == B
+          ? ((C = B["value"]), Sn())
           : e.target == F && ((A = F.value), (T = Xr(A, 10)), Sn(!0)),
-          localStorage[t(460)](
+          localStorage["setItem"](
             "customtheme",
-            JSON[t(351)]({
+            JSON["stringify"]({
               primary: B.value,
-              secondary: F[t(356)],
-              texttheme: P[t(427)],
+              secondary: F["value"],
+              texttheme: P["checked"],
             })
           );
       }
       function pr(e) {
         var t = n;
-        br(e[t(510)][t(370)].id), en();
+        br(e["target"]["parentElement"].id), en();
       }
       function br(e, t) {
         var r = n,
           a = ae[e];
         (a.enabled = null != t ? t : !a.enabled),
-          a[r(404)]
-            ? a.el[r(676)][r(608)]("enabled")
-            : a.el[r(676)][r(627)](r(404)),
-          localStorage.setItem(r(428), ce());
+          a["enabled"]
+            ? a.el["classList"]["add"]("enabled")
+            : a.el["classList"]["remove"]("enabled"),
+          localStorage.setItem("dec", ce());
       }
       function xr(e, t, r) {
         var a = n;
-        if (Math[a(330)](e - t) > 0.1) {
+        if (Math["abs"](e - t) > 0.1) {
           for (var o = 0; o < r; o++) e += (t - e) / 20;
-          return (ge = !0), Math[a(433)](100 * e) / 100;
+          return (ge = !0), Math["round"](100 * e) / 100;
         }
-        return e != t ? ((ge = !0), Math[a(433)](e)) : e;
+        return e != t ? ((ge = !0), Math["round"](e)) : e;
       }
       setInterval(function () {
         var e = n;
-        if (a && a[e(348)] == a[e(241)]) {
+        if (a && a["readyState"] == a["OPEN"]) {
           if ((Le || Oe || Re || De) && 0 != we.size) {
             var t = {};
             Le && (t.l = [Ce.x, Ce.y]),
               Oe && (t.c = client.color),
-              Re && (t.n = tt[e(280)][e(427)]),
+              Re && (t.n = tt["anonymous"]["checked"]),
               De && (t.p = [qe.coords.x, qe.coords.y]),
-              a[e(197)](Or({ ce: t })),
+              a["send"](Or({ ce: t })),
               (Le = !1),
               (Oe = !1),
               (Re = !1),
@@ -3562,7 +3556,7 @@ var client = {
           }
           if (Me.length > 0) {
             var r;
-            (r = Me[e(643)](0, 64)), (t = []);
+            (r = Me["splice"](0, 64)), (t = []);
             e: for (var o = 0; o < r.length; o++) {
               for (
                 var i = r[o][0],
@@ -3571,18 +3565,18 @@ var client = {
                   u = r[o][3],
                   s = r[o][4],
                   d = 0;
-                d < t[e(500)];
+                d < t["length"];
                 d++
               )
                 if (t[d][0] == i && t[d][1] == c) {
-                  t[d][e(398)](l, u, s);
+                  t[d]["push"](l, u, s);
                   continue e;
                 }
               if (
-                (t[e(398)]([i, c, l, u, s]),
-                4 == t[e(500)] && o + 1 < r[e(500)])
+                (t["push"]([i, c, l, u, s]),
+                4 == t["length"] && o + 1 < r["length"])
               ) {
-                for (d = o + 1; d < r[e(500)]; d++) Me[e(343)](r[d]);
+                for (d = o + 1; d < r["length"]; d++) Me["unshift"](r[d]);
                 break;
               }
             }
@@ -3592,37 +3586,37 @@ var client = {
       }, 200);
       var wr = performance.now(),
         Mr = 100,
-        kr = performance[n(430)]() + 1e3;
+        kr = performance["now"]() + 1e3;
       window.requestAnimationFrame(function e() {
         var t = n,
-          r = Math[t(678)](Math[t(262)](performance[t(430)]() - wr), 100);
+          r = Math["min"](Math["ceil"](performance["now"]() - wr), 100);
         if (
           ((wr = performance.now()),
-          (r < Mr || wr > kr) && ((Mr = r), (kr = performance[t(430)]() + 1e3)),
+          (r < Mr || wr > kr) && ((Mr = r), (kr = performance["now"]() + 1e3)),
           null != Qe)
         ) {
           (ge = !0),
-            Mn(qe[t(440)].x + Qe.dx, qe[t(440)].y + Qe.dy, !0),
-            0 == Qe.dx && 0 == Qe.dy && Mn(qe.offset.x, qe[t(440)].y);
+            Mn(qe["offset"].x + Qe.dx, qe["offset"].y + Qe.dy, !0),
+            0 == Qe.dx && 0 == Qe.dy && Mn(qe.offset.x, qe["offset"].y);
           for (var a = 0; a < r; a++) (Qe.dx *= 0.993), (Qe.dy *= 0.993);
-          Math[t(330)](Qe.dx) <= 0.3 && (Qe.dx = 0),
+          Math["abs"](Qe.dx) <= 0.3 && (Qe.dx = 0),
             Math.abs(Qe.dy) <= 0.3 && (Qe.dy = 0),
             0 == Qe.dy && 0 == Qe.dx && (Qe = null);
         }
-        if (tt[t(223)][t(427)]) {
-          (Ce.rawx = xr(Ce[t(235)], Ce.x, r)),
-            (Ce.rawy = xr(Ce[t(201)], Ce.y, r));
+        if (tt["smoothcursors"]["checked"]) {
+          (Ce.rawx = xr(Ce["rawx"], Ce.x, r)),
+            (Ce.rawy = xr(Ce["rawy"], Ce.y, r));
           var o = bt(20);
           for (const e of Pe.values())
-            null == e[t(235)] ||
-              null == e[t(201)] ||
+            null == e["rawx"] ||
+              null == e["rawy"] ||
               xt(e.l, o) ||
-              ((e[t(235)] = xr(e[t(235)], e.l[0], r)),
-              (e[t(201)] = xr(e[t(201)], e.l[1], r)));
+              ((e["rawx"] = xr(e["rawx"], e.l[0], r)),
+              (e["rawy"] = xr(e["rawy"], e.l[1], r)));
         }
         if (0 != Ne.length) {
-          for (var c = 0; c < Ne[t(500)]; c++)
-            if (Ne[c][2] < 0.01) Ne[t(643)](c, 1);
+          for (var c = 0; c < Ne["length"]; c++)
+            if (Ne[c][2] < 0.01) Ne["splice"](c, 1);
             else for (a = 0; a < r; a++) Ne[c][2] *= 0.995;
           ge = !0;
         }
@@ -3630,175 +3624,175 @@ var client = {
           (ge &&
             ((function () {
               var e = t;
-              E[e(600)](1, 0, 0, 1, 0, 0),
-                (E[e(585)] = A),
-                E[e(527)](0, 0, k[e(381)], k[e(329)]),
-                E[e(560)](Math.ceil(qe[e(440)].x), Math[e(262)](qe.offset.y));
+              E["setTransform"](1, 0, 0, 1, 0, 0),
+                (E["fillStyle"] = A),
+                E["fillRect"](0, 0, k["width"], k["height"]),
+                E["translate"](Math.ceil(qe["offset"].x), Math["ceil"](qe.offset.y));
               const r = 10 * v,
                 a = 20 * v,
-                o = Math[e(433)](5 * v);
+                o = Math["round"](5 * v);
               var i,
                 c,
                 l,
                 u,
                 s = bt(20),
                 f = bt(d);
-              for (const t of we[e(611)]())
+              for (const t of we["keys"]())
                 xt((h = wt(t)), s)
-                  ? xt(h, f) && delete we.get(t)[e(292)]
+                  ? xt(h, f) && delete we.get(t)["img"]
                   : pt(t, h);
-              if (tt[e(442)][e(427)] && (!nt.hideCursors[e(427)] || m)) {
+              if (tt["showothercurs"]["checked"] && (!nt.hideCursors["checked"] || m)) {
                 gt(E);
                 for (const t of Pe.values()) {
                   var h = t.l;
                   if (!xt(h, s)) {
                     var y = Math.round(10 * t.rawx * v),
-                      g = Math.round(20 * t[e(201)] * v);
-                    t[e(572)] &&
-                      ((E[e(585)] = e(281)),
-                      E[e(527)](
+                      g = Math.round(20 * t["rawy"] * v);
+                    t["highlighted"] &&
+                      ((E["fillStyle"] = "rgba(239, 255, 71, 0.5)"),
+                      E["fillRect"](
                         y - 2 * v,
                         g - 2 * v,
-                        Math[e(262)](r) + 4 * v,
+                        Math["ceil"](r) + 4 * v,
                         Math.round(a) + 4 * v
                       ));
                     var p = t.c;
-                    tt.disablecolour[e(427)] && (p = 0),
-                      0 == p && xe && (p = se[e(500)]),
-                      (E[e(585)] = me[p]),
+                    tt.disablecolour["checked"] && (p = 0),
+                      0 == p && xe && (p = se["length"]),
+                      (E["fillStyle"] = me[p]),
                       kt(y, g, r, a),
-                      !tt[e(567)][e(427)] ||
+                      !tt["shownametags"]["checked"] ||
                         ((i = h),
                         (c = void 0),
                         (l = void 0),
                         (u = void 0),
                         (c = n),
                         (l =
-                          20 * Math[c(437)](i[0] / 20) +
+                          20 * Math["floor"](i[0] / 20) +
                           "," +
                           10 * Math.floor(i[1] / 10)),
-                        (u = we[c(520)](l)) && u.protected && 0 == j) ||
+                        (u = we["get"](l)) && u.protected && 0 == j) ||
                         Mt(t.n, y, g, o);
                   }
                 }
               }
-              for (var b = 0; b < Ne[e(500)]; b++) {
-                0 == (p = Ne[b][3]) && xe && (p = se[e(500)]),
-                  (E[e(585)] = me[p][e(217)](e(620), Ne[b][2]));
+              for (var b = 0; b < Ne["length"]; b++) {
+                0 == (p = Ne[b][3]) && xe && (p = se["length"]),
+                  (E["fillStyle"] = me[p]["replace"]("0.2", Ne[b][2]));
                 var x = 10 * Ne[b][0] * v,
                   w = 20 * Ne[b][1] * v;
-                if (tt[e(442)][e(427)] && m) {
+                if (tt["showothercurs"]["checked"] && m) {
                   var M = Pe.get(Ne[b][4]);
                   null != M &&
-                    M[e(572)] &&
+                    M["highlighted"] &&
                     ((E.lineWidth = 3 * v),
-                    (E[e(670)] = p == se[e(500)] ? "#FFFFFF" : se[p]),
-                    E[e(410)](),
-                    E[e(409)](
-                      Math[e(433)](10 * M[e(235)] * v + r / 2),
-                      Math[e(433)](20 * M[e(201)] * v + a)
+                    (E["strokeStyle"] = p == se["length"] ? "#FFFFFF" : se[p]),
+                    E["beginPath"](),
+                    E["moveTo"](
+                      Math["round"](10 * M["rawx"] * v + r / 2),
+                      Math["round"](20 * M["rawy"] * v + a)
                     ),
-                    E[e(349)](Math[e(433)](x + r / 2), Math.round(w + a)),
+                    E["lineTo"](Math["round"](x + r / 2), Math.round(w + a)),
                     E.stroke());
                 }
-                E[e(527)](x, w, r, a);
+                E["fillRect"](x, w, r, a);
               }
               if (
-                ((E[e(585)] = be),
+                ((E["fillStyle"] = be),
                 kt(
-                  (y = Math[e(433)](10 * Ce[e(235)] * v)),
-                  (g = Math[e(433)](20 * Ce[e(201)] * v)),
+                  (y = Math["round"](10 * Ce["rawx"] * v)),
+                  (g = Math["round"](20 * Ce["rawy"] * v)),
                   r,
                   a
                 ),
-                tt[e(567)].checked &&
+                tt["shownametags"].checked &&
                    ws.readyState == WebSocket.OPEN &&
-                  (gt(E), Mt(tt[e(280)][e(427)] ? "(" + client.id + ")" : je, y, g, o)),
-                Je && $e[e(258)] && $e[e(571)])
+                  (gt(E), Mt(tt["anonymous"]["checked"] ? "(" + client.id + ")" : je, y, g, o)),
+                Je && $e["start"] && $e["end"])
               ) {
-                (E.fillStyle = e(491)),
-                  (y = Math[e(433)](
-                    10 * Math[e(678)]($e[e(258)].x, $e.end.x) * v
+                (E.fillStyle = "rgba(0,120,212,0.5)"),
+                  (y = Math["round"](
+                    10 * Math["min"]($e["start"].x, $e.end.x) * v
                   )),
                   (g = Math.round(
-                    20 * Math.min($e[e(258)].y, $e[e(571)].y) * v
+                    20 * Math.min($e["start"].y, $e["end"].y) * v
                   ));
                 var S = Math.round(
-                    10 * Math.max($e[e(258)].x, $e[e(571)].x) * v - y + 10 * v
+                    10 * Math.max($e["start"].x, $e["end"].x) * v - y + 10 * v
                   ),
                   I = Math.round(
-                    20 * Math[e(227)]($e[e(258)].y, $e[e(571)].y) * v -
+                    20 * Math["max"]($e["start"].y, $e["end"].y) * v -
                       g +
                       20 * v
                   );
-                E[e(527)](y, g, S, I);
+                E["fillRect"](y, g, S, I);
               }
               if (Ve || Ze) {
-                E[e(585)] =
+                E["fillStyle"] =
                   Ve && Ze ? "rgba(195,219,224,0.5)" : e(Ve ? 665 : 516);
                 var C = 20 * Math.floor(Te.x / 20),
-                  T = 10 * Math[e(437)](Te.y / 10);
+                  T = 10 * Math["floor"](Te.y / 10);
                 E.fillRect(10 * C * v, 20 * T * v, 200 * v, 200 * v);
               }
             })(),
             (ge = !1),
-            t(307) != i.value && (i.value = t(307)),
-            (i[t(481)] = 4)),
-          0 != Ee[t(429)])
+            "\n\n\n\n\n\n\n\n\n" != i.value && (i.value = "\n\n\n\n\n\n\n\n\n"),
+            (i["selectionEnd"] = 4)),
+          0 != Ee["size"])
         ) {
           for (var l = wr + (Mr - 2); ; ) {
             var u = ke.shift(),
-              s = Ee[t(520)](u);
+              s = Ee["get"](u);
             if (
-              (Ee[t(639)](u), Xt(u, s), 0 == Ee.size || performance.now() >= l)
+              (Ee["delete"](u), Xt(u, s), 0 == Ee.size || performance.now() >= l)
             )
               break;
           }
           ge = !0;
         }
-        window[t(300)](e);
+        window["requestAnimationFrame"](e);
       }),
-        null != localStorage[n(414)]("x") &&
-          (Ce.x = parseInt(localStorage[n(414)]("x"))),
-        null != localStorage[n(414)]("y") &&
-          (Ce.y = parseInt(localStorage[n(414)]("y"))),
-        null != localStorage[n(414)](n(505))
-          ? mr(parseInt(localStorage[n(414)](n(505))))
+        null != localStorage["getItem"]("x") &&
+          (Ce.x = parseInt(localStorage["getItem"]("x"))),
+        null != localStorage["getItem"]("y") &&
+          (Ce.y = parseInt(localStorage["getItem"]("y"))),
+        null != localStorage["getItem"]("col")
+          ? mr(parseInt(localStorage["getItem"]("col")))
           : mr(0),
-        null != localStorage[n(414)]("dec") && le(localStorage[n(414)](n(428))),
-        null != localStorage.getItem(n(365)) &&
-          (O[n(356)] = localStorage[n(414)](n(365))),
-        null != localStorage.getItem(n(333)) &&
-          (R.value = localStorage[n(414)](n(333))),
-        null != $[localStorage[n(414)](n(504))] &&
-          vt(localStorage[n(414)]("font"));
-      var Er = Object[n(611)](tt);
-      for (ne = 0; ne < Er[n(500)]; ne++) {
+        null != localStorage["getItem"]("dec") && le(localStorage["getItem"]("dec")),
+        null != localStorage.getItem("customfont") &&
+          (O["value"] = localStorage["getItem"]("customfont")),
+        null != localStorage.getItem("customfontsize") &&
+          (R.value = localStorage["getItem"]("customfontsize")),
+        null != $[localStorage["getItem"]("font")] &&
+          vt(localStorage["getItem"]("font"));
+      var Er = Object["keys"](tt);
+      for (ne = 0; ne < Er["length"]; ne++) {
         var Sr = Er[ne];
         null != localStorage.getItem(Sr) &&
-          (tt[Sr][n(427)] = n(498) == localStorage[n(414)](Sr));
+          (tt[Sr]["checked"] = "true" == localStorage["getItem"](Sr));
       }
       if (
-        (tt[n(613)].checked || hn[n(676)][n(608)]("hidden"),
-        tt[n(577)][n(427)] && hr(!0),
-        null != localStorage[n(414)](n(444)))
+        (tt["showchat"].checked || hn["classList"]["add"]("hidden"),
+        tt["disablecolour"]["checked"] && hr(!0),
+        null != localStorage["getItem"]("customtheme"))
       ) {
         var Ir = localStorage.getItem("customtheme");
         try {
           var Cr = JSON.parse(Ir);
-          null != Cr[n(618)] && (B[n(356)] = Cr[n(618)]),
-            null != Cr.secondary && (F[n(356)] = Cr.secondary),
-            null != Cr[n(425)] && (P.checked = Cr[n(425)]);
+          null != Cr["primary"] && (B["value"] = Cr["primary"]),
+            null != Cr.secondary && (F["value"] = Cr.secondary),
+            null != Cr["texttheme"] && (P.checked = Cr["texttheme"]);
         } catch (e) {}
       }
       if (null != localStorage.getItem("theme")) {
-        var Ar = localStorage[n(414)](n(352));
+        var Ar = localStorage["getItem"]("theme");
         yr(0 == Ar || 1 == Ar || 2 == Ar ? Number(Ar) : N);
       }
       var Tr,
         Br =
           ((Tr = {}),
-          window.location[n(497)][n(217)](
+          window.location["href"]["replace"](
             /[?&]+([^=&]+)=([^&]*)/gi,
             function (e, t, n) {
               Tr[t] = n;
@@ -3811,13 +3805,13 @@ var client = {
       }
       function Lr(e) {
         var t = n;
-        if ("" == (e = decodeURI(e[t(499)]())) || t(297) == e)
+        if ("" == (e = decodeURI(e["toLowerCase"]())) || "~main" == e)
           return { x: 0, y: 0 };
         var r = (function (e) {
-          for (var n, r = t, a = [], o = e + "", i = 0; i < o[r(500)]; )
-            a[255 & i] = 255 & ((n ^= 19 * a[255 & i]) + o[r(546)](i++));
+          for (var n, r = t, a = [], o = e + "", i = 0; i < o["length"]; )
+            a[255 & i] = 255 & ((n ^= 19 * a[255 & i]) + o["codePointAt"](i++));
           var c,
-            l = a[r(500)],
+            l = a["length"],
             u = this,
             s = 0,
             d = ((i = u.i = u.j = 0), (u.S = []));
@@ -3833,7 +3827,7 @@ var client = {
             return (u.i = r), (u.j = a), n;
           };
           return (
-            f(256),
+            "false",
             function () {
               for (
                 var e = f(6), t = 281474976710656, n = 0;
@@ -3847,13 +3841,13 @@ var client = {
           );
         })(e);
         return {
-          x: 20 * Math[t(437)]((Math[t(437)](2e5 * r()) - 1e5) / 20),
-          y: 10 * Math[t(437)]((Math[t(437)](2e5 * r()) - 1e5) / 10),
+          x: 20 * Math["floor"]((Math["floor"](2e5 * r()) - 1e5) / 20),
+          y: 10 * Math["floor"]((Math["floor"](2e5 * r()) - 1e5) / 10),
         };
       }
       null != Br.x && ((Ce.x = parseInt(Br.x)), (Fr = !0)),
         null != Br.y && ((Ce.y = -1 * parseInt(Br.y)), (Fr = !0)),
-        Br[n(485)] && (l[n(676)].add(n(692)), (hn[n(270)][n(550)] = "none"));
+        Br["noui"] && (l["classList"].add("hidden"), (hn["style"]["display"] = "none"));
       var Or,
         Rr,
         Dr,
@@ -3862,7 +3856,7 @@ var client = {
         Ur,
         Wr = Pr();
       if (Wr.length > 0)
-        if (Wr[n(482)]("~")) (o = "/" + Wr), Fr || Zn(0, 0);
+        if (Wr["startsWith"]("~")) (o = "/" + Wr), Fr || Zn(0, 0);
         else {
           var Hr = Lr(Wr);
           (Ce.x = Hr.x), (Ce.y = Hr.y);
@@ -3872,36 +3866,36 @@ var client = {
         var e = n;
         if (
           null == a ||
-          (a[e(348)] != WebSocket.CONNECTING && a[e(348)] != WebSocket.OPEN)
+          (a["readyState"] != WebSocket.CONNECTING && a["readyState"] != WebSocket.OPEN)
         ) {
-          var t = e(204) + location.host + e(189);
-          e(380) !== location.protocol &&
-            (t = e(641) + location[e(653)] + e(189)),
-            ((window.ws = a = new WebSocket(t))[e(518)] = e(648)),
+          var t = "wss://" + location.host + "/ws";
+          "https:" !== location.protocol &&
+            (t = "ws://" + location["host"] + "/ws"),
+            ((window.ws = a = new WebSocket(t))["binaryType"] = "arraybuffer"),
             (a.onmessage = Tn),
-            (a[e(211)] = An),
-            (a[e(701)] = An),
+            (a["onclose"] = An),
+            (a["onerror"] = An),
             (a.onopen = In),
-            (document.getElementById(e(387))[e(537)] = "Connecting..."),
-            (document[e(628)](e(544)).innerText = ""),
-            (c[e(686)] = void 0);
+            (document.getElementById("connecting1")["innerText"] = "Connecting..."),
+            (document["getElementById"]("connecting2").innerText = ""),
+            (c["onclick"] = void 0);
         }
       }
       function Xr(e, t) {
         var r = n,
-          a = parseInt(e[r(555)](1, 3), 16),
-          o = parseInt(e[r(555)](3, 5), 16),
-          i = parseInt(e[r(555)](5, 7), 16);
+          a = parseInt(e["substring"](1, 3), 16),
+          o = parseInt(e["substring"](3, 5), 16),
+          i = parseInt(e["substring"](5, 7), 16);
         return (
           (a += t),
           (o += t),
           (i += t),
           (a = Math.min(a, 255)),
-          (o = Math[r(678)](o, 255)),
-          (i = Math[r(678)](i, 255)),
-          (a = Math[r(227)](a, 0)),
+          (o = Math["min"](o, 255)),
+          (i = Math["min"](i, 255)),
+          (a = Math["max"](a, 0)),
           (o = Math.max(o, 0)),
-          (i = Math[r(227)](i, 0)),
+          (i = Math["max"](i, 0)),
           "#" +
             zr(a.toString(16), 2) +
             zr(o.toString(16), 2) +
@@ -3920,7 +3914,7 @@ var client = {
         if (
           (3 == (e = e.replace("#", "")).length &&
             (e = e[0] + e[0] + e[1] + e[1] + e[2] + e[2]),
-          6 != e[r(500)])
+          6 != e["length"])
         )
           throw new Error("invalid hex length");
         var a = parseInt(e, 16),
@@ -3928,7 +3922,7 @@ var client = {
           i = (65280 & a) >> 8,
           c = 255 & a;
         return t
-          ? r(418) + o + ", " + i + ", " + c + ", " + t + ")"
+          ? "rgba(" + o + ", " + i + ", " + c + ", " + t + ")"
           : "rgb(" + o + ", " + i + ", " + c + ")";
       }
       function Jr(e) {
@@ -3938,43 +3932,43 @@ var client = {
         return 31 * t + e;
       }
       function Zr(e) {
-        return [e % 31, Math[n(437)](e / 31)];
+        return [e % 31, Math["floor"](e / 31)];
       }
       isNaN(Ce.x) && (Ce.x = 0),
         isNaN(Ce.y) && (Ce.y = 0),
-        (Ce[n(258)] = Ce.x),
+        (Ce["start"] = Ce.x),
         setTimeout(function () {
           var e = n;
-          window[e(397)][e(390)]({}, document[e(310)], location[e(250)]);
+          window["history"]["replaceState"]({}, document["title"], location["pathname"]);
         }, 0),
         Zn(Ce.x, Ce.y),
-        null != localStorage.getItem(n(464)) &&
-          it(JSON[n(191)](localStorage[n(414)](n(464))), !1),
+        null != localStorage.getItem("zoom") &&
+          it(JSON["parse"](localStorage["getItem"]("zoom")), !1),
         Kr(),
         (Or = function (e, r) {
           var a = n;
-          if (r && r[a(607)] && !Array.isArray(e)) throw new Error();
+          if (r && r["multiple"] && !Array.isArray(e)) throw new Error();
           const o = 4294967296;
           let i,
             c,
             l = new Uint8Array(128),
             u = 0;
-          if (r && r[a(607)]) for (let t = 0; t < e[a(500)]; t++) s(e[t]);
+          if (r && r["multiple"]) for (let t = 0; t < e["length"]; t++) s(e[t]);
           else s(e);
           return v(129), l.subarray(0, u);
           function s(e, n) {
             var l = a;
             switch (typeof e) {
-              case l(677):
+              case "undefined":
                 d();
                 break;
               case "boolean":
                 v(e ? 195 : 194);
                 break;
-              case l(541):
+              case "number":
                 !(function (e) {
                   var t = l;
-                  if (isFinite(e) && Math[t(437)](e) === e)
+                  if (isFinite(e) && Math["floor"](e) === e)
                     if (e >= 0 && e <= 127) v(e);
                     else if (e < 0 && e >= -32) v(e);
                     else if (e > 0 && e <= 255) m([204, e]);
@@ -4001,7 +3995,7 @@ var client = {
                       ]);
                     } else
                       e >= -0x8000000000000000 && e <= 0x8000000000000000
-                        ? (v(211), h(e))
+                        ? ("onclose", h(e))
                         : m(
                             e < 0
                               ? [211, 128, 0, 0, 0, 0, 0, 0, 0]
@@ -4010,26 +4004,26 @@ var client = {
                   else
                     c || ((i = new ArrayBuffer(8)), (c = new DataView(i))),
                       c.setFloat64(0, e),
-                      v(203),
+                      "subarray",
                       m(new Uint8Array(i));
                 })(e);
                 break;
-              case l(511):
+              case "string":
                 !(function (e) {
                   var n = l;
                   let r = (function (e) {
                       var n = t;
                       let r = !0,
-                        a = e[n(500)];
+                        a = e["length"];
                       for (let t = 0; t < a; t++)
-                        if (e[n(656)](t) > 127) {
+                        if (e["charCodeAt"](t) > 127) {
                           r = !1;
                           break;
                         }
                       let o = 0,
-                        i = new Uint8Array(e[n(500)] * (r ? 1 : 4));
+                        i = new Uint8Array(e["length"] * (r ? 1 : 4));
                       for (let t = 0; t !== a; t++) {
-                        let r = e[n(656)](t);
+                        let r = e["charCodeAt"](t);
                         if (r < 128) i[o++] = r;
                         else {
                           if (r < 2048) i[o++] = (r >> 6) | 192;
@@ -4049,7 +4043,7 @@ var client = {
                       }
                       return r ? i : i.subarray(0, o);
                     })(e),
-                    a = r[n(500)];
+                    a = r["length"];
                   a <= 31
                     ? v(160 + a)
                     : m(
@@ -4062,7 +4056,7 @@ var client = {
                     m(r);
                 })(e);
                 break;
-              case l(279):
+              case "object":
                 null === e
                   ? d()
                   : e instanceof Date
@@ -4089,11 +4083,11 @@ var client = {
                         m([199, 12, 255, n >>> 24, n >>> 16, n >>> 8, n]), h(t);
                       }
                     })(e)
-                  : Array[l(662)](e)
+                  : Array["isArray"](e)
                   ? f(e)
                   : e instanceof Uint8Array || e instanceof Uint8ClampedArray
                   ? (function (e) {
-                      let t = e[l(500)];
+                      let t = e["length"];
                       m(
                         t <= 15
                           ? [196, t]
@@ -4128,14 +4122,14 @@ var client = {
                     })(e);
                 break;
               default:
-                if (n || !r || !r[l(313)]) throw new Error();
-                l(688) == typeof r[l(313)]
-                  ? s(r[l(313)](e), !0)
-                  : s(r[l(313)], !0);
+                if (n || !r || !r["invalidTypeReplacement"]) throw new Error();
+                "function" == typeof r["invalidTypeReplacement"]
+                  ? s(r["invalidTypeReplacement"](e), !0)
+                  : s(r["invalidTypeReplacement"], !0);
             }
           }
           function d(e) {
-            v(192);
+            "submitnamechange";
           }
           function f(e) {
             let t = e.length;
@@ -4150,8 +4144,8 @@ var client = {
           }
           function v(e) {
             var t = a;
-            if (l[t(500)] < u + 1) {
-              let e = 2 * l[t(500)];
+            if (l["length"] < u + 1) {
+              let e = 2 * l["length"];
               for (; e < u + 1; ) e *= 2;
               let n = new Uint8Array(e);
               n.set(l), (l = n);
@@ -4160,13 +4154,13 @@ var client = {
           }
           function m(e) {
             var t = a;
-            if (l[t(500)] < u + e.length) {
+            if (l["length"] < u + e.length) {
               let n = 2 * l.length;
-              for (; n < u + e[t(500)]; ) n *= 2;
+              for (; n < u + e["length"]; ) n *= 2;
               let r = new Uint8Array(n);
               r.set(l), (l = r);
             }
-            l[t(644)](e, u), (u += e[t(500)]);
+            l["set"](e, u), (u += e["length"]);
           }
           function h(e) {
             var t = a;
@@ -4175,7 +4169,7 @@ var client = {
               ? ((n = e / o), (r = e % o))
               : (e++,
                 (n = Math.abs(e) / o),
-                (r = Math[t(330)](e) % o),
+                (r = Math["abs"](e) % o),
                 (n = ~n),
                 (r = ~r)),
               m([
@@ -4196,15 +4190,15 @@ var client = {
             i = 0;
           if (
             (e instanceof ArrayBuffer && (e = new Uint8Array(e)),
-            "object" != typeof e || void 0 === e[a(500)])
+            "object" != typeof e || void 0 === e["length"])
           )
             throw new Error();
-          if (!e[a(500)]) throw new Error();
+          if (!e["length"]) throw new Error();
           if (
             (e instanceof Uint8Array || (e = new Uint8Array(e)),
             r && r.multiple)
           )
-            for (o = []; i < e[a(500)]; ) o[a(398)](c());
+            for (o = []; i < e["length"]; ) o["push"](c());
           else o = c();
           return o;
           function c() {
@@ -4265,20 +4259,20 @@ var client = {
           }
           function s(t) {
             var n = a;
-            let r = new DataView(e.buffer, i + e[n(592)], t);
+            let r = new DataView(e.buffer, i + e["byteOffset"], t);
             return (
               (i += t),
               4 === t
                 ? r.getFloat32(0, !1)
                 : 8 === t
-                ? r[n(574)](0, !1)
+                ? r["getFloat64"](0, !1)
                 : void 0
             );
           }
           function d(t, n) {
             var r = a;
             t < 0 && (t = u(n));
-            let o = e[r(203)](i, i + t);
+            let o = e["subarray"](i, i + t);
             return (i += t), o;
           }
           function f(e, t) {
@@ -4291,7 +4285,7 @@ var client = {
             var n = a;
             e < 0 && (e = u(t));
             let r = [];
-            for (; e-- > 0; ) r[n(398)](c());
+            for (; e-- > 0; ) r["push"](c());
             return r;
           }
           function m(n, r) {
@@ -4322,12 +4316,12 @@ var client = {
                         ((63 & e[o++]) << 6) |
                         (63 & e[o++]);
                     }
-                  if (t <= 65535) i += String[a(354)](t);
+                  if (t <= 65535) i += String["fromCharCode"](t);
                   else {
                     if (!(t <= 1114111)) throw new Error();
                     (t -= 65536),
                       (i += String.fromCharCode((t >> 10) | 55296)),
-                      (i += String[a(354)]((1023 & t) | 56320));
+                      (i += String["fromCharCode"]((1023 & t) | 56320));
                   }
                 }
                 return i;
@@ -4341,7 +4335,7 @@ var client = {
             return 255 === r
               ? (function (e) {
                   var n = t;
-                  if (4 === e[n(500)]) {
+                  if (4 === e["length"]) {
                     let t =
                       ((e[0] << 24) >>> 0) +
                       ((e[1] << 16) >>> 0) +
@@ -4349,7 +4343,7 @@ var client = {
                       e[3];
                     return new Date(1e3 * t);
                   }
-                  if (8 === e[n(500)]) {
+                  if (8 === e["length"]) {
                     let t =
                         ((e[0] << 22) >>> 0) +
                         ((e[1] << 14) >>> 0) +
@@ -4363,7 +4357,7 @@ var client = {
                         e[7];
                     return new Date(1e3 * n + t / 1e6);
                   }
-                  if (12 === e[n(500)]) {
+                  if (12 === e["length"]) {
                     let t =
                       ((e[0] << 24) >>> 0) +
                       ((e[1] << 16) >>> 0) +
@@ -4378,15 +4372,15 @@ var client = {
               : { type: r, data: a };
           }
         }),
-        Array.prototype[n(466)] ||
-          (Array[n(246)][n(466)] = function (e) {
+        Array.prototype["includes"] ||
+          (Array["prototype"]["includes"] = function (e) {
             return !!~this.indexOf(e);
           }),
-        Array[n(246)][n(198)] ||
-          (Array[n(246)].indexOf = (function (e, n, r) {
+        Array["prototype"]["indexOf"] ||
+          (Array["prototype"].indexOf = (function (e, n, r) {
             "use strict";
             return function (a, o) {
-              if (null == this) throw TypeError(t(631));
+              if (null == this) throw TypeError("Array.prototype.indexOf called on null or undefined");
               var i = e(this),
                 c = i.length >>> 0,
                 l = r(0 | o, c);
@@ -4399,14 +4393,14 @@ var client = {
               } else for (; l !== c; ++l) if (i[l] === a) return l;
               return -1;
             };
-          })(Object, Math.max, Math[n(678)])),
-        Array[n(296)] ||
-          (Array[n(296)] =
-            ((Dr = Object[n(246)][n(561)]),
+          })(Object, Math.max, Math["min"])),
+        Array["from"] ||
+          (Array["from"] =
+            ((Dr = Object["prototype"]["toString"]),
             (Nr = function (e) {
-              return "function" == typeof e || n(247) === Dr.call(e);
+              return "function" == typeof e || "[object Function]" === Dr.call(e);
             }),
-            (jr = Math[n(396)](2, 53) - 1),
+            (jr = Math["pow"](2, 53) - 1),
             (Ur = function (e) {
               var r,
                 a,
@@ -4417,19 +4411,19 @@ var client = {
                   isNaN(a)
                     ? 0
                     : 0 !== a && isFinite(a)
-                    ? (a > 0 ? 1 : -1) * Math[r(437)](Math[r(330)](a))
+                    ? (a > 0 ? 1 : -1) * Math["floor"](Math["abs"](a))
                     : a);
-              return Math[o(678)](Math[o(227)](i, 0), jr);
+              return Math["min"](Math["max"](i, 0), jr);
             }),
             function (e) {
               var t = n,
                 r = this,
                 a = Object(e);
-              if (null == e) throw new TypeError(t(578));
+              if (null == e) throw new TypeError("Array.from requires an array-like object - not null or undefined");
               var o,
-                i = arguments[t(500)] > 1 ? arguments[1] : void 0;
+                i = arguments["length"] > 1 ? arguments[1] : void 0;
               if (void 0 !== i) {
-                if (!Nr(i)) throw new TypeError(t(582));
+                if (!Nr(i)) throw new TypeError("Array.from: when provided, the second argument must be a function");
                 arguments.length > 2 && (o = arguments[2]);
               }
               for (
@@ -4444,24 +4438,24 @@ var client = {
                   (u[s] = i
                     ? void 0 === o
                       ? i(c, s)
-                      : i[t(619)](o, c, s)
+                      : i["call"](o, c, s)
                     : c),
                   (s += 1);
-              return (u[t(500)] = l), u;
+              return (u["length"] = l), u;
             })),
-        Math[n(636)] ||
-          (Math[n(636)] = function (e) {
+        Math["sign"] ||
+          (Math["sign"] = function (e) {
             return (e > 0) - (e < 0) || +e;
           }),
         String.prototype.startsWith ||
-          Object.defineProperty(String[n(246)], n(482), {
+          Object.defineProperty(String["prototype"], "startsWith", {
             value: function (e, t) {
               var r = n,
                 a = t > 0 ? 0 | t : 0;
-              return this.substring(a, a + e[r(500)]) === e;
+              return this.substring(a, a + e["length"]) === e;
             },
           }),
-        String[n(246)][n(546)] ||
+        String["prototype"]["codePointAt"] ||
           (function () {
             "use strict";
             var e = n,
@@ -4469,7 +4463,7 @@ var client = {
                 var e = t;
                 try {
                   var n = {},
-                    r = Object[e(360)],
+                    r = Object["defineProperty"],
                     a = r(n, n, n) && r;
                 } catch (e) {}
                 return a;
@@ -4482,25 +4476,25 @@ var client = {
                   o = e ? Number(e) : 0;
                 if ((o != o && (o = 0), !(o < 0 || o >= a))) {
                   var i,
-                    c = r[n(656)](o);
+                    c = r["charCodeAt"](o);
                   return c >= 55296 &&
                     c <= 56319 &&
                     a > o + 1 &&
-                    (i = r[n(656)](o + 1)) >= 56320 &&
+                    (i = r["charCodeAt"](o + 1)) >= 56320 &&
                     i <= 57343
                     ? 1024 * (c - 55296) + i - 56320 + 65536
                     : c;
                 }
               };
             r
-              ? r(String.prototype, e(546), {
+              ? r(String.prototype, "codePointAt", {
                   value: a,
                   configurable: !0,
                   writable: !0,
                 })
-              : (String[e(246)][e(546)] = a);
+              : (String["prototype"]["codePointAt"] = a);
           })(),
-        String[n(438)] ||
+        String["fromCodePoint"] ||
           (function (e) {
             var r = n,
               a = function (n) {
@@ -4511,17 +4505,17 @@ var client = {
                 ) {
                   var u = +arguments[c];
                   if (!(u < 1114111 && u >>> 0 === u))
-                    throw RangeError(r(575) + u);
+                    throw RangeError("Invalid code point: " + u);
                   u <= 65535
-                    ? (o = a[r(398)](u))
+                    ? (o = a["push"](u))
                     : ((u -= 65536),
                       (o = a.push(55296 + (u >> 10), (u % 1024) + 56320))),
-                    o >= 16383 && ((i += e[r(411)](null, a)), (a[r(500)] = 0));
+                    o >= 16383 && ((i += e["apply"](null, a)), (a["length"] = 0));
                 }
-                return i + e[r(411)](null, a);
+                return i + e["apply"](null, a);
               };
             try {
-              Object[r(360)](String, "fromCodePoint", {
+              Object["defineProperty"](String, "fromCodePoint", {
                 value: a,
                 configurable: !0,
                 writable: !0,
@@ -4529,9 +4523,9 @@ var client = {
             } catch (e) {
               String.fromCodePoint = a;
             }
-          })(String[n(354)]),
-        CanvasRenderingContext2D[n(246)][n(339)] ||
-          (CanvasRenderingContext2D.prototype[n(339)] = function (
+          })(String["fromCharCode"]),
+        CanvasRenderingContext2D["prototype"]["roundRect"] ||
+          (CanvasRenderingContext2D.prototype["roundRect"] = function (
             e,
             t,
             r,
@@ -4540,13 +4534,13 @@ var client = {
           ) {
             var i = n,
               c = new Array(4);
-            if (i(279) == typeof o)
-              switch (o[i(500)]) {
+            if ("object" == typeof o)
+              switch (o["length"]) {
                 case 1:
-                  c[i(616)](o[0], 0, 4);
+                  c["fill"](o[0], 0, 4);
                   break;
                 case 2:
-                  c[i(616)](o[0], 0, 4), (c[1] = c[3] = o[1]);
+                  c["fill"](o[0], 0, 4), (c[1] = c[3] = o[1]);
                   break;
                 case 3:
                   (c[0] = o[0]), (c[1] = c[3] = o[1]), (c[2] = o[2]);
@@ -4557,44 +4551,44 @@ var client = {
                 default:
                   c.fill(0, 0, 4);
               }
-            this[i(410)](),
-              this[i(409)](e + c[0], t),
-              this[i(349)](e + r - c[1], t),
-              this[i(453)](e + r, t, e + r, t + c[1]),
-              this[i(349)](e + r, t + a - c[2]),
+            this["beginPath"](),
+              this["moveTo"](e + c[0], t),
+              this["lineTo"](e + r - c[1], t),
+              this["quadraticCurveTo"](e + r, t, e + r, t + c[1]),
+              this["lineTo"](e + r, t + a - c[2]),
               this.quadraticCurveTo(e + r, t + a, e + r - c[2], t + a),
-              this[i(349)](e + c[3], t + a),
+              this["lineTo"](e + c[3], t + a),
               this.quadraticCurveTo(e, t + a, e, t + a - c[3]),
-              this[i(349)](e, t + c[0]),
-              this[i(453)](e, t, e + c[0], t),
+              this["lineTo"](e, t + c[0]),
+              this["quadraticCurveTo"](e, t, e + c[0], t),
               this.closePath();
           });
       const $r =
-          (10 == f[n(558)]() && f[n(402)]() >= 28) ||
-          11 == f[n(558)]() ||
-          (0 == f[n(558)]() && f[n(402)]() <= 6) ||
-          localStorage.getItem(n(355)),
-        Gr = [n(654), n(472)],
+          (10 == f["getMonth"]() && f["getDate"]() >= 28) ||
+          11 == f["getMonth"]() ||
+          (0 == f["getMonth"]() && f["getDate"]() <= 6) ||
+          localStorage.getItem("christmas"),
+        Gr = ["-20,-10", "0,-10"],
         Qr = [4, 7, 9, 12];
       $r &&
         setInterval(function () {
           var e = n;
-          if (e(391) == W && e(622) == H && !tt.disablecolour.checked)
-            for (var t = 0; t < Gr[e(500)]; t++) {
+          if ("textwall" == W && "main" == H && !tt.disablecolour.checked)
+            for (var t = 0; t < Gr["length"]; t++) {
               var r = Gr[t],
-                a = we[e(520)](r);
-              if (null != a && null != a[e(704)]) {
+                a = we["get"](r);
+              if (null != a && null != a["txt"]) {
                 for (var o = 0; o < 200; o++)
-                  switch (a[e(704)][o]) {
+                  switch (a["txt"][o]) {
                     case "?":
                     case "'":
-                      a[e(212)][o] = Qr[Math.floor(4 * Math[e(458)]())];
+                      a["clr"][o] = Qr[Math.floor(4 * Math["random"]())];
                   }
                 St(r, !1);
               }
             }
         }, 400);
-    })(n(677) == typeof browser ? (browser = {}) : browser);
+    })("undefined" == typeof browser ? (browser = {}) : browser);
 })("undefined" == typeof browser ? (browser = {}) : browser);
 function joinDiscord() {
   window.open("https://discord.gg/Fg9s44aRd9");
