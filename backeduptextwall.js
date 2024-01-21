@@ -1,3 +1,5 @@
+// last textwall.js backup
+
 var client = {
   events: {},
   on: function (type, call) {
