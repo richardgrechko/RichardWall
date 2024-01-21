@@ -26,11 +26,18 @@
 >
   <span>Dimka's TextWall is currently under maintenance.</span>
   <span>We are not releasing the sex update...</span><br />
+  <audiosrc="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/cqd6i7.mp3"></audio>
   <small>
     (You can join the <a href="https://discord.gg/rDXPEgFA6m" style="color: #0096ff;">Discord server</a> while you wait)
   </small>
   <script>
-    console.log("Dimka's TextWall servers are under maintenance...");
+    document.addEventListener("click", () => {
+      var audio = document.querySelector("audio");
+      audio.currentTime = 0.15;
+      // try making it loop
+      audio.play();
+    });
+    console.log("Dimka's TextWall servers are shitting their diapers");
     console.log("Join the Discord Server at https://discord.gg/rDXPEgFA6m !!!");
     setTimeout(function() {
       location.href="/";
