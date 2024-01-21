@@ -1942,7 +1942,7 @@ var client = {
           null != localStorage["getItem"]("username") &&
           null != localStorage["getItem"]("token") &&
           (vn(!0),
-          document.querySelector("connecting2").innerText = "Logging in...",
+          document.getElementById("connecting2").innerText = "Logging in...",
           a["send"](
             Or({
               token: [
@@ -2042,6 +2042,7 @@ var client = {
               Qt(),
               nr(),
               (c["style"]["opacity"] = "0%"),
+              (document.getElementById("connecting2").innerText = ""),
               (Je = !1),
               ($e = {}),
               (k["style"]["cursor"] = "text"),
@@ -2276,6 +2277,7 @@ var client = {
             break;
           case "tokenfail":
             vn(!1),
+              document.getElementById("connecting2").innerText = "Joining wall...",
               localStorage["removeItem"]("username"),
               localStorage.removeItem("token");
             break;
