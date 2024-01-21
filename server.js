@@ -1,7 +1,7 @@
 // Thanks to falling1 for helping out!
 // https://glitch.com/@falling1
-var maintenanceMode = false;
-// 💥 Turn it to "true" to shutdown the servers! 💥
+var maintenanceMode = 1;
+// 💥 Turn it to "1" to shutdown the servers! 💥
 // actually you just need to change the true to false
 // Restart Servers: Type something or remove here: eeeeeeeeee
 // It automatically restarts when you modify, remove or add an character to any of the files except html ones
