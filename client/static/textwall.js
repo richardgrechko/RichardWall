@@ -2042,7 +2042,6 @@ var client = {
               Qt(),
               nr(),
               (c["style"]["opacity"] = "0%"),
-              (document.getElementById("connecting2").innerText = ""),
               (Je = !1),
               ($e = {}),
               (k["style"]["cursor"] = "text"),
