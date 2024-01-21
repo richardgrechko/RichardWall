@@ -16,6 +16,7 @@ var sql = require("better-sqlite3");
 var crypto = require("crypto");
 var msgpack = require("./msgpack.js");
 var bannedIps = {};
+var banReasons = {};
 var port = 8080;
 const admins = ['dimka', 'falling1'];
 // falling1 is now admin, DON'T DO STUPID SHIT AGAIN!
@@ -284,6 +285,16 @@ function sendWorldList(ws, connectedWorldId, connectedWorldNamespace, noPrivate)
 	send(ws, msgpack.encode({
 		wl: normWorldList
 	}));
+}
+
+function getStringArg(str) {
+  var json;
+  var string;
+  try {
+    json = JSON.parse(str);
+  } catch {}
+  if (typeof json == "string") string = json; else string = str;
+  return string;
 }
 
 function editWorldAttr(worldId, prop, value) {
@@ -685,12 +696,7 @@ function init_ws() {
 				var args = message.split(" ");
 				var cmd = args.shift();
 				if (cmd == "/announce" && sdata.isAdmin) {
-          var json;
-          var message;
-          try {
-            json = JSON.parse(args.join(" "));
-          } catch {}
-          if (typeof json == "string") message = json; else message = args.join(" ");
+          var message = getStringArg(args.join(" "));
 					broadcast(msgpack.encode({
 						alert: message
 					}));
