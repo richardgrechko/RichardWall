@@ -1942,6 +1942,7 @@ var client = {
           null != localStorage["getItem"]("username") &&
           null != localStorage["getItem"]("token") &&
           (vn(!0),
+          document.querySelector("connecting2").innerText = "Logging in...",
           a["send"](
             Or({
               token: [
@@ -2300,6 +2301,7 @@ var client = {
             break;
           case "token":
             vn(!1);
+            document.getElementById("connecting2").innerText = "Joining wall...";
             var R = a["token"];
             (je = R[0]),
               localStorage["setItem"]("username", je),
