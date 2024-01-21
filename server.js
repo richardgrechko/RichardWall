@@ -975,42 +975,42 @@ function init_ws() {
 					}
 				}
 			} else if("ro" in data) { // readonly
-				var isOwner = sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase();
+				var isOwner = (sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase()) || (sdata.connectedWorldNamespace.toLowerCase() == "textwall" && sdata.isAdmin);
 				if(!isOwner) return;
 				editWorldAttr(sdata.connectedWorldId, "readonly", Boolean(data.ro));
 				worldBroadcast(sdata.connectedWorldId, msgpack.encode({
 					ro: Boolean(data.ro)
 				}));
 			} else if("priv" in data) { // private
-				var isOwner = sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase();
+				var isOwner = (sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase()) || (sdata.connectedWorldNamespace.toLowerCase() == "textwall" && sdata.isAdmin);
 				if(!isOwner) return;
 				editWorldAttr(sdata.connectedWorldId, "private", Boolean(data.priv));
 				worldBroadcast(sdata.connectedWorldId, msgpack.encode({
 					priv: Boolean(data.priv)
 				}));
 			} else if("ch" in data) { // hide cursors
-				var isOwner = sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase();
+				var isOwner = (sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase()) || (sdata.connectedWorldNamespace.toLowerCase() == "textwall" && sdata.isAdmin);
 				if(!isOwner) return;
 				editWorldAttr(sdata.connectedWorldId, "hideCursors", Boolean(data.ch));
 				worldBroadcast(sdata.connectedWorldId, msgpack.encode({
 					ch: Boolean(data.ch)
 				}));
 			} else if("dc" in data) { // disable chat
-				var isOwner = sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase();
+				var isOwner = (sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase()) || (sdata.connectedWorldNamespace.toLowerCase() == "textwall" && sdata.isAdmin);
 				if(!isOwner) return;
 				editWorldAttr(sdata.connectedWorldId, "disableChat", Boolean(data.dc));
 				worldBroadcast(sdata.connectedWorldId, msgpack.encode({
 					dc: Boolean(data.dc)
 				}));
 			} else if("dcl" in data) { // disable color
-				var isOwner = sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase();
+				var isOwner = (sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase()) || (sdata.connectedWorldNamespace.toLowerCase() == "textwall" && sdata.isAdmin);
 				if(!isOwner) return;
 				editWorldAttr(sdata.connectedWorldId, "disableColor", Boolean(data.dcl));
 				worldBroadcast(sdata.connectedWorldId, msgpack.encode({
 					dcl: Boolean(data.dcl)
 				}));
 			} else if("db" in data) { // disable braille
-				var isOwner = sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase();
+				var isOwner = (sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase()) || (sdata.connectedWorldNamespace.toLowerCase() == "textwall" && sdata.isAdmin);
 				if(!isOwner) return;
 				editWorldAttr(sdata.connectedWorldId, "disableBraille", Boolean(data.db));
 				worldBroadcast(sdata.connectedWorldId, msgpack.encode({
@@ -1035,7 +1035,7 @@ function init_ws() {
 					p: [(x * 20) + "," + (y * 10), Boolean(prot)]
 				}));
 			} else if("dw" in data) {
-				var isOwner = sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase();
+				var isOwner = (sdata.isAuthenticated && sdata.connectedWorldNamespace && sdata.connectedWorldNamespace.toLowerCase() == sdata.authUser.toLowerCase()) || (sdata.connectedWorldNamespace.toLowerCase() == "textwall" && sdata.isAdmin);
 				if(!isOwner) return;
 				db.prepare("UPDATE worlds SET namespace=? WHERE id=?").run("del-" + Math.random(), sdata.connectedWorldId);
 				var kWorld = sdata.connectedWorldId;
