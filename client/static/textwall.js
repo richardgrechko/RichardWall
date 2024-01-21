@@ -502,7 +502,7 @@ var client = {
       }
       function ft() {
         var e = n;
-        return 16 * Math["round"](v) > 20 * v || 16 * Math["round"](v) < 13 * v
+        return 16 * Math["round"](v) > Infinity * v || 16 * Math["round"](v) < 13 * v
           ? v
           : Math["round"](v);
       }

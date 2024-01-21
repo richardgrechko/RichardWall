@@ -252,7 +252,7 @@ td {
   position: absolute;
   background-color: rgba(30, 30, 30, 0.8);
   color: #ffffff;
-  display: flex;
+  text-align: center;
   justify-content: center;
   border-radius: 5px;
   margin: 5px;
@@ -620,6 +620,7 @@ td {
   font-family: cutive mono;
   src: url(fonts/CutiveMono-Regular.ttf);
 }
+
 .buttons {
   display: flex;
   justify-content: stretch;
