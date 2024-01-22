@@ -1999,7 +1999,7 @@ var client = {
           dt(!1);
           if (client.banned) {
             document.getElementById("connecting1").innerText = "You are banned.";
-            document.getElementById("connecting2").innerText = "Refresh to reconnect\nYou can appeal in the server\n";
+            document.getElementById("connecting2").innerText = `Refresh to reconnect${client.banReason ? `\nReason: ${client.banReason}`: ""}\nYou can appeal in the server\n`;
           } else {
             (document["getElementById"]("connecting2")["innerText"] = "Click to reconnect\nThis might be because of the site updating. (refresh to see changes)\nHaving issues? Ask in the Discord server!\n"); //connecting2 text
             (document["getElementById"]("connecting1").innerText = "Disconnected."); //connecting1 text
@@ -2331,6 +2331,7 @@ var client = {
             break;
           case "banned":
             client.banned = true;
+            client.banReason = a.banned;
             break;
         }
       }

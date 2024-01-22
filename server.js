@@ -406,7 +406,7 @@ function init_ws() {
     
     if (Object.values(bannedIps).includes(ipAddr)) {
       send(ws, msgpack.encode({
-        banned: true,
+        banned: banReasons[ipAddr],
       }));
       ws.close();
       return;
@@ -713,13 +713,15 @@ function init_ws() {
           return;
         }
         if (cmd == "/ban" && sdata.isAdmin) {
-          var id = parseInt(args[0]);
+          var id = parseInt(args.shift());
           if (isNaN(id)) return serverMessage(ws, "Invalid id");
           var client = getClientById(id);
           if (!client) return serverMessage(ws, "Client not found");
           bannedIps[client.sdata.clientId] = 
           client.sdata.ipAddr;
-          send(client,msgpack.encode({banned: true}));
+          var banReason = getStringArg(args.join(" "));
+          banReasons[client.sdata.ipAddr] = banReason;
+          send(client, msgpack.encode({banned: banReason}));
           client._socket.end();
           serverMessage(ws, "Banned client!");
           return;
