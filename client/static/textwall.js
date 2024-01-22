@@ -1,3 +1,4 @@
+alert("start of textwall.js");
 var client = {
   events: {},
   on: function (type, call) {
@@ -4073,4 +4074,4 @@ function joinDiscord() {
   console.log("Invited");
 };
 
-console.log("if you're seeing this, the textwall.js file should have loaded");
+alert("if you're seeing this, the textwall.js file should have loaded");
