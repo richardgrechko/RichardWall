@@ -486,6 +486,7 @@ var client = {
         var r = n;
         e && (localStorage.removeItem("username"), localStorage["removeItem"]("token")),
           (je = "(" + client.id + ")"),
+          (client.registered = false),
           (j = 0),
           (X.style["display"] = "none"),
           a.readyState != a["OPEN"] ||
@@ -2229,7 +2230,9 @@ var client = {
             nt["disableBraille"]["checked"] = O;
             break;
           case "l":
+            
             (U = !0), (document.getElementById("l")["checked"] = !0), xn();
+            console.log(U);
             break;
           case "perms":
             (j = a["perms"]),
@@ -2302,6 +2305,7 @@ var client = {
             ir("Rate limit", 3e3), vn(!1);
             break;
           case "token":
+            client.registered = true;
             vn(!1);
             document.getElementById("connecting2").innerText = "Joining wall...";
             var R = a["token"];
@@ -2578,7 +2582,7 @@ var client = {
         )
           return (
             U &&
-              "" == je &&
+              !client.registered &&
               !nt["readOnly"]["checked"] &&
               ir("Please log in before typing.", 3e3),
             0
@@ -3208,7 +3212,7 @@ var client = {
               }
               if (Ve || Ze) {
                 E["fillStyle"] =
-                  Ve && Ze ? "rgba(195,219,224,0.5)" : e(Ve ? 665 : 516);
+                  Ve && Ze ? "rgba(195,219,224,0.5)" : (Ve ? "rgba(204,204,204,0.5)" : "rgba(221,249,255,0.5)" );
                 var C = 20 * Math.floor(Te.x / 20),
                   T = 10 * Math["floor"](Te.y / 10);
                 E.fillRect(10 * C * v, 20 * T * v, 200 * v, 200 * v);

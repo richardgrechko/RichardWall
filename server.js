@@ -796,7 +796,7 @@ function init_ws() {
         );
       } else if ("e" in data) {
         // write edit
-        if (!sdata.isConnected || !(sdata.isAuthenticated && loginToType)) return;
+        if (!sdata.isConnected || (!sdata.isAuthenticated && !loginToType)) return;
         var edits = data.e;
 
         if (!Array.isArray(edits)) return;
