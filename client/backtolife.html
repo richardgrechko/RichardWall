@@ -11,6 +11,19 @@
     height: 100vh;
     margin: 0;
   ">
+  <script>
+    // Check if the browser supports the Web Speech API
+    if ('speechSynthesis' in window) {
+        // Create a new SpeechSynthesisUtterance
+        var welcomeMessage = new SpeechSynthesisUtterance('Welcome back To Dimkas Textwall);
+
+        // Use the speech synthesis API to speak the message
+        window.speechSynthesis.speak(welcomeMessage);
+    } else {
+        // Browser doesn't support speech synthesis
+        console.error('TTS not supported.');
+    }
+</script>
   <center>
   <h1>
     Thank you for waiting.
