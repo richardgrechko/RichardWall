@@ -1861,7 +1861,7 @@ var client = {
       function xn() {
         var e = n,
           t = document["getElementsByClassName"]("msgcontainer")[0];
-        (nt["readOnly"].checked && 0 == j) || (U && "" == je)
+        (nt["readOnly"].checked && 0 == j) || (U && !client.registered)
           ? t["classList"].add("hidden")
           : t["classList"]["remove"]("hidden");
       }
@@ -2574,7 +2574,7 @@ var client = {
         if (!we["has"](u)) return 0;
         var s = we["get"](u);
         if (
-          ((s.protected || nt["readOnly"]["checked"] || (U && "" == je)) &&
+          ((s.protected || nt["readOnly"]["checked"] || (U && !client.registered)) &&
             !m &&
             0 == j) ||
           null == s["txt"] ||
@@ -2666,7 +2666,7 @@ var client = {
         if (!we["has"](u)) return 0;
         var s = we["get"](u);
         if (
-          ((s.protected || nt["readOnly"]["checked"] || (U && "" == je)) &&
+          ((s.protected || nt["readOnly"]["checked"] || (U && !client.registered)) &&
             !m &&
             0 == j) ||
           null == s["txt"] ||
@@ -2674,7 +2674,7 @@ var client = {
         )
           return (
             U &&
-              "" == je &&
+              !client.registered &&
               !nt["readOnly"]["checked"] &&
               ir("Please log in before typing. Wait... how did you...", 3e3),
             0

@@ -502,7 +502,7 @@ function init_ws() {
     };
     ws.sdata = sdata;
     send(ws, msgpack.encode({ id: sdata.clientId }));
-    if (loginToType) send(ws, msgpack.encode({ l: loginToType }));
+    
     ws.on("message", function (message, binary) {
       if (!binary) return;
 
@@ -726,6 +726,7 @@ function init_ws() {
         );
         dumpCursors(ws);
         sdata.isConnected = true;
+        if (loginToType) send(ws, msgpack.encode({ l: loginToType }));
       } else if ("r" in data) {
         if (!sdata.isConnected) return;
         var regions = data.r;
@@ -796,7 +797,7 @@ function init_ws() {
         );
       } else if ("e" in data) {
         // write edit
-        if (!sdata.isConnected || (!sdata.isAuthenticated && !loginToType)) return;
+        if (!sdata.isConnected || (!sdata.isAuthenticated && loginToType)) return;
         var edits = data.e;
 
         if (!Array.isArray(edits)) return;
