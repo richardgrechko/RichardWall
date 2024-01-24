@@ -3353,6 +3353,9 @@ var client = {
           "https:" !== location.protocol &&
             (t = "ws://" + location["host"] + "/ws"),
             ((window.ws = a = new WebSocket(t))["binaryType"] = "arraybuffer"),
+            (client.sendWsMessage = data => {
+              a.send(Or(data));
+            } ),
             (a.onmessage = Tn),
             (a["onclose"] = An),
             (a["onerror"] = An),
