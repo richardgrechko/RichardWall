@@ -12,10 +12,11 @@
     margin: 0;
   ">
   <script>
+    alert("Welcome back to Dimka's TextWall");
     // Check if the browser supports the Web Speech API
     if ('speechSynthesis' in window) {
         // Create a new SpeechSynthesisUtterance
-        var welcomeMessage = new SpeechSynthesisUtterance('Welcome back To Dimkas Textwall);
+        var welcomeMessage = new SpeechSynthesisUtterance('Welcome back To Dimkas Textwall');
 
         // Use the speech synthesis API to speak the message
         window.speechSynthesis.speak(welcomeMessage);
