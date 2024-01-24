@@ -2326,9 +2326,8 @@ var client = {
             break;
           case "id":
             client.id = a.id;
-            
+            console.log("Your ID: " + client.id);
             je = "(" + client.id + ")";
-            Bn();
             ge = true;
             break;
           case "banned":
@@ -4074,3 +4073,4 @@ function joinDiscord() {
   window.open("https://discord.gg/Fg9s44aRd9");
   console.log("Invited");
 };
+console.log("textwall.js has loaded");

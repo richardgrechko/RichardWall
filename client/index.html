@@ -186,7 +186,15 @@
         ws.close();
         console.warn("Disconnected! (through debug menu)");
     }
-    </script>
+    </script><br />
+    <button onclick="ping()">
+      Ping
+    </button>
+    <script>
+    function ping() {
+        ws.send(new Uint8Array(1));
+        console.log("Manual ping (debug)");
+    }</script>
   </div>
 <div id="admin">
 <h3>Admin</h3>
