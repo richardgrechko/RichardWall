@@ -226,8 +226,8 @@ var client = {
           Pointfree: 16,
           Monofur: 18,
           "Fantasque Sans Mono": 18,
+          Twemoji: 20,
           Custom: 20,
-          Twemoji: 20
         };
       var G = "Inconsolata",
         Q = Math.floor($[G] * v) + "px " + G + ", monospace, Special";
