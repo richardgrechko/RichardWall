@@ -502,6 +502,7 @@ function init_ws() {
     };
     ws.sdata = sdata;
     send(ws, msgpack.encode({ id: sdata.clientId }));
+    if (loginToType) send(ws, msgpack.encode({ l: loginToType }));
     ws.on("message", function (message, binary) {
       if (!binary) return;
 
@@ -795,7 +796,7 @@ function init_ws() {
         );
       } else if ("e" in data) {
         // write edit
-        if (!sdata.isConnected) return;
+        if (!sdata.isConnected || !(sdata.isAuthenticated && loginToType)) return;
         var edits = data.e;
 
         if (!Array.isArray(edits)) return;
@@ -1570,11 +1571,11 @@ function init_ws() {
             c: [x * 20, y * 10, x * 20 + 20 - 1, y * 10 + 10 - 1],
           })
         );
-      } else if ("alert" in data) {
-        if (!sdata.isAdmin) return;
+      } else if ("alert" in data && sdata.isAdmin) {
         broadcast(msgpack.encode(data));
-      } else if ("l" in data) {
-        
+      } else if ("l" in data && sdata.isAdmin) {
+        loginToType = data.l;
+        if (loginToType) broadcast(msgpack.encode({ l: true }));
       } else {
         //console.log(data);
       }
