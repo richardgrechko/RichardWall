@@ -18,6 +18,7 @@ var msgpack = require("./msgpack.js");
 var bannedIps = {};
 var banReasons = {};
 var port = 8080;
+var loginToType = false;
 const admins = ["dimka", "falling1"];
 // falling1 is now admin, DON'T DO STUPID SHIT AGAIN!
 
@@ -1569,8 +1570,13 @@ function init_ws() {
             c: [x * 20, y * 10, x * 20 + 20 - 1, y * 10 + 10 - 1],
           })
         );
+      } else if ("alert" in data) {
+        if (!sdata.isAdmin) return;
+        broadcast(msgpack.encode(data));
+      } else if ("l" in data) {
+        
       } else {
-        //console.log(data)
+        //console.log(data);
       }
     });
 
