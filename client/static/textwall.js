@@ -2230,9 +2230,7 @@ var client = {
             nt["disableBraille"]["checked"] = O;
             break;
           case "l":
-            
             (U = !0), (document.getElementById("l")["checked"] = !0), xn();
-            console.log(U);
             break;
           case "perms":
             (j = a["perms"]),
