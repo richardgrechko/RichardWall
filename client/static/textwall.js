@@ -230,7 +230,7 @@ var client = {
           Custom: 20,
         };
       var G = "Inconsolata",
-        Q = Math.floor($[G] * v) + "px " + G + ", monospace, Special";
+        Q = Math.floor($[G] * v) + "px " + G + ", monospace, Twemoji, Special";
       const _ = new Map();
       _["set"]("Unifont", void 0),
         _["set"]("Terminus", void 0),
@@ -536,7 +536,7 @@ var client = {
             localStorage["setItem"]("customfontsize", i),
             (o = '"' + (o || "monospace") + '"'))
           : D.classList["add"]("hidden"),
-          (Q = Math["floor"](i * v) + "px " + o + ", monospace, Special"),
+          (Q = Math["floor"](i * v) + "px " + o + ", monospace, Twemoji, Special"),
           localStorage["setItem"]("font", G),
           (document.getElementById("fontselect")["value"] = G),
           (ge = !0);

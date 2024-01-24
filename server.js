@@ -557,7 +557,7 @@ function init_ws() {
         }
 
         sdata.isAdmin = admins.includes(sdata.authUser.toLowerCase());
-        if (sdata.isAdmin) send(ws, { admin: true });
+        if (sdata.isAdmin) send(ws, msgpack.encode({ admin: true })); 
         var world = db
           .prepare(
             "SELECT * FROM worlds WHERE namespace=? COLLATE NOCASE AND name=? COLLATE NOCASE"
@@ -1030,7 +1030,7 @@ function init_ws() {
             );
             sdata.authToken = newToken;
             sdata.isAdmin = admins.includes(sdata.authUser.toLowerCase());
-            if (sdata.isAdmin) send(ws, { admin: true });
+            if (sdata.isAdmin) send(ws, msgpack.encode({ admin: true }));
             if (sdata.connectedWorldId) {
               var isOwner =
                 (sdata.isAuthenticated &&
