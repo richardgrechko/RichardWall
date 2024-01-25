@@ -265,6 +265,7 @@ td {
   z-index: 3;
   max-height: 0;
   overflow-y: hidden;
+  white-space: pre-wrap;
 }
 #toast.toasting {
   top: 20px;
