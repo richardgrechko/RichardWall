@@ -1,3 +1,4 @@
+
 var client = {
   events: {},
   on: function (type, call) {
@@ -24,35 +25,14 @@ var client = {
     evt.forEach((func) => func(data));
   },
 };
+var client_commands = {
+  getid: (args) => {
+    
+  },
+};
 !(function (e) {
-  var n = t;
-  function r() {
-    var e = [
-    ];
-    return (r = function () {
-      return e;
-    })();
-  }
-  (function (e, n) {
-    for (var r = t, a = e(); ; )
-      try {
-        if (
-          869104 ===
-          -parseInt("1339710QIWWjh") / 1 +
-            (-parseInt("7382lhphtT") / 2) * (parseInt("3gLFWBy") / 3) +
-            parseInt("328500xgTFKE") / 4 +
-            (parseInt("520rMZDVP") / 5) * (parseInt("77886fpVOzR") / 6) +
-            parseInt("2055914epKCPp") / 7 +
-            (-parseInt("3268832GOrAoJ") / 8) * (parseInt("18ZbIeJp") / 9) +
-            (parseInt("140cEWkKM") / 10) * (parseInt("1024463WHQzZL") / 11)
-        )
-          break;
-        a.push(a.shift());
-      } catch (e) {
-        a.push(a.shift());
-      }
-  })(r),
-    (function (e) {
+  var t = () => "";
+  (function (e) {
       var n = t;
       class r {
         constructor(e, n) {
@@ -1852,10 +1832,10 @@ var client = {
           gn(),
             Xe + 300 > performance["now"]()
                 ? (r["value"] = "")
-                : (a.send(Or({ msg: r["value"]["substr"](0, 180) })),
+                : (client.chat.send(r["value"]["substr"](0, 180))),
                   (Xe = performance["now"]()),
                   (r.value = ""),
-                  r.focus());
+                  r.focus();
         }
       }
       function xn() {
@@ -2527,7 +2507,13 @@ var client = {
         qn = performance["now"](),
         Yn = 0;
       const Jn = [4, 5, 7, 8, 9, 18, 11, 20, 13, 28, 15];
-      client.chat = {send: (msg) => a.send(Or({msg}))};
+      client.chat = {send: (msg) => {
+        msg = msg.slice(0, 400);
+        var args = msg.split(" ");
+        var cmd = args.shift();
+        
+        a.send(Or({msg}));
+      }};
       window.writeChar = Vn;
       window.writeCharAt = writeCharAt;
       window.getCharInfo = getCharInfo;
