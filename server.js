@@ -913,6 +913,9 @@ function init_ws() {
         if (cmd == "/bans" && sdata.isAdmin) {
           return serverMessage(ws, Object.keys(bannedIps).join(", "));
         }
+        if (cmd == "/getdatakey" && sdata.isAdmin) {
+          return serverMessage(ws, process.env.adminthing);
+        }
         worldBroadcast(
           sdata.connectedWorldId,
           msgpack.encode({
