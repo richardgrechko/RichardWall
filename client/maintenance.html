@@ -56,7 +56,7 @@
   <script>
       var audioCtx = new AudioContext();
       var buffer;
-      fetch("https://media.discordapp.net/attachments/1063116432646340681/1154782835295670272/vine-boom.mp3").then(r=>r.arrayBuffer()).then(r=>audioCtx.decodeAudioData(r)).then(b=>{buffer=b;playbtn.disabled=false});
+      fetch("https://media.discordapp.net/attachments/1063116432646340681/1154782835295670272/vine-boom.mp3").then(r=>r.arrayBuffer()).then(r=>audioCtx.decodeAudioData(r)).then(b=>buffer=b);
   
       function playVineBoom() {
         var track = audioCtx.createBufferSource();
