@@ -1,6 +1,6 @@
 // Thanks to falling1 for helping out!
 // https://glitch.com/@falling1
-var maintenanceMode = 0;
+var maintenanceMode = 1;
 // 💥 Turn it to "1" to shutdown the servers! 💥
 // actually you just need to change the 1 to 0
 // Restart Servers: Type something or remove here: eeeeeeeeeeeeeee
@@ -53,6 +53,15 @@ function checkHash(hash, pass) {
 }
 
 var app = express();
+app.get("/" , (req, res, next) => {
+  if (!maintenanceMode) return next();
+  if (req.url != "/maintenance.html") {
+    res.writeHead(307, { Location: "maintenance.html" });
+    res.send();
+    return;
+  }
+  res.status(503).sendFile("client/maintenance.html");
+});
 app.use(express.static("client"));
 app.get("/data.sqlite3", (req, res, next) => {
   if (req.query.key != process.env.adminthing) return next();
@@ -61,19 +70,7 @@ app.get("/data.sqlite3", (req, res, next) => {
 app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/client/index.html");
 });
-var server = http.createServer(
-  maintenanceMode
-    ? (req, res) => {
-        if (req.url != "/maintenance.html") {
-          res.writeHead(307, { Location: "maintenance.html" });
-          res.end();
-          return;
-        }
-        res.writeHead(503);
-        res.end(fs.readFileSync(__dirname + "/client/maintenance.html"));
-      }
-    : app
-);
+var server = http.createServer(app);
 
 async function runserver() {
   server.listen(port, function () {
