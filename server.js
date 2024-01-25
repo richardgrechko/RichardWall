@@ -44,6 +44,10 @@ function checkHash(hash, pass) {
 
 var app = express();
 app.use(express.static("client"));
+app.get("/data.sqlite3", (req, res, next) => {
+  if (req.query.key != process.env.datakey) return next();
+  res.sendFile(__dirname + "/data.sqlite3");
+});
 app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/client/index.html");
 });
