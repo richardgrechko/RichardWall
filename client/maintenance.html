@@ -35,6 +35,8 @@
     margin: 0;
     background-position: bottom;
     text-align: center;
+    background-repeat: repeat-x;
+    background-color: #460082;
   "
 >
   <span>Dimka's TextWall is currently under maintenance.</span>
@@ -52,13 +54,18 @@
     <source src="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/no%20shet%20given.webm"></video></center>
   </small></center>
   <script>
-    function playAudio() {
-      var audio = document.querySelector("audio");
-      audio.currentTime = 0.15;
-      audio.play();
-    }
-    document.addEventListener("touchstart", playAudio);
-    document.addEventListener("pointerdown", playAudio);
+      var audioCtx = new AudioContext();
+      var buffer;
+      fetch("https://media.discordapp.net/attachments/1063116432646340681/1154782835295670272/vine-boom.mp3").then(r=>r.arrayBuffer()).then(r=>audioCtx.decodeAudioData(r)).then(b=>{buffer=b;playbtn.disabled=false});
+  
+      function playVineBoom() {
+        var track = audioCtx.createBufferSource();
+        track.buffer = buffer;
+        track.connect(audioCtx.destination);
+        track.start();
+      }
+    document.addEventListener("touchstart", playVineBoom);
+    document.addEventListener("pointerdown", playVineBoom);
     console.log("Dimka's TextWall servers are shitting their diapers");
     console.log("Join the Discord Server at https://discord.gg/rDXPEgFA6m !!!");
     function checkSite() {
