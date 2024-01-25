@@ -1683,3 +1683,9 @@ process.once("SIGINT", function () {
   commitChunks();
   process.exit();
 });
+
+process.once("SIGTERM", function() {
+  console.log("Server is closing, saving...");
+  commitChunks();
+  process.exit();
+});

@@ -25,9 +25,14 @@ var client = {
     evt.forEach((func) => func(data));
   },
 };
+
 var client_commands = {
   getid: (args) => {
-    
+    var ids = [];
+    client.cursors.forEach((cursor, id) => {
+      if (cursor.n == args[0]) ids.push(id);
+    });
+    clientMessage(ids.join(", "));
   },
 };
 !(function (e) {
@@ -1994,6 +1999,7 @@ var client_commands = {
           (c.onclick = Kr);
       }
       window.addChat = addChat;
+      window.clientMessage = clientMessage;
       function addChat(name, color, message, registered, id) {
         var o = t,
           i = document.getElementById("chatbox"),
@@ -2008,6 +2014,9 @@ var client_commands = {
         i.appendChild(c),
           u && gn(),
           hn["classList"]["contains"]("open") || yn["classList"]["add"]("show");
+      }
+      function clientMessage(msg) {
+        addChat("Client", 0, msg, false, 0);
       }
       function Tn(e) {
         var t = n,
@@ -2513,7 +2522,7 @@ var client_commands = {
         msg = msg.slice(0, 400);
         var args = msg.split(" ");
         var cmd = args.shift();
-        
+        if (cmd.startsWith("/") && client_commands[cmd.slice(1)]) return client_commands[cmd.slice(1)](args);
         a.send(Or({msg}));
       }};
       window.writeChar = Vn;
