@@ -2856,7 +2856,7 @@ var client = {
       function cr() {
         (Ce.x = Ce.start), Ce.y++, Hn();
       }
-      null == navigator.clipboard && navigator.clipboard.readText &&
+      (!navigator.clipboard || !navigator.clipboard.readText) && 
         (document["getElementById"]("paste").style["display"] = "none");
       var lr = 0;
       function ur(e) {
