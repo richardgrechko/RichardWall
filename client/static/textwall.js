@@ -1993,6 +1993,22 @@ var client_commands = {
           document.getElementById("connecting2").append(a);
           (c.onclick = Kr);
       }
+      window.addChat = addChat;
+      function addChat(name, color, message, registered, id) {
+        var o = t,
+          i = document.getElementById("chatbox"),
+          c = document["createElement"]("p"),
+          l = document.createElement("a");
+        (l["innerText"] = name),
+          (l.style["color"] = "#FFFFFF" == se[color] ? "#222222" : se[color]),
+          registered && ((l["href"] = "/~" + name), l["addEventListener"]("click", wn)), l.title = "(" + id + ")"
+          c["appendChild"](l),
+          c.appendChild(document.createTextNode(": " + message));
+        var u = Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
+        i.appendChild(c),
+          u && gn(),
+          hn["classList"]["contains"]("open") || yn["classList"]["add"]("show");
+      }
       function Tn(e) {
         var t = n,
           r = new Uint8Array(e["data"]).buffer,
@@ -2149,21 +2165,7 @@ var client_commands = {
           case "msg":
             var T = a.msg;
             client.emit("chat", {username: T[0], color: T[1], message: T[2], registered: T[3], id: T[4]})
-            !(function (e, n, r, a, id) {
-              var o = t,
-                i = document.getElementById("chatbox"),
-                c = document["createElement"]("p"),
-                l = document.createElement("a");
-              (l["innerText"] = e),
-                (l.style["color"] = "#FFFFFF" == se[n] ? "#222222" : se[n]),
-                a && ((l["href"] = "/~" + e), l["addEventListener"]("click", wn)), l.title = "(" + id + ")"
-                c["appendChild"](l),
-                c.appendChild(document.createTextNode(": " + r));
-              var u = Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
-              i.appendChild(c),
-                u && gn(),
-                hn["classList"]["contains"]("open") || yn["classList"]["add"]("show");
-            })(T[0], T[1], T[2], T[3], T[4]);
+            addChat(T[0], T[1], T[2], T[3], T[4]);
             break;
           case "rc":
             Pe["delete"](a.rc), (ge = !0), On();

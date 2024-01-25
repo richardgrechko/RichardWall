@@ -424,7 +424,7 @@ function serverMessage(ws, msg) {
   send(
     ws,
     msgpack.encode({
-      msg: ["Server", 0, msg, false],
+      msg: ["Server", 0, msg, false, 0],
     })
   );
 }
@@ -505,7 +505,7 @@ function init_ws() {
       connectedWorldNamespace: "",
       connectedWorldName: "",
       connectedWorldId: 0,
-      clientId: Math.floor(Math.random() * 10000).toString(),
+      clientId: Math.floor(Math.random() * 9999 + 1).toString(),
       cursorX: 0,
       cursorY: 0,
       cursorColor: 0,
