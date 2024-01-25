@@ -55,7 +55,7 @@ var server = http.createServer(
           res.end();
           return;
         }
-        res.writeHead(503, { "Content-Type": "text/html" });
+        res.writeHead(503);
         res.end(fs.readFileSync(__dirname + "/client/maintenance.html"));
       }
     : app

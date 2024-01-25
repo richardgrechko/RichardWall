@@ -26,7 +26,7 @@
   style="
     background-image: url('https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/maintenance%20bg%202.png');
     color: white;
-    font-size: 32px;
+    font-size: 28px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,6 +34,7 @@
     justify-content: center;
     margin: 0;
     background-position: bottom;
+    text-align: center;
   "
 >
   <span>Dimka's TextWall is currently under maintenance.</span>
@@ -51,16 +52,17 @@
     <source src="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/no%20shet%20given.webm"></video></center>
   </small></center>
   <script>
-    document.addEventListener("mousedown", () => {
+    function playAudio() {
       var audio = document.querySelector("audio");
       audio.currentTime = 0.15;
-      // try making it loop
       audio.play();
-    }, true);
+    }
+    document.addEventListener("touchstart", playAudio);
+    document.addEventListener("pointerdown", playAudio);
     console.log("Dimka's TextWall servers are shitting their diapers");
     console.log("Join the Discord Server at https://discord.gg/rDXPEgFA6m !!!");
     function checkSite() {
-      fetch("/").then(res => {res.status == 200 && (location.href = "/");setTimeout(checkSite, 7000)}).catch(err => location.href = "/");
+      fetch("/").then(res => {res.status == 200 && (location.href = "/");setTimeout(checkSite, 8000)}).catch(err => location.href = "/");
       //load the site in the background and see if its up, if it is then redirect
       //if there was an error like your internet is down it will also redirect so you can see the No internet message
     }
