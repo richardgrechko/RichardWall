@@ -3,7 +3,7 @@
 var maintenanceMode = 0;
 // 💥 Turn it to "1" to shutdown the servers! 💥
 // actually you just need to change the 1 to 0
-// Restart Servers: Type something or remove here: eeeeeeeeeeee
+// Restart Servers: Type something or remove here: eeeeeeeeeeeeeee
 // It automatically restarts when you modify, remove or add an character to any of the files except html ones
 
 var fs = require("fs");
