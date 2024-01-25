@@ -868,6 +868,7 @@ function init_ws() {
           })
         );
       } else if ("msg" in data) {
+        if (!sdata.isAuthenticated && loginToType) return;
         var message = data.msg;
         console.log(sdata.authUser + " (" + sdata.clientId + ")" + ":", message);
 
