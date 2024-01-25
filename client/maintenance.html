@@ -9,6 +9,8 @@
     content="The site is currently down... Sorry!"
   />
   <meta property="og:url" content="https://textwall.cc/" />
+  
+
   <meta
     property="og:image"
     content="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/down%20icon.png?v=1705588490580"
@@ -54,11 +56,14 @@
       audio.currentTime = 0.15;
       // try making it loop
       audio.play();
-    });
+    }, true);
     console.log("Dimka's TextWall servers are shitting their diapers");
     console.log("Join the Discord Server at https://discord.gg/rDXPEgFA6m !!!");
-    setInterval(function () {
-      fetch("/").then(res => res.status == 200 && location.href = "/").catch(err => location.href = "/");
-    }, 10000);
+    function checkSite() {
+      fetch("/").then(res => {res.status == 200 && (location.href = "/");setTimeout(checkSite, 7000)}).catch(err => location.href = "/");
+      //load the site in the background and see if its up, if it is then redirect
+      //if there was an error like your internet is down it will also redirect so you can see the No internet message
+    }
+    checkSite();
   </script>
 </body>
