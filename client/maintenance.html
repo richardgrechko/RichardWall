@@ -69,7 +69,7 @@
     console.log("Dimka's TextWall servers are shitting their diapers");
     console.log("Join the Discord Server at https://discord.gg/rDXPEgFA6m !!!");
     function checkSite() {
-      fetch("/").then(res => {res.status == 200 && (location.href = "/");setTimeout(checkSite, 8000)}).catch(err => location.href = "/");
+      fetch("/").then(res => {res.status == 200 && (location.href = "/");setTimeout(checkSite, 7000)}).catch(err => location.href = "/");
       //load the site in the background and see if its up, if it is then redirect
       //if there was an error like your internet is down it will also redirect so you can see the No internet message
     }

@@ -53,14 +53,14 @@ function checkHash(hash, pass) {
 }
 
 var app = express();
-app.get("/" , (req, res, next) => {
+app.use("/" , (req, res, next) => {
   if (!maintenanceMode) return next();
   if (req.url != "/maintenance.html") {
-    res.writeHead(307, { Location: "maintenance.html" });
-    res.send();
+    res.writeHead(307, { Location: "/maintenance.html" });
+    res.end();
     return;
   }
-  res.status(503).sendFile("client/maintenance.html");
+  res.status(503).sendFile(__dirname + "/client/maintenance.html");
 });
 app.use(express.static("client"));
 app.get("/data.sqlite3", (req, res, next) => {
