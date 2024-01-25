@@ -3,7 +3,7 @@
 var maintenanceMode = 0;
 // 💥 Turn it to "1" to shutdown the servers! 💥
 // actually you just need to change the 1 to 0
-// Restart Servers: Type something or remove here: eeeeeeeeee
+// Restart Servers: Type something or remove here: eeeeeeeeeeee
 // It automatically restarts when you modify, remove or add an character to any of the files except html ones
 
 var fs = require("fs");
@@ -1595,7 +1595,7 @@ function init_ws() {
         loginToType = data.l;
         broadcast(msgpack.encode({ l: loginToType }));
       } else {
-        //console.log(data);
+        console.log(data);
       }
     });
 
@@ -1679,12 +1679,14 @@ async function initServer() {
 initServer();
 
 process.once("SIGINT", function () {
+  broadcast(msgpack.encode({ closing: true }));
   console.log("Server is closing, saving...");
   commitChunks();
   process.exit();
 });
 
 process.once("SIGTERM", function() {
+  broadcast(msgpack.encode({ closing: true }));
   console.log("Server is closing, saving...");
   commitChunks();
   process.exit();

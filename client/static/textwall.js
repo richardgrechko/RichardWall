@@ -1987,8 +1987,11 @@ var client_commands = {
           if (client.banned) {
             document.getElementById("connecting1").innerText = "You are banned.";
             document.getElementById("connecting2").innerText = `Refresh to reconnect${client.banReason ? `\nReason: ${client.banReason}`: ""}\nYou can appeal in the server\n`;
+          } else if (client.serverClosed) {
+            (document["getElementById"]("connecting2")["innerText"] = "Server closed/restarting\nThis might be because of the site updating. (refresh to see changes)\nHaving issues? Ask in the Discord server!\n"); //connecting2 text
+            (document["getElementById"]("connecting1").innerText = "Disconnected."); //connecting1 text
           } else {
-            (document["getElementById"]("connecting2")["innerText"] = "Click to reconnect\nThis might be because of the site updating. (refresh to see changes)\nHaving issues? Ask in the Discord server!\n"); //connecting2 text
+            (document["getElementById"]("connecting2")["innerText"] = "Click to reconnect\nHaving issues? Ask in the Discord server!\n"); //connecting2 text
             (document["getElementById"]("connecting1").innerText = "Disconnected."); //connecting1 text
           }
           var a = document.createElement('a');
@@ -2034,6 +2037,7 @@ var client_commands = {
             var l = a.j;
             (W = l[0]),
               (H = l[1]),
+              (client.serverClosing = false),
               En(),
               "textwall" == W && (nt["private"]["disabled"] = !0),
               "textwall" != W
@@ -2327,6 +2331,8 @@ var client_commands = {
             client.banned = true;
             client.banReason = a.banned;
             break;
+          case "closing":
+            client.serverClosing = true;
         }
       }
       function Bn() {
