@@ -865,7 +865,7 @@ function init_ws() {
         if (!message.trim()) return;
         if (message.length > 400) return;
 
-        var nick = sdata.clientId;
+        var nick = "(" + sdata.clientId + ")";
         if (sdata.isAuthenticated) {
           nick = sdata.authUser;
         }
