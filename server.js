@@ -31,7 +31,6 @@ var port = 8080;
 // 
 var loginToType = false;
 const admins = ["dimka", "falling1"];
-// falling1 is now admin, DON'T DO STUPID SHIT AGAIN!
 
 var db = sql("./data.sqlite3");
 
@@ -740,7 +739,7 @@ function init_ws() {
         );
         dumpCursors(ws);
         sdata.isConnected = true;
-        if (loginToType) send(ws, msgpack.encode({ l: loginToType }));
+        send(ws, msgpack.encode({ l: loginToType }));
       } else if ("r" in data) {
         if (!sdata.isConnected) return;
         var regions = data.r;
@@ -1593,7 +1592,7 @@ function init_ws() {
         broadcast(msgpack.encode(data));
       } else if ("l" in data && sdata.isAdmin) {
         loginToType = data.l;
-        if (loginToType) broadcast(msgpack.encode({ l: true }));
+        broadcast(msgpack.encode({ l: loginToType }));
       } else {
         //console.log(data);
       }
