@@ -191,6 +191,7 @@
                 Pointfree: 16,
                 Monofur: 18,
                 "Fantasque Sans Mono": 18,
+                Twemoji: 20,
                 Custom: 20
             };
         var ae = "Inconsolata",
@@ -957,7 +958,7 @@
                                     ft[t(695)][t(232)] && ft[t(487)][t(232)] ? f += String.fromCharCode(ge + g[1]) : ft[t(695)].checked ? f += String[t(308)](ge + x) : ft[t(487)][t(232)] && (f += String[t(308)](ge + fa(0, w))), hr(g[0], w) || (0 != w && (v = !0), 0 != x && (d = !0)), De.x++
                                 }
                             }
-                            De.x = r, De.y++, s += "\n", f += "À"
+                            De.x = r, De.y++, s += "\n", f += "ï¿½"
                         }
                         s = s[t(511)](0, -1), f = f[t(511)](0, -1), s[t(608)](t(681)) && (d = v = !1), ft[t(695)][t(232)] && d || ft[t(487)][t(232)] && v ? br(s + ne + f) : br(s), De.x = l, De.y = u, kr(t(320), 1500);
                         var b = document[t(450)]("copyico");
