@@ -513,9 +513,9 @@ function init_ws() {
       }
       connObj[2] = per;
       connObj[1]++;
-
-      var data = msgpack.decode(message);
-
+      try {
+        var data = msgpack.decode(message);
+      } catch {}
       if (typeof data != "object") return;
       if (Array.isArray(data)) return;
 
