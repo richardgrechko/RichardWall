@@ -56,17 +56,14 @@ function checkHash(hash, pass) {
 var app = express();
 app.use("/*" , (req, res, next) => {
   if (!maintenanceMode) return next();
-  if (req.url == "/getadmincookie" && req.query.key == process.env.adminthing) {
-    res.cookie("adminthing", process.env.adminthing);
+  if (req.originalUrl == "/getadmincookie?key="+process.env.adminthing) {
+    res.cookie("adminthing", process.env.adminthing, { httpOnly: true });
     res.writeHead(200, { Location: "/" });
-    res.end();
-  }
-  if (req.url == "/") {
-    res.writeHead(307, { Location: "/maintenance.html" });
     res.end();
     return;
   }
-  res.status(503).sendFile(__dirname + "/client/maintenance.html");
+  if (req.originalUrl == "/maintenance.html") return res.status(503).sendFile(__dirname + "/client/maintenance.html");
+  next();
 });
 app.use(express.static("client"));
 app.get("/data.sqlite3", (req, res, next) => {
@@ -74,7 +71,12 @@ app.get("/data.sqlite3", (req, res, next) => {
   res.sendFile(__dirname + "/data.sqlite3");
 });
 app.get("/*", (req, res) => {
-  res.sendFile(__dirname + "/client/index.html");
+  if (maintenanceMode) {
+    res.writeHead(307, { Location: "/maintenance.html" });
+    res.end();
+    return;
+  }
+  res.sendFile(__dirname + "/index.html");
 });
 var server = http.createServer(app);
 
