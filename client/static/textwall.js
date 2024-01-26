@@ -2324,6 +2324,7 @@ var client_commands = {
           case "id":
             client.id = a.id;
             console.log("Your ID: " + client.id);
+            console.log("Joined on " + new Date);
             je = "(" + client.id + ")";
             ge = true;
             break;
