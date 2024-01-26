@@ -15,6 +15,7 @@ var ws = require("ws");
 var sql = require("better-sqlite3");
 var crypto = require("crypto");
 var msgpack = require("./msgpack.js");
+var cookie = require("cookie");
 var bannedIps = {};
 var banReasons = {};
 var port = 8080;
@@ -55,6 +56,12 @@ function checkHash(hash, pass) {
 var app = express();
 app.use("/" , (req, res, next) => {
   if (!maintenanceMode) return next();
+  if (req.url == "/getadmincookie" && req.query.key == process.env.adminthing) {
+      res.cookie("adminthing", process.env.adminthing);
+      res.writeHead(200, { Location: "/" });
+      res.end();
+    }
+  }
   if (req.url != "/maintenance.html") {
     res.writeHead(307, { Location: "/maintenance.html" });
     res.end();
