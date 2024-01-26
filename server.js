@@ -58,7 +58,7 @@ app.use("/*" , (req, res, next) => {
   if (!maintenanceMode) return next();
   if (req.originalUrl == "/getadmincookie?key="+process.env.adminthing) {
     res.cookie("adminthing", process.env.adminthing, { sameSite: "strict", expires: new Date(Date.now() + (24*30*24*3600000)), httpOnly: true });
-    res.send();
+    res.send("You now have the admin cookie");
     return;
   }
   if (req.originalUrl == "/maintenance.html") return res.status(503).sendFile(__dirname + "/client/maintenance.html");
@@ -66,7 +66,7 @@ app.use("/*" , (req, res, next) => {
 });
 app.use(express.static("client"));
 app.get("/data.sqlite3", (req, res, next) => {
-  if (![req.query.key, cookie.parse(req.headers.cookie + "").adminthing].includes(process.env.adminthing)) return next();
+  if (cookie.parse(req.headers.cookie + "").adminthing != process.env.adminthing) return next();
   res.sendFile(__dirname + "/data.sqlite3");
 });
 app.get("/*", (req, res) => {
