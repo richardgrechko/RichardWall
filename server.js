@@ -57,7 +57,7 @@ var app = express();
 app.use("/*" , (req, res, next) => {
   if (!maintenanceMode) return next();
   if (req.originalUrl == "/getadmincookie?key="+process.env.adminthing) {
-    res.cookie("adminthing", process.env.adminthing, { httpOnly: true });
+    res.cookie("adminthing", process.env.adminthing, { sameSite: "strict", expires: new Date(Date.now() + (24*30*24*3600000)), httpOnly: true });
     res.writeHead(200, { Location: "/" });
     res.end();
     return;
@@ -71,7 +71,7 @@ app.get("/data.sqlite3", (req, res, next) => {
   res.sendFile(__dirname + "/data.sqlite3");
 });
 app.get("/*", (req, res) => {
-  if (maintenanceMode) {
+  if (maintenanceMode && cookie.parse(req.headers.cookie + "").adminthing != process.env.adminthing) {
     res.writeHead(307, { Location: "/maintenance.html" });
     res.end();
     return;
@@ -79,7 +79,18 @@ app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 var server = http.createServer(app);
+server.on('upgrade', (request, socket, head) => {
+    const cookies = cookie.parse(request.headers.cookie);
+    if (cookies.adminthing != process.env.adminthing) {
+      socket.write('HTTP/1.1 503 Service Unavailable\r\n\r\n');
+      socket.destroy();
+      return;
+    }
 
+    wss.handleUpgrade(request, socket, head, (ws) => {
+        wss.emit('connection', ws, request);
+    });
+});
 async function runserver() {
   server.listen(port, function () {
     var addr = server.address();
@@ -97,7 +108,7 @@ async function runserver() {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
   });
-  if (!maintenanceMode) init_ws();
+  init_ws();
 }
 
 function is_whole_number(x) {
@@ -467,7 +478,7 @@ function dumpCursors(ws) {
 }
 
 function init_ws() {
-  wss = new ws.Server({ server });
+  wss = new ws.Server({ noServer: true });
   wss.on("connection", function (ws, req) {
     var ipAddr = ws._socket.remoteAddress;
     if (ipAddr == "127.0.0.1") {
