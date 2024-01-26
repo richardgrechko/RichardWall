@@ -1,6 +1,6 @@
 // Thanks to falling1 for helping out!
 // https://glitch.com/@falling1
-var maintenanceMode = 1;
+var maintenanceMode = 0;
 // 💥 Turn it to "1" to shutdown the servers! 💥
 // actually you just need to change the 1 to 0
 // Restart Servers: Type something or remove here: eeeeeeeeeeeeeee
@@ -58,8 +58,7 @@ app.use("/*" , (req, res, next) => {
   if (!maintenanceMode) return next();
   if (req.originalUrl == "/getadmincookie?key="+process.env.adminthing) {
     res.cookie("adminthing", process.env.adminthing, { sameSite: "strict", expires: new Date(Date.now() + (24*30*24*3600000)), httpOnly: true });
-    res.writeHead(200, { Location: "/" });
-    res.end();
+    res.send();
     return;
   }
   if (req.originalUrl == "/maintenance.html") return res.status(503).sendFile(__dirname + "/client/maintenance.html");
@@ -67,7 +66,7 @@ app.use("/*" , (req, res, next) => {
 });
 app.use(express.static("client"));
 app.get("/data.sqlite3", (req, res, next) => {
-  if (req.query.key != process.env.adminthing) return next();
+  if (![req.query.key, cookie.parse(req.headers.cookie + "").adminthing].includes(process.env.adminthing)) return next();
   res.sendFile(__dirname + "/data.sqlite3");
 });
 app.get("/*", (req, res) => {
@@ -80,7 +79,7 @@ app.get("/*", (req, res) => {
 });
 var server = http.createServer(app);
 server.on('upgrade', (request, socket, head) => {
-    const cookies = cookie.parse(request.headers.cookie);
+    const cookies = cookie.parse(request.headers.cookie + "");
     if (cookies.adminthing != process.env.adminthing) {
       socket.write('HTTP/1.1 503 Service Unavailable\r\n\r\n');
       socket.destroy();
