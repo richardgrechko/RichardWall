@@ -1,6 +1,6 @@
 // Thanks to falling1 for helping out!
 // https://glitch.com/@falling1
-var maintenanceMode = 0;
+var maintenanceMode = 1;
 // 💥 Turn it to "1" to shutdown the servers! 💥
 // actually you just need to change the 1 to 0
 // Restart Servers: Type something or remove here: eeeeeeeeeeeeeee
@@ -54,15 +54,14 @@ function checkHash(hash, pass) {
 }
 
 var app = express();
-app.use("/" , (req, res, next) => {
+app.use("/*" , (req, res, next) => {
   if (!maintenanceMode) return next();
   if (req.url == "/getadmincookie" && req.query.key == process.env.adminthing) {
-      res.cookie("adminthing", process.env.adminthing);
-      res.writeHead(200, { Location: "/" });
-      res.end();
-    }
+    res.cookie("adminthing", process.env.adminthing);
+    res.writeHead(200, { Location: "/" });
+    res.end();
   }
-  if (req.url != "/maintenance.html") {
+  if (req.url == "/") {
     res.writeHead(307, { Location: "/maintenance.html" });
     res.end();
     return;
