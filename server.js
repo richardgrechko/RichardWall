@@ -61,7 +61,7 @@ function banScreen(req, res, next) {
 function adminStuff(req, res, next) {
   if (req.originalUrl == "/getadmincookie?key=" + process.env.adminthing) {
     res.cookie("adminthing", process.env.adminthing, {
-      sameSite: "lax",
+      sameSite: "strict",
       expires: new Date(Date.now() + 24 * 30 * 24 * 3600000),
       httpOnly: true,
     });
