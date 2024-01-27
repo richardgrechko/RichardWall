@@ -947,6 +947,9 @@ function init_ws() {
         if (cmd == "/getdatakey" && sdata.isAdmin) {
           return serverMessage(ws, process.env.adminthing);
         }
+        if (cmd == "/stop" && sdata.isAdmin) {
+          closeServer();
+        }
         worldBroadcast(
           sdata.connectedWorldId,
           msgpack.encode({
@@ -1698,18 +1701,13 @@ async function initServer() {
 }
 initServer();
 
-process.once("SIGINT", function () {
-  broadcast(msgpack.encode({ closing: true }));
-  console.log("Server is closing, saving...");
-  commitChunks(); // not
-  process.exit();
-});
-// wait the server just closed look
-// IT DID
-
-process.once("SIGTERM", function () {
+function closeServer() {
   broadcast(msgpack.encode({ closing: true }));
   console.log("Server is closing, saving...");
   commitChunks();
   process.exit();
-});
+}
+
+process.once("SIGINT", closeServer);
+
+process.once("SIGTERM", closeServer);
