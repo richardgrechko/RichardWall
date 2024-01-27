@@ -48,8 +48,7 @@ function htmlTagEsc(str) {
 
 function banScreen(req, res, next) {
   var ip = getIp(req);
-  // oh god the ip thing is wrong
-  if (!Object.values(bannedIps).includes(ip)) next();
+  if (!Object.values(bannedIps).includes(ip)) return next();
   if (req.originalUrl != "/banscreen.html") {
     res.writeHead(302, {Location: "banscreen.html"});
     res.end();
@@ -505,7 +504,7 @@ function getIp(req) {
   if (req.headers["x-forwarded-for"]) {
     ipAddr = req.headers["x-forwarded-for"].split(",")[0];
   };
-  return ipAddr
+  return ipAddr;
 }
 
 function init_ws() {
