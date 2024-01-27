@@ -102,18 +102,11 @@ async function runserver() {
   server.listen(port, function () {
     var addr = server.address();
     console.log(
-      "Server is hosted on " +
+      "Server is hosted on the address " +
         addr.address +
-        ":" +
-        addr.port +
-        " \u0028useless number: " +
-        getRandomNumber(1, 10) +
-        "\u0029"
+        "and port " +
+        addr.port
     );
-
-    function getRandomNumber(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
   });
   init_ws();
 }
@@ -1719,4 +1712,5 @@ function closeServer() {
 process.once("SIGINT", closeServer);
 
 process.once("SIGTERM", closeServer);
-console.log(new Date());
+console.log("current server date: " + new Date().toString());
+
