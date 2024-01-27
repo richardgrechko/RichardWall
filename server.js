@@ -42,9 +42,11 @@ function checkHash(hash, pass) {
   if (hash.length !== 3) return false;
   return encryptHash(pass, hash[1]) === hash.join("$");
 }
-
-var app = express();
-app.use("/*", (req, res, next) => {// i seperated the admin stuff and the maintenance mode stuff
+function banScreen(req, res, next) {
+  var ip = getIp(req);
+  if (!Object.values(bannedIps).includes(ip)) next();
+}
+function adminStuff(req, res, next) {
   if (req.originalUrl == "/getadmincookie?key=" + process.env.adminthing) {
     res.cookie("adminthing", process.env.adminthing, {
       sameSite: "strict",
@@ -60,14 +62,17 @@ app.use("/*", (req, res, next) => {// i seperated the admin stuff and the mainte
     return;
   }
   next();
-});
-
-app.use("/*", (req, res, next) => {
+}
+function maintenanceResponse(req, res, next) {
   if (!maintenanceMode) return next();
   if (req.originalUrl == "/maintenance.html" && maintenanceMode)
     return res.status(503).sendFile(__dirname + "/public/maintenance.html");
   next();
-});
+}
+var app = express();
+app.use("/*", adminStuff);
+
+app.use("/*", maintenanceResponse);
 app.use(express.static("public"));
 app.get("/data.sqlite3", (req, res, next) => {
   if (
