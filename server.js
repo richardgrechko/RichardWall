@@ -3,7 +3,7 @@
 var maintenanceMode = 0;
 // 💥 Turn it to "1" to shutdown the servers! 💥
 // actually you just need to change the 1 to 0
-// Restart Servers: Type something or remove here: eeeeeeeeeeeeeee
+// Restart Servers: Type something or remove here: eeeeeeeeeeeeeeeeeadwadawdwadwad
 // It automatically restarts when you modify, remove or add an character to any of the files except html ones
 
 var fs = require("fs");
@@ -480,8 +480,8 @@ function init_ws() {
   wss = new ws.Server({ noServer: true });
   wss.on("connection", function (ws, req) {
     var ipAddr = ws._socket.remoteAddress;
-    if (ipAddr == "127.0.0.1") {
-      ipAddr = req.headers["x-real-ip"];
+    if (req.headers["x-forwarded-for"]) {
+      ipAddr = req.headers["x-forwarded-for"].split(",")[0];
       if (!ipAddr) ipAddr = Math.random().toString();
     }
 
@@ -1701,9 +1701,11 @@ initServer();
 process.once("SIGINT", function () {
   broadcast(msgpack.encode({ closing: true }));
   console.log("Server is closing, saving...");
-  commitChunks();
+  commitChunks(); // not
   process.exit();
 });
+// wait the server just closed look
+// IT DID
 
 process.once("SIGTERM", function () {
   broadcast(msgpack.encode({ closing: true }));
