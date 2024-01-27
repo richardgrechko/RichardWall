@@ -19,17 +19,6 @@ var cookie = require("cookie");
 var bannedIps = {};
 var banReasons = {};
 var port = 8080;
-// vv wait until i turn it on (when i advertise it to textwall)
-// reminder that you can do it from the admin panel, it turns off again after server restart (bruh)
-// i could try to make it save (cant it already save by changing the variable?)
-// i know but i meant by the admin panel
-
-// I prefer vv (down arrow) because why not
-// ok
-// im fine with it beacuse i literally have no idea how i would even code the saving shit lmao
-// btw do you think saving bans should be added
-// i think i know how to save it in the sqlite file
-//
 var loginToType = false;
 const admins = ["dimka", "falling1"];
 
@@ -514,7 +503,7 @@ function init_ws() {
         })
       );
       ws.close();
-      console.log("Somebody got banned");
+      console.log("Somebody tried to join, but they're banned!");
       return;
     }
 

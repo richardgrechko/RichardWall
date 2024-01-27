@@ -66,4 +66,5 @@ var colors = {
   "magenta": 28,
   "beige": 29,
   "dark grey": 30
-}
+};
+var colours = colors; //british spellign
