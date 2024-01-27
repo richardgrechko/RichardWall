@@ -1,4 +1,3 @@
-
 var client = {
   events: {},
   on: function (type, call) {
@@ -2037,7 +2036,7 @@ var client_commands = {
             var l = a.j;
             (W = l[0]),
               (H = l[1]),
-              (client.serverClosing = false),
+              (client.serverClosed = false),
               En(),
               "textwall" == W && (nt["private"]["disabled"] = !0),
               "textwall" != W

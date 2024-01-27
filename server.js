@@ -50,15 +50,15 @@ app.use("/*", (req, res, next) => {
       expires: new Date(Date.now() + 24 * 30 * 24 * 3600000),
       httpOnly: true,
     });
-    res.send("You now have the admin cookie");
+    res.send("You now have the admin cookie, you can access Dimka's TextWall while it's in maintenance mode with this special cookie!");
     return;
   }
   if (!maintenanceMode) return next();
   if (req.originalUrl == "/maintenance.html")
-    return res.status(503).sendFile(__dirname + "/client/maintenance.html");
+    return res.status(503).sendFile(__dirname + "/public/maintenance.html");
   next();
 });
-app.use(express.static("client"));
+app.use(express.static("public"));
 app.get("/data.sqlite3", (req, res, next) => {
   if (
     cookie.parse(req.headers.cookie + "").adminthing != process.env.adminthing
