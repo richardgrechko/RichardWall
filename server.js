@@ -57,7 +57,9 @@ app.use("/*", (req, res, next) => {// i seperated the admin stuff and the mainte
   if (req.originalUrl == "/stopserver" && cookie.parse(req.headers.cookie + "").adminthing == process.env.adminthing) {
     res.end("Bye bye!");
     closeServer();
+    return;
   }
+  next();
 });
 
 app.use("/*", (req, res, next) => {
@@ -477,14 +479,19 @@ function dumpCursors(ws) {
   });
 }
 
+function getIp(req) {
+  var ipAddr = req.socket.remoteAddress;
+  if (ipAddr == "127.0.0.1") ipAddr = Math.random().toString();
+  if (req.headers["x-forwarded-for"]) {
+    ipAddr = req.headers["x-forwarded-for"].split(",")[0];
+  };
+  return ipAddr
+}
+
 function init_ws() {
   wss = new ws.Server({ noServer: true });
   wss.on("connection", function (ws, req) {
-    var ipAddr = ws._socket.remoteAddress;
-    if (req.headers["x-forwarded-for"]) {
-      ipAddr = req.headers["x-forwarded-for"].split(",")[0];
-      if (!ipAddr) ipAddr = Math.random().toString();
-    }
+    var ipAddr = getIp(req);
 
     if (!ipConnLim[ipAddr]) {
       ipConnLim[ipAddr] = [0, 0, 0]; // connections, blocks placed in current second period, second period
@@ -504,7 +511,8 @@ function init_ws() {
         })
       );
       ws.close();
-      console.log("Somebody tried to join, but they're banned!");
+      console.log("Somebody tried to join, but they're banned! the ip is " + ipAddr + " :trol:");
+      // totally not for ip grabbing at all
       return;
     }
 
