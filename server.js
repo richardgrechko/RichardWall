@@ -25,11 +25,11 @@ var port = 8080;
 // i know but i meant by the admin panel
 
 // I prefer vv (down arrow) because why not
-// ok 
+// ok
 // im fine with it beacuse i literally have no idea how i would even code the saving shit lmao
 // btw do you think saving bans should be added
 // i think i know how to save it in the sqlite file
-// 
+//
 var loginToType = false;
 const admins = ["dimka", "falling1"];
 
@@ -54,23 +54,34 @@ function checkHash(hash, pass) {
 }
 
 var app = express();
-app.use("/*" , (req, res, next) => {
+app.use("/*", (req, res, next) => {
   if (!maintenanceMode) return next();
-  if (req.originalUrl == "/getadmincookie?key="+process.env.adminthing) {
-    res.cookie("adminthing", process.env.adminthing, { sameSite: "strict", expires: new Date(Date.now() + (24*30*24*3600000)), httpOnly: true });
+  if (req.originalUrl == "/getadmincookie?key=" + process.env.adminthing) {
+    res.cookie("adminthing", process.env.adminthing, {
+      sameSite: "strict",
+      expires: new Date(Date.now() + 24 * 30 * 24 * 3600000),
+      httpOnly: true,
+    });
     res.send("You now have the admin cookie");
     return;
   }
-  if (req.originalUrl == "/maintenance.html") return res.status(503).sendFile(__dirname + "/client/maintenance.html");
+  if (req.originalUrl == "/maintenance.html")
+    return res.status(503).sendFile(__dirname + "/client/maintenance.html");
   next();
 });
 app.use(express.static("client"));
 app.get("/data.sqlite3", (req, res, next) => {
-  if (cookie.parse(req.headers.cookie + "").adminthing != process.env.adminthing) return next();
+  if (
+    cookie.parse(req.headers.cookie + "").adminthing != process.env.adminthing
+  )
+    return next();
   res.sendFile(__dirname + "/data.sqlite3");
 });
 app.get("/*", (req, res) => {
-  if (maintenanceMode && cookie.parse(req.headers.cookie + "").adminthing != process.env.adminthing) {
+  if (
+    maintenanceMode &&
+    cookie.parse(req.headers.cookie + "").adminthing != process.env.adminthing
+  ) {
     res.writeHead(307, { Location: "/maintenance.html" });
     res.end();
     return;
@@ -78,17 +89,17 @@ app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 var server = http.createServer(app);
-server.on('upgrade', (request, socket, head) => {
-    const cookies = cookie.parse(request.headers.cookie + "");
-    if (cookies.adminthing != process.env.adminthing) {
-      socket.write('HTTP/1.1 503 Service Unavailable\r\n\r\n');
-      socket.destroy();
-      return;
-    }
+server.on("upgrade", (request, socket, head) => {
+  const cookies = cookie.parse(request.headers.cookie + "");
+  if (cookies.adminthing != process.env.adminthing) {
+    socket.write("HTTP/1.1 503 Service Unavailable\r\n\r\n");
+    socket.destroy();
+    return;
+  }
 
-    wss.handleUpgrade(request, socket, head, (ws) => {
-        wss.emit('connection', ws, request);
-    });
+  wss.handleUpgrade(request, socket, head, (ws) => {
+    wss.emit("connection", ws, request);
+  });
 });
 async function runserver() {
   server.listen(port, function () {
@@ -530,7 +541,7 @@ function init_ws() {
     };
     ws.sdata = sdata;
     send(ws, msgpack.encode({ id: sdata.clientId }));
-    
+
     ws.on("message", function (message, binary) {
       if (!binary) return;
 
@@ -587,7 +598,7 @@ function init_ws() {
         }
 
         sdata.isAdmin = admins.includes(sdata.authUser.toLowerCase());
-        if (sdata.isAdmin) send(ws, msgpack.encode({ admin: true })); 
+        if (sdata.isAdmin) send(ws, msgpack.encode({ admin: true }));
         var world = db
           .prepare(
             "SELECT * FROM worlds WHERE namespace=? COLLATE NOCASE AND name=? COLLATE NOCASE"
@@ -825,7 +836,8 @@ function init_ws() {
         );
       } else if ("e" in data) {
         // write edit
-        if (!sdata.isConnected || (!sdata.isAuthenticated && loginToType)) return;
+        if (!sdata.isConnected || (!sdata.isAuthenticated && loginToType))
+          return;
         var edits = data.e;
 
         if (!Array.isArray(edits)) return;
@@ -885,7 +897,10 @@ function init_ws() {
       } else if ("msg" in data) {
         if (!sdata.isAuthenticated && loginToType) return;
         var message = data.msg;
-        console.log(sdata.authUser + " (" + sdata.clientId + ")" + ":", message);
+        console.log(
+          sdata.authUser + " (" + sdata.clientId + ")" + ":",
+          message
+        );
 
         if (typeof message != "string") return;
         if (!message.trim()) return;
@@ -1700,7 +1715,7 @@ process.once("SIGINT", function () {
   process.exit();
 });
 
-process.once("SIGTERM", function() {
+process.once("SIGTERM", function () {
   broadcast(msgpack.encode({ closing: true }));
   console.log("Server is closing, saving...");
   commitChunks();

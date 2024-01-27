@@ -50,15 +50,24 @@
     <script src="/warning.js"></script>
   </head>
   <body>
-    <script> 
-      var $buoop = {required:{e:-4,f:111,o:96,s:8,c:111},insecure:true,unsupported:true,style:"bottom",api:2024.01 }; 
-      function $buo_f(){ 
-        var e = document.createElement("script"); 
-        e.src = "//browser-update.org/update.min.js"; 
-        document.body.appendChild(e);
+    <script>
+      var $buoop = {
+        required: { e: -4, f: 111, o: 96, s: 8, c: 111 },
+        insecure: true,
+        unsupported: true,
+        style: "bottom",
+        api: 2024.01,
       };
-      try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
-      catch(e){window.attachEvent("onload", $buo_f)}
+      function $buo_f() {
+        var e = document.createElement("script");
+        e.src = "//browser-update.org/update.min.js";
+        document.body.appendChild(e);
+      }
+      try {
+        document.addEventListener("DOMContentLoaded", $buo_f, false);
+      } catch (e) {
+        window.attachEvent("onload", $buo_f);
+      }
     </script>
     <textarea id="clipboard"></textarea>
     <textarea
@@ -402,7 +411,8 @@
         <div id="admin">
           <h3>Admin</h3>
           <p>Sorry, not sure what you're trying to find.</p>
-          <label>Login to type?</label><input id="l" type="checkbox" checked="false" /><br />
+          <label>Login to type?</label
+          ><input id="l" type="checkbox" checked="false" /><br />
           <input type="text" id="t" /><br />
           <input id="refresh" value="Refresh" type="button" /><br />
           <textarea id="alerttext" placeholder="Announce a thing"></textarea
