@@ -64,7 +64,7 @@ app.use("/*", (req, res, next) => {// i seperated the admin stuff and the mainte
 
 app.use("/*", (req, res, next) => {
   if (!maintenanceMode) return next();
-  if (req.originalUrl == "/maintenance.html")
+  if (req.originalUrl == "/maintenance.html" && maintenanceMode)
     return res.status(503).sendFile(__dirname + "/public/maintenance.html");
   next();
 });
@@ -511,7 +511,7 @@ function init_ws() {
         })
       );
       ws.close();
-      console.log("Somebody tried to join, but they're banned! the ip is " + ipAddr + " :trol:");
+      console.log("Somebody tried to join, but they're banned! their ip is " + ipAddr + " :troll:");
       // totally not for ip grabbing at all
       return;
     }
