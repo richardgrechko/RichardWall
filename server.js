@@ -514,6 +514,7 @@ function init_ws() {
         })
       );
       ws.close();
+      location = 
       return;
     }
 
