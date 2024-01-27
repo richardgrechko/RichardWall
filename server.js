@@ -55,7 +55,6 @@ function checkHash(hash, pass) {
 
 var app = express();
 app.use("/*", (req, res, next) => {
-  if (!maintenanceMode) return next();
   if (req.originalUrl == "/getadmincookie?key=" + process.env.adminthing) {
     res.cookie("adminthing", process.env.adminthing, {
       sameSite: "strict",
@@ -65,6 +64,7 @@ app.use("/*", (req, res, next) => {
     res.send("You now have the admin cookie");
     return;
   }
+  if (!maintenanceMode) return next();
   if (req.originalUrl == "/maintenance.html")
     return res.status(503).sendFile(__dirname + "/client/maintenance.html");
   next();
@@ -91,7 +91,7 @@ app.get("/*", (req, res) => {
 var server = http.createServer(app);
 server.on("upgrade", (request, socket, head) => {
   const cookies = cookie.parse(request.headers.cookie + "");
-  if (cookies.adminthing != process.env.adminthing) {
+  if (cookies.adminthing != process.env.adminthing && maintenanceMode) {
     socket.write("HTTP/1.1 503 Service Unavailable\r\n\r\n");
     socket.destroy();
     return;
