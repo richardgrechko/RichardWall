@@ -4,6 +4,7 @@ var maintenanceMode = 0;
 // 💥 Turn it to "1" to shutdown the servers! 💥
 // actually you just need to change the 1 to 0
 // Restart Servers: Use the /stop command
+// Or go to /stopserver (You need the admin cookie)
 // Glitch restarts the server when it stops
 
 var fs = require("fs");
@@ -43,7 +44,7 @@ function checkHash(hash, pass) {
 }
 
 var app = express();
-app.use("/*", (req, res, next) => {
+app.use("/*", (req, res, next) => {// i seperated the admin stuff and the maintenance mode stuff
   if (req.originalUrl == "/getadmincookie?key=" + process.env.adminthing) {
     res.cookie("adminthing", process.env.adminthing, {
       sameSite: "strict",
@@ -53,11 +54,13 @@ app.use("/*", (req, res, next) => {
     res.send("You now have the admin cookie, you can access Dimka's TextWall while it's in maintenance mode with this special cookie!");
     return;
   }
-  console.log(req.originalUrl, cookie.parse(req.headers.cookie + "").adminthing);
-  if (req.originalUrl == "/stopserver" && cookie.parse(req.headers.cookie + "").adminthing != process.env.adminthing) {
+  if (req.originalUrl == "/stopserver" && cookie.parse(req.headers.cookie + "").adminthing == process.env.adminthing) {
     res.end("Bye bye!");
     closeServer();
   }
+});
+
+app.use("/*", (req, res, next) => {
   if (!maintenanceMode) return next();
   if (req.originalUrl == "/maintenance.html")
     return res.status(503).sendFile(__dirname + "/public/maintenance.html");
@@ -1716,3 +1719,4 @@ function closeServer() {
 process.once("SIGINT", closeServer);
 
 process.once("SIGTERM", closeServer);
+console.log(new Date());
