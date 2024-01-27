@@ -3,8 +3,8 @@
 var maintenanceMode = 0;
 // 💥 Turn it to "1" to shutdown the servers! 💥
 // actually you just need to change the 1 to 0
-// Restart Servers: Type something or remove here: eeeeeeeeeeeeeeeeeadwadawdwadwad
-// It automatically restarts when you modify, remove or add an character to any of the files except html ones
+// Restart Servers: Use the /stop command
+// Glitch restarts the server when it stops
 
 var fs = require("fs");
 var express = require("express");
