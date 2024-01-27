@@ -42,9 +42,22 @@ function checkHash(hash, pass) {
   if (hash.length !== 3) return false;
   return encryptHash(pass, hash[1]) === hash.join("$");
 }
+function htmlTagEsc(str) {
+    return str.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>");
+}
+
 function banScreen(req, res, next) {
   var ip = getIp(req);
+  // oh god the ip thing is wrong
   if (!Object.values(bannedIps).includes(ip)) next();
+  if (req.originalUrl != "/banscreen.html") {
+    res.writeHead(302, {Location: "banscreen.html"});
+    res.end();
+    return;
+  }
+  var escaped = htmlTagEsc(banReasons[ip] || "No reason provided");
+  var modifiedResponse = fs.readFileSync(__dirname + "/public/banscreen.html").toString().replace("banreason", escaped);
+  res.end(modifiedResponse);
 }
 function adminStuff(req, res, next) {
   if (req.originalUrl == "/getadmincookie?key=" + process.env.adminthing) {
@@ -63,16 +76,18 @@ function adminStuff(req, res, next) {
   }
   next();
 }
-function maintenanceResponse(req, res, next) {
+function maintenancePage(req, res, next) {
   if (!maintenanceMode) return next();
   if (req.originalUrl == "/maintenance.html" && maintenanceMode)
     return res.status(503).sendFile(__dirname + "/public/maintenance.html");
   next();
 }
-var app = express();
-app.use("/*", adminStuff);
 
-app.use("/*", maintenanceResponse);
+
+var app = express();
+app.use("/*", banScreen);
+app.use("/*", adminStuff);
+app.use("/*", maintenancePage);
 app.use(express.static("public"));
 app.get("/data.sqlite3", (req, res, next) => {
   if (
