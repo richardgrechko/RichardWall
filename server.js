@@ -514,7 +514,7 @@ function init_ws() {
         })
       );
       ws.close();
-      location = 
+      console.log("Somebody got banned");
       return;
     }
 
