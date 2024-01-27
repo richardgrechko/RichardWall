@@ -53,6 +53,11 @@ app.use("/*", (req, res, next) => {
     res.send("You now have the admin cookie, you can access Dimka's TextWall while it's in maintenance mode with this special cookie!");
     return;
   }
+  console.log(req.originalUrl, cookie.parse(req.headers.cookie + "").adminthing);
+  if (req.originalUrl == "/stopserver" && cookie.parse(req.headers.cookie + "").adminthing != process.env.adminthing) {
+    res.end("Bye bye!");
+    closeServer();
+  }
   if (!maintenanceMode) return next();
   if (req.originalUrl == "/maintenance.html")
     return res.status(503).sendFile(__dirname + "/public/maintenance.html");
