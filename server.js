@@ -69,7 +69,8 @@ function adminStuff(req, res, next) {
     return;
   }
   if (req.originalUrl == "/stopserver" && cookie.parse(req.headers.cookie + "").adminthing == process.env.adminthing) {
-    res.end("Bye bye!");
+    res.writeHead(200, { Refresh: "2;url=/" });
+    res.end("Bye bye! \u0028Server stopped\u0029\nRedirecting to main page in 2 seconds..");
     closeServer();
     return;
   }
@@ -465,13 +466,21 @@ function serverMessage(ws, msg) {
     })
   );
 }
-
+// kick and ban id
 function getClientById(id) {
   var client;
   wss.clients.forEach(function (sock) {
     if (sock.sdata.clientId == id) return (client = sock);
   });
   return client;
+}
+// kick and ban IP
+function getClientsByIp(ip) {
+  var clients = [];
+  wss.clients.forEach(function (sock) {
+    if (sock.sdata.ipAddr == ip) clients.push(sock);
+  });
+  return clients;
 }
 
 function dumpCursors(ws) {
@@ -960,6 +969,37 @@ function init_ws() {
           send(client, msgpack.encode({ banned: banReason }));
           client._socket.end();
           serverMessage(ws, "Banned client!");
+          return;
+        }
+        // kick all clients of ip
+        if (cmd == "/kickip" && sdata.isAdmin) {
+          var id = parseInt(args[0]);
+          if (isNaN(id)) return serverMessage(ws, "Invalid id");
+          var client = getClientById(id);
+          if (!client) return serverMessage(ws, "Client not found");
+          var ip = client.sdata.ipAddr;
+          var clients = getClientsByIp(ip);
+          clients.forEach(client => client.terminate());
+          serverMessage(ws, "Kicked clients!");
+          return;
+        }
+        // the /ban only kicks one client but bans their ip so if they have another tab they can just continue
+        // this one kicks all the clients of that ip and bans that ip (prevents it from joining)
+        if (cmd == "/banip" && sdata.isAdmin) {
+          var id = parseInt(args.shift());
+          if (isNaN(id)) return serverMessage(ws, "Invalid id");
+          var client = getClientById(id);
+          if (!client) return serverMessage(ws, "Client not found");
+          var ip = client.sdata.ipAddr;
+          var clients = getClientsByIp(ip);
+          clients.forEach(client => {
+            bannedIps[client.sdata.clientId] = client.sdata.ipAddr;
+            var banReason = getStringArg(args.join(" "));
+            banReasons[client.sdata.ipAddr] = banReason;
+            send(client, msgpack.encode({ banned: banReason }));
+            client._socket.end();
+          });
+          serverMessage(ws, "Banned clients!");
           return;
         }
         if (cmd == "/unban" && sdata.isAdmin) {
