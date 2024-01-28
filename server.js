@@ -985,6 +985,7 @@ function init_ws() {
         }
         // the /ban only kicks one client but bans their ip so if they have another tab they can just continue
         // this one kicks all the clients of that ip and bans that ip (prevents it from joining)
+        // so even if they had another tab/client, that tab/client is also banned too
         if (cmd == "/banip" && sdata.isAdmin) {
           var id = parseInt(args.shift());
           if (isNaN(id)) return serverMessage(ws, "Invalid id");
