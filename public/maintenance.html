@@ -54,16 +54,16 @@
     <source src="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/no%20shet%20given.webm"></video></center>
   </small></center>
   <script>
-      var audioCtx = new AudioContext();
-      var buffer;
-      fetch("https://media.discordapp.net/attachments/1063116432646340681/1154782835295670272/vine-boom.mp3").then(r=>r.arrayBuffer()).then(r=>audioCtx.decodeAudioData(r)).then(b=>buffer=b);
-  
-      function playVineBoom() {
-        var track = audioCtx.createBufferSource();
-        track.buffer = buffer;
-        track.connect(audioCtx.destination);
-        track.start();
-      }
+    var audioCtx = new AudioContext();
+    var buffer;
+    fetch("https://media.discordapp.net/attachments/1063116432646340681/1154782835295670272/vine-boom.mp3").then(r=>r.arrayBuffer()).then(r=>audioCtx.decodeAudioData(r)).then(b=>buffer=b);
+    
+    function playVineBoom() {
+      var track = audioCtx.createBufferSource();
+      track.buffer = buffer;
+      track.connect(audioCtx.destination);
+      track.start();
+    }
     document.addEventListener("touchstart", playVineBoom);
     document.addEventListener("pointerdown", playVineBoom);
     console.log("Dimka's TextWall servers are shitting their diapers");
