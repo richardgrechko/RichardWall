@@ -13,7 +13,7 @@
   </center>
   <script>
     self.onmessage = e => {
-      window.parent.postMessage(new URL(location).searchParams.get("code"));
+      e.source.postMessage({code: new URL(location).searchParams.get("code")}, e.origin);
     };
     window.parent.postMessage(new URL(location).searchParams.get("code"));
   </script></body>
