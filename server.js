@@ -938,7 +938,7 @@ function init_ws() {
           nick = sdata.authUser;
         }
         var args = message.split(" ");
-        var cmd = args.shift();
+        var cmd = args.shift().toLowerCase();
         if (cmd == "/announce" && sdata.isAdmin) {
           var message = getStringArg(args.join(" "));
           broadcast(
@@ -1016,7 +1016,7 @@ function init_ws() {
         if (cmd == "/getdatakey" && sdata.isAdmin) {
           return serverMessage(ws, process.env.adminthing);
         }
-        if (cmd == "/stop" && sdata.isAdmin) {
+        if (["/stop", "/stopserver", "/restart", "/"].includes(cmd) && sdata.isAdmin) {
           closeServer();
         }
         worldBroadcast(
