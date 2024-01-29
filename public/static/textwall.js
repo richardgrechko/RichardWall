@@ -2549,6 +2549,7 @@ var client_commands = {
         var i = (y - chunkY) * 20 + (x - chunkX);
         char.char = chunk.txt[i];
         char.color = chunk.clr[i] % 31;
+        char.protected = chunk.protected ? true : false;
         var format = Math.floor(chunk.clr[i] / 31);
         char.decorations = {
           bold: (format & 8) == 8,
