@@ -2443,6 +2443,7 @@ var client_commands = {
         var t = n;
         e["isTrusted"] && (e["preventDefault"](), e["pointerId"] == Dn && (Dn = void 0));
       }
+      window.mouseCoordsToCharCoords = (x, y) => Wn({pageX: x, pageY: y});
       function Wn(e) {
         var t = n;
         return {
