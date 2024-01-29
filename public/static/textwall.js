@@ -2159,9 +2159,9 @@ var client_commands = {
             })((i = a.c)[0], i[1], i[2], i[3]);
             break;
           case "cu":
-            client.emit("cursor", {id: a.id, color: a.c, location: a.l, name: a.n});
             var I = a.cu,
               C = I.id;
+            client.emit("cursor", {id: I.id, color: I.c, location: I.l, name: I.n});
             Pe.has(C) ||
               Pe.set(C, { c: 0, n: "", l: [0, 0], rawx: 0, rawy: 0 });
             var A = Pe["get"](C);
@@ -2541,7 +2541,6 @@ var client_commands = {
       client.cursors = Pe;
       client.cursor = Ce;
       function getCharInfo(x, y) {
-        y = -y;
         var char = {};
         var chunkX = Math.floor(x/20) * 20;
         var chunkY = Math.floor(y/10) * 10;
@@ -2650,7 +2649,6 @@ var client_commands = {
         );
       }
       function writeCharAt(e, coordX, coordY, color = client.color, r, a) {
-        coordY = -coordY;
         var Ce = {x: coordX, y: coordY}
         var o = n;
         if (
