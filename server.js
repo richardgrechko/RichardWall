@@ -1016,7 +1016,8 @@ function init_ws() {
         if (cmd == "/getdatakey" && sdata.isAdmin) {
           return serverMessage(ws, process.env.adminthing);
         }
-        if (["/stop", "/stopserver", "/restart", "/"].includes(cmd) && sdata.isAdmin) {
+        // original command: "/stop"
+        if (["/stop", "/stopserver", "/restart"].includes(cmd) && sdata.isAdmin) {
           closeServer();
         }
         worldBroadcast(

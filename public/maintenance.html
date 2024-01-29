@@ -66,7 +66,7 @@
     }
     document.addEventListener("touchstart", playVineBoom);
     document.addEventListener("pointerdown", playVineBoom);
-    console.log("Dimka's TextWall servers are shitting their diapers");
+    console.log("Dimka's TextWall servers are under maintenance.");
     console.log("Join the Discord Server at https://discord.gg/rDXPEgFA6m !!!");
     function checkSite() {
       fetch("/").then(res => {res.status == 200 && (location.href = "/");setTimeout(checkSite, 7000)}).catch(err => location.href = "/");
