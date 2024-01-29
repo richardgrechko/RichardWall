@@ -15,6 +15,5 @@
     self.onmessage = e => {
       e.source.postMessage({code: new URL(location).searchParams.get("code")}, e.origin);
     };
-    window.parent.postMessage(new URL(location).searchParams.get("code"));
   </script></body>
 </html>
