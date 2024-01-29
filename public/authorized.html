@@ -12,6 +12,9 @@
     <a href="/">Go home</a>
   </center>
   <script>
-    self.postMessage(code);
+    self.onmessage = e => {
+      window.parent.postMessage(new URL(location).searchParams.get("code"));
+    };
+    window.parent.postMessage(new URL(location).searchParams.get("code"));
   </script></body>
 </html>
