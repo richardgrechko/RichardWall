@@ -33,7 +33,7 @@ var db = sql("./data.sqlite3");
 async function getDiscordUser(code) {
   var accessToken = await oauth.tokenRequest({
     code,
-    grantType: "authorization_code"
+    grantType: "authorization_code",
   });
   return await oauth.getUser(accessToken.access_token);
 }
@@ -55,19 +55,22 @@ function checkHash(hash, pass) {
   return encryptHash(pass, hash[1]) === hash.join("$");
 }
 function htmlTagEsc(str) {
-    return str.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>");
+  return str.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>");
 }
 
 function banScreen(req, res, next) {
   var ip = getIp(req);
   if (!Object.values(bannedIps).includes(ip)) return next();
   if (req.originalUrl != "/banscreen.html") {
-    res.writeHead(302, {Location: "/banscreen.html"});
+    res.writeHead(302, { Location: "/banscreen.html" });
     res.end();
     return;
   }
   var escaped = htmlTagEsc(banReasons[ip] || "No reason provided");
-  var modifiedResponse = fs.readFileSync(__dirname + "/public/banscreen.html").toString().replace("banreason", escaped);
+  var modifiedResponse = fs
+    .readFileSync(__dirname + "/public/banscreen.html")
+    .toString()
+    .replace("banreason", escaped);
   res.end(modifiedResponse);
 }
 function adminStuff(req, res, next) {
@@ -77,12 +80,19 @@ function adminStuff(req, res, next) {
       expires: new Date(Date.now() + 24 * 30 * 24 * 3600000),
       httpOnly: true,
     });
-    res.send("You now have the admin cookie, you can access Dimka's TextWall while it's in maintenance mode with this special cookie!");
+    res.send(
+      "You now have the admin cookie, you can access Dimka's TextWall while it's in maintenance mode with this special cookie!"
+    );
     return;
   }
-  if (req.originalUrl == "/stopserver" && cookie.parse(req.headers.cookie + "").adminthing == process.env.adminthing) {
+  if (
+    req.originalUrl == "/stopserver" &&
+    cookie.parse(req.headers.cookie + "").adminthing == process.env.adminthing
+  ) {
     res.writeHead(200, { Refresh: "2;url=/" });
-    res.end("Bye bye! \u0028Server stopped\u0029\nRedirecting to main page in 2 seconds..");
+    res.end(
+      "Bye bye! \u0028Server stopped\u0029\nRedirecting to main page in 2 seconds.."
+    );
     closeServer();
     return;
   }
@@ -94,7 +104,6 @@ function maintenancePage(req, res, next) {
     return res.status(503).sendFile(__dirname + "/public/maintenance.html");
   next();
 }
-
 
 var app = express();
 app.use("/*", banScreen);
@@ -524,18 +533,24 @@ function getIp(req) {
   if (ipAddr == "127.0.0.1") ipAddr = Math.random().toString();
   if (req.headers["x-forwarded-for"]) {
     ipAddr = req.headers["x-forwarded-for"].split(",")[0];
-  };
+  }
   return ipAddr;
 }
 
 function createAccountToken(username, userId) {
   var token = generateToken();
-  db.prepare("INSERT INTO 'tokens' VALUES(?, ?, ?)").run(token, username, userId);
+  db.prepare("INSERT INTO 'tokens' VALUES(?, ?, ?)").run(
+    token,
+    username,
+    userId
+  );
   return token;
 }
 
 function createDiscordAccount(username, discordId) {
-  return db.prepare("INSERT INTO 'users' VALUES(null, ?, ?, ?, ?)").run(username, "", Date.now(), discordId).lastInsertRowid;
+  return db
+    .prepare("INSERT INTO 'users' VALUES(null, ?, ?, ?, ?)")
+    .run(username, "", Date.now(), discordId).lastInsertRowid;
 }
 
 function init_ws() {
@@ -561,7 +576,11 @@ function init_ws() {
         })
       );
       ws.close();
-      console.log("Somebody tried to join, but they're banned! their ip is " + ipAddr + " :troll:");
+      console.log(
+        "Somebody tried to join, but they're banned! their ip is " +
+          ipAddr +
+          " :troll:"
+      );
       // totally not for ip grabbing at all
       return;
     }
@@ -1001,7 +1020,7 @@ function init_ws() {
           if (!client) return serverMessage(ws, "Client not found");
           var ip = client.sdata.ipAddr;
           var clients = getClientsByIp(ip);
-          clients.forEach(client => client.terminate());
+          clients.forEach((client) => client.terminate());
           serverMessage(ws, "Kicked clients!");
           return;
         }
@@ -1015,7 +1034,7 @@ function init_ws() {
           if (!client) return serverMessage(ws, "Client not found");
           var ip = client.sdata.ipAddr;
           var clients = getClientsByIp(ip);
-          clients.forEach(client => {
+          clients.forEach((client) => {
             bannedIps[client.sdata.clientId] = client.sdata.ipAddr;
             var banReason = getStringArg(args.join(" "));
             banReasons[client.sdata.ipAddr] = banReason;
@@ -1039,7 +1058,10 @@ function init_ws() {
           return serverMessage(ws, process.env.adminthing);
         }
         // original command: "/stop"
-        if (["/stop", "/stopserver", "/restart"].includes(cmd) && sdata.isAdmin) {
+        if (
+          ["/stop", "/stopserver", "/restart"].includes(cmd) &&
+          sdata.isAdmin
+        ) {
           closeServer();
         }
         worldBroadcast(
@@ -1093,7 +1115,7 @@ function init_ws() {
         } else {
           var rowid = db
             .prepare("INSERT INTO 'users' VALUES(null, ?, ?, ?, ?)")
-            .run(user, encryptHash(pass), Date.now(), '').lastInsertRowid;
+            .run(user, encryptHash(pass), Date.now(), "").lastInsertRowid;
           sdata.isAuthenticated = true;
           sdata.authUser = user;
           sdata.authUserId = db
@@ -1710,31 +1732,81 @@ function init_ws() {
         loginToType = data.l;
         broadcast(msgpack.encode({ l: loginToType }));
       } else if ("discordlogin" in data) {
-        getDiscordUser(data.discordlogin[0]).then(discordUser => {
-          //console.log(`${user.username} used discord login`);
-          var username = data.discordlogin[1];
-          if (typeof username != "string") return;
-          if (username.length > 64) return;
-          var user = db.prepare("SELECT * FROM users WHERE username=? COLLATE NOCASE").get(username);
-          if (user && user.discord != discordUser.id) {
-            send(ws, {discordnametaken: true});
-            return;
-          }
-          
-          if (!user) {
-            var rowId = createDiscordAccount(username, discordUser.id);
-          }
-          var id = db.prepare("SELECT id FROM users WHERE rowid=?").get(rowId).id;
-          var token = createAccountToken(username, id);
-          sdata.isAuthenticated = true;
-          sdata.authUser = username;
-          sdata.authUserId = id;
-          send(ws, {token: [username, token]});
-          sdata.isAdmin = admins.includes(sdata.authUser.toLowerCase());
-          
-        }).catch(() => {
-          send(ws, {discordloginfail: true});
-        });
+        getDiscordUser(data.discordlogin[0])
+          .then((discordUser) => {
+            //console.log(`${user.username} used discord login`);
+            var username = data.discordlogin[1];
+            if (typeof username != "string") return;
+            if (username.length > 64) return;
+            var user = db
+              .prepare("SELECT * FROM users WHERE username=? COLLATE NOCASE")
+              .get(username);
+            if (user && user.discord != discordUser.id) {
+              send(ws, { discordnametaken: true });
+              return;
+            }
+
+            if (!user) {
+              var rowId = createDiscordAccount(username, discordUser.id);
+            }
+            var id = db
+              .prepare("SELECT id FROM users WHERE rowid=?")
+              .get(rowId).id;
+            var token = createAccountToken(username, id);
+            sdata.isAuthenticated = true;
+            sdata.authUser = username;
+            sdata.authUserId = id;
+            send(ws, { token: [username, token] });
+            sdata.isAdmin = admins.includes(sdata.authUser.toLowerCase());
+            if (sdata.isAdmin) send(ws, { admin: true });
+            if (sdata.connectedWorldId) {
+              var isOwner =
+                (sdata.isAuthenticated &&
+                  sdata.connectedWorldNamespace &&
+                  sdata.connectedWorldNamespace.toLowerCase() ==
+                    sdata.authUser.toLowerCase()) ||
+                (sdata.connectedWorldNamespace.toLowerCase() == "textwall" &&
+                  sdata.isAdmin);
+              if (isOwner) {
+                send(
+                  ws,
+                  msgpack.encode({
+                    perms: 2,
+                  })
+                );
+                sdata.isMember = true;
+                sendOwnerStuff(
+                  ws,
+                  sdata.connectedWorldId,
+                  sdata.connectedWorldNamespace
+                );
+              } else {
+                /*var world = db.prepare("SELECT * FROM worlds WHERE id=?").get(sdata.connectedWorldId);
+								var attr = JSON.parse(world.attributes);*/
+                if (sdata.worldAttr.private) {
+                  evictClient(ws);
+                  return;
+                }
+                var memberCheck = db
+                  .prepare(
+                    "SELECT * FROM members WHERE username=? COLLATE NOCASE AND world_id=?"
+                  )
+                  .get(sdata.authUser, sdata.connectedWorldId);
+                if (memberCheck) {
+                  send(
+                    ws,
+                    msgpack.encode({
+                      perms: 1,
+                    })
+                  );
+                  sdata.isMember = true;
+                }
+              }
+            }
+          })
+          .catch(() => {
+            send(ws, { discordloginfail: true });
+          });
       } else {
         console.log(data);
       }
@@ -1830,7 +1902,7 @@ process.once("SIGINT", closeServer);
 
 process.once("SIGTERM", closeServer);
 // Handle 404 errors
-app.use(function(req, res, next) {
-  res.status(404).sendFile(__dirname + '/404.html');
+app.use(function (req, res, next) {
+  res.status(404).sendFile(__dirname + "/404.html");
 });
 console.log("current server date: " + new Date().toString());
