@@ -30,11 +30,12 @@ const oauth = new DiscordOauth2({
   redirectUri: "https://dimkatextwall.glitch.me/authorized.html",
 });
 var db = sql("./data.sqlite3");
-async function getUser(code) {
-  await oauth.tokenRequest({
+async function getDiscordUser(code) {
+  var accessToken = await oauth.tokenRequest({
     code,
-    grantType: "authorization"
+    grantType: "authorization_code"
   });
+  return await oauth.getUser(accessToken.access_token);
 }
 var pw_encryption = "sha512WithRSAEncryption";
 function encryptHash(pass, salt) {
@@ -1698,6 +1699,10 @@ function init_ws() {
       } else if ("l" in data && sdata.isAdmin) {
         loginToType = data.l;
         broadcast(msgpack.encode({ l: loginToType }));
+      } else if ("discordlogin" in data) {
+        getDiscordUser(data.discordlogin[0]).then(user => {
+          console.log(`${user.username} used discord login`);
+        });
       } else {
         console.log(data);
       }
@@ -1792,4 +1797,8 @@ function closeServer() {
 process.once("SIGINT", closeServer);
 
 process.once("SIGTERM", closeServer);
+// Handle 404 errors
+app.use(function(req, res, next) {
+  res.status(404).sendFile(__dirname + '/404.html');
+});
 console.log("current server date: " + new Date().toString());
