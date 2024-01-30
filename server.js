@@ -1093,7 +1093,7 @@ function init_ws() {
         } else {
           var rowid = db
             .prepare("INSERT INTO 'users' VALUES(null, ?, ?, ?, ?)")
-            .run(user, encryptHash(pass), Date.now(), 0).lastInsertRowid;
+            .run(user, encryptHash(pass), Date.now(), '').lastInsertRowid;
           sdata.isAuthenticated = true;
           sdata.authUser = user;
           sdata.authUserId = db
@@ -1718,8 +1718,13 @@ function init_ws() {
           var user = db.prepare("SELECT * FROM users WHERE username=? COLLATE NOCASE").get(username);
           if (user && user.discord != discordUser.id) {
             send(ws, {discordnametaken: true});
+            return;
           }
           
+          if (!user) {
+            createDiscordAccount(username, discordUser.id);
+          }
+          var rowId = db.prepare("SELECT * FROM users WHERE username")
         });
       } else {
         console.log(data);
@@ -1768,7 +1773,7 @@ async function initServer() {
       "CREATE TABLE 'worlds' (id INTEGER NOT NULL PRIMARY KEY, namespace TEXT, name TEXT, attributes TEXT)"
     ).run();
     db.prepare(
-      "CREATE TABLE 'users' (id INTEGER NOT NULL PRIMARY KEY, username TEXT, password TEXT, date_joined INTEGER, discord INTEGER)"
+      "CREATE TABLE 'users' (id INTEGER NOT NULL PRIMARY KEY, username TEXT, password TEXT, date_joined INTEGER, discord TEXT)"
     ).run();
     db.prepare(
       "CREATE TABLE 'tokens' (token TEXT, username TEXT, user_id INTEGER NOT NULL)"
