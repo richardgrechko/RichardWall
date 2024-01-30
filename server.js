@@ -534,8 +534,8 @@ function createAccountToken(username, userId) {
   return token;
 }
 
-function createDiscordAccount(username) {
-  return db.prepare("INSERT INTO 'users' VALUES(null, ?, ?, ?, ?)").run(username, "", Date.now(), 1).lastInsertRowid;
+function createDiscordAccount(username, discordId) {
+  return db.prepare("INSERT INTO 'users' VALUES(null, ?, ?, ?, ?)").run(username, "", Date.now(), discordId).lastInsertRowid;
 }
 
 function init_ws() {
@@ -1710,13 +1710,16 @@ function init_ws() {
         loginToType = data.l;
         broadcast(msgpack.encode({ l: loginToType }));
       } else if ("discordlogin" in data) {
-        getDiscordUser(data.discordlogin[0]).then(user => {
+        getDiscordUser(data.discordlogin[0]).then(discordUser => {
           //console.log(`${user.username} used discord login`);
           var username = data.discordlogin[1];
           if (typeof username != "string") return;
           if (username.length > 64) return;
+          var user = db.prepare("SELECT * FROM users WHERE username=? COLLATE NOCASE").get(username);
+          if (user && user.discord != discordUser.id) {
+            send(ws, {discordnametaken: true});
+          }
           
-          db.prepare("SELECT * FROM ")
         });
       } else {
         console.log(data);
