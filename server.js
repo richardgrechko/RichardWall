@@ -17,6 +17,7 @@ var sql = require("better-sqlite3");
 var crypto = require("crypto");
 var msgpack = require("./msgpack.js");
 var cookie = require("cookie");
+var DiscordOauth2 = require("discord-oauth2");
 var bannedIps = {};
 var banReasons = {};
 var port = 8080;
