@@ -1722,9 +1722,18 @@ function init_ws() {
           }
           
           if (!user) {
-            createDiscordAccount(username, discordUser.id);
+            var rowId = createDiscordAccount(username, discordUser.id);
           }
-          var rowId = db.prepare("SELECT * FROM users WHERE username")
+          var id = db.prepare("SELECT id FROM users WHERE rowid=?").get(rowId).id;
+          var token = createAccountToken(username, id);
+          sdata.isAuthenticated = true;
+          sdata.authUser = username;
+          sdata.authUserId = id;
+          send(ws, {token: [username, token]});
+          sdata.isAdmin = admins.includes(sdata.authUser.toLowerCase());
+          
+        }).catch(() => {
+          send(ws, {discordloginfail: true});
         });
       } else {
         console.log(data);
