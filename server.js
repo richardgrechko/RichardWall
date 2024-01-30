@@ -1070,8 +1070,8 @@ function init_ws() {
           );
         } else {
           var rowid = db
-            .prepare("INSERT INTO 'users' VALUES(null, ?, ?, ?)")
-            .run(user, encryptHash(pass), Date.now()).lastInsertRowid;
+            .prepare("INSERT INTO 'users' VALUES(null, ?, ?, ?, ?)")
+            .run(user, encryptHash(pass), Date.now(), 0).lastInsertRowid;
           sdata.isAuthenticated = true;
           sdata.authUser = user;
           sdata.authUserId = db
