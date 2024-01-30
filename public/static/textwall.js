@@ -3033,6 +3033,7 @@ var client_commands = {
         (k.style.cursor = "crosshair"),
         ir("Select an area to copy.", 1500);
     }
+    window.showAlert = ir;
     function ir(e, t) {
       var r = n;
       clearTimeout(p),
