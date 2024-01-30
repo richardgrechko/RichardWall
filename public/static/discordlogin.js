@@ -7,5 +7,5 @@ function discordLogin() {
     clearInterval(interval);
     login.close();
     console.log(e.data.code);
-  }, {once: true});
+  }, { once: true });
 }
