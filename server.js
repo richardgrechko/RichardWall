@@ -530,7 +530,7 @@ function getIp(req) {
 
 function createAccountToken(user, userid) {
   var token = generateToken();
-  
+  db.prepare("INSERT INTO 'tokens' VALUES(?, ?, ?)").
 }
 
 function init_ws() {
