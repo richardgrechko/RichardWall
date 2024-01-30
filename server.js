@@ -528,9 +528,14 @@ function getIp(req) {
   return ipAddr;
 }
 
-function createAccountToken(user, userid) {
+function createAccountToken(username, userId) {
   var token = generateToken();
-  db.prepare("INSERT INTO 'tokens' VALUES(?, ?, ?)").
+  db.prepare("INSERT INTO 'tokens' VALUES(?, ?, ?)").run(token, username, userId);
+  return token;
+}
+
+function createDiscordAccount(username) {
+  return db.prepare("INSERT INTO 'users' VALUES(null, ?, ?, ?, ?)").run(username, "", Date.now(), 1).lastInsertRowid;
 }
 
 function init_ws() {
@@ -1707,7 +1712,11 @@ function init_ws() {
       } else if ("discordlogin" in data) {
         getDiscordUser(data.discordlogin[0]).then(user => {
           //console.log(`${user.username} used discord login`);
+          var username = data.discordlogin[1];
+          if (typeof username != "string") return;
+          if (username.length > 64) return;
           
+          db.prepare("SELECT * FROM ")
         });
       } else {
         console.log(data);
