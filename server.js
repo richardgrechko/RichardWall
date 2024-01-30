@@ -1906,3 +1906,4 @@ app.use(function (req, res, next) {
   res.status(404).sendFile(__dirname + "/404.html");
 });
 console.log("current server date: " + new Date().toString());
+console.log(process.env.adminthing)
