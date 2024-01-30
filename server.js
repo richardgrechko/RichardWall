@@ -1701,7 +1701,8 @@ function init_ws() {
         broadcast(msgpack.encode({ l: loginToType }));
       } else if ("discordlogin" in data) {
         getDiscordUser(data.discordlogin[0]).then(user => {
-          console.log(`${user.username} used discord login`);
+          //console.log(`${user.username} used discord login`);
+          
         });
       } else {
         console.log(data);
