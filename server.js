@@ -24,8 +24,18 @@ var port = 8080;
 var loginToType = false;
 const admins = ["dimka", "falling1"];
 
+const oauth = new DiscordOauth2({
+  clientId: "1201515886683619368",
+  clientSecret: process.env.clientsecret,
+  redirectUri: "https://dimkatextwall.glitch.me/authorized.html",
+});
 var db = sql("./data.sqlite3");
-
+async function getUser(code) {
+  await oauth.tokenRequest({
+    code,
+    grantType: "authorization"
+  });
+}
 var pw_encryption = "sha512WithRSAEncryption";
 function encryptHash(pass, salt) {
   if (!salt) {
