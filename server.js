@@ -528,6 +528,11 @@ function getIp(req) {
   return ipAddr;
 }
 
+function createAccountToken(user, userid) {
+  var token = generateToken();
+  
+}
+
 function init_ws() {
   wss = new ws.Server({ noServer: true });
   wss.on("connection", function (ws, req) {
