@@ -6,6 +6,6 @@ function discordLogin() {
     if (!e.data.code) return;
     clearInterval(interval);
     login.close();
-    client.sendWsMessage([e.data.code]);
+    client.sendWsMessage({discordlogin: [e.data.code]});
   }, { once: true });
 }
