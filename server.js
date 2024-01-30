@@ -1120,7 +1120,7 @@ function init_ws() {
         var userObj = db
           .prepare("SELECT * FROM 'users' WHERE username=? COLLATE NOCASE")
           .get(user);
-        if (userObj) {
+        if (userObj && !userObj.discord) {
           var db_user = userObj.username;
           var db_id = userObj.id;
           var db_pass = userObj.password;
@@ -1734,7 +1734,7 @@ async function initServer() {
       "CREATE TABLE 'worlds' (id INTEGER NOT NULL PRIMARY KEY, namespace TEXT, name TEXT, attributes TEXT)"
     ).run();
     db.prepare(
-      "CREATE TABLE 'users' (id INTEGER NOT NULL PRIMARY KEY, username TEXT, password TEXT, date_joined INTEGER)"
+      "CREATE TABLE 'users' (id INTEGER NOT NULL PRIMARY KEY, username TEXT, password TEXT, date_joined INTEGER, discord INTEGER)"
     ).run();
     db.prepare(
       "CREATE TABLE 'tokens' (token TEXT, username TEXT, user_id INTEGER NOT NULL)"
