@@ -2,6 +2,10 @@
 var login;
 var interval;
 var code;
+var canceldiscordlogin = document.getElementById("canceldiscordlogin");
+var discordloginbtn = document.getElementById("discordloginbtn");
+var discordloginname = document.getElementById("discordloginname");
+var discordchoosename = document.getElementById("discordchoosename");
 
 function discordLogin() {
   login = window.open(
@@ -45,5 +49,28 @@ function cancelDiscordLogin() {
 }
 
 client.on("wsmessage", e => {
-  if (e.discordnoaccount) document.getElementById("discordlogin").style.display = "block";
+  if (e.discordnoaccount) {
+    document.getElementById("discordlogin").style.display = "block";
+    discordloginbtn.style.display = "none";
+    discordloginbtn.disabled = false;
+  }
+  if (e.discordnametaken) {
+    showAlert("Username is already in use.", 3e3);
+    discordloginname.disabled = false;
+    discordchoosename.disabled = false;
+  }
+  if (e.token) {
+    discordloginname.disabled = false;
+    discordchoosename.disabled = false;
+  }
 });
+
+discordchoosename.onclick = sendUsername;
+discordloginname.onkeydown = e => {
+  if (e.which == 13) sendUsername();
+};
+function sendUsername() {
+  client.sendWsMessage({ discordlogin: [code, discordloginname.value] });
+  discordloginname.disabled = true;
+  discordchoosename.disabled = true;
+}
