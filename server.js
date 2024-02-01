@@ -1754,8 +1754,8 @@ function init_ws() {
               var rowId = createDiscordAccount(username, discordUser.id);
             }
             var id = db
-              .prepare("SELECT id FROM users WHERE rowid=?")
-              .get(rowId).id;
+              .prepare(rowId ? "SELECT id FROM users WHERE rowid=?" : "SELECT * FROM users WHERE discord=?")
+              .get(rowId || discordUser.id).id;
             var token = createAccountToken(username, id);
             sdata.isAuthenticated = true;
             sdata.authUser = username;
