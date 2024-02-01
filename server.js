@@ -1097,7 +1097,7 @@ function init_ws() {
             ws,
             msgpack.encode({
               alert:
-                "Bad username - it must be 1-64 chars and have the following chars: A-Z a-z 0-9 - _ .",
+                "Bad username - it must be 1-24 chars and have the following chars: A-Z a-z 0-9 - _ .",
             })
           );
           return;
@@ -1758,7 +1758,19 @@ function init_ws() {
               send(ws, msgpack.encode({ discordnametaken: true }));
               return;
             }
-
+            if (username) {
+              var isValid = validateUsername(user);
+              if (!isValid) {
+                send(
+                  ws,
+                  msgpack.encode({
+                    alert:
+                      "Bad username - it must be 1-24 chars and have the following chars: A-Z a-z 0-9 - _ .",
+                  })
+                );
+                return;
+              }
+            }
             if (!user) {
               var rowId = createDiscordAccount(username, discordUser.id);
             }

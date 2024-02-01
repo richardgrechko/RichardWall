@@ -78,7 +78,12 @@ discordloginname.onkeydown = e => {
   if (e.which == 13) sendUsername();
 };
 function sendUsername() {
-  client.sendWsMessage({ discordlogin: discordloginname.value });
+  var username = discordloginname.value;
+  if (!/^[\w.-]+$/.test(username)) {
+    showAlert("Username is invalid.", 3e3);
+    return;
+  }
+  client.sendWsMessage({ discordlogin: username });
   discordloginname.disabled = true;
   discordchoosename.disabled = true;
 }
