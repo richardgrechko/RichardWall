@@ -1733,7 +1733,8 @@ function init_ws() {
         loginToType = data.l;
         broadcast(msgpack.encode({ l: loginToType }));
       } else if ("discordlogin" in data) {
-        ws.sdata.discordUser
+        if (sdata.isAuthenticated) return;
+        sdata.discordUser
           .then((discordUser) => {
             //console.log(`${user.username} used discord login`);
             var username = data.discordlogin;
@@ -1760,13 +1761,15 @@ function init_ws() {
             if (!user) {
               var rowId = createDiscordAccount(username, discordUser.id);
             }
-            var id = db
+            user = db
               .prepare(
                 rowId
-                  ? "SELECT id FROM users WHERE rowid=?"
+                  ? "SELECT * FROM users WHERE rowid=?"
                   : "SELECT * FROM users WHERE discord=?"
               )
-              .get(rowId || discordUser.id).id;
+              .get(rowId || discordUser.id);
+            var id = user.id;
+            username = user.username;
             var token = createAccountToken(username, id);
             sdata.isAuthenticated = true;
             sdata.authUser = username;
@@ -1823,7 +1826,7 @@ function init_ws() {
             send(ws, msgpack.encode({ discordloginfail: true }));
           });
       } else if ("discordcode" in data) {
-        ws.sdata.discordUser = getDiscordUser(data.discordcode);
+        sdata.discordUser = getDiscordUser(data.discordcode);
       } else {
         console.log(data);
       }

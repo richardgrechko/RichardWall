@@ -490,6 +490,7 @@ var client_commands = {
         (document["getElementById"]("loginwithdiscord")["style"]["display"] = "inline"),
         (document["getElementById"]("logintext")["style"]["display"] = "block"),
         (document.getElementById("loggedin")["style"].display = "none"),
+        cancelDiscordLogin(),
         vn(!1),
         xn(),
         (m = !1),

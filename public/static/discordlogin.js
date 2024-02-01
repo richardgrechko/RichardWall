@@ -48,6 +48,8 @@ function cancelDiscordLogin() {
   document.getElementById("login").style.display = "block";
   document.getElementById("discordlogin").style.display = "none";
   discordloginbtn.style.display = "inline-block";
+  discordloginname.disabled = false;
+  discordchoosename.disabled = false;
 }
 
 client.on("wsmessage", e => {
@@ -62,9 +64,12 @@ client.on("wsmessage", e => {
     discordchoosename.disabled = false;
   }
   if (e.token) {
-    discordloginname.disabled = false;
-    discordchoosename.disabled = false;
+    cancelDiscordLogin();
     discordloginbtn.style.display = "inline-block";
+  }
+  if (e.discordloginfail) {
+    showAlert("An error occurred.", 3e3);
+    cancelDiscordLogin();
   }
 });
 
