@@ -1,6 +1,6 @@
 // Thanks to falling1 for helping out!
 // https://glitch.com/@falling1
-var maintenanceMode = 1;
+var maintenanceMode = 0;
 // 💥 Turn it to "1" to shutdown the servers! 💥
 // actually you just need to change the 1 to 0
 // Restart Servers: Use the /stop command
@@ -1685,6 +1685,7 @@ function init_ws() {
             .get(user_id);
           if (account) {
             var db_pass = account.password;
+            if (account.discord) return send(ws, msgpack.encode({ cantchangepass: true }));
             var isValid = checkHash(db_pass, oldPass);
             if (isValid) {
               db.prepare("UPDATE users SET password=? WHERE id=?").run(
@@ -1762,7 +1763,7 @@ function init_ws() {
               return;
             }
             if (username) {
-              var isValid = validateUsername(user);
+              var isValid = validateUsername(username);
               if (!isValid) {
                 send(
                   ws,
