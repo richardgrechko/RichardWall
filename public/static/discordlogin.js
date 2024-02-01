@@ -6,18 +6,19 @@ function discordLogin() {
   var interval = setInterval(
     () => {
       login.postMessage("", "https://dimkatextwall.glitch.me");
-      if (login.closed) cancelLogin();
+      if (login.closed) cancelDiscordLogin();
     },
     500
   );
   discordloginbtn.disabled = true;
+  document.getElementById("login").style.display = "none";
   window.addEventListener(
     "message",
     (e) => {
       if (e.data.error) {
         showAlert("An error occurred. Please try again.", 5e3);
         console.log("Discord login error:", e.data.error, e.data.error_description);
-        cancelLogin();
+        cancelDiscordLogin();
       }
       if (!e.data.code) return;
       clearInterval(interval);
@@ -26,11 +27,13 @@ function discordLogin() {
     },
     { once: true }
   );
-  login.onclose = cancelLogin;
-  function cancelLogin() {
+  login.onclose = cancelDiscordLogin;
+  function cancelDiscordLogin() {
     clearInterval(interval);
     login.close();
     discordloginbtn.disabled = false;
+    document.getElementById("login").style.display = "block";
+    
   }
 }
 

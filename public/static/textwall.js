@@ -1588,10 +1588,12 @@ var client_commands = {
             break;
           case lt:
             (document["getElementById"]("login")["style"]["display"] = "none"),
+              (document["getElementById"]("discordloginbtn")["style"]["display"] = "none"),
               (document["getElementById"]("register").style.display = "block");
             break;
           case ut:
             (document["getElementById"]("login")["style"].display = "block"),
+              (document["getElementById"]("discordloginbtn")["style"]["display"] = "block"),
               (document["getElementById"]("register")["style"]["display"] =
                 "none");
             break;
@@ -2464,6 +2466,8 @@ var client_commands = {
             localStorage["setItem"]("username", je),
             localStorage["setItem"]("token", R[1]),
             (document["getElementById"]("login")["style"]["display"] = "none"),
+            (document["getElementById"]("discordloginbtn")["style"]["display"] = "none"),
+            (document["getElementById"]("discordloginbtn").disabled = false),
             (document["getElementById"]("register")["style"]["display"] =
               "none"),
             (document["getElementById"]("loggedin").style["display"] = "block"),
