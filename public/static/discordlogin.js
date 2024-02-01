@@ -1,5 +1,5 @@
 //wip
-var login;
+var loginPopup;
 var interval;
 var code;
 var canceldiscordlogin = document.getElementById("canceldiscordlogin");
@@ -8,12 +8,12 @@ var discordloginname = document.getElementById("discordloginname");
 var discordchoosename = document.getElementById("discordchoosename");
 
 function discordLogin() {
-  login = window.open(
+  loginPopup = window.open(
     "https://discord.com/api/oauth2/authorize?client_id=1201515886683619368&response_type=code&redirect_uri=https%3A%2F%2Fdimkatextwall.glitch.me%2Fauthorized.html&scope=identify"
   );
   interval = setInterval(() => {
-    login.postMessage("", "https://dimkatextwall.glitch.me");
-    if (login.closed) cancelDiscordLogin();
+    loginPopup.postMessage("", "https://dimkatextwall.glitch.me");
+    if (loginPopup.closed) cancelDiscordLogin();
   }, 500);
   discordloginbtn.disabled = true;
   document.getElementById("login").style.display = "none";
@@ -31,7 +31,7 @@ function discordLogin() {
       }
       if (!e.data.code) return;
       clearInterval(interval);
-      login.close();
+      loginPopup.close();
       code = e.data.code;
       client.sendWsMessage({ discordcode: e.data.code });
       client.sendWsMessage({ discordlogin: true });
@@ -43,7 +43,7 @@ function discordLogin() {
 canceldiscordlogin.onclick = cancelDiscordLogin;
 function cancelDiscordLogin() {
   clearInterval(interval);
-  login.close();
+  loginPopup && loginPopup.close();
   discordloginbtn.disabled = false;
   document.getElementById("login").style.display = "block";
   document.getElementById("discordlogin").style.display = "none";

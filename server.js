@@ -1392,8 +1392,8 @@ function init_ws() {
             .get(user_id);
           if (account) {
             var db_pass = account.password;
-            var isValid = checkHash(db_pass, pass);
-            if (isValid) {
+            var isValid = account.discord ? true : checkHash(db_pass, pass);
+            if (isValid && account.discord && pass == "confirm") {
               db.prepare("DELETE FROM users WHERE id=?").run(account.id);
               db.prepare("UPDATE worlds SET namespace=? WHERE namespace=?").run(
                 "del-" + Math.random() + "-" + account.username,
@@ -1429,6 +1429,8 @@ function init_ws() {
                   wrongpass: true,
                 })
               );
+              if (account.discord)
+                send(ws, msgpack.encode({ alert: 'Type "confirm"' }));
             }
           }
         }
@@ -1741,7 +1743,6 @@ function init_ws() {
             if (!discordUser) return;
             if (typeof username != "string") username = undefined;
             if (typeof username == "string" && username.length > 24) return;
-            console.log(1);
             var user = db
               .prepare(
                 username
@@ -1822,7 +1823,8 @@ function init_ws() {
               }
             }
           })
-          .catch(() => {
+          .catch((err) => {
+            console.log(err);
             send(ws, msgpack.encode({ discordloginfail: true }));
           });
       } else if ("discordcode" in data) {
