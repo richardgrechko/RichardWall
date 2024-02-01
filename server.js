@@ -1599,7 +1599,7 @@ function init_ws() {
         if (newUser.length > 64) return;
         if (pass.length > 128) return;
         if (!validateUsername(newUser)) return;
-        
+
         var tokenData = db
           .prepare("SELECT * FROM tokens WHERE token=?")
           .get(sdata.authToken);
@@ -1611,7 +1611,7 @@ function init_ws() {
           if (account) {
             var db_pass = account.password;
             var isValid = account.discord ? true : checkHash(db_pass, pass);
-            if (isValid && (account.discord && pass == "confirm")) {
+            if (isValid && account.discord && pass == "confirm") {
               var userCheck = db
                 .prepare("SELECT * FROM users WHERE username=? COLLATE NOCASE")
                 .get(newUser);
@@ -1651,7 +1651,7 @@ function init_ws() {
                 });
               }
             } else if (account.discord) {
-              send(ws, msgpack.encode({ typeconfirm: true }))
+              send(ws, msgpack.encode({ typeconfirm: true }));
             } else {
               send(
                 ws,
@@ -1685,7 +1685,8 @@ function init_ws() {
             .get(user_id);
           if (account) {
             var db_pass = account.password;
-            if (account.discord) return send(ws, msgpack.encode({ cantchangepass: true }));
+            if (account.discord)
+              return send(ws, msgpack.encode({ cantchangepass: true }));
             var isValid = checkHash(db_pass, oldPass);
             if (isValid) {
               db.prepare("UPDATE users SET password=? WHERE id=?").run(
@@ -1777,6 +1778,7 @@ function init_ws() {
             }
             if (!user) {
               var rowId = createDiscordAccount(username, discordUser.id);
+              var newAcc = true;
             }
             user = db
               .prepare(
@@ -1791,6 +1793,19 @@ function init_ws() {
             sdata.isAuthenticated = true;
             sdata.authUser = username;
             sdata.authUserId = id;
+            sdata.authToken = token;
+            if (newAcc) db.prepare("INSERT INTO 'worlds' VALUES(null, ?, ?, ?)").run(
+              sdata.authUser,
+              "main",
+              JSON.stringify({
+                readonly: false,
+                private: false,
+                hideCursors: false,
+                disableChat: false,
+                disableColor: false,
+                disableBraille: false,
+              })
+            );
             send(ws, msgpack.encode({ token: [username, token] }));
             sdata.isAdmin = admins.includes(sdata.authUser.toLowerCase());
             if (sdata.isAdmin) send(ws, msgpack.encode({ admin: true }));
