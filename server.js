@@ -609,7 +609,7 @@ function init_ws() {
     };
     ws.sdata = sdata;
     send(ws, msgpack.encode({ id: sdata.clientId }));
-
+    if (maintenanceMode) send(ws, msgpack.encode({ alert: "Server is in maintenance mode" }));
     ws.on("message", function (message, binary) {
       if (!binary) return;
 
