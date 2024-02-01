@@ -1732,12 +1732,12 @@ function init_ws() {
         loginToType = data.l;
         broadcast(msgpack.encode({ l: loginToType }));
       } else if ("discordlogin" in data) {
-        getDiscordUser(data.discordlogin[0])
-          .then((discordUser) => {
+        var discordUser = ws.sdata.discordUser;
             //console.log(`${user.username} used discord login`);
             var username = data.discordlogin[1];
             if (typeof username != "string" && typeof username != "undefined") return;
             if (typeof username == "string" && username.length > 24) return;
+            console.log(1);
             var user = db
               .prepare(username ? "SELECT * FROM users WHERE username=? COLLATE NOCASE" : "SELECT * FROM users WHERE discord=?")
               .get(username || discordUser.id);
@@ -1807,10 +1807,9 @@ function init_ws() {
                 }
               }
             }
-          })
-          .catch(() => {
-            send(ws, { discordloginfail: true });
-          });
+          
+      } else if ("discordcode" in data) {
+        getDiscordUser(data.discordCode).then(user => ws.sdata.discordUser = user);
       } else {
         console.log(data);
       }

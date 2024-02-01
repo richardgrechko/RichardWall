@@ -33,7 +33,7 @@ function discordLogin() {
       clearInterval(interval);
       login.close();
       code = e.data.code;
-      client.sendWsMessage({ discordlogin: [e.data.code] });
+      client.sendWsMessage({ discordcode: e.data.code });
     },
     { once: true }
   );
@@ -46,6 +46,7 @@ function cancelDiscordLogin() {
   discordloginbtn.disabled = false;
   document.getElementById("login").style.display = "block";
   document.getElementById("discordlogin").style.display = "none";
+  discordloginbtn.style.display = "inline-block";
 }
 
 client.on("wsmessage", e => {
@@ -62,6 +63,7 @@ client.on("wsmessage", e => {
   if (e.token) {
     discordloginname.disabled = false;
     discordchoosename.disabled = false;
+    discordloginbtn.style.display = "inline-block";
   }
 });
 
@@ -70,7 +72,7 @@ discordloginname.onkeydown = e => {
   if (e.which == 13) sendUsername();
 };
 function sendUsername() {
-  client.sendWsMessage({ discordlogin: [code, discordloginname.value] });
+  client.sendWsMessage({ discordlogin: discordloginname.value });
   discordloginname.disabled = true;
   discordchoosename.disabled = true;
 }
