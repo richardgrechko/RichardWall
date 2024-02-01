@@ -1422,6 +1422,8 @@ function init_ws() {
                   perms: 0,
                 })
               );
+            } else if (account.discord) {
+              send(ws, msgpack.encode({ typeconfirm: true }));
             } else {
               send(
                 ws,
@@ -1429,8 +1431,6 @@ function init_ws() {
                   wrongpass: true,
                 })
               );
-              if (account.discord)
-                send(ws, msgpack.encode({ alert: 'Type "confirm"' }));
             }
           }
         }
@@ -1598,7 +1598,8 @@ function init_ws() {
         if (typeof pass != "string") return;
         if (newUser.length > 64) return;
         if (pass.length > 128) return;
-
+        if (!validateUsername(newUser)) return;
+        
         var tokenData = db
           .prepare("SELECT * FROM tokens WHERE token=?")
           .get(sdata.authToken);
@@ -1609,8 +1610,8 @@ function init_ws() {
             .get(user_id);
           if (account) {
             var db_pass = account.password;
-            var isValid = checkHash(db_pass, pass);
-            if (isValid) {
+            var isValid = account.discord ? true : checkHash(db_pass, pass);
+            if (isValid && (account.discord && pass == "confirm")) {
               var userCheck = db
                 .prepare("SELECT * FROM users WHERE username=? COLLATE NOCASE")
                 .get(newUser);
@@ -1649,6 +1650,8 @@ function init_ws() {
                   }
                 });
               }
+            } else if (account.discord) {
+              send(ws, msgpack.encode({ typeconfirm: true }))
             } else {
               send(
                 ws,

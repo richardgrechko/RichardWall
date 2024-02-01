@@ -2508,6 +2508,14 @@ var client_commands = {
         case "closing":
           client.serverClosed = true;
           break;
+        case "typeconfirm": 
+          ir('Please type "confirm" as the password.', 3e3);
+          vn(!1);
+          break;
+        case "cantchangepass":
+          ir("You cannot change your password because you are using Discord to log in.", 8e3);
+          vn(!1)
+          break;
       }
     }
     function Bn() {
