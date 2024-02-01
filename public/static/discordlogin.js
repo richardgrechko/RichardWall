@@ -34,6 +34,7 @@ function discordLogin() {
       login.close();
       code = e.data.code;
       client.sendWsMessage({ discordcode: e.data.code });
+      client.sendWsMessage({ discordlogin: true });
     },
     { once: true }
   );

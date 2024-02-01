@@ -609,7 +609,8 @@ function init_ws() {
     };
     ws.sdata = sdata;
     send(ws, msgpack.encode({ id: sdata.clientId }));
-    if (maintenanceMode) send(ws, msgpack.encode({ alert: "Server is in maintenance mode" }));
+    if (maintenanceMode)
+      send(ws, msgpack.encode({ alert: "Server is in maintenance mode" }));
     ws.on("message", function (message, binary) {
       if (!binary) return;
 
@@ -1732,14 +1733,20 @@ function init_ws() {
         loginToType = data.l;
         broadcast(msgpack.encode({ l: loginToType }));
       } else if ("discordlogin" in data) {
-        var discordUser = ws.sdata.discordUser;
+        ws.sdata.discordUser
+          .then((discordUser) => {
             //console.log(`${user.username} used discord login`);
-            var username = data.discordlogin[1];
-            if (typeof username != "string" && typeof username != "undefined") return;
+            var username = data.discordlogin;
+            if (!discordUser) return;
+            if (typeof username != "string") username = undefined;
             if (typeof username == "string" && username.length > 24) return;
             console.log(1);
             var user = db
-              .prepare(username ? "SELECT * FROM users WHERE username=? COLLATE NOCASE" : "SELECT * FROM users WHERE discord=?")
+              .prepare(
+                username
+                  ? "SELECT * FROM users WHERE username=? COLLATE NOCASE"
+                  : "SELECT * FROM users WHERE discord=?"
+              )
               .get(username || discordUser.id);
             if (!user && !username) {
               send(ws, msgpack.encode({ discordnoaccount: true }));
@@ -1754,7 +1761,11 @@ function init_ws() {
               var rowId = createDiscordAccount(username, discordUser.id);
             }
             var id = db
-              .prepare(rowId ? "SELECT id FROM users WHERE rowid=?" : "SELECT * FROM users WHERE discord=?")
+              .prepare(
+                rowId
+                  ? "SELECT id FROM users WHERE rowid=?"
+                  : "SELECT * FROM users WHERE discord=?"
+              )
               .get(rowId || discordUser.id).id;
             var token = createAccountToken(username, id);
             sdata.isAuthenticated = true;
@@ -1807,9 +1818,12 @@ function init_ws() {
                 }
               }
             }
-          
+          })
+          .catch(() => {
+            send(ws, msgpack.encode({ discordloginfail: true }));
+          });
       } else if ("discordcode" in data) {
-        getDiscordUser(data.discordCode).then(user => ws.sdata.discordUser = user);
+        ws.sdata.discordUser = getDiscordUser(data.discordcode);
       } else {
         console.log(data);
       }
