@@ -189,17 +189,20 @@
             >White text</label
           >
         </fieldset>
-        <h3>Log in</h3>
-        <button type="button" onclick="discordLogin()" id="discordloginbtn">
-          Login with Discord</button
-        ><br />
-        <div style="display: none" id="discordlogin">
-          <b>Sign up with Discord</b>
-          <br /><button id="canceldiscordlogin">Cancel</button><br />
-          <label>Choose a username:</label><br />
-          <input id="discordloginname" maxlength="24" /> <button style="margin-top: 5px;vertical-align: middle;">Go</button>
+        <h3 id="logintext">Log in</h3>
+        <div id="loginwithdiscord">
+          <button type="button" onclick="discordLogin()" id="discordloginbtn">
+            Login with Discord</button
+          ><br />
+          <div style="display: none" id="discordlogin">
+            <b>Sign up with Discord</b>
+            <br /><button id="canceldiscordlogin">Cancel</button><br />
+            <label>Choose a username:</label><br />
+            <input id="discordloginname" maxlength="24" />
+            <button style="margin-top: 5px; vertical-align: middle">Go</button>
+          </div>
+          <br />
         </div>
-        <br />
         <form id="login">
           <label for="loginname">Username:</label><br />
           <input

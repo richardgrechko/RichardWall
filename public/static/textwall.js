@@ -487,6 +487,8 @@ var client_commands = {
           a.send(Or({ logout: 0 })),
           (Re = !0)),
         (document["getElementById"]("login")["style"]["display"] = "block"),
+        (document["getElementById"]("loginwithdiscord")["style"]["display"] = "inline"),
+        (document["getElementById"]("logintext")["style"]["display"] = "block"),
         (document.getElementById("loggedin")["style"].display = "none"),
         vn(!1),
         xn(),
@@ -1588,12 +1590,16 @@ var client_commands = {
             break;
           case lt:
             (document["getElementById"]("login")["style"]["display"] = "none"),
-              (document["getElementById"]("discordloginbtn")["style"]["display"] = "none"),
+              (document["getElementById"]("logintext")["style"]["display"] = "none"),
+              (document["getElementById"]("loginwithdiscord")["style"]["display"] = "none"),
+              (document["getElementById"]("login")["style"]["display"] = "none"),
               (document["getElementById"]("register").style.display = "block");
             break;
           case ut:
             (document["getElementById"]("login")["style"].display = "block"),
-              (document["getElementById"]("discordloginbtn")["style"]["display"] = "block"),
+              (document["getElementById"]("logintext")["style"]["display"] = "block"),
+              (document["getElementById"]("loginwithdiscord")["style"]["display"] = "inline"),
+              (document["getElementById"]("login")["style"]["display"] = "block"),
               (document["getElementById"]("register")["style"]["display"] =
                 "none");
             break;
@@ -2466,7 +2472,8 @@ var client_commands = {
             localStorage["setItem"]("username", je),
             localStorage["setItem"]("token", R[1]),
             (document["getElementById"]("login")["style"]["display"] = "none"),
-            (document["getElementById"]("discordloginbtn")["style"]["display"] = "none"),
+            (document["getElementById"]("logintext")["style"]["display"] = "none"),
+            (document["getElementById"]("loginwithdiscord")["style"]["display"] = "none"),
             (document["getElementById"]("discordloginbtn").disabled = false),
             (document["getElementById"]("register")["style"]["display"] =
               "none"),

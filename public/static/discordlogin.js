@@ -33,7 +33,7 @@ function discordLogin() {
     login.close();
     discordloginbtn.disabled = false;
     document.getElementById("login").style.display = "block";
-    
+    document.getElementById("discordlogin").style.display = "none";
   }
 }
 
