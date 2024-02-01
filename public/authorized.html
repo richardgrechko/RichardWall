@@ -13,8 +13,9 @@
     <a href="/">Go home</a>
   </center>
   <script>
+    var searchParams = new URL(location).searchParams;
     self.onmessage = e => {
-      e.source.postMessage({code: new URL(location).searchParams.get("code")}, e.origin);
+      e.source.postMessage(Object.fromEntries(searchParams), e.origin);
     };
   </script></body>
 </html>

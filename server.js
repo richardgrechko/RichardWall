@@ -1087,7 +1087,7 @@ function init_ws() {
 
         if (typeof user != "string") return;
         if (typeof pass != "string") return;
-        if (user.length > 64) return;
+        if (user.length > 24) return;
         if (pass.length > 64) return;
 
         var isValid = validateUsername(user);
@@ -1736,13 +1736,17 @@ function init_ws() {
           .then((discordUser) => {
             //console.log(`${user.username} used discord login`);
             var username = data.discordlogin[1];
-            if (typeof username != "string") return;
-            if (username.length > 64) return;
+            if (typeof username != "string" && typeof username != "undefined") return;
+            if (typeof username == "string" && username.length > 24) return;
             var user = db
-              .prepare("SELECT * FROM users WHERE username=? COLLATE NOCASE")
-              .get(username);
+              .prepare(username ? "SELECT * FROM users WHERE username=? COLLATE NOCASE" : "SELECT * FROM users WHERE discord=?")
+              .get(username || discordUser.id);
+            if (!user && !username) {
+              send(ws, msgpack.encode({ discordnoaccount: true }));
+              return;
+            }
             if (user && user.discord != discordUser.id) {
-              send(ws, { discordnametaken: true });
+              send(ws, msgpack.encode({ discordnametaken: true }));
               return;
             }
 
@@ -1756,9 +1760,9 @@ function init_ws() {
             sdata.isAuthenticated = true;
             sdata.authUser = username;
             sdata.authUserId = id;
-            send(ws, { token: [username, token] });
+            send(ws, msgpack.encode({ token: [username, token] }));
             sdata.isAdmin = admins.includes(sdata.authUser.toLowerCase());
-            if (sdata.isAdmin) send(ws, { admin: true });
+            if (sdata.isAdmin) send(ws, msgpack.encode({ admin: true }));
             if (sdata.connectedWorldId) {
               var isOwner =
                 (sdata.isAuthenticated &&
