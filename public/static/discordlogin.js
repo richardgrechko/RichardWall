@@ -10,7 +10,7 @@ function discordLogin() {
   loginPopup = window.open(
     "https://discord.com/api/oauth2/authorize?client_id=1201515886683619368&response_type=code&redirect_uri=https%3A%2F%2Fdimkatextwall.glitch.me%2Fauthorized.html&scope=identify",
     "",
-    "width=800,height=700"
+    "width=400,height=700"
   );
   interval = setInterval(() => {
     loginPopup.postMessage("", "https://dimkatextwall.glitch.me");
