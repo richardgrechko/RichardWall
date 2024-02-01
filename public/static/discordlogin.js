@@ -1,4 +1,3 @@
-//wip
 var loginPopup;
 var interval;
 var code;
@@ -9,7 +8,9 @@ var discordchoosename = document.getElementById("discordchoosename");
 
 function discordLogin() {
   loginPopup = window.open(
-    "https://discord.com/api/oauth2/authorize?client_id=1201515886683619368&response_type=code&redirect_uri=https%3A%2F%2Fdimkatextwall.glitch.me%2Fauthorized.html&scope=identify"
+    "https://discord.com/api/oauth2/authorize?client_id=1201515886683619368&response_type=code&redirect_uri=https%3A%2F%2Fdimkatextwall.glitch.me%2Fauthorized.html&scope=identify",
+    "",
+    "width=800,height=700"
   );
   interval = setInterval(() => {
     loginPopup.postMessage("", "https://dimkatextwall.glitch.me");
@@ -22,8 +23,8 @@ function discordLogin() {
     (e) => {
       if (e.data.error) {
         showAlert("An error occurred. Please try again.", 5e3);
-        console.log(
-          "Discord login error:",
+        console.error(
+          "Could not login with Discord:",
           e.data.error,
           e.data.error_description
         );
@@ -38,7 +39,6 @@ function discordLogin() {
     },
     { once: true }
   );
-  
 }
 canceldiscordlogin.onclick = cancelDiscordLogin;
 function cancelDiscordLogin() {
@@ -52,29 +52,29 @@ function cancelDiscordLogin() {
   discordchoosename.disabled = false;
 }
 
-client.on("wsmessage", e => {
-  if (e.discordnoaccount) {
+client.on("wsmessage", (msg) => {
+  if (msg.discordnoaccount) {
     document.getElementById("discordlogin").style.display = "block";
     discordloginbtn.style.display = "none";
     discordloginbtn.disabled = false;
   }
-  if (e.discordnametaken) {
+  if (msg.discordnametaken) {
     showAlert("Username is already in use.", 3e3);
     discordloginname.disabled = false;
     discordchoosename.disabled = false;
   }
-  if (e.token) {
+  if (msg.token) {
     cancelDiscordLogin();
     discordloginbtn.style.display = "inline-block";
   }
-  if (e.discordloginfail) {
+  if (msg.discordloginfail) {
     showAlert("An error occurred.", 3e3);
     cancelDiscordLogin();
   }
 });
 
 discordchoosename.onclick = sendUsername;
-discordloginname.onkeydown = e => {
+discordloginname.onkeydown = (e) => {
   if (e.which == 13) sendUsername();
 };
 function sendUsername() {
