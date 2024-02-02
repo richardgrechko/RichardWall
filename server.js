@@ -121,7 +121,7 @@ app.use("/*", banScreen);
 app.use("/*", adminStuff);
 app.use("/*", maintenancePage);
 app.use(express.static("public"));
-app.use(bodyParser.raw());
+app.use(bodyParser.text());
 app.get("/data.sqlite3", (req, res, next) => {
   if (
     cookie.parse(req.headers.cookie + "").adminthing != process.env.adminthing
@@ -134,7 +134,7 @@ app.post("/sendmail", (req, res) => {
   fetch(process.env.webhookurl, {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({content: req.body}),
-    
+    method: "POST"
   }).then(() => res.send("sent"));
 });
 app.get("/*", (req, res) => {

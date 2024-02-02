@@ -1,30 +1,29 @@
-*<html lang="en">
+<html lang="en">
   <head>
     <title>Send a Mail</title>
   </head>
-  <body style="text-align: center; color: #FFFFFF; background-color: #000000;">
+  <body style="text-align: center; color: #ffffff; background-color: #000000">
     <form id="sendmail">
-      <h1>Send a mail (wip)</h1>
+      <h1>Send a mail</h1>
       <p>
         got a bug report and can't join the discord? MAIL IT HERE<br />
-        got a idea? MAIL IT HERE got a uhm... bad user? MAIL IT HERE!<br />
-        (you have to not be banned from the discord api to submit a mail)<br />
+        got a idea? MAIL IT HERE<br />
+        got a uhm... bad user? MAIL IT HERE!<br />
       </p>
-      <textarea type="text" id="message" maxlength="1000"></textarea><br /> <br />
+      <textarea type="text" id="message" maxlength="1000"></textarea><br />
+      <br />
       <button type="submit" id="submitbtn">Send Mail</button>
     </form>
     <script>
       sendmail.onsubmit = (e) => {
         e.preventDefault();
         submitbtn.disabled = true;
-        fetch(
-          "/sendmail",
-          {
-            body: message.value,
-            method: "POST"
-          }
-        ).then(() => (submitbtn.disabled = false));
+        fetch("/sendmail", {
+          headers: { "Content-Type": "text/plain" },
+          body: message.value,
+          method: "POST",
+        }).then(() => ((submitbtn.disabled = false), (message.value = "")));
       };
     </script>
-  </body>
+  </body</html>>
 </html>
