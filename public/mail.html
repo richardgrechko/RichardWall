@@ -7,13 +7,16 @@
       <h1>Send a mail</h1>
       <p>
         got a bug report and can't <a href="https://discord.gg/fctwf5mSd6">join the discord</a>? MAIL IT HERE<br />
-        got a idea? MAIL IT HERE<br />
-        got a uhm... bad user? MAIL IT HERE!<br />
+        got a idea/suggestion? MAIL IT HERE<br />
+        got a misbehaving user? MAIL IT HERE!<br />
       </p>
       <textarea type="text" id="message" maxlength="1000"></textarea><br />
       <br />
       <button type="submit" id="submitbtn">Send Mail</button>
     </form>
+    <p>
+      if "urgent", you can include <input type="">
+    </p>
     <script>
       sendmail.onsubmit = (e) => {
         e.preventDefault();
