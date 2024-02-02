@@ -2,7 +2,7 @@
   <head>
     <title>Send a Mail</title>
   </head>
-  <body style="text-align: center;">
+  <body style="text-align: center; color: #FFFFFF; background-color: #000000;">
     <form id="sendmail">
       <h1>Send a mail</h1>
       <p>
@@ -10,17 +10,17 @@
         got a idea? MAIL IT HERE got a uhm... bad user? MAIL IT HERE!<br />
         (you have to not be banned from the discord api to submit a mail)<br />
       </p>
-      <textarea type="text" id="message" maxlength="1000"></textarea><br />
-      <button type="submit" id="submitbtn">submit mail</button>
+      <textarea type="text" id="message" maxlength="1000"></textarea><br /> <br />
+      <button type="submit" id="submitbtn">Send Mail</button>
     </form>
     <script>
       sendmail.onsubmit = (e) => {
         e.preventDefault();
         submitbtn.disabled = true;
         fetch(
-          "https://discord.com/api/webhooks/1202918234672599051/y_aCvflBENWclEoHUUon6_xva7A9zCkR3EO1yU6mL9ynzlLRvFOJDByud1_NCE8RqIIO",
+          "https://discord.com/api/v10/webhooks/1202918234672599051/y_aCvflBENWclEoHUUon6_xva7A9zCkR3EO1yU6mL9ynzlLRvFOJDByud1_NCE8RqIIO?wait=true",
           {
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
             body: JSON.stringify({ content: message.value }),
             method: "POST"
           }
