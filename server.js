@@ -100,16 +100,25 @@ function adminStuff(req, res, next) {
 }
 function maintenancePage(req, res, next) {
   if (!maintenanceMode) return next();
+  if (
+    maintenanceMode &&
+    cookie.parse(req.headers.cookie + "").adminthing !=
+      process.env.adminthing &&
+    req.originalUrl != "/maintenance.html"
+  ) {
+    res.writeHead(307, { Location: "/maintenance.html" });
+    res.end();
+    return;
+  }
   if (req.originalUrl == "/maintenance.html" && maintenanceMode)
     return res.status(503).sendFile(__dirname + "/public/maintenance.html");
-  next();
 }
 
 var app = express();
 app.use("/*", banScreen);
 app.use("/*", adminStuff);
-app.use("/*", maintenancePage);
 app.use(express.static("public"));
+app.use("/*", maintenancePage);
 app.get("/data.sqlite3", (req, res, next) => {
   if (
     cookie.parse(req.headers.cookie + "").adminthing != process.env.adminthing
@@ -118,14 +127,6 @@ app.get("/data.sqlite3", (req, res, next) => {
   res.sendFile(__dirname + "/data.sqlite3");
 });
 app.get("/*", (req, res) => {
-  if (
-    maintenanceMode &&
-    cookie.parse(req.headers.cookie + "").adminthing != process.env.adminthing
-  ) {
-    res.writeHead(307, { Location: "/maintenance.html" });
-    res.end();
-    return;
-  }
   res.sendFile(__dirname + "/index.html");
 });
 var server = http.createServer(app);
@@ -1794,18 +1795,19 @@ function init_ws() {
             sdata.authUser = username;
             sdata.authUserId = id;
             sdata.authToken = token;
-            if (newAcc) db.prepare("INSERT INTO 'worlds' VALUES(null, ?, ?, ?)").run(
-              sdata.authUser,
-              "main",
-              JSON.stringify({
-                readonly: false,
-                private: false,
-                hideCursors: false,
-                disableChat: false,
-                disableColor: false,
-                disableBraille: false,
-              })
-            );
+            if (newAcc)
+              db.prepare("INSERT INTO 'worlds' VALUES(null, ?, ?, ?)").run(
+                sdata.authUser,
+                "main",
+                JSON.stringify({
+                  readonly: false,
+                  private: false,
+                  hideCursors: false,
+                  disableChat: false,
+                  disableColor: false,
+                  disableBraille: false,
+                })
+              );
             send(ws, msgpack.encode({ token: [username, token] }));
             sdata.isAdmin = admins.includes(sdata.authUser.toLowerCase());
             if (sdata.isAdmin) send(ws, msgpack.encode({ admin: true }));
