@@ -130,7 +130,7 @@ app.get("/data.sqlite3", (req, res, next) => {
   res.sendFile(__dirname + "/data.sqlite3");
 });
 app.post("/sendmail", (req, res) => {
-  console.log(req.body);
+  if (req.body.length > 1000) return;
   fetch(process.env.webhookurl, {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({content: req.body}),
