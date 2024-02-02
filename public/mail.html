@@ -3,7 +3,7 @@
     <title>Send a Mail</title>
   </head>
   <body style="text-align: center; color: #FFFFFF; background-color: #000000;">
-    <form id="sendmail" action="/sendmail">
+    <form id="sendmail">
       <h1>Send a mail (wip)</h1>
       <p>
         got a bug report and can't join the discord? MAIL IT HERE<br />
@@ -13,19 +13,18 @@
       <textarea type="text" id="message" maxlength="1000"></textarea><br /> <br />
       <button type="submit" id="submitbtn">Send Mail</button>
     </form>
-    <script>/*
+    <script>
       sendmail.onsubmit = (e) => {
         e.preventDefault();
         submitbtn.disabled = true;
         fetch(
-          "https://discord.com/api/v10/webhooks/1202918234672599051/y_aCvflBENWclEoHUUon6_xva7A9zCkR3EO1yU6mL9ynzlLRvFOJDByud1_NCE8RqIIO?wait=true",
+          "/sendmail",
           {
-            headers: { "Content-Type": "application/json", "Accept": "application/json" },
-            body: JSON.stringify({ content: message.value }),
+            body: message.value,
             method: "POST"
           }
         ).then(() => (submitbtn.disabled = false));
-      };*/
+      };
     </script>
   </body>
 </html>
