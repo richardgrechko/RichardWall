@@ -18,6 +18,7 @@ var crypto = require("crypto");
 var msgpack = require("./msgpack.js");
 var cookie = require("cookie");
 var DiscordOauth2 = require("discord-oauth2");
+var fetch = require("node-fetch");
 var bannedIps = {};
 var banReasons = {};
 var port = 8080;
@@ -117,14 +118,21 @@ function maintenancePage(req, res, next) {
 var app = express();
 app.use("/*", banScreen);
 app.use("/*", adminStuff);
-app.use(express.static("public"));
 app.use("/*", maintenancePage);
+app.use(express.static("public"));
 app.get("/data.sqlite3", (req, res, next) => {
   if (
     cookie.parse(req.headers.cookie + "").adminthing != process.env.adminthing
   )
     return next();
   res.sendFile(__dirname + "/data.sqlite3");
+});
+app.post("/sendmail", (req, res) => {
+  console.log(req.body);
+  fetch(process.env.webhookurl, {
+    headers: { "Content-Type": "application/json" },
+    body: req.body.message,
+  }).then(() => res.send("OK"));
 });
 app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/index.html");
