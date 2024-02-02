@@ -1,6 +1,6 @@
 // Thanks to falling1 for helping out!
 // https://glitch.com/@falling1
-var maintenanceMode = 0;
+var maintenanceMode = 1;
 // 💥 Turn it to "1" to shutdown the servers! 💥
 // actually you just need to change the 1 to 0
 // Restart Servers: Use the /stop command
@@ -101,7 +101,11 @@ function adminStuff(req, res, next) {
   next();
 }
 function maintenancePage(req, res, next) {
-  if (!maintenanceMode) return next();
+  if (
+    !maintenanceMode ||
+    cookie.parse(req.headers.cookie + "").adminthing == process.env.adminthing
+  )
+    return next();
   if (
     maintenanceMode &&
     cookie.parse(req.headers.cookie + "").adminthing !=
@@ -133,8 +137,8 @@ app.post("/sendmail", (req, res) => {
   if (req.body.length > 1000) return;
   fetch(process.env.webhookurl, {
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({content: req.body}),
-    method: "POST"
+    body: JSON.stringify({ content: req.body }),
+    method: "POST",
   }).then(() => res.send("sent"));
 });
 app.get("/*", (req, res) => {
