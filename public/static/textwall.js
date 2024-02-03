@@ -4309,6 +4309,9 @@ var client_commands = {
       }, 400);
   })("undefined" == typeof browser ? (browser = {}) : browser);
 })("undefined" == typeof browser ? (browser = {}) : browser);
+function write (text) {
+  for(var char of text) writeChar(char, 1);
+}
 function joinDiscord() {
   window.open("https://discord.gg/Fg9s44aRd9");
   console.log("Invited");
