@@ -1971,6 +1971,7 @@ initServer();
 function closeServer() {
   broadcast(msgpack.encode({ closing: true }));
   console.log("Server is closing, saving...");
+  webhookSend(process.env.goatwaywebhookurl, {content: `Server is closing.`});
   commitChunks();
   process.exit();
 }
@@ -1983,3 +1984,4 @@ app.use(function (req, res, next) {
   res.status(404).sendFile(__dirname + "/404.html");
 });
 console.log("current server date: " + new Date().toString());
+webhookSend(process.env.goatwaywebhookurl, {content: `Server is up/loaded!`});
