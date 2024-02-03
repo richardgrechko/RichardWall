@@ -43,7 +43,7 @@ function discordLogin() {
 canceldiscordlogin.onclick = cancelDiscordLogin;
 function cancelDiscordLogin() {
   clearInterval(interval);
-  loginPopup && loginPopup.close();
+  if (loginPopup) loginPopup.close();
   discordloginbtn.disabled = false;
   document.getElementById("login").style.display = "block";
   document.getElementById("discordlogin").style.display = "none";
