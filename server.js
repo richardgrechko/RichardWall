@@ -135,7 +135,7 @@ app.get("/data.sqlite3", (req, res, next) => {
 });
 app.post("/sendmail", (req, res) => {
   if (req.body.length > 1000) return;
-  fetch(process.env.webhookurl, {
+  fetch(process.env.mailwebhookurl, {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ content: req.body }),
     method: "POST",
@@ -1093,6 +1093,7 @@ function init_ws() {
             ],
           })
         );
+        
       } else if ("register" in data) {
         if (sdata.isAuthenticated) return;
         var cred = data.register;
