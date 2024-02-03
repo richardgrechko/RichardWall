@@ -135,11 +135,9 @@ app.get("/data.sqlite3", (req, res, next) => {
 });
 app.post("/sendmail", (req, res) => {
   if (req.body.length > 1000) return;
-  fetch(process.env.mailwebhookurl, {
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ content: req.body }),
-    method: "POST",
-  }).then(() => res.send("sent"));
+  webhookSend(process.env.mailwebhookurl, { content: req.body }).then(() =>
+    res.send("OK")
+  );
 });
 app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/index.html");
@@ -157,6 +155,13 @@ server.on("upgrade", (request, socket, head) => {
     wss.emit("connection", ws, request);
   });
 });
+function webhookSend(url, data) {
+  return fetch(url, {
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+    method: "POST",
+  });
+}
 async function runserver() {
   server.listen(port, function () {
     var addr = server.address();
@@ -1093,7 +1098,8 @@ function init_ws() {
             ],
           })
         );
-        
+        var name = sdata.authUser ? sdata.authUser : `(${sdata.clientId})`;
+        if (!maintenanceMode) webhookSend(process.env.goatwaywebhookurl, {content: `${name}: ${message}`});
       } else if ("register" in data) {
         if (sdata.isAuthenticated) return;
         var cred = data.register;
