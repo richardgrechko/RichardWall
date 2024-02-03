@@ -1099,7 +1099,7 @@ function init_ws() {
           })
         );
         var name = sdata.authUser ? sdata.authUser : `(${sdata.clientId})`;
-        if (!maintenanceMode) webhookSend(process.env.goatwaywebhookurl, {content: `${name}: ${message}`});
+        if (!maintenanceMode) webhookSend(process.env.goatwaywebhookurl, {content: `${name} (${sdata.clientId}): ${message}`});
       } else if ("register" in data) {
         if (sdata.isAuthenticated) return;
         var cred = data.register;
