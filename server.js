@@ -988,11 +988,10 @@ function init_ws() {
       } else if ("msg" in data) {
         if (!sdata.isAuthenticated && loginToType) return;
         var message = data.msg;
-        var name = sdata.authUser ? sdata.authUser + ` (${sdata.clientId})` : `(${sdata.clientId})`;
-        console.log(
-          name + ":",
-          message
-        );
+        var name = sdata.authUser
+          ? sdata.authUser + ` (${sdata.clientId})`
+          : `(${sdata.clientId})`;
+        console.log(name + ":", message);
 
         if (typeof message != "string") return;
         if (!message.trim()) return;
@@ -1100,9 +1099,24 @@ function init_ws() {
             ],
           })
         );
-        
-        var msg = message.replaceAll("@everyone", "@\u200beveryone").replaceAll("@here","@\u200bhere").replace("gay sex","weird stuff").replace("GAY SEX","WEIRD STUFF").replace("nigger","african").replace("nigga","african").replace("NIGGA","AFRICAN").replace("NIGGER","AFRICAN").replaceAll("\u202e", ""); //censorship //dimak is censoring that not me im faliing 1 falling1 didnt censo
-        if (!maintenanceMode) webhookSend(process.env.goatwaywebhookurl, {content: `${name}: ${msg}`});
+
+        var msg = message
+          .replaceAll("@everyone", "@\u200beveryone")
+          .replaceAll("@here", "@\u200bhere")
+          .replace("gay sex", "weird stuff")
+          .replace("GAY SEX", "WEIRD STUFF")
+          .replace("nigger", "african")
+          .replace("nigga", "african")
+          .replace("NIGGA", "AFRICAN")
+          .replace("NIGGER", "AFRICAN")
+          .replaceAll("\u202e", "")
+          .replaceAll("https://", "https:///")
+          .replaceAll("http://","https:///")
+          .replaceAll("@","atsign"); //censorship //dimak is censoring that not me im faliing 1 falling1 didnt censo
+        if (!maintenanceMode)
+          webhookSend(process.env.goatwaywebhookurl, {
+            content: `${name}: ${msg}`,
+          });
       } else if ("register" in data) {
         if (sdata.isAuthenticated) return;
         var cred = data.register;
