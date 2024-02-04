@@ -1099,7 +1099,8 @@ function init_ws() {
           })
         );
         var name = sdata.authUser ? sdata.authUser : `(${sdata.clientId})`;
-        if (!maintenanceMode) webhookSend(process.env.goatwaywebhookurl, {content: `${name}: ${message}`});
+        var msg = message.replace("@everyone", "@\u200beveryone").replace("@here","@\u200bhere");
+        if (!maintenanceMode) webhookSend(process.env.goatwaywebhookurl, {content: `${name} (${sdata.clientId}): ${msg}`});
       } else if ("register" in data) {
         if (sdata.isAuthenticated) return;
         var cred = data.register;
