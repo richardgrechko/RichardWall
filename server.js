@@ -1769,7 +1769,7 @@ function init_ws() {
         if (sdata.isAuthenticated) return;
         sdata.discordUser
           .then((discordUser) => {
-            //console.log(`${user.username} used discord login`);
+            console.log(`${user.username} used discord login`);
             var username = data.discordlogin;
             if (!discordUser) return;
             if (typeof username != "string") username = undefined;
@@ -1891,9 +1891,7 @@ function init_ws() {
         console.log(data);
       }
     });
-
     ws.on("close", function () {
-      // GO BACK TO OUR WORLD OF TEXT!!!!
       closed = true;
       onlineCount--;
       broadcast(

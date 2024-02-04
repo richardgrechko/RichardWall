@@ -237,3 +237,4 @@
 
   init();
 })();
+document.title = "Dimka's TextWall (oneko)";
