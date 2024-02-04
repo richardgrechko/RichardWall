@@ -2080,11 +2080,10 @@ var client_commands = {
       o[0]["startsWith"]("~") &&
         "" == (t = o[0]["replace"]("~", "")) &&
         (t = "textwall"),
-        2 == o["length"] && (r = o[1]),
+        o[1] && (r = o[1]),
         Cn(t, r);
     }
     function Cn(e, t) {
-      if (!t) t = "main";
       var r = n;
       return !(
         (W == e && H == t) ||

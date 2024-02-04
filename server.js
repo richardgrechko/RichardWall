@@ -1893,6 +1893,7 @@ function init_ws() {
     });
 
     ws.on("close", function () {
+      // GO BACK TO OUR WORLD OF TEXT!!!!
       closed = true;
       onlineCount--;
       broadcast(
