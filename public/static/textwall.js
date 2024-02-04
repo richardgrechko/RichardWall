@@ -2084,8 +2084,7 @@ var client_commands = {
         Cn(t, r);
     }
     function Cn(e, t) {
-      console.log(e, t);
-      debugger;
+      if (!t) t = "main";
       var r = n;
       return !(
         (W == e && H == t) ||
