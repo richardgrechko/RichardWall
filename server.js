@@ -1110,9 +1110,8 @@ function init_ws() {
           .replace("NIGGA", "AFRICAN")
           .replace("NIGGER", "AFRICAN")
           .replaceAll("\u202e", "")
-          .replaceAll("https://", "https:///")
-          .replaceAll("http://","https:///")
-          .replaceAll("@","atsign"); //censorship //dimak is censoring that not me im faliing 1 falling1 didnt censo
+          .replace(/https?:\/\//g, (match) => match+"/")
+          .replaceAll("@","atsign"); //censorship + anti-abuse
         if (!maintenanceMode)
           webhookSend(process.env.goatwaywebhookurl, {
             content: `${name}: ${msg}`,
@@ -1994,8 +1993,14 @@ function closeServer() {
 process.once("SIGINT", closeServer);
 
 process.once("SIGTERM", closeServer);
-// Handle 404 errors
+// Handle errors
 app.use(function (req, res, next) {
   res.status(404).sendFile(__dirname + "/404.html");
+});
+app.use(function (req, res, next) {
+  res.status(502).sendFile(__dirname + "/502.html");
+});
+app.use(function (req, res, next) {
+  res.status(504).sendFile(__dirname + "/504.html");
 });
 console.log("current server date: " + new Date().toString());
