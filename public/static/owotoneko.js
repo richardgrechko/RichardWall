@@ -1,6 +1,7 @@
 // oneko.js: https://github.com/adryd325/oneko.js
-// For Dimka's TextWall /cat
-(function oneko() {
+// Modified for Our World of Text on February 2nd, 2024
+
+function Oneko() {
   const isReducedMotion =
     window.matchMedia(`(prefers-reduced-motion: reduce)`) === true ||
     window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true;
@@ -8,6 +9,7 @@
   if (isReducedMotion) return;
 
   const nekoEl = document.createElement("div");
+  this.oniko = nekoEl;
 
   let nekoPosX = 32;
   let nekoPosY = 32;
@@ -20,7 +22,7 @@
   let idleAnimation = null;
   let idleAnimationFrame = 0;
 
-  const nekoSpeed = 16;
+  const nekoSpeed = 10;
   const spriteSets = {
     idle: [[-3, -3]],
     alert: [[-7, -3]],
@@ -96,7 +98,7 @@
     nekoEl.style.top = `${nekoPosY - 16}px`;
     nekoEl.style.zIndex = Number.MAX_VALUE;
 
-    let nekoFile = "/static/oneko.gif";
+    let nekoFile = "/static/files/oneko.gif"
     const curScript = document.currentScript
     if (curScript && curScript.dataset.cat) {
       nekoFile = curScript.dataset.cat
@@ -243,9 +245,12 @@
 function initOniki() {
 	var myOneko = new Oneko();
 	if(!myOneko) return;
-function() {
+	w.menu.addCheckboxOption("Show Oneko", function() {
+		myOneko.oniko.style.display = "";
+	}, function() {
 		myOneko.oniko.style.display = "none";
 	}, true)
+	w.shiftZoombar();
 }
 
 initOniki();
