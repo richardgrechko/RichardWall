@@ -1982,25 +1982,46 @@ async function initServer() {
   runserver();
 }
 initServer();
-
 function closeServer() {
   broadcast(msgpack.encode({ closing: true }));
   console.log("Server is closing, saving...");
   commitChunks();
   process.exit();
 }
-
 process.once("SIGINT", closeServer);
-
 process.once("SIGTERM", closeServer);
 // Handle errors
-app.use(function (req, res, next) {
-  res.status(404).sendFile(__dirname + "/404.html");
+// Handle 404 errors
+app.use(function(req, res, next) {
+  res.status(404).sendFile(__dirname + '/errors/404.html');
 });
-app.use(function (req, res, next) {
-  res.status(502).sendFile(__dirname + "/502.html");
+
+// Middleware to handle all errors
+app.use(function(err, req, res, next) {
+  // Check if the error status is 502
+  if (err.status === 502) {
+    // If it's a 502 error, send the custom 502 error page
+    res.status(502).sendFile(__dirname + '/errors/502.html');
+  } else {
+    // For all other errors, pass them to the default error handler
+    next(err);
+  }
 });
-app.use(function (req, res, next) {
-  res.status(504).sendFile(__dirname + "/504.html");
+
+// Handle 504 errors
+app.use(function(req, res, next) {
+  res.status(504).sendFile(__dirname + '/errors/504.html');
 });
+
+// wow useless
+// this doesnt even
+// run whenever theres a server ero
+// it just runs when it wants to
+// why did you remove the extra spacing :( it looked nice
+//dwawg tf are tyou
+// https://chat.openai.com/share/b600f81b-c0ca-4dc9-ac1c-26cda4458bd5
+// chatgput stupid af lmao
+// actually, theres literally no code that sends the user to 502 when theres an error
+// sure it "works" but not in the way you expected// this isnt how express js works
+// app.use wi
 console.log("current server date: " + new Date().toString());
