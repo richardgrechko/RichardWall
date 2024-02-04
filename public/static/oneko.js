@@ -237,4 +237,9 @@
 
   init();
 })();
-document.title = "Dimka's TextWall (oneko)";
+window.onload = function() {
+    // It will execute when the entire page is loaded
+  document.title = "Dimka's TextWall (oneko)";
+};
+
+

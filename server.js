@@ -235,7 +235,7 @@ function generateToken() {
   var set = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789/+";
   var str = "";
   for (var i = 0; i < 48; i++) {
-    str += set[Math.floor(Math.random() * set.length)];
+    str += set[crypto.randomInt(set.length)];
   }
   return str;
 }
