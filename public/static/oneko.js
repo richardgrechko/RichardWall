@@ -237,4 +237,5 @@
 
   init();
 })();
-document.title = "no need for window.onload just do this"
+document.title = "Oneko's TextWall"
+// oneko is taking over the world 😱😱😱😱
