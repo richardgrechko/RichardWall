@@ -237,9 +237,4 @@
 
   init();
 })();
-window.onload = function() {
-    // It will execute when the entire page is loaded
-  document.title = "Dimka's TextWall (oneko)";
-};
-
-
+document.title = "no need for window.onload just do this"
