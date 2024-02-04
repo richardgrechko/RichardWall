@@ -1100,7 +1100,7 @@ function init_ws() {
           })
         );
         
-        var msg = message.replace("@everyone", "@\u200beveryone").replace("@here","@\u200bhere").replace("gay sex","weird stuff").replace("GAY SEX","WEIRD STUFF").replace("nigger","african").replace("nigga",""); //censorship //dimak is censoring that not me im faliing 1 falling1 didnt censor
+        var msg = message.replace("@everyone", "@\u200beveryone").replace("@here","@\u200bhere").replace("gay sex","weird stuff").replace("GAY SEX","WEIRD STUFF").replace("nigger","african").replace("nigga","african").replace("NIGGA","AFRICAN").replace("NIGGER","AFRICAN"); //censorship //dimak is censoring that not me im faliing 1 falling1 didnt censor
         if (!maintenanceMode) webhookSend(process.env.goatwaywebhookurl, {content: `${name}: ${msg}`});
       } else if ("register" in data) {
         if (sdata.isAuthenticated) return;
