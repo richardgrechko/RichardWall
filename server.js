@@ -780,6 +780,7 @@ function init_ws() {
               sdata.authUser.toLowerCase()) ||
           (sdata.connectedWorldNamespace.toLowerCase() == "textwall" &&
             sdata.isAdmin);
+
         if (isOwner) {
           send(
             ws,
