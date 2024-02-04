@@ -1,5 +1,5 @@
 // oneko.js: https://github.com/adryd325/oneko.js
-
+// For Dimka's TextWall /cat
 (function oneko() {
   const isReducedMotion =
     window.matchMedia(`(prefers-reduced-motion: reduce)`) === true ||
