@@ -987,8 +987,9 @@ function init_ws() {
       } else if ("msg" in data) {
         if (!sdata.isAuthenticated && loginToType) return;
         var message = data.msg;
+        var name = sdata.authUser ? sdata.authUser + ` (${sdata.clientId})` : `(${sdata.clientId})`;
         console.log(
-          sdata.authUser + " (" + sdata.clientId + ")" + ":",
+          name + ":",
           message
         );
 
@@ -1098,9 +1099,9 @@ function init_ws() {
             ],
           })
         );
-        var name = sdata.authUser ? sdata.authUser : `(${sdata.clientId})`;
-        var msg = message.replace("@everyone", "@\u200beveryone").replace("@here","@\u200bhere");
-        if (!maintenanceMode) webhookSend(process.env.goatwaywebhookurl, {content: `${name} (${sdata.clientId}): ${msg}`});
+        
+        var msg = message.replace("@everyone", "@\u200beveryone").replace("@here","@\u200bhere").replace("gay sex","weird stuff").replace("GAY SEX","WEIRD STUFF").replace("nigger","african").replace("nigga",""); //censorship //dimak is censoring that not me im faliing 1 falling1 didnt censor
+        if (!maintenanceMode) webhookSend(process.env.goatwaywebhookurl, {content: `${name}: ${msg}`});
       } else if ("register" in data) {
         if (sdata.isAuthenticated) return;
         var cred = data.register;
