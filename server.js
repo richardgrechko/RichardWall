@@ -1110,13 +1110,19 @@ function init_ws() {
           .replace("say gex","seird wtuff")
           .replace("gay sex", "weird stuff")
           .replace("GAY SEX", "WEIRD STUFF")
-          .replace("nigger", "african")
-          .replace("nigga", "african")
-          .replace("NIGGA", "AFRICAN")
-          .replace("NIGGER", "AFRICAN")
+          // N-Word (censorship)
+          .replaceAll("nigger", "african")
+          .replaceAll("nigga", "african")
+          .replaceAll("Nigger","African")
+          .replaceAll("Nigga","African")
+          .replaceAll("NIGGA", "AFRICAN")
+          .replaceAll("NIGGER", "AFRICAN")
+          // Discord automatically removes the Right-to-Left Override, and this can be abused to bypass the filter, so we're filtering it out (anti-abuse)
           .replaceAll("\u202e", "")
+          // Remove embeds from links so no one posts gay porn/gore :3 (anti-abuse/censorship)
           .replace(/https?:\/\//g, (match) => match+"/")
-          .replaceAll("@","atsign"); //censorship + anti-abuse
+          // In case they somehow magicially bypass the @everyone/@here filter (anti-abuse)
+          .replaceAll("@","atsign");
         if (!maintenanceMode)
           webhookSend(process.env.goatwaywebhookurl, {
             content: `${name}: ${msg}`,
