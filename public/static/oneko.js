@@ -237,8 +237,10 @@
 
   init();
 })();
-setInterval(() => {
-  document.title = "Oneko's TextWall";
-  console.warn('you will be an oneko cat soon');
-}, 5000);
-// oneko will take over the world 😱😱😱
+ /*
+    setInterval(() => {
+      document.title = "Oneko's TextWall";
+      console.warn('you will be an oneko cat soon');
+   }, 5000);
+   // oneko will take over the world 😱😱😱
+  */
