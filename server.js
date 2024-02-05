@@ -584,7 +584,7 @@ function init_ws() {
     }
     var connObj = ipConnLim[ipAddr];
 
-    if (connObj[0] >= 50) {
+    if (connObj[0] >= 10) {
       ws.close();
       return;
     }
