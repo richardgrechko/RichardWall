@@ -526,6 +526,11 @@
     loadScript("/static/oneko.js")
     }</script>
     <script>
+    function onekoDisaster() {
+    setInterval(summonOneko(), 5000)
+    }
+    </script>
+    <script>
       /*if ('serviceWorker' in navigator) {
 		window.addEventListener('load', function() {
 			navigator.serviceWorker.register('/service-worker.js').then(function(registration) {})
