@@ -1123,7 +1123,7 @@ function init_ws() {
           .replace(/https?:\/\//g, (match) => match+"/")
           // In case they somehow magicially bypass the @everyone/@here filter (anti-abuse)
           .replaceAll("@","atsign");
-        if (!maintenanceMode)
+        if (!maintenanceMode && sdata.connectedWorldId == 1)
           webhookSend(process.env.goatwaywebhookurl, {
             content: `${name}: ${msg}`,
           });
