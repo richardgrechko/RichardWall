@@ -1101,8 +1101,13 @@ function init_ws() {
         );
 
         var msg = message
+          // @everyone/@here (anti-abuse)
           .replaceAll("@everyone", "@\u200beveryone")
           .replaceAll("@here", "@\u200bhere")
+          // Gay Sex (censorship)
+          .replace("Gay sex","Weird stuff")
+          .replace("Gay Sex","Weird Stuff")
+          .replace("say gex","seird wtuff")
           .replace("gay sex", "weird stuff")
           .replace("GAY SEX", "WEIRD STUFF")
           .replace("nigger", "african")
