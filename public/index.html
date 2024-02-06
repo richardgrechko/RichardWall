@@ -544,11 +544,14 @@
     <script src="/static/discordlogin.js"></script>
     <script src="/static/scriptloader.js"></script>
     <script>
+      var catsToSpawn = 0;
       function summonOneko() {
         if (!window.oneko) {
           var res = [];
-          loadScript("/static/oneko.js", () => res.forEach(r => (r(), oneko())));
-          window.oneko = () => new Promise((resolve) => res.push(resolve));
+          loadScript("/static/oneko.js", () => {
+            for (let i = 0; i < catsToSpawn; i++) oneko();
+          });
+          window.oneko = () => catsToSpawn++;
         } else oneko();
       };
       function onekoDisaster() {
