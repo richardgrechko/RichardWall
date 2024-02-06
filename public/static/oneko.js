@@ -97,9 +97,9 @@
     nekoEl.style.zIndex = Number.MAX_VALUE;
 
     let nekoFile = "/static/oneko.gif";
-    const curScript = document.currentScript
+    const curScript = document.currentScript;
     if (curScript && curScript.dataset.cat) {
-      nekoFile = curScript.dataset.cat
+      nekoFile = curScript.dataset.cat;
     }
     nekoEl.style.backgroundImage = `url(${nekoFile})`;
 
@@ -124,8 +124,8 @@
       lastFrameTimestamp = timestamp;
     }
     if (timestamp - lastFrameTimestamp > 100) {
-      lastFrameTimestamp = timestamp
-      frame()
+      lastFrameTimestamp = timestamp;
+      frame();
     }
     window.requestAnimationFrame(onAnimationFrame);
   }
@@ -237,7 +237,7 @@
 
   init();
 })();
- /*
+/*
     setInterval(() => {
       document.title = "Oneko's TextWall";
       console.warn('you will be an oneko cat soon');
