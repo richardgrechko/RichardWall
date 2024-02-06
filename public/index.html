@@ -543,6 +543,7 @@
     <script src="/static/textwall.js"></script>
     <script src="/static/discordlogin.js"></script>
     <script src="/static/scriptloader.js"></script>
+    <!-- oneko cat functions -->
     <script>
       var catsToSpawn = 0;
       function summonOneko() {
@@ -553,7 +554,7 @@
           });
           window.oneko = () => catsToSpawn++;
         } else oneko();
-      };
+      }
       function onekoDisaster() {
         setInterval(summonOneko, 5000);
       }
