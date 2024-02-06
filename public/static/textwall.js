@@ -459,7 +459,7 @@ var client_commands = {
       ot = document["getElementById"]("zoom");
     function it(e, t) {
       var r = n;
-      (rt = e < 0.5 ? 0.5 : e > 3 ? 3 : e),
+      (rt = e),
         (at = Math.round(100 * rt) / 100),
         localStorage["setItem"]("zoom", at),
         (ot["value"] = 10 * at),
