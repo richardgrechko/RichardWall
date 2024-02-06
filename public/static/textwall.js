@@ -461,9 +461,9 @@ var client_commands = {
       var r = n;
       (rt = e),
         (at = Math.round(100 * rt) / 100),
-        localStorage["setItem"]("zoom", Math.min(Math.max(at, 30), 1)),
+        localStorage["setItem"]("zoom", Math.min(Math.max(at, 3), 0.5)),
         (ot["value"] = 10 * at),
-        t && ir(Math["round"](100 * at) + "% ", 1e3),
+        t && ir(Math["round"](100 * at) + "%", 1e3),
         kn();
     }
     function ct() {
@@ -2707,7 +2707,7 @@ var client_commands = {
                   Jr(e.touches[0]["pageX"] - e.touches[1]["pageX"]) +
                     Jr(e.touches[0]["pageY"] - e["touches"][1]["pageY"])
                 );
-                0 != jn && it(Math.round((rt - (jn - r) / 300) * 100), !0), (Dn = void 0), (jn = r);
+                0 != jn && it(Math.max(Math.min(rt - (jn - r) / 300, 3), 0.5), !0), (Dn = void 0), (jn = r);
               }
             })(e),
             i["blur"]());
