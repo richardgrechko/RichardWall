@@ -20,6 +20,7 @@ var cookie = require("cookie");
 var DiscordOauth2 = require("discord-oauth2");
 var fetch = require("node-fetch");
 var bodyParser = require("body-parser");
+var { Client, Intents } = require("discord.js");
 var bannedIps = {};
 var banReasons = {};
 var port = 8080;
