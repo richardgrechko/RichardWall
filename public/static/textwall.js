@@ -2162,6 +2162,7 @@ var client_commands = {
         c.appendChild(document.createTextNode(": " + message));
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
+      twemoji.parse(c);
       i.appendChild(c),
         u && gn(),
         hn["classList"]["contains"]("open") || yn["classList"]["add"]("show");

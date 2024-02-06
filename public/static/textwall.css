@@ -8,6 +8,15 @@ body {
   font-family: ubuntu mono, monospace, courier new, Courier, special;
   -webkit-tap-highlight-color: transparent;
 }
+.emoji {
+  height: 16px;
+  width: 16px;
+}
+/*
+uhm the html is
+<script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+ */
+
 canvas {
   touch-action: none;
   cursor: text;
@@ -405,7 +414,7 @@ td {
   word-wrap: break-word;
   overflow: auto;
 }
-#chatbox > p {
+#chatbox p {
   margin: 5px;
 }
 #chatmsg {
