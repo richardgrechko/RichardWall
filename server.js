@@ -140,7 +140,7 @@ app.post("/sendmail", (req, res) => {
   );
 });
 app.get("/*", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+  res.sendFile(__dirname + "/public/index.html");
 });
 var server = http.createServer(app);
 server.on("upgrade", (request, socket, head) => {
