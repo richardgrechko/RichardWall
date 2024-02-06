@@ -461,7 +461,7 @@ var client_commands = {
       var r = n;
       (rt = e),
         (at = Math.round(100 * rt) / 100),
-        localStorage["setItem"]("zoom", at),
+        localStorage["setItem"]("zoom", Math.min(Math.max(at, 30), 1)),
         (ot["value"] = 10 * at),
         t && ir(Math["round"](100 * at) + "% ", 1e3),
         kn();
