@@ -2010,8 +2010,8 @@ function closeServer() {
   broadcast(msgpack.encode({ closing: true }));
   console.log("Server is closing, saving...");
   webhookSend(process.env.upordownurl, {
-            content: `\u003Ax\u003A The servers are restarting or closed. \u003A\u0028`
-          });
+    content: `\u003Ax\u003A Whoops, the servers are closed \u0028or restarting\u0029! \u003A\u0028`
+  });
   commitChunks();
   process.exit();
 }
