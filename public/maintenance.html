@@ -9,7 +9,6 @@
     content="The site is currently down... Sorry!"
   />
   <meta property="og:url" content="https://textwall.cc/" />
-  
 
   <meta
     property="og:image"
@@ -43,21 +42,43 @@
   <span>We're making new things...</span><br />
   <audio
     src="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/cqd6i7.mp3"
-  ></audio><center>
-  <small>
-    (You can join the
-    <a href="https://discord.gg/rDXPEgFA6m" style="color: #0096ff"
-      >Discord server</a
-    >
-    while you wait...<br> or have an message about site finally going up.)<br /><center>
-<video width="700" height="400" controls>
-    <source src="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/no%20shet%20given.webm"></video></center>
-  </small><br /></center><iframe src="https://discord.com/widget?id=1196101562741825677&theme=dark" width="350" height="220" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts" style="float: left; text-align: left;"></iframe>
+  ></audio>
+  <center>
+    <small>
+      (You can join the
+      <a href="https://discord.gg/rDXPEgFA6m" style="color: #0096ff"
+        >Discord server</a
+      >
+      while you wait...<br />
+      or have an message about site finally going up.)<br />
+      <center>
+        <video width="700" height="400" controls>
+          <source
+            src="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/no%20shet%20given.webm"
+          />
+        </video>
+      </center> </small
+    ><br />
+  </center>
+  <iframe
+    src="https://discord.com/widget?id=1196101562741825677&theme=dark"
+    width="350"
+    height="220"
+    allowtransparency="true"
+    frameborder="0"
+    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+    style="float: left; text-align: left"
+  ></iframe>
   <script>
     var audioCtx = new AudioContext();
     var buffer;
-    fetch("https://media.discordapp.net/attachments/1063116432646340681/1154782835295670272/vine-boom.mp3").then(r=>r.arrayBuffer()).then(r=>audioCtx.decodeAudioData(r)).then(b=>buffer=b);
-    
+    fetch(
+      "https://media.discordapp.net/attachments/1063116432646340681/1154782835295670272/vine-boom.mp3"
+    )
+      .then((r) => r.arrayBuffer())
+      .then((r) => audioCtx.decodeAudioData(r))
+      .then((b) => (buffer = b));
+
     function playVineBoom() {
       var track = audioCtx.createBufferSource();
       track.buffer = buffer;
@@ -69,7 +90,12 @@
     console.log("Dimka's TextWall servers are under maintenance.");
     console.log("Join the Discord Server at https://discord.gg/rDXPEgFA6m !!!");
     function checkSite() {
-      fetch("/").then(res => {res.status == 200 && (location.href = "/");setTimeout(checkSite, 7000)}).catch(err => location.href = "/");
+      fetch("/")
+        .then((res) => {
+          res.status == 200 && (location.href = "/");
+          setTimeout(checkSite, 7000);
+        })
+        .catch((err) => (location.href = "/"));
       //load the site in the background and see if its up, if it is then redirect
       //if there was an error like your internet is down it will also redirect so you can see the No internet message
     }
