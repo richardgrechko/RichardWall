@@ -2882,7 +2882,7 @@ var client_commands = {
           U &&
             !client.registered &&
             !nt["readOnly"]["checked"] &&
-            ir("Please log in before typing. Wait... how did you...", 3e3),
+            ir("Please log in before typing.", 3e3),
           0
         );
       tt.rainbow["checked"] &&
