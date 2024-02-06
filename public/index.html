@@ -47,7 +47,10 @@
       content="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/uycrpj.gif?v=1705309497280"
     />
     <link rel="stylesheet" href="/static/textwall.css" />
-    <script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
+    <script
+      src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="/warning.js"></script>
   </head>
   <body>
@@ -200,7 +203,12 @@
             <br /><button id="canceldiscordlogin">Cancel</button><br />
             <label>Choose a username:</label><br />
             <input id="discordloginname" maxlength="24" />
-            <button style="margin-top: 5px; vertical-align: middle" id="discordchoosename">Go</button>
+            <button
+              style="margin-top: 5px; vertical-align: middle"
+              id="discordchoosename"
+            >
+              Go
+            </button>
           </div>
           <br />
         </div>
@@ -354,6 +362,12 @@
             </form>
           </div>
         </div>
+        <div>
+          <h2>Miscellaneous</h2>
+          <br />
+          <button onclick="summonOneko();">Summon Oneko</button><br />
+        </div>
+
         <div id="wallsettings">
           <h1>Wall Actions</h1>
           <input id="protect" type="checkbox" /><label for="protect"
@@ -493,9 +507,11 @@
         </div>
         <div title="Send Mail" class="infobtn">
           <a href="/mail.html" target="_blank">
-          <img alt="mail"
-               src="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/email-5-24.png"
-               style="padding-top: 4.85px"></a>
+            <img
+              alt="mail"
+              src="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/email-5-24.png"
+              style="padding-top: 4.85px"
+          /></a>
         </div>
       </div>
     </div>
@@ -523,13 +539,13 @@
     <script src="/static/discordlogin.js"></script>
     <script src="/static/scriptloader.js"></script>
     <script>
-    function summonOneko() {
-    loadScript("/static/oneko.js")
-    }
-    
-    function onekoDisaster() {
-    setInterval(loadScript("/static/oneko.js"), 5000)
-    }
+      function summonOneko() {
+        loadScript("/static/oneko.js");
+      }
+
+      function onekoDisaster() {
+        setInterval(loadScript("/static/oneko.js"), 5000);
+      }
     </script>
     <script>
       /*if ('serviceWorker' in navigator) {
