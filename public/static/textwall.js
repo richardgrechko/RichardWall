@@ -2707,7 +2707,7 @@ var client_commands = {
                   Jr(e.touches[0]["pageX"] - e.touches[1]["pageX"]) +
                     Jr(e.touches[0]["pageY"] - e["touches"][1]["pageY"])
                 );
-                0 != jn && it(rt - (jn - r) / 300, !0), (Dn = void 0), (jn = r);
+                0 != jn && it(Math.round((rt - (jn - r) / 300) * 100), !0), (Dn = void 0), (jn = r);
               }
             })(e),
             i["blur"]());
@@ -2934,7 +2934,7 @@ var client_commands = {
               (f = Ce.y),
               (v = s["txt"][A]),
               (h = T),
-              Be[(y = o)(343)]([d, f, v, h]),
+              Be["unshift"]([d, f, v, h]),
               Be["length"] > 1e3 && Be["pop"]()),
           (s["txt"][A] = e),
           (s.clr[A] = C),
