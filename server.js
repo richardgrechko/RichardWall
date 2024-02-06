@@ -181,6 +181,9 @@ async function runserver() {
         ", and port " +
         addr.port
     );
+    webhookSend(process.env.upordownurl, {
+          content: `:white_check_mark: The servers are up! :D`
+        });
   });
   init_ws();
 }
@@ -2006,6 +2009,9 @@ initServer();
 function closeServer() {
   broadcast(msgpack.encode({ closing: true }));
   console.log("Server is closing, saving...");
+  webhookSend(process.env.upordownurl, {
+            content: `\u003Ax\u003A The servers are restarting or closed. \u003A\u0028`
+          });
   commitChunks();
   process.exit();
 }
