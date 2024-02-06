@@ -32,6 +32,11 @@ const oauth = new DiscordOauth2({
   clientSecret: process.env.clientsecret,
   redirectUri: "https://dimkatextwall.glitch.me/authorized.html",
 });
+const client = new Client({ intents: [Intents.FLAGS.MESSAGE_CONTENT, Intents.FLAGS.GUILD_MESSAGES] });
+client.on('ready', () => console.log("discord bot ready"));
+client.on("messageCreate", console.log);
+client.login(process.env.discordbottoken);
+
 var db = sql("./data.sqlite3");
 async function getDiscordUser(code) {
   var accessToken = await oauth.tokenRequest({
