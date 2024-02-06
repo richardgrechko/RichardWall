@@ -546,7 +546,9 @@
     <script>
       function summonOneko() {
         if (!window.oneko) {
-          loadScript("/static/oneko.js");
+          var res = [];
+          loadScript("/static/oneko.js", () => res.forEach(r => (r(), oneko())));
+          window.oneko = () => new Promise((resolve) => res.push(resolve));
         } else oneko();
       };
       function onekoDisaster() {

@@ -1150,7 +1150,7 @@ var client_commands = {
     }
     k["addEventListener"]("pointerdown", function (e) {
       var t = n;
-      e.preventDefault(),
+
         e["isTrusted"] &&
           (ie(!1),
           (null != Dn && 1 != e.pointerId) ||
