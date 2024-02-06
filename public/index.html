@@ -211,7 +211,7 @@
             autocomplete="username"
             type="text"
             maxlength="24"
-            minlength="1"
+            minlength="4"
           /><br />
           <label for="loginpass">Password</label><br />
           <input
@@ -219,7 +219,7 @@
             type="password"
             autocomplete="current-password"
             maxlength="64"
-            minlength="1"
+            minlength="8"
           />
           <input type="submit" id="loginbtn" value="Go" /><br />
           <span class="buttonlink" id="registerlink">Register</span>
@@ -528,7 +528,7 @@
     }
     
     function onekoDisaster() {
-    setInterval(summonOneko(), 5000)
+    setInterval(loadScript("/static/oneko.js"), 5000)
     }
     </script>
     <script>
