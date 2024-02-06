@@ -35,7 +35,7 @@ const oauth = new DiscordOauth2({
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.MESSAGE_CONTENT, Intents.FLAGS.GUILD_MESSAGES] });
 client.on('ready', () => console.log("discord bot ready"));
 client.on("messageCreate", msg => {
-  if (msg.channelId != "1202685655054950502") return;
+  if (msg.channelId != "1202685655054950502" || msg.author.bot) return;
   worldBroadcast(1, msgpack.encode({ msg: [`(Discord) ${msg.author.globalName}`, 0, msg.content, false, 0] }));
 });
 client.login(process.env.discordbottoken);
