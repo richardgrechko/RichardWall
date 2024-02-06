@@ -32,9 +32,12 @@ const oauth = new DiscordOauth2({
   clientSecret: process.env.clientsecret,
   redirectUri: "https://dimkatextwall.glitch.me/authorized.html",
 });
-const client = new Client({ intents: [Intents.FLAGS.MESSAGE_CONTENT, Intents.FLAGS.GUILD_MESSAGES] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.MESSAGE_CONTENT, Intents.FLAGS.GUILD_MESSAGES] });
 client.on('ready', () => console.log("discord bot ready"));
-client.on("messageCreate", console.log);
+client.on("messageCreate", msg => {
+  if (msg.channelId != "1202685655054950502") return;
+  worldBroadcast(1, msgpack.encode({ msg: [`(Discord) ${msg.author.globalName}`, 0, msg.content, false, 0] }));
+});
 client.login(process.env.discordbottoken);
 
 var db = sql("./data.sqlite3");
