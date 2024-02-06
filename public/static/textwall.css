@@ -9,13 +9,10 @@ body {
   -webkit-tap-highlight-color: transparent;
 }
 .emoji {
-  height: 16px;
-  width: 16px;
+  height: 13px;
+  width: 13px;
+  vertical-align: bottom;
 }
-/*
-uhm the html is
-<script src="https://unpkg.com/twemoji@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
- */
 
 canvas {
   touch-action: none;
