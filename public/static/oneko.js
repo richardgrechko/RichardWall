@@ -1,6 +1,6 @@
 // oneko.js: https://github.com/adryd325/oneko.js
 // For Dimka's TextWall /cat
-(function oneko() {
+function oneko() {
   const isReducedMotion =
     window.matchMedia(`(prefers-reduced-motion: reduce)`) === true ||
     window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true;
@@ -236,7 +236,8 @@
   }
 
   init();
-})();
+}
+oneko();
 /*
     setInterval(() => {
       document.title = "Oneko's TextWall";

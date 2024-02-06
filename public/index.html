@@ -545,11 +545,12 @@
     <script src="/static/scriptloader.js"></script>
     <script>
       function summonOneko() {
-        loadScript("/static/oneko.js");
-      }
-
+        if (!window.oneko) {
+          loadScript("/static/oneko.js");
+        } else oneko();
+      };
       function onekoDisaster() {
-        setInterval(loadScript("/static/oneko.js"), 5000);
+        setInterval(summonOneko, 5000);
       }
     </script>
     <script>
