@@ -36,12 +36,17 @@ const oauth = new DiscordOauth2({
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.MESSAGE_CONTENT, Intents.FLAGS.GUILD_MESSAGES] });
 client.on('ready', () => console.log("discord bot ready"));
 client.on("messageCreate", msg => {
-  if (msg.content.split(" ")[0] == "!online") {
+  var args = msg.content.split(" ");
+  var cmd = args.shift();
+  if (cmd == "!online") {
     var mainWallCount = 0;
     wss.clients.forEach(sock => {
       if (sock.sdata.connectedWorldId == 1) mainWallCount++;
     });
-    msg.reply(`${onlineCount} online\n${mainWallCount} in main wall`);
+    msg.reply(`${onlineCount} online\n${mainWallCount} on the front page`);
+  }
+  if (cmd == "!help") {
+    msg.reply(`commands:\n> !help (list of commands)\n> !online (how many people are online on the site)\nthat's all for now...`);
   }
   if (msg.channelId != "1202685655054950502" || msg.author.bot) return;
   worldBroadcast(1, msgpack.encode({ msg: [`(discord) ${msg.author.globalName}`, 0, msg.content, false, 0] }));
@@ -1107,9 +1112,9 @@ function init_ws() {
         ) {
           console.log("Server stopped by admin");
             webhookSend(process.env.upordownurl, {
-          content: `\u003Aarrows_counterclockwise\u003A The servers were restarted by a admin.`
-            });
-          closeServer();
+          content: `\u003Aarrows_counterclockwise\u003A The servers were restarted by an admin.`
+            }).then(closeServer);
+          return;
         }
         worldBroadcast(
           sdata.connectedWorldId,

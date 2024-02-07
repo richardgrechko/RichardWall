@@ -25,6 +25,7 @@ var colors = {
   "18": "teal",
   "19": "indigo",
   "20": "periwinkle",
+  // 20: discord?!?!?!?!?
   "21": "pink",
   "22": "dark brown",
   "23": "burgundy",
