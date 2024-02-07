@@ -1098,6 +1098,10 @@ function init_ws() {
           ["/stop", "/stopserver", "/restart"].includes(cmd) &&
           sdata.isAdmin
         ) {
+          console.log("Server stopped by admin");
+            webhookSend(process.env.upordownurl, {
+          content: `\u003Aarrows_counterclockwise\u003A The servers were restarted by a admin.`
+            });
           closeServer();
         }
         worldBroadcast(
@@ -2009,9 +2013,6 @@ initServer();
 function closeServer() {
   broadcast(msgpack.encode({ closing: true }));
   console.log("Server is closing, saving...");
-  webhookSend(process.env.upordownurl, {
-    content: `\u003Ax\u003A Whoops, the servers are closed \u0028or restarting\u0029! \u003A\u0028`
-  });
   commitChunks();
   process.exit();
 }
