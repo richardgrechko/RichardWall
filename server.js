@@ -1,9 +1,9 @@
 // Thanks to falling1 for helping out!
 // https://glitch.com/@falling1
 var maintenanceMode = 0;
-// 💥 Turn it to "1" to shutdown the servers! 💥
+// 💥 Turn it to "1" to shutdown the server! 💥
 // actually you just need to change the 1 to 0
-// Restart Servers: Use the /stop command
+// Restart Server: Use the /stop command
 // Or go to /stopserver (You need the admin cookie)
 // Glitch restarts the server when it stops
 
@@ -35,7 +35,7 @@ const oauth = new DiscordOauth2({
 });
 // for goatway to receive messages from discord and send them to dimka's textwall 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.MESSAGE_CONTENT, Intents.FLAGS.GUILD_MESSAGES] });
-client.on('ready', () => console.log("discord bot ready"));
+client.on('ready', () => console.log("The Discord bot is ready"));
 client.on("messageCreate", msg => {
   var args = msg.content.split(" ");
   var cmd = args.shift();
@@ -118,7 +118,7 @@ function adminStuff(req, res, next) {
     res.end(
       "Bye bye! \u0028Server stopped\u0029\nRedirecting to main page in 2 seconds.."
     );
-    closeServer();
+    stopServer();
     return;
   }
   next();
@@ -1114,8 +1114,8 @@ function init_ws() {
           serverClosing = true
           console.log("Server stopped by admin");
             webhookSend(process.env.upordownurl, {
-          content: `\u003Aarrows_counterclockwise\u003A The servers were restarted by an admin.`
-            }).then(closeServer);
+          content: `\u003Aarrows_counterclockwise\u003A The server was restarted by an admin.`
+            }).then(stopServer);
           return;
         }
         worldBroadcast(
@@ -2026,14 +2026,23 @@ async function initServer() {
   runserver();
 }
 initServer();
+// idea: duplicate it and rename it without the webhooksend thingy
 function closeServer() {
   broadcast(msgpack.encode({ closing: true }));
+  wss.clients.forEach(sock => sock._socket.end());
   console.log("Server is closing, saving...");
   commitChunks();
     webhookSend(process.env.upordownurl, {
           content: `:no_entry: The server is closed :(`
             }).then(process.exit);
 }
+function stopServer() {
+  broadcast(msgpack.encode({ closing: true }));
+  wss.clients.forEach(sock => sock._socket.end());
+  console.log("Server is closing, saving...");
+  commitChunks();
+  process.exit();
+}
 process.once("SIGINT", closeServer);
 process.once("SIGTERM", closeServer);
-console.log("current server date: " + new Date().toString());
+console.log("Server date: " + new Date().toString());
