@@ -33,25 +33,38 @@ const oauth = new DiscordOauth2({
   clientSecret: process.env.clientsecret,
   redirectUri: "https://dimkatextwall.glitch.me/authorized.html",
 });
-// for goatway to receive messages from discord and send them to dimka's textwall 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.MESSAGE_CONTENT, Intents.FLAGS.GUILD_MESSAGES] });
-client.on('ready', () => console.log("The Discord bot is ready"));
-client.on("messageCreate", msg => {
+// for goatway to receive messages from discord and send them to dimka's textwall
+const client = new Client({
+  intents: [
+    Intents.FLAGS.GUILDS,
+    Intents.FLAGS.MESSAGE_CONTENT,
+    Intents.FLAGS.GUILD_MESSAGES,
+  ],
+});
+client.on("ready", () => console.log("The Discord bot is ready"));
+client.on("messageCreate", (msg) => {
   var args = msg.content.split(" ");
   var cmd = args.shift();
   if (cmd == "!online") {
     var mainWallCount = 0;
-    wss.clients.forEach(sock => {
+    wss.clients.forEach((sock) => {
       if (sock.sdata.connectedWorldId == 1) mainWallCount++;
     });
     msg.reply(`${onlineCount} online\n${mainWallCount} on the front page`);
   }
   if (cmd == "!help") {
-    msg.reply(`# Command list\n> !help (list of commands)\n> !online (how many people are online on the site)\n### That's all (for now)...`);
+    msg.reply(
+      `# Command list\n> !help (list of commands)\n> !online (how many people are online on the site)\n### That's all (for now)...`
+    );
   }
   if (msg.channelId != "1202685655054950502" || msg.author.bot) return;
-  // try adding the periwinkle color to the nickname pls 
-  worldBroadcast(1, msgpack.encode({ msg: [`(discord) ${msg.author.globalName}`, 20, msg.content, false, 0] }));
+  // try adding the periwinkle color to the nickname pls
+  worldBroadcast(
+    1,
+    msgpack.encode({
+      msg: [`(discord) ${msg.author.globalName}`, 20, msg.content, false, 0],
+    })
+  );
 });
 client.login(process.env.discordbottoken);
 
@@ -169,7 +182,10 @@ app.get("/*", (req, res) => {
 var server = http.createServer(app);
 server.on("upgrade", (request, socket, head) => {
   const cookies = cookie.parse(request.headers.cookie + "");
-  if (serverClosing || (cookies.adminthing != process.env.adminthing && maintenanceMode)) {
+  if (
+    serverClosing ||
+    (cookies.adminthing != process.env.adminthing && maintenanceMode)
+  ) {
     socket.write("HTTP/1.1 503 Service Unavailable\r\n\r\n");
     socket.destroy();
     return;
@@ -197,8 +213,10 @@ async function runserver() {
     );
     console.log("🛑 The server is in maintenance mode.");
     webhookSend(process.env.upordownurl, {
-          content: maintenanceMode ? ":octagonal_sign: The server is in maintenance mode" : ":white_check_mark: The server is up! :D"
-        });
+      content: maintenanceMode
+        ? ":octagonal_sign: The server is in maintenance mode"
+        : ":white_check_mark: The server is up! :D",
+    });
   });
   init_ws();
 }
@@ -1114,10 +1132,11 @@ function init_ws() {
           sdata.isAdmin
         ) {
           serverClosing = true;
-          console.log("Server stopped by admin");
-          if (!maintenanceMode) webhookSend(process.env.upordownurl, {
-          content: `\u003Aarrows_counterclockwise\u003A The server was restarted by an admin.`
+          if (!maintenanceMode)
+            webhookSend(process.env.upordownurl, {
+              content: `\u003Aarrows_counterclockwise\u003A The server was restarted by an admin.`,
             }).then(stopServer);
+          else stopServer();
           return;
         }
         worldBroadcast(
@@ -1140,16 +1159,16 @@ function init_ws() {
           // N-Word (censorship)
           .replaceAll("nigger", "african")
           .replaceAll("nigga", "african")
-          .replaceAll("Nigger","African")
-          .replaceAll("Nigga","African")
+          .replaceAll("Nigger", "African")
+          .replaceAll("Nigga", "African")
           .replaceAll("NIGGA", "AFRICAN")
           .replaceAll("NIGGER", "AFRICAN")
           // Discord automatically removes the Right-to-Left Override, and this can be abused to bypass the filter, so we're filtering it out (anti-abuse)
           .replaceAll("\u202e", "")
           // Remove embeds from links so no one posts gay porn/gore :3 (anti-abuse/censorship)
-          .replace(/https?:\/\//g, (match) => match+"/")
+          .replace(/https?:\/\//g, (match) => match + "/")
           // In case they somehow magicially bypass the @everyone/@here filter (anti-abuse)
-          .replaceAll("@","atsign");
+          .replaceAll("@", "atsign");
         if (!maintenanceMode && sdata.connectedWorldId == 1)
           webhookSend(process.env.goatwaywebhookurl, {
             content: `${name}: ${msg}`,
@@ -1932,7 +1951,7 @@ function init_ws() {
                 }
               }
             }
-          sdata.discordUser = null;
+            sdata.discordUser = null;
           })
           .catch((err) => {
             console.log(err);
@@ -2025,16 +2044,17 @@ initServer();
 // idea: duplicate it and rename it without the webhooksend thingy
 function closeServer() {
   broadcast(msgpack.encode({ closing: true }));
-  wss.clients.forEach(sock => sock._socket.end());
+  wss.clients.forEach((sock) => sock._socket.end());
   console.log("Server is closing, saving...");
   commitChunks();
-  if (!maintenanceMode) webhookSend(process.env.upordownurl, {
-          content: `:no_entry: The server is closed :(`
-            }).then(process.exit);
+  if (!maintenanceMode)
+    webhookSend(process.env.upordownurl, {
+      content: `:no_entry: The server is closed :(`,
+    }).then(process.exit);
 }
 function stopServer() {
   broadcast(msgpack.encode({ closing: true }));
-  wss.clients.forEach(sock => sock._socket.end());
+  wss.clients.forEach((sock) => sock._socket.end());
   console.log("Server is closing, saving...");
   commitChunks();
   process.exit();
