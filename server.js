@@ -211,7 +211,6 @@ async function runserver() {
         ", and port " +
         addr.port
     );
-    console.log("🛑 The server is in maintenance mode.");
     webhookSend(process.env.upordownurl, {
       content: maintenanceMode
         ? ":octagonal_sign: The server is in maintenance mode"
