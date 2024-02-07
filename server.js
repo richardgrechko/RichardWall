@@ -659,9 +659,6 @@ function init_ws() {
     send(ws, msgpack.encode({ id: sdata.clientId }));
     if (maintenanceMode)
       send(ws, msgpack.encode({ alert: "Server is in maintenance mode" }));
-        webhookSend(process.env.upordownurl, {
-          content: `:octagonal_sign: The server is in maintenance mode.`
-            });
     ws.on("message", function (message, binary) {
       if (!binary) return;
       if (serverClosing) return;

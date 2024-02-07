@@ -43,7 +43,12 @@
         message.selectionStart = message.value.length - 21;
         message.selectionEnd = message.value.length;
       };
-      document.getElementById("message").innerHTML = "mail from " + localStorage.getItem("username") + ": please";
+      // if the localstorage key "username" doesnt exist, use "an anonymous user" instead
+      var nickname = localStorage.getItem("username");
+      if (nickname === null) {
+          nickname = "an anonymous user";
+      }
+      message.value = "mail from " + nickname + ": please";
     </script>
   </body>
 </html>
