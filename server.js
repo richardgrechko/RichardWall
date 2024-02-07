@@ -33,7 +33,7 @@ const oauth = new DiscordOauth2({
   clientSecret: process.env.clientsecret,
   redirectUri: "https://dimkatextwall.glitch.me/authorized.html",
 });
-// for goatway to receive messages from discord and send them to dimka's textwall
+
 const client = new Client({
   intents: [
     Intents.FLAGS.GUILDS,
@@ -41,31 +41,47 @@ const client = new Client({
     Intents.FLAGS.GUILD_MESSAGES,
   ],
 });
-client.on("ready", () => console.log("The Discord bot is ready"));
-client.on("messageCreate", (msg) => {
-  var args = msg.content.split(" ");
-  var cmd = args.shift();
-  if (cmd == "!online") {
+
+client.on("ready", () => {
+  console.log("The Discord bot is ready");
+
+  // Register slash commands
+  const guild = client.guilds.cache.get("YOUR_GUILD_ID"); // Replace "YOUR_GUILD_ID" with your guild's ID
+  if (guild) {
+    guild.commands.set([
+      {
+        name: "online",
+        description: "Get the number of people online",
+      },
+      {
+        name: "help",
+        description: "Get a list of commands",
+      },
+    ]);
+  }
+});
+
+client.on("interactionCreate", async (interaction) => {
+  if (!interaction.isCommand()) return;
+
+  const { commandName } = interaction;
+
+  if (commandName === "online") {
     var mainWallCount = 0;
     wss.clients.forEach((sock) => {
       if (sock.sdata.connectedWorldId == 1) mainWallCount++;
     });
-    msg.reply(`${onlineCount} online\n${mainWallCount} on the front page`);
-  }
-  if (cmd == "!help") {
-    msg.reply(
-      `# Command list\n> !help (list of commands)\n> !online (how many people are online on the site)\n### That's all (for now)...`
+    interaction.reply(
+      `${onlineCount} online\n${mainWallCount} on the front page`
     );
+  } else if (commandName === "help") {
+    interaction.reply({
+      content: "# Command list\n> !help (list of commands)\n> !online (how many people are online on the site)\n### That's all (for now)...",
+      ephemeral: true, // Make this response visible only to the user who issued the command
+    });
   }
-  if (msg.channelId != "1202685655054950502" || msg.author.bot) return;
-  // try adding the periwinkle color to the nickname pls
-  worldBroadcast(
-    1,
-    msgpack.encode({
-      msg: [`(discord) ${msg.author.globalName}`, 20, msg.content, false, 0],
-    })
-  );
 });
+
 client.login(process.env.discordbottoken);
 
 var db = sql("./data.sqlite3");
