@@ -1,6 +1,6 @@
 // Thanks to falling1 for helping out!
 // https://glitch.com/@falling1
-var maintenanceMode = 1;
+var maintenanceMode = 0;
 // 💥 Turn it to "1" to shutdown the server! 💥
 // actually you just need to change the 1 to 0
 // Restart Server: Use the /stop command
@@ -196,7 +196,7 @@ async function runserver() {
         addr.port
     );
     webhookSend(process.env.upordownurl, {
-          content: `:white_check_mark: The server is up! :D`
+          content: maintenanceMode ? ":octagonal_sign: The server is in maintenance mode" : ":white_check_mark: The server is up! :D"
         });
   });
   init_ws();
@@ -1112,9 +1112,9 @@ function init_ws() {
           ["/stop", "/stopserver", "/restart"].includes(cmd) &&
           sdata.isAdmin
         ) {
-          serverClosing = true
+          serverClosing = true;
           console.log("Server stopped by admin");
-            webhookSend(process.env.upordownurl, {
+          if (!maintenanceMode) webhookSend(process.env.upordownurl, {
           content: `\u003Aarrows_counterclockwise\u003A The server was restarted by an admin.`
             }).then(stopServer);
           return;
@@ -2033,7 +2033,7 @@ function closeServer() {
   wss.clients.forEach(sock => sock._socket.end());
   console.log("Server is closing, saving...");
   commitChunks();
-    webhookSend(process.env.upordownurl, {
+  if (!maintenanceMode) webhookSend(process.env.upordownurl, {
           content: `:no_entry: The server is closed :(`
             }).then(process.exit);
 }
