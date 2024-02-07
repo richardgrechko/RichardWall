@@ -1,6 +1,6 @@
 // Thanks to falling1 for helping out!
 // https://glitch.com/@falling1
-var maintenanceMode = 0;
+var maintenanceMode = 1;
 // 💥 Turn it to "1" to shutdown the server! 💥
 // actually you just need to change the 1 to 0
 // Restart Server: Use the /stop command
@@ -47,7 +47,7 @@ client.on("messageCreate", msg => {
     msg.reply(`${onlineCount} online\n${mainWallCount} on the front page`);
   }
   if (cmd == "!help") {
-    msg.reply(`# Command list\n> !help (list of commands)\n> !online (how many people are online on the site)\nthat's all (for now)...`);
+    msg.reply(`# Command list\n> !help (list of commands)\n> !online (how many people are online on the site)\n### That's all (for now)...`);
   }
   if (msg.channelId != "1202685655054950502" || msg.author.bot) return;
   // try adding the periwinkle color to the nickname pls 
@@ -195,6 +195,7 @@ async function runserver() {
         ", and port " +
         addr.port
     );
+    console.log("🛑 The server is in maintenance mode.");
     webhookSend(process.env.upordownurl, {
           content: maintenanceMode ? ":octagonal_sign: The server is in maintenance mode" : ":white_check_mark: The server is up! :D"
         });
@@ -1136,12 +1137,6 @@ function init_ws() {
           // @everyone/@here (anti-abuse)
           .replaceAll("@everyone", "@\u200beveryone")
           .replaceAll("@here", "@\u200bhere")
-          // Gay Sex (censorship)
-          .replace("Gay sex","Weird stuff")
-          .replace("Gay Sex","Weird Stuff")
-          .replace("say gex","seird wtuff")
-          .replace("gay sex", "weird stuff")
-          .replace("GAY SEX", "WEIRD STUFF")
           // N-Word (censorship)
           .replaceAll("nigger", "african")
           .replaceAll("nigga", "african")
