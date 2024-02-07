@@ -2514,7 +2514,7 @@ var client_commands = {
           vn(!1);
           break;
         case "cantchangepass":
-          ir("You cannot change your password because you are using Discord to log in.", 8e3);
+          ir("You cannot change your password, as you used Discord to log in.", 8e3);
           vn(!1);
           break;
       }
