@@ -2160,6 +2160,7 @@ var client_commands = {
         (l.title = "(" + id + ")");
       c["appendChild"](l),
         c.appendChild(document.createTextNode(": " + message));
+      c.innerHTML = c.innerHTML.replace(/((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g, "<a href")
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
       twemoji.parse(c);
