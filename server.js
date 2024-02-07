@@ -26,18 +26,19 @@ var banReasons = {};
 var port = 8080;
 var loginToType = false;
 const admins = ["dimka", "falling1"];
-
+// info for logging in with discord to work
 const oauth = new DiscordOauth2({
   clientId: "1201515886683619368",
   clientSecret: process.env.clientsecret,
   redirectUri: "https://dimkatextwall.glitch.me/authorized.html",
 });
+// for goatway to receive messages from discord and send them to dimka's textwall 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.MESSAGE_CONTENT, Intents.FLAGS.GUILD_MESSAGES] });
 client.on('ready', () => console.log("discord bot ready"));
 client.on("messageCreate", msg => {
   if (msg.content.split(" ")[0] == "!online") msg.reply(`${onlineCount} online`);
   if (msg.channelId != "1202685655054950502" || msg.author.bot) return;
-  worldBroadcast(1, msgpack.encode({ msg: [`(Discord) ${msg.author.globalName}`, 0, msg.content, false, 0] }));
+  worldBroadcast(1, msgpack.encode({ msg: [`(discord) ${msg.author.globalName}`, 0, msg.content, false, 0] }));
 });
 client.login(process.env.discordbottoken);
 
