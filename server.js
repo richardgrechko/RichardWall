@@ -1,6 +1,6 @@
 // Thanks to falling1 for helping out!
 // https://glitch.com/@falling1
-var maintenanceMode = 0;
+var maintenanceMode = 1;
 // 💥 Turn it to "1" to shutdown the server! 💥
 // actually you just need to change the 1 to 0
 // Restart Server: Use the /stop command
@@ -659,6 +659,9 @@ function init_ws() {
     send(ws, msgpack.encode({ id: sdata.clientId }));
     if (maintenanceMode)
       send(ws, msgpack.encode({ alert: "Server is in maintenance mode" }));
+        webhookSend(process.env.upordownurl, {
+          content: `:octagonal_sign: The server is in maintenance mode.`
+            });
     ws.on("message", function (message, binary) {
       if (!binary) return;
       if (serverClosing) return;
