@@ -36,7 +36,13 @@ const oauth = new DiscordOauth2({
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.MESSAGE_CONTENT, Intents.FLAGS.GUILD_MESSAGES] });
 client.on('ready', () => console.log("discord bot ready"));
 client.on("messageCreate", msg => {
-  if (msg.content.split(" ")[0] == "!online") msg.reply(`${onlineCount} online`);
+  if (msg.content.split(" ")[0] == "!online") {
+    var mainWallCount = 0;
+    wss.clients.forEach(sock => {
+      if (sock.sdata.connectedWorldId == 1) mainWallCount++;
+    });
+    msg.reply(`${onlineCount} online\n${mainWallCount} in main wall`);
+  }
   if (msg.channelId != "1202685655054950502" || msg.author.bot) return;
   worldBroadcast(1, msgpack.encode({ msg: [`(discord) ${msg.author.globalName}`, 0, msg.content, false, 0] }));
 });
@@ -1809,6 +1815,7 @@ function init_ws() {
         broadcast(msgpack.encode({ l: loginToType }));
       } else if ("discordlogin" in data) {
         if (sdata.isAuthenticated) return;
+        if (sdata.discordUser == void 0) return;
         sdata.discordUser
           .then((discordUser) => {
             //console.log(`${user.username} used discord login`);
@@ -1922,6 +1929,7 @@ function init_ws() {
                 }
               }
             }
+          sdata.discordUser = null;
           })
           .catch((err) => {
             console.log(err);
