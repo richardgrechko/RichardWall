@@ -46,7 +46,7 @@ client.on("ready", () => {
   console.log("The Discord bot is ready");
 
   // Register slash commands
-  const guild = client.guilds.cache.get("YOUR_GUILD_ID"); // Replace "YOUR_GUILD_ID" with your guild's ID
+  const guild = client.guilds.cache.get("1196101562741825677"); // Replace "YOUR_GUILD_ID" with your guild's ID
   if (guild) {
     guild.commands.set([
       {
