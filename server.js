@@ -25,6 +25,7 @@ var bannedIps = {};
 var banReasons = {};
 var port = 8080;
 var loginToType = false;
+var serverClosing = false;
 const admins = ["dimka", "falling1"];
 // info for logging in with discord to work
 const oauth = new DiscordOauth2({
@@ -167,7 +168,7 @@ app.get("/*", (req, res) => {
 var server = http.createServer(app);
 server.on("upgrade", (request, socket, head) => {
   const cookies = cookie.parse(request.headers.cookie + "");
-  if (cookies.adminthing != process.env.adminthing && maintenanceMode) {
+  if (serverClosing || (cookies.adminthing != process.env.adminthing && maintenanceMode)) {
     socket.write("HTTP/1.1 503 Service Unavailable\r\n\r\n");
     socket.destroy();
     return;
@@ -194,7 +195,7 @@ async function runserver() {
         addr.port
     );
     webhookSend(process.env.upordownurl, {
-          content: `:white_check_mark: The servers are up! :D`
+          content: `:white_check_mark: The server is up! :D`
         });
   });
   init_ws();
@@ -659,7 +660,7 @@ function init_ws() {
       send(ws, msgpack.encode({ alert: "Server is in maintenance mode" }));
     ws.on("message", function (message, binary) {
       if (!binary) return;
-
+      if (serverClosing) return;
       var per = Math.floor(Date.now() / 1000);
       if (connObj[2] == per) {
         if (connObj[1] >= 100) return;
@@ -1110,6 +1111,7 @@ function init_ws() {
           ["/stop", "/stopserver", "/restart"].includes(cmd) &&
           sdata.isAdmin
         ) {
+          serverClosing = true
           console.log("Server stopped by admin");
             webhookSend(process.env.upordownurl, {
           content: `\u003Aarrows_counterclockwise\u003A The servers were restarted by an admin.`
@@ -2028,7 +2030,9 @@ function closeServer() {
   broadcast(msgpack.encode({ closing: true }));
   console.log("Server is closing, saving...");
   commitChunks();
-  process.exit();
+    webhookSend(process.env.upordownurl, {
+          content: `:no_entry: The server is closed :(`
+            }).then(process.exit);
 }
 process.once("SIGINT", closeServer);
 process.once("SIGTERM", closeServer);
