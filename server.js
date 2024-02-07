@@ -50,6 +50,7 @@ client.on("messageCreate", msg => {
     msg.reply(`# Command list\n> !help (list of commands)\n> !online (how many people are online on the site)\nthat's all (for now)...`);
   }
   if (msg.channelId != "1202685655054950502" || msg.author.bot) return;
+  // try adding the periwinkle color to the nickname pls 
   worldBroadcast(1, msgpack.encode({ msg: [`(discord) ${msg.author.globalName}`, 0, msg.content, false, 0] }));
 });
 client.login(process.env.discordbottoken);
