@@ -240,7 +240,7 @@ async function runserver() {
     );
     webhookSend(process.env.upordownurl, {
       content: maintenanceMode
-        ? ":octagonal_sign: The server is in maintenance mode"
+        ? ":octagonal_sign: The server is in maintenance mode. <@&1197267875107442789>"
         : ":white_check_mark: The server is up! :D",
     });
   });
