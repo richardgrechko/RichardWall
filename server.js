@@ -43,9 +43,8 @@ const client = new Client({
   ],
 });
 
-client.on("ready"), () => {
+client.on("ready", () => {
   console.log("The Discord bot is ready");
-}
   client.on("messageCreate", (msg) => {
   var args = msg.content.split(" ");
   var cmd = args.shift();
