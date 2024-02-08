@@ -43,17 +43,9 @@ const client = new Client({
   ],
 });
 
-client.on("ready", () => {
-  console.log("The Discord bot is ready");
-  client.on("messageCreate", (msg) => {
-  var args = msg.content.split(" ");
-  var cmd = args.shift();
-  if (cmd == "!online") {
-    var mainWallCount = 0;
-    wss.clients.forEach((sock) => {
-      if (sock.sdata.connectedWorldId == 1) mainWallCount++;
-    });
-
+/* client.on("ready"), () => {
+  console.log("The Discord bot is ready to go");
+} */
   // Register slash commands
   const guild = client.guilds.cache.get("1196101562741825677"); // Replace "YOUR_GUILD_ID" with your guild's ID
   if (guild) {
@@ -67,8 +59,7 @@ client.on("ready", () => {
         description: "Get a list of commands",
       },
     ]);
-  }
-};
+  };
 
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
@@ -88,14 +79,6 @@ client.on("interactionCreate", async (interaction) => {
       content: "# Command list\n> !help (list of commands)\n> !online (how many people are online on the site)\n### That's all (for now)...",
       ephemeral: true, // Make this response visible only to the user who issued the command
     });
-    
-      if (msg.channelId != "1202685655054950502" || msg.author.bot) return;
-  worldBroadcast(
-    1,
-    msgpack.encode({
-      msg: [`(discord) ${msg.author.globalName}`, 20, msg.content, false, 0],
-    })
-  );
   }
 });
 
