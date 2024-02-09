@@ -196,7 +196,7 @@ app.get("/data.sqlite3", (req, res, next) => {
 });
 app.post("/sendmail", (req, res) => {
   if (req.body.length > 1000) return;
-  webhookSend(process.env.mailwebhookurl, { content: req.body }).then(() =>
+  webhookSend(process.env.mailwebhookurl, { content: "\u005C" + req.body }).then(() =>
     res.send("OK")
   );
 });
