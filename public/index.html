@@ -377,6 +377,16 @@
                  width="18">
             Download Android App
           </button></a>
+          <script>function clientTell() { clientMessage(clienttell.value) }</script>
+          <h3>
+            Client Message
+          </h3>
+          <small><strong>NOTE</strong>: Only you can see the message</small><br />
+          <textarea id="clienttell" placeholder="Put anything here, and the client will say it in the chat!"></textarea>
+          <button onclick="clientTell()">
+           Submit! 
+          </button>
+
         </div>
 
         <div id="wallsettings">
