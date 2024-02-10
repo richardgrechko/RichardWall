@@ -2077,7 +2077,7 @@ function closeServer() {
 function stopServer() {
   broadcast(msgpack.encode({ closing: true }));
   wss.clients.forEach((sock) => sock._socket.end());
-  console.log("Server is closing, saving...");
+  console.log("Server is stopped by an admin, saving...");
   commitChunks();
   process.exit();
 }
