@@ -80,14 +80,6 @@ client.on("interactionCreate", async (interaction) => {
   }
 });
 
-  if (msg.channelId != "1202685655054950502" || msg.author.bot) {
-  worldBroadcast(
-    1,
-    msgpack.encode({
-      msg: [`(discord) ${msg.author.globalName}`, 20, msg.content, false, 0],
-    })
-  )};
-
 client.login(process.env.discordbottoken);
 /* original code
   if (msg.channelId != "1202685655054950502" || msg.author.bot) return;
