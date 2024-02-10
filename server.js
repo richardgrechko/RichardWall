@@ -80,6 +80,14 @@ client.on("interactionCreate", async (interaction) => {
   }
 });
 
+  if (msg.channelId != "1202685655054950502" || msg.author.bot) return;
+  worldBroadcast(
+    1,
+    msgpack.encode({
+      msg: [`(discord) ${msg.author.globalName}`, 20, msg.content, false, 0],
+    })
+  );
+
 client.login(process.env.discordbottoken);
 /* original code
   if (msg.channelId != "1202685655054950502" || msg.author.bot) return;
@@ -665,13 +673,12 @@ function init_ws() {
           banned: banReasons[ipAddr],
         })
       );
-      ws.close();
-      console.log(
+        console.log(
         "Somebody tried to join, but they're banned! their ip is " +
           ipAddr +
           " :troll:"
       );
-      // totally not for ip grabbing at all
+      ws.close();
       return;
     }
 
