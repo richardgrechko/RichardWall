@@ -200,6 +200,7 @@ app.post("/sendmail", (req, res) => {
     res.send("OK")
   );
 });
+// to send people to the public folder, and right file
 app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
