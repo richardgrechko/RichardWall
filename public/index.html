@@ -137,7 +137,7 @@
         ><br />
         <input id="showchat" type="checkbox" /><label for="showchat" id="showcht"
           >Show chat</label
-        ><br />
+        ><br id="newlineshowchat">
         <input id="disablecolour" type="checkbox" /><label for="disablecolour"
           >Disable color</label
         ><br />
@@ -382,16 +382,25 @@
           </button>
           <script>
             function removeChat() {
-              document.getElementById("chat").remove();document.getElementById("removechat").remove();document.getElementById("disablechat").remove();
+              // remove every chat thing
+              document.getElementById("chat").remove();
+              document.getElementById("removechat").remove();
+              document.getElementById("showchat").remove();
+              document.getElementById("showcht").remove();
+              document.getElementById("newlineshowchat").remove();
+              document.getElementById("clienttellchatthing").remove();
+              document.getElementById("clienttellnote").remove();
+              document.getElementById("clienttell").remove();
+              document.getElementById("clienttellsubmit").remove();
             }
           </script>
           <script>function clientTell() { clientMessage(clienttell.value) }</script>
-          <h3>
+          <h3 id="clienttellchatthing">
             Client Message
           </h3>
-          <small><strong>NOTE</strong>: Only you can see the message</small><br />
+          <small id="clienttellnote"><strong>NOTE</strong>: Only you can see the message</small><br />
           <textarea id="clienttell" placeholder="Put anything here, and the client will say it in the chat!"></textarea><br />
-          <button onclick="clientTell()">
+          <button onclick="clientTell()" id="clienttellsubmit">
            Submit! 
           </button>
 
