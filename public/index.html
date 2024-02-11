@@ -135,7 +135,7 @@
         <input id="shownametags" type="checkbox" /><label for="shownametags"
           >Show nametags</label
         ><br />
-        <input id="showchat" type="checkbox" /><label for="showchat"
+        <input id="showchat" type="checkbox" /><label for="showchat" id="showcht"
           >Show chat</label
         ><br />
         <input id="disablecolour" type="checkbox" /><label for="disablecolour"
@@ -377,6 +377,14 @@
                  width="18">
             Download Android App
           </button></a>
+          <button onclick="removeChat()" id="removechat">
+            Remove Chat
+          </button>
+          <script>
+            function removeChat() {
+              document.getElementById("chat").remove();document.getElementById("removechat").remove();document.getElementById("disablechat").remove();
+            }
+          </script>
           <script>function clientTell() { clientMessage(clienttell.value) }</script>
           <h3>
             Client Message
