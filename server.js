@@ -1162,6 +1162,14 @@ function init_ws() {
           else stopServer();
           return;
         }
+        if (
+          ["/maintenance"].includes(cmd) &&
+          sdata.isAdmin
+        ) {
+          var maintenanceMode = 1;
+          return;
+        }
+        
         worldBroadcast(
           sdata.connectedWorldId,
           msgpack.encode({
