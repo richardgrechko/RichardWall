@@ -69,9 +69,14 @@ client.on("interactionCreate", async (interaction) => {
     wss.clients.forEach((sock) => {
       if (sock.sdata.connectedWorldId == 1) mainWallCount++;
     });
-    interaction.reply(
-      `${onlineCount} online\n${mainWallCount} on the front page`
-    );
+    interaction.reply({
+      content: "${onlineCount} online\n${mainWallCount} on the front page",
+      ephemeral: true //why tho? because why would anyone want to see a interaction that they didnt run? well ok i guess it can prevent flooding the caht, but what about /help? same reason bUT what if uhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh people didnt even know commands existed if they see /help then they will know the commands 
+      // wait, how would anyone know that they can start with ! prefix and type something? 
+      // i didnt understand that
+
+      // in my head i have a good reason i cant fucking say it with words but the thing i wrote sounds kinda bad
+    });
   } else if (commandName === "help") {
     interaction.reply({
       content: "# Command list\n> !help (list of commands)\n> !online (how many people are online on the site)\n### That's all (for now)...",
@@ -91,7 +96,15 @@ client.login(process.env.discordbottoken);
   );
  */
 // the code that sends the discord message to the site is gone now
-
+client.on("messageCreate", msg => {
+  if (msg.channelId != "1202685655054950502" || msg.author.bot) return;
+  worldBroadcast(
+    1,
+    msgpack.encode({
+      msg: [`(discord) ${msg.author.globalName}`, 20, msg.content, false, 0],
+    })
+  );
+});
 var db = sql("./data.sqlite3");
 async function getDiscordUser(code) {
   var accessToken = await oauth.tokenRequest({
