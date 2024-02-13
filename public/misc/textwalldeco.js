@@ -90,7 +90,7 @@
         var x;
         const w = document["getElementById"]("clipboard"),
             b = document["getElementById"]("usermenu"),
-            M = document["getElementById"]("colorlist"),
+            M = document["getElementById"]("colourlist"),
             k = document["getElementById"]("teleport");
         var E = document["getElementById"]("canvas");
         E.removeAttribute("id");
@@ -351,15 +351,15 @@
             showothercurs: document["getElementById"]("showothercurs"),
             shownametags: document["getElementById"]("shownametags"),
             showchat: document.getElementById("showchat"),
-            disablecolor: document["getElementById"]("disablecolor"),
+            disablecolour: document["getElementById"]("disablecolour"),
             smoothpanning: document["getElementById"]("smoothpanning"),
             smoothcursors: document["getElementById"]("smoothcursors"),
-            copycolor: document.getElementById("copycolor"),
+            copycolour: document.getElementById("copycolour"),
             copydecorations: document["getElementById"]("copydecorations"),
             rainbow: document["getElementById"]("rainbow"),
             anonymous: document.getElementById("anonymous")
         };
-        ft["showothercurs"]["checked"] = !0, ft["shownametags"]["checked"] = !0, ft["showchat"]["checked"] = !0, ft["disablecolor"]["checked"] = !1, ft["smoothpanning"]["checked"] = !0, ft.smoothcursors["checked"] = !0;
+        ft["showothercurs"]["checked"] = !0, ft["shownametags"]["checked"] = !0, ft["showchat"]["checked"] = !0, ft["disablecolour"]["checked"] = !1, ft["smoothpanning"]["checked"] = !0, ft.smoothcursors["checked"] = !0;
         const dt = {
             protect: document["getElementById"]("protect"),
             protectOwner: document["getElementById"]("protectowner"),
@@ -368,7 +368,7 @@
             private: document.getElementById("private"),
             hideCursors: document["getElementById"]("hidecursors"),
             disableChat: document.getElementById("disablechat"),
-            disableColor: document["getElementById"]("walldisablecolor"),
+            disableColour: document["getElementById"]("walldisablecolour"),
             disableBraille: document.getElementById("disablebraille")
         };
         var vt = 1,
@@ -614,7 +614,7 @@
 
         function Zt(e, t) {
             var r = n;
-            ft["disablecolor"]["checked"] && (t = 0), e["fillStyle"] = Be && 0 == t ? "#FFFFFF" : xe[t]
+            ft["disablecolour"]["checked"] && (t = 0), e["fillStyle"] = Be && 0 == t ? "#FFFFFF" : xe[t]
         }
 
         function en(e, t, r) {
@@ -954,12 +954,12 @@
                                 if (g) {
                                     g[0] == ne ? s += " " : s += g[0];
                                     var [x, w] = da(g[1]);
-                                    ft["copycolor"]["checked"] && ft["copydecorations"]["checked"] ? f += String.fromCharCode(ge + g[1]) : ft["copycolor"].checked ? f += String["fromCharCode"](ge + x) : ft["copydecorations"]["checked"] && (f += String["fromCharCode"](ge + fa(0, w))), hr(g[0], w) || (0 != w && (v = !0), 0 != x && (d = !0)), De.x++
+                                    ft["copycolour"]["checked"] && ft["copydecorations"]["checked"] ? f += String.fromCharCode(ge + g[1]) : ft["copycolour"].checked ? f += String["fromCharCode"](ge + x) : ft["copydecorations"]["checked"] && (f += String["fromCharCode"](ge + fa(0, w))), hr(g[0], w) || (0 != w && (v = !0), 0 != x && (d = !0)), De.x++
                                 }
                             }
                             De.x = r, De.y++, s += "\n", f += "�"
                         }
-                        s = s["slice"](0, -1), f = f["slice"](0, -1), s["startsWith"]("http") && (d = v = !1), ft["copycolor"]["checked"] && d || ft["copydecorations"]["checked"] && v ? br(s + ne + f) : br(s), De.x = l, De.y = u, kr("Copied selection.", 1500);
+                        s = s["slice"](0, -1), f = f["slice"](0, -1), s["startsWith"]("http") && (d = v = !1), ft["copycolour"]["checked"] && d || ft["copydecorations"]["checked"] && v ? br(s + ne + f) : br(s), De.x = l, De.y = u, kr("Copied selection.", 1500);
                         var b = document["getElementById"]("copyico");
                         b.src = "/static/done.svg", setTimeout((function() {
                             b["src"] = "/static/copy.svg"
@@ -1179,8 +1179,8 @@
                 case ft["showchat"]:
                     localStorage.setItem("showchat", r), e["target"].checked ? In["classList"]["remove"]("hidden") : In["classList"]["add"]("hidden");
                     break;
-                case ft["disablecolor"]:
-                    localStorage["setItem"]("disablecolor", r), dt["disableColor"]["checked"] || Pr(ft["disablecolor"].checked), Ie = !0, Dn();
+                case ft["disablecolour"]:
+                    localStorage["setItem"]("disablecolour", r), dt["disableColour"]["checked"] || Pr(ft["disablecolour"].checked), Ie = !0, Dn();
                     break;
                 case ft["smoothpanning"]:
                     localStorage["setItem"]("smoothpanning", r), Ie = !0;
@@ -1188,8 +1188,8 @@
                 case ft["smoothcursors"]:
                     localStorage.setItem("smoothcursors", r);
                     break;
-                case ft["copycolor"]:
-                    localStorage["setItem"]("copycolor", r);
+                case ft["copycolour"]:
+                    localStorage["setItem"]("copycolour", r);
                     break;
                 case ft["copydecorations"]:
                     localStorage["setItem"]("copydecorations", r);
@@ -1326,7 +1326,7 @@
             a["send"](Gr({
                 dc: e["target"]["checked"]
             }))
-        })), dt["disableColor"].addEventListener("click", (function(e) {
+        })), dt["disableColour"].addEventListener("click", (function(e) {
             var t = n;
             a["send"](Gr({
                 dcl: e["target"].checked
@@ -1665,7 +1665,7 @@
                     break;
                 case "dcl":
                     var N = a["dcl"];
-                    dt["disableColor"].checked = N, Pr(!!N || ft["disablecolor"]["checked"]);
+                    dt["disableColour"].checked = N, Pr(!!N || ft["disablecolour"]["checked"]);
                     break;
                 case "db":
                     var j = a.db;
@@ -1675,7 +1675,7 @@
                     z = !0, document.getElementById("l").checked = !0, Fn();
                     break;
                 case "perms":
-                    H = a["perms"], V["style"]["display"] = t(2 == H || 1 == H ? 556 : 212), 2 == H ? (G["style"]["display"] = "block", ee["style"].display = "block") : (G["style"]["display"] = "none", ee.style["display"] = "none"), document["getElementById"]("protectowneroption")["style"]["display"] = t(1 != H || h ? 556 : 212), dt.readOnly["disabled"] = dt["private"]["disabled"] = dt["hideCursors"]["disabled"] = dt["disableChat"]["disabled"] = dt["disableColor"]["disabled"] = dt["disableBraille"]["disabled"] = !(2 == H || h), h && (ee["style"]["display"] = "textwall" != J || Q ? "block" : "none"), 0 == H && (rt = !1, ot = !1), Ie = !0, Fn();
+                    H = a["perms"], V["style"]["display"] = t(2 == H || 1 == H ? 556 : 212), 2 == H ? (G["style"]["display"] = "block", ee["style"].display = "block") : (G["style"]["display"] = "none", ee.style["display"] = "none"), document["getElementById"]("protectowneroption")["style"]["display"] = t(1 != H || h ? 556 : 212), dt.readOnly["disabled"] = dt["private"]["disabled"] = dt["hideCursors"]["disabled"] = dt["disableChat"]["disabled"] = dt["disableColour"]["disabled"] = dt["disableBraille"]["disabled"] = !(2 == H || h), h && (ee["style"]["display"] = "textwall" != J || Q ? "block" : "none"), 0 == H && (rt = !1, ot = !1), Ie = !0, Fn();
                     break;
                 case "addmem":
                     Xn(a["addmem"]), optionsmenu["scrollTop"] = optionsmenu.clientHeight;
@@ -1835,7 +1835,7 @@
 
         function or(e, t, r, a) {
             var o = n;
-            ft["disablecolor"].checked && (r = 0), r = da(r)[0], Tt([e, t], Bt(20)) || ze["push"]([e, t, .1, r, a])
+            ft["disablecolour"].checked && (r = 0), r = da(r)[0], Tt([e, t], Bt(20)) || ze["push"]([e, t, .1, r, a])
         }
 
         function ir() {
@@ -2012,7 +2012,7 @@
         function Cr(e) {
             var t = n,
                 r = document["createElement"]("div");
-            r["classList"]["add"]("color"), r.addEventListener("click", (function(t) {
+            r["classList"]["add"]("colour"), r.addEventListener("click", (function(t) {
                 Fr(e), mn()
             })), r["setAttribute"]("id", e), r["style"]["backgroundColor"] = xe[e], r["title"] = we[e], M.appendChild(r)
         }
@@ -2043,9 +2043,9 @@
 
         function Fr(e) {
             var t = n;
-            (ft.disablecolor["checked"] || dt.disableColor["checked"]) && (e = 0), Ce != e && (Ye = !0);
+            (ft.disablecolour["checked"] || dt.disableColour["checked"]) && (e = 0), Ce != e && (Ye = !0);
             var r = document["getElementById"](Ce);
-            r.classList["remove"]("selected"), Ce = e, Ae = Be && 0 == Ce ? "rgba(255, 255, 255, 0.6)" : ua(xe[Ce], .6), (r = document.getElementById(Ce)).classList.add("selected"), r["offsetTop"] < M["scrollTop"] + 36 && (M["scrollTop"] = r["offsetTop"] - 36), r.offsetTop > M["scrollTop"] + M["clientHeight"] && (M.scrollTop = r["offsetTop"] - M["clientHeight"]), document["getElementById"]("theme-color")["setAttribute"]("content", xe[e]), localStorage["setItem"]("col", e), Ie = !0
+            r.classList["remove"]("selected"), Ce = e, Ae = Be && 0 == Ce ? "rgba(255, 255, 255, 0.6)" : ua(xe[Ce], .6), (r = document.getElementById(Ce)).classList.add("selected"), r["offsetTop"] < M["scrollTop"] + 36 && (M["scrollTop"] = r["offsetTop"] - 36), r.offsetTop > M["scrollTop"] + M["clientHeight"] && (M.scrollTop = r["offsetTop"] - M["clientHeight"]), document["getElementById"]("theme-colour")["setAttribute"]("content", xe[e]), localStorage["setItem"]("col", e), Ie = !0
         }
         for (M.children["length"] > 0 && (a = !0), ue = 0; ue < xe.length; ue++) Cr(be[ue]);
 
@@ -2167,7 +2167,7 @@
                                     u = Math.round(20 * t["rawy"] * m);
                                 t["highlighted"] && (S["fillStyle"] = "rgba(239, 255, 71, 0.5)", S["fillRect"](l - 2 * m, u - 2 * m, Math.ceil(n) + 4 * m, Math["round"](r) + 4 * m));
                                 var s = t.c;
-                                ft["disablecolor"]["checked"] && (s = 0), 0 == s && Be && (s = xe["length"]), S.fillStyle = ke[s], Ot(l, u, n, r), !ft.shownametags.checked || Ft(c) && 0 == H || Lt(t.n, l, u, a)
+                                ft["disablecolour"]["checked"] && (s = 0), 0 == s && Be && (s = xe["length"]), S.fillStyle = ke[s], Ot(l, u, n, r), !ft.shownametags.checked || Ft(c) && 0 == H || Lt(t.n, l, u, a)
                             }
                         }
                     }
@@ -2209,7 +2209,7 @@
             var Kr = Wr[ue];
             null != localStorage["getItem"](Kr) && (ft[Kr]["checked"] = "true" == localStorage["getItem"](Kr))
         }
-        if (ft.showchat["checked"] || In["classList"]["add"]("hidden"), ft["disablecolor"]["checked"] && Pr(!0), null != localStorage["getItem"]("customtheme")) {
+        if (ft.showchat["checked"] || In["classList"]["add"]("hidden"), ft["disablecolour"]["checked"] && Pr(!0), null != localStorage["getItem"]("customtheme")) {
             var Yr = localStorage["getItem"]("customtheme");
             try {
                 var Xr = JSON["parse"](Yr);
@@ -2741,7 +2741,7 @@
             ha = [4, 7, 9, 12];
         va && setInterval((function() {
             var e = n;
-            if ("textwall" == J && "main" == $ && !ft["disablecolor"]["checked"])
+            if ("textwall" == J && "main" == $ && !ft["disablecolour"]["checked"])
                 for (var t = 0; t < ma.length; t++) {
                     var r = ma[t],
                         a = Te["get"](r);

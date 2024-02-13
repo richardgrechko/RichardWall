@@ -187,7 +187,7 @@ input {
 #closeteleport:active {
   transform: scale(0.9);
 }
-#colorlist {
+#colourlist {
   transition: none;
   overflow: auto;
   -ms-overflow-style: none;
@@ -195,11 +195,11 @@ input {
   background-color: rgba(255, 255, 255, 0.35);
   border-radius: 5px;
 }
-#colorlist::-webkit-scrollbar,
+#colourlist::-webkit-scrollbar,
 #optionsmenu::-webkit-scrollbar {
   display: none;
 }
-.color {
+.colour {
   width: 30px;
   height: 30px;
   margin: 3px;
@@ -207,7 +207,7 @@ input {
   box-sizing: border-box;
   transition: all 50ms;
 }
-.color.selected {
+.colour.selected {
   border: 3px solid #ffffff;
 }
 #zoom {

@@ -90,7 +90,7 @@
         var x;
         const w = document[n(450)]("clipboard"),
             b = document[n(450)](n(431)),
-            M = document[n(450)]("colorlist"),
+            M = document[n(450)]("colourlist"),
             k = document[n(450)](n(708));
         var E = document[n(450)]("canvas");
         E.removeAttribute("id");
@@ -352,10 +352,10 @@
             showothercurs: document[n(450)](n(591)),
             shownametags: document[n(450)](n(442)),
             showchat: document.getElementById(n(214)),
-            disablecolor: document[n(450)](n(549)),
+            disablecolour: document[n(450)](n(549)),
             smoothpanning: document[n(450)](n(644)),
             smoothcursors: document[n(450)](n(444)),
-            copycolor: document.getElementById(n(695)),
+            copycolour: document.getElementById(n(695)),
             copydecorations: document[n(450)](n(487)),
             rainbow: document[n(450)](n(555)),
             anonymous: document.getElementById("anonymous")
@@ -369,7 +369,7 @@
             private: document.getElementById(n(373)),
             hideCursors: document[n(450)](n(663)),
             disableChat: document.getElementById("disablechat"),
-            disableColor: document[n(450)]("walldisablecolor"),
+            disableColour: document[n(450)]("walldisablecolour"),
             disableBraille: document.getElementById(n(705))
         };
         var vt = 1,
@@ -1190,7 +1190,7 @@
                     localStorage.setItem(t(444), r);
                     break;
                 case ft[t(695)]:
-                    localStorage[t(579)]("copycolor", r);
+                    localStorage[t(579)]("copycolour", r);
                     break;
                 case ft[t(487)]:
                     localStorage[t(579)]("copydecorations", r);
@@ -2013,7 +2013,7 @@
         function Cr(e) {
             var t = n,
                 r = document[t(267)](t(522));
-            r[t(271)][t(536)]("color"), r.addEventListener(t(191), (function(t) {
+            r[t(271)][t(536)]("colour"), r.addEventListener(t(191), (function(t) {
                 Fr(e), mn()
             })), r[t(540)]("id", e), r[t(670)][t(655)] = xe[e], r[t(534)] = we[e], M.appendChild(r)
         }
@@ -2044,7 +2044,7 @@
 
         function Fr(e) {
             var t = n;
-            (ft.disablecolor[t(232)] || dt.disableColor[t(232)]) && (e = 0), Ce != e && (Ye = !0);
+            (ft.disablecolour[t(232)] || dt.disableColour[t(232)]) && (e = 0), Ce != e && (Ye = !0);
             var r = document[t(450)](Ce);
             r.classList[t(539)](t(649)), Ce = e, Ae = Be && 0 == Ce ? "rgba(255, 255, 255, 0.6)" : ua(xe[Ce], .6), (r = document.getElementById(Ce)).classList.add(t(649)), r[t(282)] < M[t(590)] + 36 && (M[t(590)] = r[t(282)] - 36), r.offsetTop > M[t(590)] + M[t(329)] && (M.scrollTop = r[t(282)] - M[t(329)]), document[t(450)](t(668))[t(540)](t(473), xe[e]), localStorage[t(579)](t(722), e), Ie = !0
         }
