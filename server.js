@@ -43,21 +43,24 @@ const client = new Client({
   ],
 });
 
- client.on("ready"), () => { console.log("The Discord bot is ready to go"); }
-  // Register slash commands
-  const guild = client.guilds.cache.get("1196101562741825677"); // Replace "YOUR_GUILD_ID" with your guild's ID
-  if (guild) {
-    guild.commands.set([
-      {
-        name: "online",
-        description: "Get the number of people online",
-      },
-      {
-        name: "help",
-        description: "Get a list of commands",
-      },
-    ]);
-  };
+client.on("ready"),
+  () => {
+    console.log("The Discord bot is ready to go");
+  }; //wow ytou really do suck at javascript, the console log is ltierally not even in the params
+// Register slash commands
+const guild = client.guilds.cache.get("1196101562741825677"); // Replace "YOUR_GUILD_ID" with your guild's ID
+if (guild) {
+  guild.commands.set([
+    {
+      name: "online",
+      description: "Get the number of people online",
+    },
+    {
+      name: "help",
+      description: "Get a list of commands",
+    },
+  ]);
+}
 
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
@@ -71,7 +74,7 @@ client.on("interactionCreate", async (interaction) => {
     });
     interaction.reply({
       content: "${onlineCount} online\n${mainWallCount} on the front page",
-      ephemeral: true
+      ephemeral: true,
       // hey let's uhh somehow add receiving messages from discord back
       // why did you replace the messageCreate completely with interactionCreate and didnt put the other code in a new messageCreate
       // i just did that but why didnt you
@@ -79,7 +82,8 @@ client.on("interactionCreate", async (interaction) => {
     });
   } else if (commandName === "help") {
     interaction.reply({
-      content: "# Command list\n> !help (list of commands)\n> !online (how many people are online on the site)\n### That's all (for now)...",
+      content:
+        "# Command list\n> !help (list of commands)\n> !online (how many people are online on the site)\n### That's all (for now)...",
       ephemeral: true, // Make this response visible only to the user who issued the command
     });
   }
@@ -91,8 +95,9 @@ client.on("interactionCreate", async (interaction) => {
 
 client.login(process.env.discordbottoken);
 // is that below the thingy or am i stupid
-client.on("messageCreate", msg => {
-  if (msg.channelId != "1202685655054950502" || msg.author.bot) return;
+client.on("messageCreate", (msg) => {
+  if (msg.channelId != "1202685655054950502" || msg.author.bot || !msg.content)
+    return;
   worldBroadcast(
     1,
     msgpack.encode({
@@ -204,9 +209,9 @@ app.get("/data.sqlite3", (req, res, next) => {
 });
 app.post("/sendmail", (req, res) => {
   if (req.body.length > 1000) return;
-  webhookSend(process.env.mailwebhookurl, { content: "\u005C" + req.body }).then(() =>
-    res.send("OK")
-  );
+  webhookSend(process.env.mailwebhookurl, {
+    content: "\u005C" + req.body,
+  }).then(() => res.send("OK"));
 });
 // to send people to the public folder, and right file
 app.get("/*", (req, res) => {
@@ -674,7 +679,7 @@ function init_ws() {
           banned: banReasons[ipAddr],
         })
       );
-        console.log(
+      console.log(
         "Somebody tried to join, but they're banned! their ip is " +
           ipAddr +
           " :troll:"
@@ -1170,14 +1175,11 @@ function init_ws() {
           else stopServer();
           return;
         }
-        if (
-          ["/maintenance"].includes(cmd) &&
-          sdata.isAdmin
-        ) {
+        if (["/maintenance"].includes(cmd) && sdata.isAdmin) {
           var maintenanceMode = 1;
           return;
         }
-        
+
         worldBroadcast(
           sdata.connectedWorldId,
           msgpack.encode({
