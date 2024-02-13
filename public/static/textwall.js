@@ -159,7 +159,7 @@ var client_commands = {
     var p;
     const b = document["getElementById"]("clipboard"),
       x = document["getElementById"]("usermenu"),
-      w = document["getElementById"]("colourlist"),
+      w = document["getElementById"]("colorlist"),
       M = document["getElementById"]("teleport");
     var k = document["getElementById"]("canvas");
     k["removeAttribute"]("id");
@@ -430,10 +430,10 @@ var client_commands = {
       showothercurs: document.getElementById("showothercurs"),
       shownametags: document["getElementById"]("shownametags"),
       showchat: document["getElementById"]("showchat"),
-      disablecolour: document.getElementById("disablecolour"),
+      disablecolor: document.getElementById("disablecolor"),
       smoothpanning: document["getElementById"]("smoothpanning"),
       smoothcursors: document.getElementById("smoothcursors"),
-      copycolour: document["getElementById"]("copycolour"),
+      copycolor: document["getElementById"]("copycolor"),
       copydecorations: document["getElementById"]("copydecorations"),
       rainbow: document["getElementById"]("rainbow"),
       anonymous: document["getElementById"]("anonymous"),
@@ -441,7 +441,7 @@ var client_commands = {
     (tt.showothercurs["checked"] = !0),
       (tt["shownametags"]["checked"] = !0),
       (tt.showchat["checked"] = !0),
-      (tt["disablecolour"]["checked"] = !1),
+      (tt["disablecolor"]["checked"] = !1),
       (tt["smoothpanning"]["checked"] = !0),
       (tt["smoothcursors"].checked = !0);
     const nt = {
@@ -451,7 +451,7 @@ var client_commands = {
       private: document.getElementById("private"),
       hideCursors: document["getElementById"]("hidecursors"),
       disableChat: document["getElementById"]("disablechat"),
-      disableColour: document["getElementById"]("walldisablecolour"),
+      disableColor: document["getElementById"]("walldisablecolor"),
       disableBraille: document.getElementById("disablebraille"),
     };
     var rt = 1,
@@ -752,7 +752,7 @@ var client_commands = {
     }
     function Kt(e, t) {
       var r = n;
-      tt["disablecolour"]["checked"] && (t = 0),
+      tt["disablecolor"]["checked"] && (t = 0),
         (e["fillStyle"] = xe && 0 == t ? "#FFFFFF" : se[t]);
     }
     function Xt(e, t) {
@@ -1260,10 +1260,10 @@ var client_commands = {
                   if (g) {
                     g[0] == Z ? (s += " ") : (s += g[0]);
                     var [p, b] = Zr(g[1]);
-                    tt["copycolour"]["checked"] &&
+                    tt["copycolor"]["checked"] &&
                     tt["copydecorations"]["checked"]
                       ? (d += String["fromCharCode"](ue + g[1]))
-                      : tt.copycolour["checked"]
+                      : tt.copycolor["checked"]
                       ? (d += String["fromCharCode"](ue + p))
                       : tt["copydecorations"].checked &&
                         (d += String["fromCharCode"](ue + Vr(0, b))),
@@ -1276,7 +1276,7 @@ var client_commands = {
               (s = s["slice"](0, -1)),
                 (d = d["slice"](0, -1)),
                 s["startsWith"]("http") && (f = v = !1),
-                (tt["copycolour"]["checked"] && f) ||
+                (tt["copycolor"]["checked"] && f) ||
                 (tt["copydecorations"]["checked"] && v)
                   ? ar(s + Z + d)
                   : ar(s),
@@ -1566,9 +1566,9 @@ var client_commands = {
                 ? hn["classList"]["remove"]("hidden")
                 : hn.classList["add"]("hidden");
             break;
-          case tt.disablecolour:
-            localStorage.setItem("disablecolour", r),
-              nt.disableColour["checked"] || hr(tt["disablecolour"].checked),
+          case tt.disablecolor:
+            localStorage.setItem("disablecolor", r),
+              nt.disableColor["checked"] || hr(tt["disablecolor"].checked),
               (ge = !0),
               Sn();
             break;
@@ -1578,8 +1578,8 @@ var client_commands = {
           case tt["smoothcursors"]:
             localStorage["setItem"]("smoothcursors", r);
             break;
-          case tt["copycolour"]:
-            localStorage["setItem"]("copycolour", r);
+          case tt["copycolor"]:
+            localStorage["setItem"]("copycolor", r);
             break;
           case tt["copydecorations"]:
             localStorage["setItem"]("copydecorations", r);
@@ -1831,7 +1831,7 @@ var client_commands = {
         var t = n;
         a.send(Or({ dc: e["target"]["checked"] }));
       }),
-      nt["disableColour"]["addEventListener"]("click", function (e) {
+      nt["disableColor"]["addEventListener"]("click", function (e) {
         var t = n;
         a["send"](Or({ dcl: e["target"].checked }));
       }),
@@ -2381,8 +2381,8 @@ var client_commands = {
           break;
         case "dcl":
           var L = a["dcl"];
-          (nt["disableColour"]["checked"] = L),
-            hr(!!L || tt["disablecolour"]["checked"]);
+          (nt["disableColor"]["checked"] = L),
+            hr(!!L || tt["disablecolor"]["checked"]);
           break;
         case "db":
           var O = a.db;
@@ -2402,7 +2402,7 @@ var client_commands = {
               nt["private"].disabled =
               nt["hideCursors"].disabled =
               nt.disableChat["disabled"] =
-              nt["disableColour"]["disabled"] =
+              nt["disableColor"]["disabled"] =
               nt["disableBraille"].disabled =
                 !(2 == j || m)),
             m &&
@@ -2680,7 +2680,7 @@ var client_commands = {
     }
     function Kn(e, t, r, a) {
       var o = n;
-      tt["disablecolour"].checked && (r = 0),
+      tt["disablecolor"].checked && (r = 0),
         (r = Zr(r)[0]),
         xt([e, t], bt(20)) || Ne["push"]([e, t, 0.1, r, a]);
     }
@@ -3094,7 +3094,7 @@ var client_commands = {
     function sr(e) {
       var t = n,
         r = document.createElement("div");
-      r["classList"]["add"]("colour"),
+      r["classList"]["add"]("color"),
         r.addEventListener("click", function (t) {
           mr(e), nn(t);
         }),
@@ -3137,7 +3137,7 @@ var client_commands = {
     }
     function mr(e) {
       var t = n;
-      (tt["disablecolour"]["checked"] || nt["disableColour"]["checked"]) &&
+      (tt["disablecolor"]["checked"] || nt["disableColor"]["checked"]) &&
         (e = 0),
         client.color != e && (Oe = !0);
       var r = document.getElementById(client.color);
@@ -3155,7 +3155,7 @@ var client_commands = {
         r.offsetTop > w.scrollTop + w["clientHeight"] &&
           (w.scrollTop = r.offsetTop - w.clientHeight),
         document
-          .getElementById("theme-colour")
+          .getElementById("theme-color")
           ["setAttribute"]("content", se[e]),
         localStorage["setItem"]("col", e),
         (ge = !0);
@@ -3367,7 +3367,7 @@ var client_commands = {
                       Math.round(a) + 4 * v
                     ));
                   var p = t.c;
-                  tt.disablecolour["checked"] && (p = 0),
+                  tt.disablecolor["checked"] && (p = 0),
                     0 == p && xe && (p = se["length"]),
                     (E["fillStyle"] = me[p]),
                     kt(y, g, r, a),
@@ -3491,7 +3491,7 @@ var client_commands = {
     }
     if (
       (tt["showchat"].checked || hn["classList"]["add"]("hidden"),
-      tt["disablecolour"]["checked"] && hr(!0),
+      tt["disablecolor"]["checked"] && hr(!0),
       null != localStorage["getItem"]("customtheme"))
     ) {
       var Ir = localStorage.getItem("customtheme");
@@ -4294,7 +4294,7 @@ var client_commands = {
     $r &&
       setInterval(function () {
         var e = n;
-        if ("textwall" == W && "main" == H && !tt.disablecolour.checked)
+        if ("textwall" == W && "main" == H && !tt.disablecolor.checked)
           for (var t = 0; t < Gr["length"]; t++) {
             var r = Gr[t],
               a = we["get"](r);

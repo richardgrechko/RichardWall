@@ -1175,6 +1175,7 @@ function init_ws() {
           sdata.isAdmin
         ) {
           var maintenanceMode = 1;
+          console.log("miantanece");
           return;
         }
         
