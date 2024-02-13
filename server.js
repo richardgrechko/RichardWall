@@ -528,8 +528,8 @@ function sendWorldAttrs(ws, world) {
   send(ws, msgpack.encode({ priv: Boolean(attr.private) }));
   send(ws, msgpack.encode({ ch: Boolean(attr.hideCursors) }));
   send(ws, msgpack.encode({ dc: Boolean(attr.disableChat) }));
-  send(ws, msgpack.encode({ dcl: Boolean(attr.disableColor) }));
-  send(ws, msgpack.encode({ db: Boolean(attr.disableBraille) }));
+  send(ws, msgpack.encode({ dcl: Boolean(attr.disableColor) })); 
+  send(ws, msgpack.encode({ db: Boolean(attr.disableBraille) })); 
 }
 
 function evictClient(ws) {
