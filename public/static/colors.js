@@ -68,4 +68,4 @@ var colors = {
   "beige": 29,
   "dark grey": 30
 };
-var colours = colors; //british spellign to AMERICAN
+var colours = colors; //british spellign

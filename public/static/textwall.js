@@ -352,7 +352,7 @@ var client_commands = {
         "pale purple",
         "magenta",
         "beige",
-        "dark grey"
+        "dark grey",
       ],
       fe = [
         0, 30, 1, 2, 23, 15, 4, 5, 7, 24, 16, 9, 8, 17, 18, 25, 12, 11, 10, 19,

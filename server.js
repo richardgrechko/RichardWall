@@ -37,11 +37,6 @@ const oauth = new DiscordOauth2({
 // for goatway to receive messages from discord and send them to dimka's textwall
 const client = new Client({
   intents: [
-    // it's fucked because of discord.js requiring node.js v18 to work, WE HAVE v16 
-    // sir why did you upadte discord.js is chose v13 discord.js wfor a raeson
-    // wait i can rewind WAIT
-  WAIT WAIT WAIT WAIT
-  
     Intents.FLAGS.GUILDS,
     Intents.FLAGS.MESSAGE_CONTENT,
     Intents.FLAGS.GUILD_MESSAGES,
