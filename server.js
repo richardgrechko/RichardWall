@@ -43,10 +43,13 @@ const client = new Client({
   ],
 });
 
-client.on("ready"),
+/* client.on("ready"),
   () => {
     console.log("The Discord bot is ready to go");
-  }; //wow ytou really do suck at javascript, the console log is ltierally not even in the params
+  }; 
+ */
+
+//wow ytou really do suck at javascript, the console log is ltierally not even in the params
 // Register slash commands
 const guild = client.guilds.cache.get("1196101562741825677"); // Replace "YOUR_GUILD_ID" with your guild's ID
 if (guild) {
