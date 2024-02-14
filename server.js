@@ -78,10 +78,6 @@ client.on("interactionCreate", async (interaction) => {
     interaction.reply({
       content: "${onlineCount} online\n${mainWallCount} on the front page",
       ephemeral: true,
-      // hey let's uhh somehow add receiving messages from discord back
-      // why did you replace the messageCreate completely with interactionCreate and didnt put the other code in a new messageCreate
-      // i just did that but why didnt you
-      // the problem was quite obvious
     });
   } else if (commandName === "help") {
     interaction.reply({
