@@ -89,7 +89,7 @@ client.on("interactionCreate", async (interaction) => {
 });
 /* 
 // the uhh recieve mesasge from discock and send it back to dimkas tetxw;ll
-
+console.log("fuck you");
  */
 
 client.login(process.env.discordbottoken);
@@ -100,7 +100,7 @@ client.on("messageCreate", (msg) => {
   worldBroadcast(
     1,
     msgpack.encode({
-      msg: [`(discord) ${msg.author.globalName}`, 20, msg.content, false, 0],
+      msg: [`(discord) ${msg.author.displayName}`, 20, msg.content, false, 0],
     })
   );
 });

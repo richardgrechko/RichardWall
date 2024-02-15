@@ -552,8 +552,9 @@
               src="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/discord.svg"
               style="width: 20px; padding-top: 4.85px"
           /></a>
--->
         </div>
+-->
+        
       </div>
     </div>
     <div id="decorations">
@@ -579,6 +580,14 @@
     <script src="/static/textwall.js"></script>
     <script src="/static/discordlogin.js"></script>
     <script src="/static/scriptloader.js"></script>
+    <script>
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'F1') {
+        window.open('/help', '_blank');
+      }
+    });
+  </script>
+
     <!-- oneko cat functions -->
     <script>
       var catsToSpawn = 0;
