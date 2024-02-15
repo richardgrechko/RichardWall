@@ -668,17 +668,18 @@ function init_ws() {
     }
 
     if (Object.values(bannedIps).includes(ipAddr)) {
+      console.log(
+        "Somebody tried to join, but they're banned! their ip is " +
+          ipAddr +
+          " :troll:"
+      );
       send(
         ws,
         msgpack.encode({
           banned: banReasons[ipAddr],
         })
       );
-      console.log(
-        "Somebody tried to join, but they're banned! their ip is " +
-          ipAddr +
-          " :troll:"
-      );
+
       ws.close();
       return;
     }
