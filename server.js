@@ -131,7 +131,8 @@ function htmlTagEsc(str) {
 
 function banScreen(req, res, next) {
   var ip = getIp(req);
-  if (!Object.values(bannedIps).includes(ip)) return next();
+  if (!Object.values(bannedIps).includes(ip))
+  return next();
   if (req.originalUrl != "/banscreen.html") {
     res.writeHead(302, { Location: "/banscreen.html" });
     res.end();
@@ -668,11 +669,7 @@ function init_ws() {
     }
 
     if (Object.values(bannedIps).includes(ipAddr)) {
-      console.log(
-        "Somebody tried to join, but they're banned! their ip is " +
-          ipAddr +
-          " :troll:"
-      );
+            console.log("Somebody tried to join, but they're banned! Their IP is " + getIp(req));
       send(
         ws,
         msgpack.encode({
