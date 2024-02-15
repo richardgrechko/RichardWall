@@ -87,10 +87,6 @@ client.on("interactionCreate", async (interaction) => {
     });
   }
 });
-/* 
-// the uhh recieve mesasge from discock and send it back to dimkas tetxw;ll
-console.log("fuck you");
- */
 
 client.login(process.env.discordbottoken);
 // is that below the thingy or am i stupid
@@ -2081,7 +2077,6 @@ async function initServer() {
   runserver();
 }
 initServer();
-// idea: duplicate it and rename it without the webhooksend thingy
 function closeServer() {
   broadcast(msgpack.encode({ closing: true }));
   wss.clients.forEach((sock) => sock._socket.end());
@@ -2089,7 +2084,7 @@ function closeServer() {
   commitChunks();
   if (!maintenanceMode)
     webhookSend(process.env.upordownurl, {
-      content: `:no_entry: The server is closed :(`,
+      content: `:no_entry: The server is closed :( ||<@836988339491962881>||`,
     }).then(process.exit);
 }
 function stopServer() {
