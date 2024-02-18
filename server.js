@@ -663,7 +663,8 @@ function init_ws() {
     }
     var connObj = ipConnLim[ipAddr];
 
-    if (connObj[0] >= 10) {
+    if (connObj[0] >= 5) {
+      console.log("DOS ALERT! IP: " + getIp(req));
       ws.close();
       return;
     }
