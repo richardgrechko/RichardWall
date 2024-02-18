@@ -1,6 +1,6 @@
 // Thanks to falling1 for helping out!
 // https://glitch.com/@falling1
-var maintenanceMode = 1;
+var maintenanceMode = 0;
 // 💥 Turn it to "1" to shutdown the server! 💥
 // actually you just need to change the 1 to 0
 // Restart Server: Use the /stop command
@@ -49,7 +49,7 @@ const client = new Client({
   }; 
  */
 
-//wow ytou really do suck at javascript, the console log is ltierally not even in the params
+//wow you really do suck at javascript, the console log is ltierally not even in the params
 // Register slash commands
 const guild = client.guilds.cache.get("1196101562741825677"); // Replace "YOUR_GUILD_ID" with your guild's ID
 if (guild) {
