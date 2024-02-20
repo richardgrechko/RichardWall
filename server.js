@@ -209,16 +209,6 @@ app.post("/sendmail", (req, res) => {
     content: "\u005C" + req.body,
   }).then(() => res.send("OK"));
 });
-// 414 error
-app.use((err, req, res, next) => {
-  if (err.status === 414) {
-    res.redirect('/414.html');
-    console.log(getIp(req))
-  } else {
-    // Pass the error to the default Express error handler
-    next(err);
-  }
-});
 // to send people to the public folder, and right file
 app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
