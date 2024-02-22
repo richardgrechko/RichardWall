@@ -100,7 +100,7 @@ client.on("messageCreate", (msg) => {
     })
   );
 });
-var db = sql("./data.sqlite3");
+var db = sql(".data/data.sqlite3");
 async function getDiscordUser(code) {
   var accessToken = await oauth.tokenRequest({
     code,
