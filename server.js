@@ -67,11 +67,14 @@ if (guild) {
     {
       name: "uptime",
       description: "See how long the server has been up for",
-    }
-    // stop command coming soon (for people with admin permissions only)
+    },
+    {
+      name: "stop",
+      description: "Stop the site's server",
+    },
   ]);
 }
-
+const discordAdmins = ["falling1", "therealdimka"];
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
 
@@ -92,14 +95,19 @@ client.on("interactionCreate", async (interaction) => {
         "# Command list\n> !help (list of commands)\n> !online (how many people are online on the site)\n### That's all (for now)...",
       ephemeral: true, // Make this response visible only to the user who issued the command
     });
-  }
-    else if (commandName === "uptime") {
+  } else if (commandName === "uptime") {
       interaction.reply({
         content:
         "The server has been up since <t:" + upfor + ":f>, which was <t:" + uptime + ":R>.",
         ephermeral: true,
       })
+  } else if (commandName === "stop") {
+    if (!discordAdmins.includes(interaction.user.username)) {
+      interaction.reply({ content: "only admins can runthis lmfao", ephermeral: true });
+      return;
     }
+    interaction.reply({ content: "Server will now stop", ephermeral: true }).then(stopServer);
+  }
   });
 
 client.login(process.env.discordbottoken);
