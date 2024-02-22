@@ -27,6 +27,7 @@ var port = 8080;
 var loginToType = false;
 var serverClosing = false;
 const admins = ["dimka", "falling1"];
+var uptime = Date.now() / 1000;
 // info for logging in with discord to work
 const oauth = new DiscordOauth2({
   clientId: "1201515886683619368",
@@ -62,6 +63,10 @@ if (guild) {
       name: "help",
       description: "Get a list of commands",
     },
+    {
+      name: "uptime",
+      description: "See how long the server has been up for",
+    }
   ]);
 }
 
@@ -86,7 +91,14 @@ client.on("interactionCreate", async (interaction) => {
       ephemeral: true, // Make this response visible only to the user who issued the command
     });
   }
-});
+    else if (commandName === "uptime") {
+      interaction.reply({
+        content:
+        "The server has been up since " + new Date().toString() + ", which was " + uptime,
+        ephermeral: true,
+      })
+    }
+  });
 
 client.login(process.env.discordbottoken);
 // is that below the thingy or am i stupid
