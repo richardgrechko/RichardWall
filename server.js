@@ -92,7 +92,7 @@ client.on("interactionCreate", async (interaction) => {
   } else if (commandName === "help") {
     interaction.reply({
       content:
-        "# Command list\n> !help (list of commands)\n> !online (how many people are online on the site)\n### That's all (for now)...",
+        "# Command list\n> /help (list of commands)\n> /online (how many people are online on the site)\n> /uptime (how long the server has been up for)\n### That's all (for now)...",
       ephemeral: true, // Make this response visible only to the user who issued the command
     });
   } else if (commandName === "uptime") {
