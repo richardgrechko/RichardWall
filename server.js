@@ -86,7 +86,7 @@ client.on("interactionCreate", async (interaction) => {
       if (sock.sdata.connectedWorldId == 1) mainWallCount++;
     });
     interaction.reply({
-      content: "${onlineCount} online\n${mainWallCount} on the front page",
+      content: onlineCount + " online\n" + mainWallCount + " on the front page",
       ephemeral: true,
     });
   } else if (commandName === "help") {
@@ -103,15 +103,14 @@ client.on("interactionCreate", async (interaction) => {
       })
   } else if (commandName === "stop") {
     if (!discordAdmins.includes(interaction.user.username)) {
-      interaction.reply({ content: "only admins can runthis lmfao", ephermeral: true });
+      interaction.reply({ content: ":x: You are not an admin of this server.", ephermeral: true });
       return;
     }
-    interaction.reply({ content: "Server will now stop", ephermeral: true }).then(stopServer);
+    interaction.reply({ content: ":+1: Server will now stop", ephermeral: true }).then(stopServer);
   }
   });
 
 client.login(process.env.discordbottoken);
-// is that below the thingy or am i stupid
 client.on("messageCreate", (msg) => {
   if (msg.channelId != "1202685655054950502" || msg.author.bot || !msg.content)
     return;
