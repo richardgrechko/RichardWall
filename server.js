@@ -28,6 +28,7 @@ var loginToType = false;
 var serverClosing = false;
 const admins = ["dimka", "falling1"];
 var uptime = Date.now() / 1000;
+var upfor = Date.now()
 // info for logging in with discord to work
 const oauth = new DiscordOauth2({
   clientId: "1201515886683619368",
@@ -67,6 +68,7 @@ if (guild) {
       name: "uptime",
       description: "See how long the server has been up for",
     }
+    // stop command coming soon (for people with admin permissions only)
   ]);
 }
 
@@ -94,7 +96,7 @@ client.on("interactionCreate", async (interaction) => {
     else if (commandName === "uptime") {
       interaction.reply({
         content:
-        "The server has been up since " + new Date().toString() + ", which was " + uptime,
+        "The server has been up since <t:" + upfor + ":f>, which was <t:" + uptime + ":R>.",
         ephermeral: true,
       })
     }
