@@ -200,6 +200,7 @@ var client_commands = {
         "Roboto Mono": 16,
         "Courier Prime": 16,
         Courier: 16,
+        "Courier New": 16,
         "Cutive Mono": 18,
         Cousine: 16,
         Unifont: 16,
