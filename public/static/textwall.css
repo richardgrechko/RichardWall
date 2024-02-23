@@ -459,6 +459,7 @@ td {
 .button:active {
   transform: scale(0.9);
 }
+/* ubuntu mono */
 @font-face {
   font-family: ubuntu mono;
   src: url(fonts/UbuntuMono-Regular.ttf);
@@ -479,6 +480,7 @@ td {
   font-weight: 700;
   font-style: oblique;
 }
+/* inconsolata */
 @font-face {
   font-family: inconsolata;
   src: url(fonts/Inconsolata-Regular.ttf);
@@ -488,6 +490,7 @@ td {
   src: url(fonts/Inconsolata-Bold.ttf);
   font-weight: 700;
 }
+/* ibm plex mono */
 @font-face {
   font-family: ibm plex mono;
   src: url(fonts/IBMPlexMono-Regular.ttf);
@@ -508,6 +511,7 @@ td {
   font-weight: 700;
   font-style: oblique;
 }
+/* roboto mono */
 @font-face {
   font-family: roboto mono;
   src: url(fonts/RobotoMono-Regular.ttf);
@@ -528,6 +532,7 @@ td {
   font-weight: 700;
   font-style: oblique;
 }
+/* coruier prime */
 @font-face {
   font-family: courier prime;
   src: url(fonts/CourierPrime-Regular.ttf);
@@ -548,6 +553,7 @@ td {
   font-weight: 700;
   font-style: oblique;
 }
+/* cousine */
 @font-face {
   font-family: cousine;
   src: url(fonts/Cousine-Regular.ttf);
@@ -568,6 +574,7 @@ td {
   font-weight: 700;
   font-style: oblique;
 }
+/* pointfree? */
 @font-face {
   font-family: pointfree;
   src: url(fonts/pointfree.ttf);
@@ -577,6 +584,7 @@ td {
   src: url(fonts/pointfree-bold.ttf);
   font-weight: 700;
 }
+/* MONOFUR?????? */
 @font-face {
   font-family: monofur;
   src: url(fonts/monof55.ttf);
@@ -586,6 +594,7 @@ td {
   src: url(fonts/monof56.ttf);
   font-style: italic;
 }
+/* fantasque sans mono */
 @font-face {
   font-family: fantasque sans mono;
   src: url(fonts/FantasqueSansMono-Regular.ttf);
@@ -595,11 +604,13 @@ td {
   src: url(fonts/FantasqueSansMono-Bold.ttf);
   font-weight: 700;
 }
+/* GYATTTTTTTTTTTTTTTTTT SKIBIDI OHIO RIZZLER IS GOING TO RIZZ ME UP AND MY RIZZLERS MY RIZZLERS ARE GETTIN RIZZED REALLLLLLLLLLLLLLLLL@U#UIQ*****&**** */
 @font-face {
   font-family: fantasque sans mono;
   src: url(fonts/FantasqueSansMono-Italic.ttf);
   font-style: italic;
 }
+/* WELCOME TO OHIO FULLLLL OF RIZZZZZZZZZLEEEEEEEERS */
 @font-face {
   font-family: fantasque sans mono;
   src: url(fonts/FantasqueSansMono-BoldItalic.ttf);
