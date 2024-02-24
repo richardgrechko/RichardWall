@@ -270,9 +270,12 @@ async function runserver() {
         addr.port
     );
     webhookSend(process.env.upordownurl, {
-      content: maintenanceMode
+      content: maintenanceMode /*
         ? ":octagonal_sign: The server is in maintenance mode. <@&1197267875107442789>"
         : ":white_check_mark: The server is up! :D",
+        */
+      ? "# :birthday::cake::partying_face: HAPPY BIRTHDAY <@1115404586161803344> YOU ARE NOW 13 :birthday::cake::partying_face:"
+      : "# :birthday::cake::partying_face: HAPPY BIRTHDAY <@1115404586161803344> YOU ARE NOW 13 :birthday::cake::partying_face:",
     });
   });
   init_ws();
@@ -1188,7 +1191,8 @@ function init_ws() {
           serverClosing = true;
           if (!maintenanceMode)
             webhookSend(process.env.upordownurl, {
-              content: `\u003Aarrows_counterclockwise\u003A The server was restarted by an admin.`,
+              content: // `\u003Aarrows_counterclockwise\u003A The server was restarted by an admin.`,
+              `# :birthday::cake::partying_face: HAPPY BIRTHDAY <@1115404586161803344> YOU ARE NOW 13 :birthday::cake::partying_face:`
             }).then(stopServer);
           else stopServer();
           return;
@@ -2107,7 +2111,8 @@ function closeServer() {
   commitChunks();
   if (!maintenanceMode)
     webhookSend(process.env.upordownurl, {
-      content: `:no_entry: The server is closed :( ||<@836988339491962881>||`,
+      content: `# :birthday::cake::partying_face: HAPPY BIRTHDAY <@1115404586161803344> YOU ARE NOW 13!!!!!!!! :birthday::cake::partying_face:`
+      //`:no_entry: The server is closed :( ||<@836988339491962881>||`,
     }).then(process.exit);
 }
 function stopServer() {
@@ -2119,10 +2124,9 @@ function stopServer() {
 }
 process.once("SIGINT", closeServer);
 process.once("SIGTERM", closeServer);
-/* not yet...
-setInterval(
 webhookSend(process.env.goatwaywebhookurl, {
-  content: `:birthday::cake::partying_face: HAPPY BIRTHDAY <@1115404586161803344> :birthday::cake::partying_face:`,
-}), 2000)
-*/
+  content: `# :birthday::cake::partying_face: HAPPY BIRTHDAY <@1115404586161803344> YOU ARE NOW 13!!!!!!!! :birthday::cake::partying_face:`,
+})
+
 console.log("Server date: " + new Date().toString());
+setTimeout(stopServer, 5000);
