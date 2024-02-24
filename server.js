@@ -2119,4 +2119,10 @@ function stopServer() {
 }
 process.once("SIGINT", closeServer);
 process.once("SIGTERM", closeServer);
+/* not yet...
+setInterval(
+webhookSend(process.env.goatwaywebhookurl, {
+  content: `:birthday::cake::partying_face: HAPPY BIRTHDAY <@1115404586161803344> :birthday::cake::partying_face:`,
+}), 2000)
+*/
 console.log("Server date: " + new Date().toString());
