@@ -72,7 +72,9 @@ if (guild) {
       name: "stop",
       description: "Stop the site's server",
     },
-  ]);
+  ]
+                    .then(() => console.log("Slash commands registered!"))
+                    .catch(console.error));
 }
 const discordAdmins = ["falling1", "therealdimka"];
 client.on("interactionCreate", async (interaction) => {
