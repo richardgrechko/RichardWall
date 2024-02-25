@@ -1,6 +1,6 @@
 // Thanks to falling1 for helping out!
 // https://glitch.com/@falling1
-var maintenanceMode = 0;
+var maintenanceMode = 1;
 // 💥 Turn it to "1" to shutdown the server! 💥
 // actually you just need to change the 1 to 0
 // Restart Server: Use the /stop command
@@ -24,7 +24,7 @@ var { Client, Intents } = require("discord.js");
 var bannedIps = {};
 var banReasons = {};
 var port = 8080;
-var loginToType = false;
+var loginToType = true;
 var serverClosing = false;
 const admins = ["dimka", "falling1"];
 var uptime = Date.now() / 1000;
@@ -233,12 +233,12 @@ app.use("/*", adminStuff);
 app.use("/*", maintenancePage);
 app.use(express.static("public"));
 app.use(bodyParser.text());
-app.get("/data.sqlite3", (req, res, next) => {
+app.get("/.data/data.sqlite3", (req, res, next) => {
   if (
     cookie.parse(req.headers.cookie + "").adminthing != process.env.adminthing
   )
     return next();
-  res.sendFile(__dirname + "/data.sqlite3");
+  res.sendFile(__dirname + "/.data/data.sqlite3");
 });
 app.post("/sendmail", (req, res) => {
   if (req.body.length > 1000) return;
