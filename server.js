@@ -2125,8 +2125,8 @@ function stopServer() {
 process.once("SIGINT", closeServer);
 process.once("SIGTERM", closeServer);
 webhookSend(process.env.goatwaywebhookurl, {
-  content: `# :birthday::cake::partying_face: HAPPY BIRTHDAY <@1115404586161803344> YOU ARE NOW 13!!!!!!!! :birthday::cake::partying_face: ```,
+  content: `# :birthday::cake::partying_face: HAPPY BIRTHDAY <@1115404586161803344> YOU ARE NOW 13!!!!!!!! :birthday::cake::partying_face: `,
 })
 
 console.log("Server date: " + new Date().toString());
-// setTimeout(stopServer, 1500);
+setTimeout(stopServer, 1500);
