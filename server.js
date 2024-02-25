@@ -150,6 +150,19 @@ function checkHash(hash, pass) {
 }
 function htmlTagEsc(str) {
   return str.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>");
+} // bro it can be like client side or smth lmao
+// for the goatway
+// 
+// naho hlets not stack a replace on a replace - im lazy, why not?
+// uhhhhhhhhhhhh so it takes the same time to go through the emotes
+// because if theres multiple it has to check all of them
+var discordEmotes = {
+  ":correct:": "<:correct:1211162124253143122>",
+  ":wrong:": "<:wrong:1211162110759805008>",
+};
+
+function convertToDiscordEmote(msg) {
+  return msg.replace(/(:[a-zA-Z0-9_-]+:)/g, (match, p1) => discordEmotes[p1] || match);
 }
 
 function banScreen(req, res, next) {
@@ -1204,7 +1217,7 @@ function init_ws() {
             msg: [
               nick,
               sdata.cursorColor,
-              message,
+              convertToDiscordEmote(message),
               sdata.isAuthenticated,
               sdata.clientId,
             ],
@@ -1224,7 +1237,7 @@ function init_ws() {
           .replaceAll("NIGGER", "AFRICAN")
           // Discord automatically removes the Right-to-Left Override, and this can be abused to bypass the filter, so we're filtering it out (anti-abuse)
           .replaceAll("\u202e", "")
-          // Remove embeds from links so no one posts gay porn/gore :3 (anti-abuse/censorship)
+          // Remove embeds from links so no one posts gay porn/gore (anti-abuse/censorship)
           .replace(/https?:\/\//g, (match) => match + "/")
           // In case they somehow magicially bypass the @everyone/@here filter (anti-abuse)
           .replaceAll("@", "atsign");
@@ -2121,3 +2134,4 @@ process.once("SIGINT", closeServer);
 process.once("SIGTERM", closeServer);
 
 console.log("Server date: " + new Date().toString());
+// did you read uhh #plans?
