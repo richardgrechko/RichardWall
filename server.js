@@ -29,6 +29,7 @@ var serverClosing = false;
 const admins = ["dimka", "falling1"];
 var uptime = Date.now() / 1000;
 var upfor = Date.now()
+var dateString = new Date().toString()
 // info for logging in with discord to work
 const oauth = new DiscordOauth2({
   clientId: "1201515886683619368",
@@ -701,7 +702,7 @@ function init_ws() {
     var connObj = ipConnLim[ipAddr];
 
     if (connObj[0] >= 5) {
-      console.log("DOS ALERT! IP: " + getIp(req));
+      console.warn("DoS alert! IP: " + getIp(req));
       ws.close();
       return;
     }
@@ -1191,7 +1192,7 @@ function init_ws() {
           return serverMessage(ws, Object.keys(bannedIps).join(", "));
         }
         if (cmd == "/uptime") {
-          return serverMessage("The server has been up since " + new Date().toString())
+          return serverMessage(ws, "The server has been up since " + dateString);
         }
         if (cmd == "/getdatakey" && sdata.isAdmin) {
           return serverMessage(ws, process.env.adminthing);
