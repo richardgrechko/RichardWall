@@ -88,7 +88,7 @@ client.on("interactionCreate", async (interaction) => {
       if (sock.sdata.connectedWorldId == 1) mainWallCount++;
     });
     interaction.reply({
-      content: onlineCount + " online\n" + mainWallCount + " on the front page",
+      content: `${onlineCount} online\n${mainWallCount} on the front page`,
       ephemeral: true,
     });
   } else if (commandName === "help") {
