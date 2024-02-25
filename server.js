@@ -1,6 +1,6 @@
 // Thanks to falling1 for helping out!
 // https://glitch.com/@falling1
-var maintenanceMode = 1;
+var maintenanceMode = 0;
 // 💥 Turn it to "1" to shutdown the server! 💥
 // actually you just need to change the 1 to 0
 // Restart Server: Use the /stop command
@@ -46,28 +46,11 @@ const client = new Client({
   ],
 });
 
-/* client.on("ready"),
-  () => {
-    console.log("The Discord bot is ready to go");
-  }; 
- */
-
-//wow you really do suck at javascript, the console log is ltierally not even in the params
-const { Client, Intents } = require("discord.js");
-
-const client = new Client({
-  intents: [
-    Intents.FLAGS.GUILDS,
-    Intents.FLAGS.MESSAGE_CONTENT,
-    Intents.FLAGS.GUILD_MESSAGES,
-  ],
-});
-
 // Register slash commands
 client.on("ready", async () => {
   console.log("The Discord bot is ready");
   
-  const guildId = "YOUR_GUILD_ID"; // Replace "YOUR_GUILD_ID" with your guild's ID
+  const guildId = "1196101562741825677"; // Replace "YOUR_GUILD_ID" with your guild's ID
   const guild = client.guilds.cache.get(guildId);
   if (!guild) {
     console.error(`Guild with ID ${guildId} not found.`);
@@ -104,7 +87,7 @@ client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
 
   const { commandName } = interaction;
-  
+  // online
   if (commandName === "online") {
     var mainWallCount = 0;
     wss.clients.forEach((sock) => {
@@ -114,18 +97,21 @@ client.on("interactionCreate", async (interaction) => {
       content: `${onlineCount} online\n${mainWallCount} on the front page`,
       ephemeral: true,
     });
+    // help
   } else if (commandName === "help") {
     interaction.reply({
       content:
         "# Command list\n> /help (list of commands)\n> /online (how many people are online on the site)\n> /uptime (how long the server has been up for)\n### That's all (for now)...",
       ephemeral: true, // Make this response visible only to the user who issued the command
     });
+    // uptime
   } else if (commandName === "uptime") {
       interaction.reply({
         content:
         "The server has been up since <t:" + upfor + ":f>, which was <t:" + uptime + ":R>.",
         ephermeral: true,
-      })
+      });
+    // stop
   } else if (commandName === "stop") {
     if (!discordAdmins.includes(interaction.user.username)) {
       interaction.reply({ content: ":x: You are not an admin of this server.", ephermeral: true });
@@ -134,7 +120,7 @@ client.on("interactionCreate", async (interaction) => {
     interaction.reply({ content: ":+1: Server will now stop", ephermeral: true }).then(stopServer);
   }
   });
-
+// login to the bot
 client.login(process.env.discordbottoken);
 client.on("messageCreate", (msg) => {
   if (msg.channelId != "1202685655054950502" || msg.author.bot || !msg.content)
@@ -255,12 +241,12 @@ app.use("/*", adminStuff);
 app.use("/*", maintenancePage);
 app.use(express.static("public"));
 app.use(bodyParser.text());
-app.get("/.data/data.sqlite3", (req, res, next) => {
+app.get(".data/data.sqlite3", (req, res, next) => {
   if (
     cookie.parse(req.headers.cookie + "").adminthing != process.env.adminthing
   )
     return next();
-  res.sendFile(__dirname + "/.data/data.sqlite3");
+  res.sendFile(__dirname + ".data/data.sqlite3");
 });
 app.post("/sendmail", (req, res) => {
   if (req.body.length > 1000) return;
