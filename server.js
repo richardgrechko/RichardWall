@@ -24,12 +24,12 @@ var { Client, Intents } = require("discord.js");
 var bannedIps = {};
 var banReasons = {};
 var port = 8080;
-var loginToType = true;
+var loginToType = false;
 var serverClosing = false;
 const admins = ["dimka", "falling1"];
 var uptime = Date.now() / 1000;
-var upfor = Date.now()
-var dateString = new Date().toString()
+var uptimeSeconds = uptime.substring(0, uptime.length - 4);
+var upfor = new Date().toString() 
 // info for logging in with discord to work
 const oauth = new DiscordOauth2({
   clientId: "1201515886683619368",
@@ -108,16 +108,16 @@ client.on("interactionCreate", async (interaction) => {
   } else if (commandName === "uptime") {
       interaction.reply({
         content:
-        "The server has been up since <t:" + uptime + ":f>, which was <t:" + uptime + ":R>.",
+        "The server has been up since <t:" + uptimeSeconds + ":f>, which was <t:" + uptimeSeconds + ":R>.",
         ephermeral: true,
       });
     // stop
   } else if (commandName === "stop") {
     if (!discordAdmins.includes(interaction.user.username)) {
-      interaction.reply({ content: ":x: You are not an admin of this server.", ephermeral: true });
+      interaction.reply({ content: ":x: You are not an admin of this server.", ephermeral: true, });
       return;
     }
-    interaction.reply({ content: ":+1: Server will now stop", ephermeral: true }).then(stopServer);
+    interaction.reply({ content: ":+1: Server will now stop", ephermeral: true, }).then(stopServer);
   }
   });
 // login to the bot
