@@ -108,7 +108,7 @@ client.on("interactionCreate", async (interaction) => {
   } else if (commandName === "uptime") {
       interaction.reply({
         content:
-        "The server has been up since <t:" + upfor + ":f>, which was <t:" + uptime + ":R>.",
+        "The server has been up since <t:" + uptime + ":f>, which was <t:" + uptime + ":R>.",
         ephermeral: true,
       });
     // stop
