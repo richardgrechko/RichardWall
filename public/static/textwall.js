@@ -2132,9 +2132,11 @@ var client_commands = {
         }\nYou can appeal in the server\n`;
       } else if (client.serverClosed) {
         document["getElementById"]("connecting2")["innerText"] =
-          "Click to reconnect\nThis might be because of the site updating. (refresh to see changes)\nHaving issues? Ask in the Discord server!\n"; //connecting2 text
+          //"Click to reconnect\nThis might be because of the site updating. (refresh to see changes)\nHaving issues? Ask in the Discord server!\n"; //connecting2 text
+          "Bryan is now 13 wow!!!!!! so real!??!?!?!!!!!!!!!!!!!";
         document["getElementById"]("connecting1").innerText =
-          "Server closed/restarting"; //connecting1 text
+          // "Server closed/restarting"; //connecting1 text
+          "Happy birthday bryan 🎉🎉";
       } else {
         document["getElementById"]("connecting2")["innerText"] =
           "Click to reconnect\nHaving issues? Ask in the Discord server!\n"; //connecting2 text
