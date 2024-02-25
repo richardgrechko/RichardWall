@@ -2121,4 +2121,3 @@ process.once("SIGINT", closeServer);
 process.once("SIGTERM", closeServer);
 
 console.log("Server date: " + new Date().toString());
-// setTimeout(stopServer, 2000);
