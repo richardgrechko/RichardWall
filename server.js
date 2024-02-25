@@ -53,36 +53,58 @@ const client = new Client({
  */
 
 //wow you really do suck at javascript, the console log is ltierally not even in the params
+const { Client, Intents } = require("discord.js");
+
+const client = new Client({
+  intents: [
+    Intents.FLAGS.GUILDS,
+    Intents.FLAGS.MESSAGE_CONTENT,
+    Intents.FLAGS.GUILD_MESSAGES,
+  ],
+});
+
 // Register slash commands
-const guild = client.guilds.cache.get("1196101562741825677"); // Replace "YOUR_GUILD_ID" with your guild's ID
-if (guild) {
-  guild.commands.set([
-    {
-      name: "online",
-      description: "Get the number of people online",
-    },
-    {
-      name: "help",
-      description: "Get a list of commands",
-    },
-    {
-      name: "uptime",
-      description: "See how long the server has been up for",
-    },
-    {
-      name: "stop",
-      description: "Stop the site's server",
-    },
-  ]
-                    .then(() => console.log("Slash commands registered!"))
-                    .catch(console.error));
-}
+client.on("ready", async () => {
+  console.log("The Discord bot is ready");
+  
+  const guildId = "YOUR_GUILD_ID"; // Replace "YOUR_GUILD_ID" with your guild's ID
+  const guild = client.guilds.cache.get(guildId);
+  if (!guild) {
+    console.error(`Guild with ID ${guildId} not found.`);
+    return;
+  }
+  
+  try {
+    await guild.commands.set([
+      {
+        name: "online",
+        description: "Get the number of people online",
+      },
+      {
+        name: "help",
+        description: "Get a list of commands",
+      },
+      {
+        name: "uptime",
+        description: "See how long the server has been up for",
+      },
+      {
+        name: "stop",
+        description: "Stop the site's server",
+      },
+    ]);
+    console.log("Slash commands registered!");
+  } catch (error) {
+    console.error("Error registering slash commands:", error);
+  }
+});
+
 const discordAdmins = ["falling1", "therealdimka"];
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
 
   const { commandName } = interaction;
-
+  
   if (commandName === "online") {
     var mainWallCount = 0;
     wss.clients.forEach((sock) => {
