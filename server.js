@@ -1217,7 +1217,7 @@ function init_ws() {
             msg: [
               nick,
               sdata.cursorColor,
-              convertToDiscordEmote(message),
+              message,
               sdata.isAuthenticated,
               sdata.clientId,
             ],
@@ -1243,7 +1243,7 @@ function init_ws() {
           .replaceAll("@", "atsign");
         if (!maintenanceMode && sdata.connectedWorldId == 1)
           webhookSend(process.env.goatwaywebhookurl, {
-            content: `${name}: ${msg}`,
+            content: `${name}: ${convertToDiscordEmote(msg)}`,
           });
       } else if ("register" in data) {
         if (sdata.isAuthenticated) return;

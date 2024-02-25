@@ -31,9 +31,14 @@ var client_commands = {
     client.cursors.forEach((cursor, id) => {
       if (cursor.n == args[0]) ids.push(id);
     });
+    // clientMessage is defined, glitch just doesn't know it yet! 🎅🎅🐡
     clientMessage(ids.join(", "));
   },
 };
+var emotes = ["correct", "wrong"];
+function convertToEmote(msg) {
+  return msg.replace(/:([a-zA-Z0-9_-])+:/g, (match, p1) => emotes.includes(p1) ? "<img src=\"https://dimkatextwall.glitch.me/static/emotes/" + p1 + ".webp\" />" : match);
+}
 !(function (e) {
   var t = () => "";
   (function (e) {
@@ -2167,6 +2172,7 @@ var client_commands = {
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
       twemoji.parse(c);
+      c.innerHTML = convertToEmote(c.innerHTML);
       i.appendChild(c),
         u && gn(),
         hn["classList"]["contains"]("open") || yn["classList"]["add"]("show");
