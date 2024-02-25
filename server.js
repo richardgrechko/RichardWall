@@ -27,7 +27,7 @@ var port = 8080;
 var loginToType = false;
 var serverClosing = false;
 const admins = ["dimka", "falling1"];
-var uptime = Date.now() / 1000;
+var uptime = (Date.now() / 1000).toString();
 var uptimeSeconds = uptime.substring(0, uptime.length - 4);
 var upfor = new Date().toString() 
 // info for logging in with discord to work
