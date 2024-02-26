@@ -1,6 +1,6 @@
 // Thanks to falling1 for helping out!
 // https://glitch.com/@falling1
-var maintenanceMode = 0;
+var maintenanceMode = 1;
 // 💥 Turn it to "1" to shutdown the server! 💥
 // actually you just need to change the 1 to 0
 // Restart Server: Use the /stop command
