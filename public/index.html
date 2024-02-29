@@ -367,7 +367,7 @@
         <div>
           <h2>Miscellaneous</h2>
           <button onclick="summonOneko();">Summon an Oneko cat</button><br />
-          <button onclick="onekoDisaster()">ONEKO DISASTER!</button><br />
+          <button onclick="onekoDisaster();">ONEKO DISASTER!</button><br />
           <button onclick="joinDiscord();" style="background-color: #5865F2; color: #FFFFFF;">
             <img 
                                                 src="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/discord.svg"
@@ -466,7 +466,7 @@
             function disconnectfromServer() {
               // Your script logic here
               ws.close();
-              console.warn("Disconnected! (through debug menu)");
+              console.log("Disconnected! (through debug menu)");
             }
           </script>
           <br /><br />
@@ -477,7 +477,8 @@
               console.log("Manual ping (debug)");
             }
           </script>
-          <button onclick="(function () { 
+          <button id="eruda" onclick="
+                           (function () { 
     var script = document.createElement('script'); 
     script.src='https://cdn.jsdelivr.net/npm/eruda'; 
     document.body.append(script); 
@@ -485,19 +486,19 @@
         eruda.init(); 
     } 
 })(); 
-alert('Eruda Launched');">
+document.getElementById(&quot;eruda&quot;).disabled = true;
+                                      alert('Eruda Launched');">
     Open DevTools
 </button>
         </div>
         <div id="admin">
           <h3>Admin</h3>
-          <p>Sorry, not sure what you're trying to find.</p>
           <label>Login to type?</label
           ><input id="l" type="checkbox" checked="false" /><br />
           <input type="text" id="t" /><br />
-          <input id="refresh" value="Refresh" type="button" /><br />
+          <input id="refresh" value="Refresh" type="button" /><br /><a href="https://glitch.com/edit/#!/dimkatextwall"><button>Edit Project</button></a>
           <button onclick="client.chat.send(&quot;/stop&quot;);">
-            Stop server
+            Stop Server
           </button><br />
           <textarea id="alerttext" placeholder="Announce a thing"></textarea
           ><br />
