@@ -417,8 +417,15 @@
             }
           </script>
           <div id="buttons" style="display: none;"><button>⬅️</button><button>➡️</button><button>🔄</button></div>
-          <script>if (!navigator.userAgent.includes('median')) return document.getElementById("buttons").style = "";</script>
-          <script>
+
+<script>
+
+    if (!navigator.userAgent.includes('median')) {
+        document.getElementById("buttons").style.display = "";
+    }
+
+</script>
+ <script>
             function clientTell() {
               clientMessage(clienttell.value);
             }
