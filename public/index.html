@@ -416,14 +416,12 @@
               document.getElementById("clienttellsubmit").remove();
             }
           </script>
-          <div id="buttons" style="display: none;"><button>⬅️</button><button>➡️</button><button>🔄</button></div>
+          <div id="navigation" style="display: none;"><br /><button>⬅️</button><button>➡️</button><button>🔄</button></div>
 
 <script>
-
     if (!navigator.userAgent.includes('median')) {
-        document.getElementById("buttons").style.display = "";
+        document.getElementById("navigation").style.display = "display: block;";
     }
-
 </script>
  <script>
             function clientTell() {
