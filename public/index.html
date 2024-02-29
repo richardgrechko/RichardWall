@@ -417,12 +417,6 @@
             }
           </script>
           <div id="navigation" style="display: none;"><br /><button>⬅️</button><button>➡️</button><button>🔄</button></div>
-
-<script>
-    if (!navigator.userAgent.includes('median')) {
-        document.getElementById("navigation").style.display = "display: block;";
-    }
-</script>
  <script>
             function clientTell() {
               clientMessage(clienttell.value);
@@ -659,6 +653,11 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
 		});
 		}*/
     </script>
+    <script>
+    if (!navigator.userAgent.includes('median')) {
+        document.getElementById("navigation").style.display = "display: block;";
+    }
+</script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
       console.log("if you're seeing this, the html should have loaded");

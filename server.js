@@ -2,7 +2,6 @@
 // https://glitch.com/@falling1
 var maintenanceMode = 0;
 // 💥 Turn it to "1" to shutdown the server! 💥
-// actually you just need to change the 1 to 0
 // Restart Server: Use the /stop command
 // Or go to /stopserver (You need the admin cookie)
 // Glitch restarts the server when it stops
@@ -24,7 +23,7 @@ var { Client, Intents } = require("discord.js");
 var bannedIps = {};
 var banReasons = {};
 var port = 8080;
-var loginToType = true;
+var loginToType = false;
 var serverClosing = false;
 const admins = ["dimka", "falling1"];
 var uptime = (Date.now() / 1000).toString();
