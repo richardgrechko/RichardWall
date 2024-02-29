@@ -416,7 +416,8 @@
               document.getElementById("clienttellsubmit").remove();
             }
           </script>
-          <div></div>
+          <div id="buttons" style="display: none;"><button>⬅️</button><button>➡️</button><button>🔄</button></div>
+          <script>if (!navigator.userAgent.includes('median')) return document.getElementById("buttons").style = "";</script>
           <script>
             function clientTell() {
               clientMessage(clienttell.value);
@@ -526,7 +527,7 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
             href="https://glitch.com/edit/#!/dimkatextwall"
             target="_blank"
             ><button>Edit Project</button></a
-          >
+          ><br />
           <button onclick='client.chat.send("/stop");'>Stop Server</button
           ><br />
           <textarea id="alerttext" placeholder="Announce a thing"></textarea
