@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1"
     />
     <meta name="google" content="notranslate" />
-    <meta name="application-name" content="Dimka's TextWall">
+    <meta name="application-name" content="Dimka's TextWall" />
     <title>Dimka's TextWall</title>
     <link
       rel="icon"
@@ -38,7 +38,7 @@
     <meta id="theme-colour" name="theme-color" content="#222222" />
     <meta property="og:title" content="Dimka's TextWall" />
     <meta property="og:type" content="website" />
-    <meta name="keywords" content="Dimka, TextWall">
+    <meta name="keywords" content="Dimka, TextWall" />
     <meta
       property="og:description"
       content="Multiplayer text editor, but better."
@@ -137,9 +137,11 @@
         <input id="shownametags" type="checkbox" /><label for="shownametags"
           >Show nametags</label
         ><br />
-        <input id="showchat" type="checkbox" /><label for="showchat" id="showcht"
+        <input id="showchat" type="checkbox" /><label
+          for="showchat"
+          id="showcht"
           >Show chat</label
-        ><br id="newlineshowchat">
+        ><br id="newlineshowchat" />
         <input id="disablecolour" type="checkbox" /><label for="disablecolour"
           >Disable color</label
         ><br />
@@ -368,25 +370,38 @@
           <h2>Miscellaneous</h2>
           <button onclick="summonOneko();">Summon an Oneko cat</button><br />
           <button onclick="onekoDisaster();">ONEKO DISASTER!</button><br />
-          <button onclick="joinDiscord();" style="background-color: #5865F2; color: #FFFFFF;">
-            <img 
-                                                src="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/discord.svg"
-                                                height="14"
-                                                width="14"> Join our Discord server</button>
-          <a href="/mail.html" target="_blank"><button style="background-color: #000000; color: #FFFFFF">
-            <img src="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/email-5-24.png"
-                 height="16"
-                 width="16"> Send mail
-          </button></a>
-          <a href="/download.html"><button style="background-color: #FFFFFF;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Android_robot_head.svg/120px-Android_robot_head.svg.png"
-                 height="11"
-                 width="18">
-            Download Android App
-          </button></a>
-          <button onclick="removeChat()" id="removechat">
-            Remove Chat
+          <button
+            onclick="joinDiscord();"
+            style="background-color: #5865f2; color: #ffffff"
+          >
+            <img
+              src="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/discord.svg"
+              height="14"
+              width="14"
+            />
+            Join our Discord server
           </button>
+          <a href="/mail.html" target="_blank"
+            ><button style="background-color: #000000; color: #ffffff">
+              <img
+                src="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/email-5-24.png"
+                height="16"
+                width="16"
+              />
+              Send mail
+            </button></a
+          >
+          <a href="/download.html"
+            ><button style="background-color: #ffffff">
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Android_robot_head.svg/120px-Android_robot_head.svg.png"
+                height="11"
+                width="18"
+              />
+              Download Android App
+            </button></a
+          >
+          <button onclick="removeChat()" id="removechat">Remove Chat</button>
           <script>
             function removeChat() {
               // remove every chat thing
@@ -401,21 +416,29 @@
               document.getElementById("clienttellsubmit").remove();
             }
           </script>
-          <script>function clientTell() { clientMessage(clienttell.value) }</script>
-          <h3 id="clienttellchatthing">
-            Client Message
-          </h3>
-          <small id="clienttellnote"><strong>NOTE</strong>: Only you can see the message</small><br />
-          <textarea id="clienttell" placeholder="Put anything here, and the client will say it in the chat!"></textarea><br />
-          <button onclick="clientTell()" id="clienttellsubmit">
-           Submit! 
-          </button>
-
+          <div></div>
+          <script>
+            function clientTell() {
+              clientMessage(clienttell.value);
+            }
+          </script>
+          <h3 id="clienttellchatthing">Client Message</h3>
+          <small id="clienttellnote"
+            ><strong>NOTE</strong>: Only you can see the message</small
+          ><br />
+          <textarea
+            id="clienttell"
+            placeholder="Put anything here, and the client will say it in the chat!"
+          ></textarea
+          ><br />
+          <button onclick="clientTell()" id="clienttellsubmit">Submit!</button>
         </div>
 
         <div id="wallsettings">
           <h1>Wall Actions</h1>
-          <a href="/static/WallGuide.pdf" target="_blank" style="color: #00FFFF;"><p>Wall Guide</p></a><br />
+          <a href="/static/WallGuide.pdf" target="_blank" style="color: #00ffff"
+            ><p>Wall Guide</p></a
+          ><br />
           <input id="protect" type="checkbox" /><label for="protect"
             >Protect</label
           ><br />
@@ -477,7 +500,9 @@
               console.log("Manual ping (debug)");
             }
           </script>
-          <button id="eruda" onclick="
+          <button
+            id="eruda"
+            onclick="
                            (function () { 
     var script = document.createElement('script'); 
     script.src='https://cdn.jsdelivr.net/npm/eruda'; 
@@ -487,19 +512,23 @@
     } 
 })(); 
 document.getElementById(&quot;eruda&quot;).disabled = true;
-                                      alert('Eruda Launched');">
-    Open DevTools
-</button>
+                                      alert('Eruda Launched');"
+          >
+            Open DevTools
+          </button>
         </div>
         <div id="admin">
           <h3>Admin</h3>
           <label>Login to type?</label
           ><input id="l" type="checkbox" checked="false" /><br />
           <input type="text" id="t" /><br />
-          <input id="refresh" value="Refresh" type="button" /><br /><a href="https://glitch.com/edit/#!/dimkatextwall" target="_blank"><button>Edit Project</button></a>
-          <button onclick="client.chat.send(&quot;/stop&quot;);">
-            Stop Server
-          </button><br />
+          <input id="refresh" value="Refresh" type="button" /><br /><a
+            href="https://glitch.com/edit/#!/dimkatextwall"
+            target="_blank"
+            ><button>Edit Project</button></a
+          >
+          <button onclick='client.chat.send("/stop");'>Stop Server</button
+          ><br />
           <textarea id="alerttext" placeholder="Announce a thing"></textarea
           ><br />
           <input id="sendalert" value="Send" type="button" /><br />
@@ -558,7 +587,7 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
         <div id="goto" title="Teleport" class="infobtn">
           <img alt="arrow" src="/static/go.svg" />
         </div>
-<!--
+        <!--
         <div title="Discord" class="infobtn">
           <a href="https://discord.gg/rNAQaF8FDs" target="_blank"
             ><img
@@ -568,7 +597,6 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
           /></a>
         </div>
 -->
-        
       </div>
     </div>
     <div id="decorations">
@@ -595,12 +623,12 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
     <script src="/static/discordlogin.js"></script>
     <script src="/static/scriptloader.js"></script>
     <script>
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'F1') {
-        window.open('/help', '_blank');
-      }
-    });
-  </script>
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "F1") {
+          window.open("/help", "_blank");
+        }
+      });
+    </script>
 
     <!-- oneko cat functions -->
     <script>
