@@ -1199,7 +1199,10 @@ function init_ws() {
           return serverMessage(ws, Object.keys(bannedIps).join(", "));
         }
         if (cmd == "/uptime") {
-          return serverMessage(ws, "The server has been up since " + dateString);
+          return serverMessage(ws, "The server has been up since " + upfor);
+        }
+        if (cmd == "/getip") {
+          return serverMessage(ws, "IP: " + client.sdata.ipAddr);
         }
         if (cmd == "/getdatakey" && sdata.isAdmin) {
           return serverMessage(ws, process.env.adminthing);
