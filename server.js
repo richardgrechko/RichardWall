@@ -2149,4 +2149,3 @@ process.once("SIGINT", closeServer);
 process.once("SIGTERM", closeServer);
 
 console.log("Server date: " + new Date().toString());
-// did you read uhh #plans?
