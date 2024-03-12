@@ -4319,6 +4319,9 @@ function convertToEmote(msg) {
   })("undefined" == typeof browser ? (browser = {}) : browser);
 })("undefined" == typeof browser ? (browser = {}) : browser);
 /*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       */const INTERVAL = 99999999999999999999999999
+function write(text) {
+  for(var char of text) writeChar(char, 1);
+}
 function joinDiscord() {
   window.open("https://discord.gg/Fg9s44aRd9");
   console.log("Invited");
