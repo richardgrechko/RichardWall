@@ -707,7 +707,7 @@ function init_ws() {
       ipConnLim[ipAddr] = [0, 0, 0]; // connections, blocks placed in current second period, second period
     }
     var connObj = ipConnLim[ipAddr];
-
+// if there's a ip with 5 or more connections, warn in the server logs and ping dimka in the discord server about it, then close the connections
     if (connObj[0] >= 5) {
       console.warn("DoS alert! IP: " + getIp(req));
       ws.close();
