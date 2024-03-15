@@ -7,7 +7,6 @@
 # │            │
 # │            │
 # ╰────────────╯
-# (i always wonder what is the /meaningoflife.)
 
 User-agent: *
 Disallow: /authorized.html
