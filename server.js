@@ -1188,6 +1188,16 @@ function init_ws() {
           serverMessage(ws, "Banned clients!");
           return;
         }
+        if (cmd == "/getip" && sdata.isAdmin) {
+          var id = parseInt(args.shift());
+          if (isNaN(id)) return serverMessage(ws, "Invalid id");
+          var client = getClientById(id);
+          if (!client) return serverMessage(ws, "Client not found");
+          var ip = client.sdata.ipAddr;
+          serverMessage(ws, ip);
+          return;
+        }
+
         if (cmd == "/unban" && sdata.isAdmin) {
           var id = parseInt(args[0]);
           if (isNaN(id)) return serverMessage(ws, "Invalid id");
