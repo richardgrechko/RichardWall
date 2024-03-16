@@ -320,7 +320,7 @@ td {
   margin-bottom: 10px;
   font-weight: 700;
 }
-#closeteleport {
+#closeteleport, #closeshortcut {
   position: absolute;
   transition: all 0.1s;
   top: 5px;

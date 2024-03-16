@@ -107,26 +107,65 @@
           </div>
         </form>
       </div>
-            <div id="shortcuts">
+      <div id="shortcuts">
         <div id="closeshortcut">
           <img alt="cancel" src="/static/cancel.svg" />
         </div>
         <span class="tptitle">Shortcuts</span>
-              <table>
-                <tr><th>Name</th><th>Shortcut</th></tr>
-                <tr><td>Copy text</td><td>ALT+C</td></tr>
-                <tr><td>Change color from a character</td><td>ALT+Click</td></tr>
-                <tr><td>Change color from the list</td><td>ALT+Scroll</td></tr>
-                <tr><td>Copy a character</td><td>CTRL+C</td></tr>
-                <tr><td>Undo</td><td>CTRL+Z</td></tr>
-                <tr><td>Redo</td><td>CTRL+Y</td></tr>
-                <tr><td>Teleport</td><td>CTRL+G</td></tr>
-                <tr><td><b>Bold</b> text</td><td>CTRL+B</td></tr>
-                <tr><td><i>Italtic</i> text</td><td>CTRL+I</td></tr>
-                <tr><td><u>Underline</u> text</td><td>CTRL+U</td></tr>
-                <tr><td><s>Strikethrough</s> text</td><td>CTRL+S</td></tr>
-                <tr><td>Decoration menu</td><td>Right click/Long tap</td></tr>
-              </table>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Shortcut</th>
+          </tr>
+          <tr>
+            <td>Copy text</td>
+            <td>ALT+C</td>
+          </tr>
+          <tr>
+            <td>Change color from a character</td>
+            <td>ALT+Click</td>
+          </tr>
+          <tr>
+            <td>Change color from the list</td>
+            <td>ALT+Scroll</td>
+          </tr>
+          <tr>
+            <td>Copy a character</td>
+            <td>CTRL+C</td>
+          </tr>
+          <tr>
+            <td>Undo</td>
+            <td>CTRL+Z</td>
+          </tr>
+          <tr>
+            <td>Redo</td>
+            <td>CTRL+Y</td>
+          </tr>
+          <tr>
+            <td>Teleport</td>
+            <td>CTRL+G</td>
+          </tr>
+          <tr>
+            <td><b>Bold</b> text</td>
+            <td>CTRL+B</td>
+          </tr>
+          <tr>
+            <td><i>Italtic</i> text</td>
+            <td>CTRL+I</td>
+          </tr>
+          <tr>
+            <td><u>Underline</u> text</td>
+            <td>CTRL+U</td>
+          </tr>
+          <tr>
+            <td><s>Strikethrough</s> text</td>
+            <td>CTRL+S</td>
+          </tr>
+          <tr>
+            <td>Decoration menu</td>
+            <td>Right click/Long tap</td>
+          </tr>
+        </table>
       </div>
     </div>
     <div id="chat" class="hidden">
@@ -437,8 +476,10 @@
               document.getElementById("clienttellsubmit").remove();
             }
           </script>
-          <div id="navigation" style="display: none;"><br /><button>⬅️</button><button>➡️</button><button>🔄</button></div>
- <script>
+          <div id="navigation" style="display: none">
+            <br /><button>⬅️</button><button>➡️</button><button>🔄</button>
+          </div>
+          <script>
             function clientTell() {
               clientMessage(clienttell.value);
             }
@@ -548,7 +589,7 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
             target="_blank"
             ><button>Edit Project</button></a
           ><br />
-          <button onclick='client.chat.send("/stop");'>Stop Server</button
+          <button onclick="client.chat.send(&quot;/stop&quot;);">Stop Server</button
           ><br />
           <textarea id="alerttext" placeholder="Announce a thing"></textarea
           ><br />
@@ -577,7 +618,19 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
     <div id="connecting">
       <div class="connectingtext">
         <h1 id="connecting1"><noscript>No JavaScript</noscript></h1>
-        <h2 id="connecting2"><nocscript>Seems like you don't have JavaScript on, This site will <strong>NOT</strong> work without JavaScript.<br />Please, enable JavaScript or I'm gonna steal your bones.<br />Here's a guide on <a href="https://www.whatismybrowser.com/guides/how-to-enable-javascript/" target="_blank" style="color: cyan;">How to enable JavaScript</a>.</nocscript></h2>
+        <h2 id="connecting2">
+          <nocscript
+            >Seems like you don't have JavaScript on, This site will
+            <strong>NOT</strong> work without JavaScript.<br />Please, enable
+            JavaScript or I'm gonna steal your bones.<br />Here's a guide on
+            <a
+              href="https://www.whatismybrowser.com/guides/how-to-enable-javascript/"
+              target="_blank"
+              style="color: cyan"
+              >How to enable JavaScript</a
+            >.</nocscript
+          >
+        </h2>
       </div>
     </div>
     <canvas touch-action="none" id="canvas"></canvas>
@@ -675,10 +728,10 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
 		}*/
     </script>
     <script>
-    if (!navigator.userAgent.includes('median')) {
+      if (!navigator.userAgent.includes("median")) {
         document.getElementById("navigation").style.display = "display: block;";
-    }
-</script>
+      }
+    </script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
       console.log("if you're seeing this, the html should have loaded");
