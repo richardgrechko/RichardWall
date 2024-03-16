@@ -269,7 +269,7 @@ server.on("upgrade", (request, socket, head) => {
     socket.destroy();
     return;
   }
-
+// wtf?
   wss.handleUpgrade(request, socket, head, (ws) => {
     wss.emit("connection", ws, request);
   });
@@ -707,12 +707,13 @@ function init_ws() {
       ipConnLim[ipAddr] = [0, 0, 0]; // connections, blocks placed in current second period, second period
     }
     var connObj = ipConnLim[ipAddr];
-// if there's a ip with 5 or more connections, warn in the server logs and ping dimka in the discord server about it, then close the connections
-    if (connObj[0] >= 5) {
-      console.warn("DoS alert! IP: " + getIp(req));
+// if there's a ip with 3 or more connections, warn in the server logs and ping dimka in the discord server about it, then close the connections
+    if (connObj[0] >= 3) {
+      console.warn("DoS alert! IP: " + ipAddr);
         webhookSend(process.env.dosalerturl, {
-    content: "Hello mr <@836988339491962881>, i would like to notify you that there's a person trying to attack the server pls take action here's the info of his ip: https://ipinfo.io/" + getIp(req) + " and then uhh here's username: " + sdata.authUser,
-  }).then(ws.close);
+    content: "Hello mr <@836988339491962881>, i would like to notify you that there's a person trying to attack the server pls take action here's the info of his ip: https://ipinfo.io/" + ipAddr + " and then uhh here's username: " + "dimka you stiupid the server doesnt know their username because they will be disconnected literally right after they connect so it cant send toeken",
+  });
+      ws.close();
       return;
     }
 
