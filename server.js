@@ -2144,7 +2144,7 @@ function closeServer() {
   commitChunks();
   if (!maintenanceMode)
     webhookSend(process.env.upordownurl, {
-      content: `:no_entry: The server is closed :( ||<@836988339491962881>||`,
+      content: `:no_entry: The server is closed :(`,
     }).then(process.exit);
 }
 function stopServer() {
