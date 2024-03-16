@@ -4340,4 +4340,8 @@ function joinDiscord() {
   window.open("https://discord.gg/Fg9s44aRd9");
   console.log("Invited");
 }
+if (location.origin == "https://web.archive.org") {
+  document.getElementById("connecting1").innerText = "Unable to connect";
+  document.getElementById("connecting2").innerHTML = "Hmm... I wonder why...\nUhh, have you tried visiting the <a href=\u0022\u0068\u0074\u0074\u0070\u0073\u003a\u002f\u002f\u0064\u0069\u006d\u006b\u0061\u0074\u0065\u0078\u0074\u0077\u0061\u006c\u006c\u002e\u0067\u006c\u0069\u0074\u0063\u0068\u002e\u006d\u0065\u0022>real version? Not a... archived non-working version?"
+}
 console.log("textwall.js has loaded");
