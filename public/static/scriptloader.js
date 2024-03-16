@@ -8,3 +8,6 @@ function loadScript(url, callback) {
 if (wallName == "cat") {
   loadScript("/static/oneko.js");
 }
+if (wallName == "Dimka") {
+  
+}
