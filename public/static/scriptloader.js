@@ -9,5 +9,9 @@ if (wallName == "cat") {
   loadScript("/static/oneko.js");
 }
 if (wallName == "~Dimka") {
-  document.getElementById("owner").style = "display: block;"
+  document.getElementById("owner").style = "display: block;";
+  function updateOwnerIcon() {
+    if (location.pathname == "~Dimka") {} else {document.getElementById("owner").style = "display: none;";}
+  }
+  setInterval(updateOwnerIcon, 100);
 }
