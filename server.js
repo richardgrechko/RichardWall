@@ -711,7 +711,7 @@ function init_ws() {
     if (connObj[0] >= 5) {
       console.warn("DoS alert! IP: " + getIp(req));
         webhookSend(process.env.dosalerturl, {
-    content: "Hello mr <@836988339491962881>, i would like to notify you that there's a person with id of [" + client.sdata.clientId + "] trying to attack the server pls take action here's the info of his ip: https://ipinfo.io/" + getIp(req) + " and then uhh here's username: " + sdata.authUser,
+    content: "Hello mr <@836988339491962881>, i would like to notify you that there's a person trying to attack the server pls take action here's the info of his ip: https://ipinfo.io/" + getIp(req) + " and then uhh here's username: " + sdata.authUser,
   }).then(ws.close);
       return;
     }
