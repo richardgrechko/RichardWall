@@ -1214,10 +1214,6 @@ function init_ws() {
         if (cmd == "/uptime") {
           return serverMessage(ws, "The server has been up since " + upfor);
         }
-        if (cmd == "/getip") {
-          // fuck the server rthis is not work) uhh *shits aggersively* idk why it doesnt work :nerd::Nerd::ned:uuuuhhhhhhhhhhhhhhhhrr
-          return serverMessage(ws, "IP: " + client.sdata.ipAddr);
-        }
         if (cmd == "/getdatakey" && sdata.isAdmin) {
           return serverMessage(ws, process.env.adminthing);
         }
