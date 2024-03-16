@@ -3200,16 +3200,19 @@ function convertToEmote(msg) {
       0 == N &&
         ((xe = !1),
         (document["getElementById"]("themeico")["src"] = "/static/sun.svg"),
+        (document["getElementById"]("themeico")["alt"] = "☀"),
         (C = S),
         (A = I)),
         1 == N &&
           ((xe = !0),
           (document["getElementById"]("themeico")["src"] = "/static/moon.svg"),
+          (document["getElementById"]("themeico")["alt"] = "🌙"),
           (C = "#000000"),
           (A = "#141414")),
         2 == N
           ? ((xe = P.checked),
             (document.getElementById("themeico")["src"] = "/static/star.svg"),
+            (document.getElementById("themeico")["alt"] = "⭐"),
             (C = B["value"]),
             (A = F["value"]),
             L["classList"].remove("hidden"))
