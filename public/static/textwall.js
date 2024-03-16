@@ -1544,6 +1544,11 @@ function convertToEmote(msg) {
       document.getElementById("theme").addEventListener("click", function () {
         yr();
       }),
+      document.addEventListener('keydown', function(event) {
+        if (event.ctrlKey && event.key === '/') {
+          document.getElementById("shortcuts").class = "open";
+  }
+});
       B["addEventListener"]("input", gr),
       F["addEventListener"]("input", gr),
       P["addEventListener"]("change", function (e) {

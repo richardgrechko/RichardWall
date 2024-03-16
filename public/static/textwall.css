@@ -184,7 +184,8 @@ input {
   transition: all 0.1s;
 }
 #closemenu:active,
-#closeteleport:active {
+#closeteleport:active,
+#closeshortcut:active {
   transform: scale(0.9);
 }
 #colourlist {
@@ -277,7 +278,7 @@ td {
   top: 20px;
   max-height: 100vh;
 }
-#teleport {
+#teleport, #shortcuts {
   position: absolute;
   display: block;
   z-index: 2;
@@ -295,7 +296,7 @@ td {
   max-height: 300px;
   overflow-y: hidden;
 }
-#teleport.open {
+#teleport.open, #shortcuts.open {
   top: 40px;
   max-height: 100vh;
 }
