@@ -10,16 +10,16 @@ if (wallName == "cat") {
 }
 if (wallName == "~Dimka") {
   document.getElementById("owner").style = "display: block;";
-  function updateOwnerIcon() {
+  function updateOwnerIcondim() {
     if (location.pathname == "/~Dimka") {} else {document.getElementById("owner").style = "display: none;";}
   }
-  setInterval(updateOwnerIcon, 100);
+  setInterval(updateOwnerIcondim, 100);
 }
 if (wallName == "~falling1") {
   document.getElementById("owner").style = "display: block;";
   document.getElementById("owner").title = "This user is the co-owner of Dimka's TextWall.";
-  function updateOwnerIcon() {
+  function updateOwnerIconfal() {
     if (location.pathname == "/~falling1") {} else {document.getElementById("owner").style = "display: none;";}
   }
-  setInterval(updateOwnerIcon, 100);
+  setInterval(updateOwnerIconfal, 100);
 }
