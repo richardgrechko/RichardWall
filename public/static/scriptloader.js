@@ -15,3 +15,11 @@ if (wallName == "~Dimka") {
   }
   setInterval(updateOwnerIcon, 100);
 }
+if (wallName == "~falling1") {
+  document.getElementById("owner").style = "display: block;";
+  document.getElementById("owner").title = "This user is the co-owner of Dimka's TextWall.";
+  function updateOwnerIcon() {
+    if (location.pathname == "/~falling1") {} else {document.getElementById("owner").style = "display: none;";}
+  }
+  setInterval(updateOwnerIcon, 100);
+}
