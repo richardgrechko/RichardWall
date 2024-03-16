@@ -165,6 +165,10 @@
             <td>Decoration menu</td>
             <td>Right click/Long tap</td>
           </tr>
+          <tr>
+            <td>Shortcuts menu</td>
+            <td>CTRL+/</td>
+          </tr>
         </table>
       </div>
     </div>
@@ -589,7 +593,7 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
             target="_blank"
             ><button>Edit Project</button></a
           ><br />
-          <button onclick="client.chat.send(&quot;/stop&quot;);">Stop Server</button
+          <button onclick='client.chat.send("/stop");'>Stop Server</button
           ><br />
           <textarea id="alerttext" placeholder="Announce a thing"></textarea
           ><br />
