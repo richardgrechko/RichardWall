@@ -1240,7 +1240,7 @@ function init_ws() {
         if (!chatsLimit[ip]) chatsLimit[ip] = 0;
         chatsLimit[ip]++;
         var limit = chatsLimit[ip];
-        if (limit > 2) return serverMessage(ws, "Calm down!")
+        if (limit > 2) return serverMessage(ws, "")
         // 2
         setTimeout(() => chatsLimit[ip]--, 1000); // per 1000 ms (1 second)
         // 2 per 1 sec
@@ -1272,8 +1272,8 @@ function init_ws() {
           .replaceAll("\u202e", "")
           // Remove embeds from links so no one posts gay porn/gore (anti-abuse/censorship)
           .replace(/https?:\/\//g, (match) => match + "/")
-          // In case they somehow magicially bypass the @everyone/@here filter (anti-abuse)
-          .replaceAll("@", "atsign");
+          // In case they somehow magicially bypass the @everyone/@here filter, replace it with a lookalike (anti-abuse)
+          .replaceAll("@", "＠");
         if (!maintenanceMode && sdata.connectedWorldId == 1)
           webhookSend(process.env.goatwaywebhookurl, {
             content: `${name}: ${convertToDiscordEmote(msg)}`,
