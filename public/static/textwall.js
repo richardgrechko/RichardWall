@@ -23,18 +23,18 @@ var client = {
     if (!evt) return;
     evt.forEach((func) => func(data));
   },
-};
-
-var client_commands = {
-  getid: (args) => {
-    var ids = [];
-    client.cursors.forEach((cursor, id) => {
-      if (cursor.n == args[0]) ids.push(id);
-    });
-    // clientMessage is defined, glitch just doesn't know it yet! 🎅🎅🐡
-    clientMessage(ids.join(", "));
+  commands: {
+    getid: (args) => {
+      var ids = [];
+      client.cursors.forEach((cursor, id) => {
+        if (cursor.n == args[0]) ids.push(id);
+      });
+      // clientMessage is defined, glitch just doesn't know it yet! 🎅🎅🐡
+      clientMessage(ids.join(", "));
+    },
   },
 };
+
 var emotes = ["correct", "wrong", "neutral"];
 function convertToEmote(msg) {
   return msg.replace(/:([a-zA-Z0-9_-]+):/g, (match, p1) => emotes.includes(p1) ? `<img class="emoji" src="https://dimkatextwall.glitch.me/static/emotes/${p1}.webp">` : match);
@@ -4347,8 +4347,6 @@ if (location.origin == "https://web.archive.org") {
   document.getElementById("connecting2").innerHTML = "Hmm... I wonder why...\nUhh, have you tried visiting the <a href=\"https://dimkatextwall.glitch.me\">real version? Not a... archived non-working version?"; // falling1 fuck off
   console.log("You're on web.archive.org, please visit the original version:\nhttps://dimkatextwall.glitch.me");
 }
-// i hope you know that's the fucking admin section
-// you SUCK at spelling lma
 var owner = document.getElementById("owner");
 function checkAdminWall(wall) {
   if (["~Dimka", "~falling1"].includes(wall)) {
