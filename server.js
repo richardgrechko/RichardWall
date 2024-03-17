@@ -167,6 +167,7 @@ function htmlTagEsc(str) {
 var discordEmotes = {
   ":correct:": "<:correct:1211162124253143122>",
   ":wrong:": "<:wrong:1211162110759805008>",
+  ":neutral:": "<:neutral:1218747051144249416>"
 };
 
 function convertToDiscordEmote(msg) {
