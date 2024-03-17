@@ -1982,7 +1982,7 @@ function convertToEmote(msg) {
         gn(),
           Xe + 300 > performance["now"]()
             ? (r["value"] = "")
-            : client.chat.send(r["value"]["substr"](0, 180)),
+            : client.chat.send(r["value"]["substr"](0, 400)),
           (Xe = performance["now"]()),
           (r.value = ""),
           r.focus();
