@@ -2086,6 +2086,7 @@ function convertToEmote(msg) {
               ],
             })
           ));
+      client.serverClosed = false;
       var t = "textwall",
         r = "main",
         o = location["pathname"]["split"]("/")["splice"](1, 2);
@@ -2200,7 +2201,6 @@ function convertToEmote(msg) {
           var l = a.j;
           (W = l[0]),
             (H = l[1]),
-            (client.serverClosed = false),
             En(),
             "textwall" == W && (nt["private"]["disabled"] = !0),
             "textwall" != W
@@ -2210,6 +2210,7 @@ function convertToEmote(msg) {
               : ((o = "/"),
                 Pr()["startsWith"]("~") && history["pushState"]({}, null, o),
                 (J["style"]["display"] = "none")),
+            client.emit("wallchange", getWallName());
             (Gt = !1),
             (he = setInterval(Qt, 250)),
             (ye = setInterval(_t, 2e3)),
@@ -3145,6 +3146,7 @@ function convertToEmote(msg) {
         Zn(c.x, c.y),
           Cn("textwall", "main"),
           0 == c.x && 0 == c.y ? $n() : history["pushState"]({}, null, e);
+        client.emit("wallchange", getWallName());
       }
       M["classList"]["remove"]("open");
     }
@@ -4346,4 +4348,7 @@ if (location.origin == "https://web.archive.org") { //
   document.getElementById("connecting2").innerHTML = "Hmm... I wonder why...\nUhh, have you tried visiting the <a href=\"https://dimkatextwall.glitch.me\">real version? Not a... archived non-working version?"; // falling1 fuck off
   console.log("You're on web.archive.org, please visit the original version:\nhttps://dimkatextwall.glitch.me");
 }
+
+client
+
 console.log("textwall.js has loaded");
