@@ -2136,7 +2136,7 @@ function convertToEmote(msg) {
         nr(),
         dt(!1);
       if (client.banned) {
-        document.getElementById("connecting1").innerText = "You are banned.";
+        document.getElementById("connecting1").innerText = "Banned";
         document.getElementById(
           "connecting2"
         ).innerText = `Refresh to reconnect${
