@@ -21,7 +21,7 @@ var fetch = require("node-fetch");
 var bodyParser = require("body-parser");
 var { Client, Intents } = require("discord.js");
 var bannedIps = {};
-var lastChat = {};
+var chatsLimit = {};
 var banReasons = {};
 var port = 8080;
 var loginToType = false;
@@ -1236,9 +1236,14 @@ function init_ws() {
           var maintenanceMode = 1;
           return;
         }
-        
-        var now = Date.now();
-
+        var ip = sdata.ipAddr
+        if (!chatsLimit[ip]) chatsLimit[ip] = 0;
+        chatsLimit[ip]++;
+        var limit = chatsLimit[ip];
+        if (limit > 2) return serverMessage(ws, "Calm down!")
+        // 2
+        setTimeout(() => chatsLimit[ip]--, 1000); // per 1000 ms (1 second)
+        // 2 per 1 sec
         worldBroadcast(
           sdata.connectedWorldId,
           msgpack.encode({
