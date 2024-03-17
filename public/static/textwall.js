@@ -3536,6 +3536,7 @@ function convertToEmote(msg) {
     function Pr() {
       return fr(location.pathname);
     }
+    window.getWallName = Pr;
     function Lr(e) {
       var t = n;
       if ("" == (e = decodeURI(e["toLowerCase"]())) || "~main" == e)
