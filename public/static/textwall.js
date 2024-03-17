@@ -4342,7 +4342,7 @@ function joinDiscord() {
   window.open("https://discord.gg/Fg9s44aRd9");
   console.log("Invited");
 }
-if (location.origin == "https://web.archive.org") { // 
+if (location.origin == "https://web.archive.org") { 
   document.getElementById("connecting1").innerText = "Unable to connect";
   document.getElementById("connecting2").innerHTML = "Hmm... I wonder why...\nUhh, have you tried visiting the <a href=\"https://dimkatextwall.glitch.me\">real version? Not a... archived non-working version?"; // falling1 fuck off
   console.log("You're on web.archive.org, please visit the original version:\nhttps://dimkatextwall.glitch.me");
@@ -4351,12 +4351,13 @@ if (location.origin == "https://web.archive.org") { //
 // you SUCK at spelling lma
 var owner = document.getElementById("owner");
 function checkAdminWall(wall) {
-  if (!["~falling1", "~Dimka"].includes(wall)) {
-    
+  if (["~Dimka", "~falling1"].includes(wall)) {
+    owner.style.display = "block";
+    owner.title = `This user is the ${wall == "~falling1" ? "co-" : ""}owner of Dimka's TextWall`;
+  } else {
+    owner.style.display = "none";
   }
-  
-  if (wall == "d")
 }
 
-client.on("wallchange");
+client.on("wallchange", checkAdminWall);
 console.log("textwall.js has loaded!");
