@@ -1515,6 +1515,7 @@ function convertToEmote(msg) {
         "click",
         function () {
           $n(), Zn(0, 0);
+          client.emit("wallchange", getWallName());
         }
       ),
       document["getElementById"]("home")["addEventListener"](
@@ -1522,6 +1523,7 @@ function convertToEmote(msg) {
         function (e) {
           var t = n;
           e["preventDefault"](), Cn("textwall", "main") && Zn(0, 0);
+          client.emit("wallchange", getWallName());
         }
       ),
       document["getElementById"]("copy")["addEventListener"]("click", or),
@@ -1999,6 +2001,7 @@ function convertToEmote(msg) {
       var t = n;
       e["preventDefault"](),
         Cn(e.target["innerText"]["toLowerCase"](), "main") && Zn(0, 0);
+      client.emit("wallchange", getWallName());
     }
     function Mn(e, t, r) {
       var a = n;
@@ -2210,7 +2213,7 @@ function convertToEmote(msg) {
               : ((o = "/"),
                 Pr()["startsWith"]("~") && history["pushState"]({}, null, o),
                 (J["style"]["display"] = "none")),
-            client.emit("wallchange", getWallName());
+            //client.emit("wallchange", getWallName());
             (Gt = !1),
             (he = setInterval(Qt, 250)),
             (ye = setInterval(_t, 2e3)),
@@ -3145,8 +3148,7 @@ function convertToEmote(msg) {
         var c = Lr(e);
         Zn(c.x, c.y),
           Cn("textwall", "main"),
-          0 == c.x && 0 == c.y ? $n() : history["pushState"]({}, null, e);
-        client.emit("wallchange", getWallName());
+          0 == c.x && 0 == c.y ? $n() : history["pushState"]({}, null, e),client.emit("wallchange", getWallName());
       }
       M["classList"]["remove"]("open");
     }
