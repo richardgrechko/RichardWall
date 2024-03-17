@@ -21,6 +21,7 @@ var fetch = require("node-fetch");
 var bodyParser = require("body-parser");
 var { Client, Intents } = require("discord.js");
 var bannedIps = {};
+var lastChat = {};
 var banReasons = {};
 var port = 8080;
 var loginToType = false;
@@ -1235,6 +1236,8 @@ function init_ws() {
           var maintenanceMode = 1;
           return;
         }
+        
+        var now = Date.now();
 
         worldBroadcast(
           sdata.connectedWorldId,

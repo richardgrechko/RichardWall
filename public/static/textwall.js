@@ -2738,11 +2738,11 @@ function convertToEmote(msg) {
     const Jn = [4, 5, 7, 8, 9, 18, 11, 20, 13, 28, 15];
     client.chat = {
       send: (msg) => {
-        msg = msg.slice(0, 400);
+        msg = msg.toString().slice(0, 400);
         var args = msg.split(" ");
         var cmd = args.shift();
-        if (cmd.startsWith("/") && client_commands[cmd.slice(1)])
-          return client_commands[cmd.slice(1)](args);
+        if (cmd.startsWith("/") && client.commands[cmd.slice(1)])
+          return client.commands[cmd.slice(1)](args);
         a.send(Or({ msg }));
       },
     };
