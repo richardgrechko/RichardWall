@@ -712,9 +712,9 @@ function init_ws() {
 // if there's a ip with 3 or more connections, warn in the server logs and ping dimka in the discord server about it, then close the connections
     if (connObj[0] >= 3) {
       console.warn("DoS alert! IP: " + ipAddr);
-        webhookSend(process.env.dosalerturl, {
-    content: "Hello mr <@836988339491962881>, i would like to notify you that there's a person trying to attack the server pls take action here's the info of his ip: <https://ipinfo.io/" + ipAddr + "> thanks \n<https://dimkatextwall.glitch.me/>",
-  });
+      webhookSend(process.env.dosalerturl, {
+       content: "Hello mr <@836988339491962881>, i would like to notify you that there's a person trying to attack the server pls take action here's the info of his ip: <https://ipinfo.io/" + ipAddr + "> thanks <https://dimkatextwall.glitch.me/>",
+      });
       ws.close();
       return;
     }
@@ -1239,11 +1239,14 @@ function init_ws() {
         var ip = sdata.ipAddr
         if (!chatsLimit[ip]) chatsLimit[ip] = 0;
         chatsLimit[ip]++;
-        var limit = chatsLimit[ip];
-        if (limit > 2) return serverMessage(ws, "")
-        // 2
         setTimeout(() => chatsLimit[ip]--, 1000); // per 1000 ms (1 second)
         // 2 per 1 sec
+        var limit = chatsLimit[ip];
+        if (limit > 2) return serverMessage(ws, "Too fast!");
+        webhookSend(process.env.dosalerturl, {
+          content: "Spam alert! IP: " + ipAddr + ", from " + sdata.authUser + " (" + sdata.clientId + ")",
+        });
+        // 2
         worldBroadcast(
           sdata.connectedWorldId,
           msgpack.encode({
