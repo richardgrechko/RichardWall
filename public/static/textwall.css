@@ -381,7 +381,7 @@ td {
   top: 0;
   right: 0;
   display: flex;
-  height: 300px;
+  height: 350px;
   transition: all 0.5s;
   pointer-events: none;
   transform: translateX(220px);
@@ -390,7 +390,7 @@ td {
   transform: translateX(0px);
 }
 .chatcontainer {
-  width: 200px;
+  width: 250px;
   background-color: rgba(30, 30, 30, 0.8);
   border-radius: 0 0 0 5px;
   padding: 10px;
