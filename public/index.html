@@ -481,7 +481,7 @@
             }
           </script>
           <div id="navigation" style="display: none">
-            <br /><button>⬅️</button><button>➡️</button><button>🔄</button>
+            <br /><button onclick="window.history.back()">⬅️</button><button onclick="window.history.forward()">➡️</button><button onclick="location.reload()">🔄</button>
           </div>
           <script>
             function clientTell() {
@@ -735,8 +735,8 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
 		}*/
     </script>
     <script>
-      if (!navigator.userAgent.includes("median")) {
-        document.getElementById("navigation").style.display = "display: block;";
+      if (navigator.userAgent.includes("median")) {
+        document.getElementById("navigation").style = "display: block;";
       }
     </script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
