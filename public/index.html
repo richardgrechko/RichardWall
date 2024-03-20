@@ -434,6 +434,7 @@
           <h2>Miscellaneous</h2>
           <button onclick="summonOneko();">Summon an Oneko cat</button><br />
           <button onclick="onekoDisaster();">ONEKO DISASTER!</button><br />
+          <button onclick="superOnekoDisaster();">SUPER ONEKO DISASTER</button>
           <button
             onclick="joinDiscord();"
             style="background-color: #5865f2; color: #ffffff"
@@ -725,6 +726,9 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
       }
       function onekoDisaster() {
         setInterval(summonOneko, 1000);
+      }
+      function superOnekoDisaster() {
+        setInterval(onekoDisaster, 4000);
       }
     </script>
     <script>
