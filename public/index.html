@@ -432,9 +432,12 @@
         </div>
         <div>
           <h2>Miscellaneous</h2>
+          <h3>Oneko</h3>
           <button onclick="summonOneko();">Summon an Oneko cat</button><br />
           <button onclick="onekoDisaster();">ONEKO DISASTER!</button><br />
-          <button onclick="superOnekoDisaster();">SUPER ONEKO DISASTER</button>
+          <button onclick="superOnekoDisaster();">SUPER ONEKO DISASTER</button><br />
+          <button onclick="removeOneko();">Remove a Oneko cat</button><br />
+          <button>Cancel Oneko Disasters</button><br /><br />
           <button
             onclick="joinDiscord();"
             style="background-color: #5865f2; color: #ffffff"
@@ -725,10 +728,13 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
         } else oneko();
       }
       function onekoDisaster() {
-        setInterval(summonOneko, 1000);
+        var onekoDis = setInterval(summonOneko, 1000);
       }
       function superOnekoDisaster() {
-        setInterval(onekoDisaster, 4000);
+        var superOnekoDis = setInterval(onekoDisaster, 4000);
+      }
+      function removeOneko() {
+        document.getElementById("oneko").remove();
       }
     </script>
     <script>
