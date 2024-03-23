@@ -35,7 +35,7 @@ var client = {
   },
 };
 
-var emotes = ["correct", "wrong", "neutral"];
+var emotes = ["correct", "wrong", "neutral", "catchill"];
 function convertToEmote(msg) {
   return msg.replace(/:([a-zA-Z0-9_-]+):/g, (match, p1) => emotes.includes(p1) ? `<img class="emoji" src="https://dimkatextwall.glitch.me/static/emotes/${p1}.webp">` : match);
 }
