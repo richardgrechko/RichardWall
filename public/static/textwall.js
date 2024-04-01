@@ -4351,7 +4351,7 @@ var owner = document.getElementById("owner");
 function checkAdminWall(wall) {
   if (["~Dimka", "~falling1"].includes(wall)) {
     owner.style.display = "block";
-    owner.title = `This user is the ${wall == "~falling1" ? "co-" : ""}owner of Dimka's TextWall`;
+    owner.title = `This user is the ${wall == "~Dimka" ? "co-" : ""}owner of Falling1's TextWall`;
   } else {
     owner.style.display = "none";
   }
