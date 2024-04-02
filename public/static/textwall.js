@@ -4344,14 +4344,14 @@ function joinDiscord() {
 }
 if (location.origin == "https://web.archive.org") { 
   document.getElementById("connecting1").innerText = "Unable to connect";
-  document.getElementById("connecting2").innerHTML = "Hmm... I wonder why...\nUhh, have you tried visiting the <a href=\"https://dimkatextwall.glitch.me\">real version? Not a... archived non-working version?"; // falling1 fuck off
+  document.getElementById("connecting2").innerText = "Hmm... I wonder why...\nUhh, have you tried visiting the <a href=\"https://dimkatextwall.glitch.me\">real version? Not a... archived non-working version?"; // falling1 fuck off
   console.log("You're on web.archive.org, please visit the original version:\nhttps://dimkatextwall.glitch.me");
 }
 var owner = document.getElementById("owner");
 function checkAdminWall(wall) {
   if (["~Dimka", "~falling1"].includes(wall)) {
     owner.style.display = "block";
-    owner.title = `This user is the ${wall == "~Dimka" ? "co-" : ""}owner of Falling1's TextWall`;
+    owner.title = `This user is the ${wall == "~falling1" ? "co-" : ""}owner of Falling1's TextWall`;
   } else {
     owner.style.display = "none";
   }
