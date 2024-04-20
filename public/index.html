@@ -728,21 +728,21 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
           window.oneko = () => catsToSpawn++;
         } else oneko();
       }
-      var onekoDisasterInt, superOnekoDisasterInt, ultraOnekoDisasterInt;
+      var onekoInterval, superOnekoInterval, ultraOnekoInterval;
       function onekoDisaster() {
-        onekoDisasterInt = setInterval(summonOneko, 1000);
+        onekoInterval = setInterval(summonOneko, 1000);
       }
       function superOnekoDisaster() {
-        superOnekoDisasterInt = setInterval(onekoDisaster, 4000);
+        superOnekoInterval = setInterval(onekoDisaster, 4000);
       }
       function ultraOnekoDisaster() {
-        ultraOnekoDisasterInt = setInterval(superOnekoDisaster, 1000);
+        ultraOnekoInterval = setInterval(superOnekoDisaster, 1000);
       }
       function removeOneko() {
         document.getElementById("oneko").remove();
       }
       function removeDisasters() {
-        [onekoDisasterInt, superOnekoDisasterInt, ultraOnekoDisasterInt].forEach(clearInterval);
+        [onekoInterval, superOnekoInterval, ultraOnekoInterval].forEach(clearInterval);
       }
     </script>
     <script>

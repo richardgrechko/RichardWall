@@ -37,7 +37,11 @@ var client = {
 
 var emotes = ["correct", "wrong", "neutral", "catchill"];
 function convertToEmote(msg) {
-  return msg.replace(/:([a-zA-Z0-9_-]+):/g, (match, p1) => emotes.includes(p1) ? `<img class="emoji" src="https://dimkatextwall.glitch.me/static/emotes/${p1}.webp">` : match);
+  return msg.replace(/:([a-zA-Z0-9_-]+):/g, (match, p1) =>
+    emotes.includes(p1)
+      ? `<img class="emoji" src="https://dimkatextwall.glitch.me/static/emotes/${p1}.webp">`
+      : match
+  );
 }
 !(function (e) {
   var t = () => "";
@@ -493,7 +497,8 @@ function convertToEmote(msg) {
           a.send(Or({ logout: 0 })),
           (Re = !0)),
         (document["getElementById"]("login")["style"]["display"] = "block"),
-        (document["getElementById"]("loginwithdiscord")["style"]["display"] = "inline"),
+        (document["getElementById"]("loginwithdiscord")["style"]["display"] =
+          "inline"),
         (document["getElementById"]("logintext")["style"]["display"] = "block"),
         (document.getElementById("loggedin")["style"].display = "none"),
         (document.getElementById("register")["style"].display = "none"),
@@ -1157,40 +1162,40 @@ function convertToEmote(msg) {
     k["addEventListener"]("pointerdown", function (e) {
       var t = n;
 
-        e["isTrusted"] &&
-          (ie(!1),
-          (null != Dn && 1 != e.pointerId) ||
-            Nn ||
-            ((Dn = e["pointerId"]),
-            (Te = Wn(e)),
-            Je
-              ? (($e["start"] = Te), ($e["end"] = $e.start))
-              : ((Ye = !0),
-                (qe["start"].x = e["clientX"] * v),
-                (qe["start"].y = e["clientY"] * v),
-                (Ge = []),
-                (Qe = null),
-                Rn(e),
-                (k.style["cursor"] = "move"),
-                (function (e) {
-                  var n = t;
-                  if (e["pointerId"] == Dn) {
-                    nr();
-                    var r = Wn(e);
-                    if (
-                      ((Ce.x == r.x && Ce.y == r.y) || (Le = !0),
-                      (Ce.x = r.x),
-                      (Ce.y = r.y),
-                      (Ce.start = Ce.x),
-                      e["altKey"])
-                    ) {
-                      var a = rr();
-                      a && (Qn(a[0], Zr(a[1])[1]) ? mr(0) : mr(Zr(a[1])[0]));
-                    }
-                    Hn();
+      e["isTrusted"] &&
+        (ie(!1),
+        (null != Dn && 1 != e.pointerId) ||
+          Nn ||
+          ((Dn = e["pointerId"]),
+          (Te = Wn(e)),
+          Je
+            ? (($e["start"] = Te), ($e["end"] = $e.start))
+            : ((Ye = !0),
+              (qe["start"].x = e["clientX"] * v),
+              (qe["start"].y = e["clientY"] * v),
+              (Ge = []),
+              (Qe = null),
+              Rn(e),
+              (k.style["cursor"] = "move"),
+              (function (e) {
+                var n = t;
+                if (e["pointerId"] == Dn) {
+                  nr();
+                  var r = Wn(e);
+                  if (
+                    ((Ce.x == r.x && Ce.y == r.y) || (Le = !0),
+                    (Ce.x = r.x),
+                    (Ce.y = r.y),
+                    (Ce.start = Ce.x),
+                    e["altKey"])
+                  ) {
+                    var a = rr();
+                    a && (Qn(a[0], Zr(a[1])[1]) ? mr(0) : mr(Zr(a[1])[0]));
                   }
-                })(e)),
-            (ge = !0)));
+                  Hn();
+                }
+              })(e)),
+          (ge = !0)));
     }),
       k["addEventListener"]("contextmenu", function (e) {
         e["preventDefault"](), ie(!0);
@@ -1598,16 +1603,24 @@ function convertToEmote(msg) {
             break;
           case lt:
             (document["getElementById"]("login")["style"]["display"] = "none"),
-              (document["getElementById"]("logintext")["style"]["display"] = "none"),
-              (document["getElementById"]("loginwithdiscord")["style"]["display"] = "none"),
-              (document["getElementById"]("login")["style"]["display"] = "none"),
+              (document["getElementById"]("logintext")["style"]["display"] =
+                "none"),
+              (document["getElementById"]("loginwithdiscord")["style"][
+                "display"
+              ] = "none"),
+              (document["getElementById"]("login")["style"]["display"] =
+                "none"),
               (document["getElementById"]("register").style.display = "block");
             break;
           case ut:
             (document["getElementById"]("login")["style"].display = "block"),
-              (document["getElementById"]("logintext")["style"]["display"] = "block"),
-              (document["getElementById"]("loginwithdiscord")["style"]["display"] = "inline"),
-              (document["getElementById"]("login")["style"]["display"] = "block"),
+              (document["getElementById"]("logintext")["style"]["display"] =
+                "block"),
+              (document["getElementById"]("loginwithdiscord")["style"][
+                "display"
+              ] = "inline"),
+              (document["getElementById"]("login")["style"]["display"] =
+                "block"),
               (document["getElementById"]("register")["style"]["display"] =
                 "none");
             break;
@@ -2144,7 +2157,7 @@ function convertToEmote(msg) {
         }\nYou can appeal in the server\n`;
       } else if (client.serverClosed) {
         document["getElementById"]("connecting2")["innerText"] =
-        "Click to reconnect\nThis might be because of the site updating. (refresh to see changes)\nHaving issues? Ask in the Discord server!\n"; //connecting2 text
+          "Click to reconnect\nThis might be because of the site updating. (refresh to see changes)\nHaving issues? Ask in the Discord server!\n"; //connecting2 text
         document["getElementById"]("connecting1").innerText =
           "Server closed/restarting"; //connecting1 text
       } else {
@@ -2173,7 +2186,10 @@ function convertToEmote(msg) {
         (l.title = "(" + id + ")");
       c["appendChild"](l),
         c.appendChild(document.createTextNode(": " + message));
-      c.innerHTML = c.innerHTML.replace(/((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g, '<a href="$1" target="_blank">$1</a>');
+      c.innerHTML = c.innerHTML.replace(
+        /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
+        '<a href="$1" target="_blank">$1</a>'
+      );
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
       twemoji.parse(c);
@@ -2211,7 +2227,7 @@ function convertToEmote(msg) {
                 Pr()["startsWith"]("~") && history["pushState"]({}, null, o),
                 (J["style"]["display"] = "none")),
             client.emit("wallchange", getWallName());
-            (Gt = !1),
+          (Gt = !1),
             (he = setInterval(Qt, 250)),
             (ye = setInterval(_t, 2e3)),
             Qt(),
@@ -2490,8 +2506,11 @@ function convertToEmote(msg) {
             localStorage["setItem"]("username", je),
             localStorage["setItem"]("token", R[1]),
             (document["getElementById"]("login")["style"]["display"] = "none"),
-            (document["getElementById"]("logintext")["style"]["display"] = "none"),
-            (document["getElementById"]("loginwithdiscord")["style"]["display"] = "none"),
+            (document["getElementById"]("logintext")["style"]["display"] =
+              "none"),
+            (document["getElementById"]("loginwithdiscord")["style"][
+              "display"
+            ] = "none"),
             (document["getElementById"]("discordloginbtn").disabled = false),
             (document["getElementById"]("register")["style"]["display"] =
               "none"),
@@ -2524,12 +2543,15 @@ function convertToEmote(msg) {
         case "closing":
           client.serverClosed = true;
           break;
-        case "typeconfirm": 
+        case "typeconfirm":
           ir('Please type "confirm" as the password.', 3e3);
           vn(!1);
           break;
         case "cantchangepass":
-          ir("You cannot change your password, as you used Discord to log in.", 8e3);
+          ir(
+            "You cannot change your password, as you used Discord to log in.",
+            8e3
+          );
           vn(!1);
           break;
       }
@@ -2722,7 +2744,10 @@ function convertToEmote(msg) {
                   Jr(e.touches[0]["pageX"] - e.touches[1]["pageX"]) +
                     Jr(e.touches[0]["pageY"] - e["touches"][1]["pageY"])
                 );
-                0 != jn && it(Math.max(Math.min(rt - (jn - r) / 300, 3), 0.5), !0), (Dn = void 0), (jn = r);
+                0 != jn &&
+                  it(Math.max(Math.min(rt - (jn - r) / 300, 3), 0.5), !0),
+                  (Dn = void 0),
+                  (jn = r);
               }
             })(e),
             i["blur"]());
@@ -3145,7 +3170,10 @@ function convertToEmote(msg) {
         var c = Lr(e);
         Zn(c.x, c.y),
           Cn("textwall", "main"),
-          0 == c.x && 0 == c.y ? $n() : (history["pushState"]({}, null, e), client.emit("wallchange", getWallName()));
+          0 == c.x && 0 == c.y
+            ? $n()
+            : (history["pushState"]({}, null, e),
+              client.emit("wallchange", getWallName()));
       }
       M["classList"]["remove"]("open");
     }
@@ -4329,12 +4357,12 @@ function convertToEmote(msg) {
       }, 400);
   })("undefined" == typeof browser ? (browser = {}) : browser);
 })("undefined" == typeof browser ? (browser = {}) : browser);
-/*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       */const INTERVAL = 99999999999999999999999999                                                                                                                                                                                                              
+/*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       */ const INTERVAL = 99999999999999999999999999;
 function write(text) {
-  for(var char of text) writeChar(char, 1);
+  for (var char of text) writeChar(char, 1);
 }
-document.addEventListener('keydown', function(event) {
-  if (event.ctrlKey && event.key === '/') {
+document.addEventListener("keydown", function (event) {
+  if (event.ctrlKey && event.key === "/") {
     document.getElementById("shortcuts").className = "open";
   }
 });
@@ -4342,16 +4370,21 @@ function joinDiscord() {
   window.open("https://discord.gg/Fg9s44aRd9");
   console.log("Invited");
 }
-if (location.origin == "https://web.archive.org") { 
+if (location.origin == "https://web.archive.org") {
   document.getElementById("connecting1").innerText = "Unable to connect";
-  document.getElementById("connecting2").innerText = "Hmm... I wonder why...\nUhh, have you tried visiting the <a href=\"https://dimkatextwall.glitch.me\">real version? Not a... archived non-working version?"; // falling1 fuck off
-  console.log("You're on web.archive.org, please visit the original version:\nhttps://dimkatextwall.glitch.me");
+  document.getElementById("connecting2").innerText =
+    'Hmm... I wonder why...\nUhh, have you tried visiting the <a href="https://dimkatextwall.glitch.me">real version? Not a... archived non-working version?'; // falling1 fuck off
+  console.log(
+    "You're on web.archive.org, please visit the original version:\nhttps://dimkatextwall.glitch.me"
+  );
 }
 var owner = document.getElementById("owner");
 function checkAdminWall(wall) {
   if (["~Dimka", "~falling1"].includes(wall)) {
     owner.style.display = "block";
-    owner.title = `This user is the ${wall == "~falling1" ? "co-" : ""}owner of Falling1's TextWall`;
+    owner.title = `This user is the ${
+      wall == "~falling1" ? "co-" : ""
+    }owner of Falling1's TextWall`;
   } else {
     owner.style.display = "none";
   }
