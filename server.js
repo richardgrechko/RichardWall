@@ -1248,6 +1248,7 @@ function init_ws() {
           webhookSend(process.env.dosalerturl, {
             content: "Spam alert! IP: " + ipAddr + ", from " + sdata.authUser + " (" + sdata.clientId + ")",
           });
+          return;
         }
         // 2
         worldBroadcast(
