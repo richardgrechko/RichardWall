@@ -1243,10 +1243,12 @@ function init_ws() {
         setTimeout(() => chatsLimit[ip]--, 1000); // per 1000 ms (1 second)
         // 2 per 1 sec
         var limit = chatsLimit[ip];
-        if (limit > 2) return serverMessage(ws, "Too fast!");
-        webhookSend(process.env.dosalerturl, {
-          content: "Spam alert! IP: " + ipAddr + ", from " + sdata.authUser + " (" + sdata.clientId + ")",
-        });
+        if (limit > 2) {
+          serverMessage(ws, "Too fast!");
+          webhookSend(process.env.dosalerturl, {
+            content: "Spam alert! IP: " + ipAddr + ", from " + sdata.authUser + " (" + sdata.clientId + ")",
+          });
+        }
         // 2
         worldBroadcast(
           sdata.connectedWorldId,
