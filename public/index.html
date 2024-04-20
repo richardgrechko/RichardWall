@@ -507,8 +507,8 @@
 
         <div id="wallsettings">
           <h1>Wall Actions</h1>
-          <a href="/static/WallGuide.pdf" target="_blank" style="color: #00ffff"
-            ><p>Wall Guide</p></a
+          <a href="/static/WallGuide.pdf" target="_blank" class="buttonlink"
+            >Wall Guide</a
           ><br />
           <input id="protect" type="checkbox" /><label for="protect"
             >Protect</label
@@ -720,29 +720,33 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
     <script>
       var catsToSpawn = 0;
       function summonOneko() {
+        // load oneko.js once and if the user spawns more than one
+        // while it's loading then it will spawn oneko that many times
+        // when its loaded
         if (!window.oneko) {
-          var res = [];
           loadScript("/static/oneko.js", () => {
             for (let i = 0; i < catsToSpawn; i++) oneko();
           });
           window.oneko = () => catsToSpawn++;
         } else oneko();
       }
-      var onekoInterval, superOnekoInterval, ultraOnekoInterval;
+      var onekoIntervals = [];
       function onekoDisaster() {
-        onekoInterval = setInterval(summonOneko, 1000);
+        onekoIntervals.push(setInterval(summonOneko, 1000));
       }
       function superOnekoDisaster() {
-        superOnekoInterval = setInterval(onekoDisaster, 4000);
+        onekoIntervals.push(setInterval(onekoDisaster, 4000));
       }
       function ultraOnekoDisaster() {
-        ultraOnekoInterval = setInterval(superOnekoDisaster, 1000);
+        onekoIntervals.push(setInterval(superOnekoDisaster, 1000));
       }
       function removeOneko() {
         document.getElementById("oneko").remove();
       }
       function removeDisasters() {
-        [onekoInterval, superOnekoInterval, ultraOnekoInterval].forEach(clearInterval);
+        while (onekoIntervals.length) {
+          clearInterval(onekoIntervals.shift());
+        }
       }
     </script>
     <script>
