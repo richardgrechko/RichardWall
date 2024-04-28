@@ -4372,8 +4372,8 @@ function joinDiscord() {
 }
 if (location.origin == "https://web.archive.org") {
   document.getElementById("connecting1").innerText = "Unable to connect";
-  document.getElementById("connecting2").innerText =
-    'Hmm... I wonder why...\nUhh, have you tried visiting the <a href="https://dimkatextwall.glitch.me">real version? Not a... archived non-working version?'; // falling1 fuck off
+  document.getElementById("connecting2").innerHTML =
+    'Hmm... I wonder why...<br />Uhh, have you tried visiting the <a href="https://dimkatextwall.glitch.me">real version? Not a... archived non-working version?</a>'; // falling1 fuck off
   console.log(
     "You're on web.archive.org, please visit the original version:\nhttps://dimkatextwall.glitch.me"
   );
@@ -4391,4 +4391,5 @@ function checkAdminWall(wall) {
 }
 
 client.on("wallchange", checkAdminWall);
+
 console.log("textwall.js has loaded!");
