@@ -2182,7 +2182,7 @@ function convertToEmote(msg) {
       (l["innerText"] = name),
         (l.style["color"] = "#FFFFFF" == se[color] ? "#222222" : se[color]),
         registered &&
-          ((l["href"] = "/~" + name), l["addEventListener"]("click", wn)),
+          ((l["href"] = "/~" + name), l.onclick = wn),
         (l.title = "(" + id + ")");
       c["appendChild"](l),
         c.appendChild(document.createTextNode(": " + message));
@@ -3715,7 +3715,7 @@ function convertToEmote(msg) {
         );
       }, 0),
       Zn(Ce.x, Ce.y),
-      null != localStorage.getItem("zoom") &&
+      null != localStorage.getItemf("zoom") &&
         it(JSON["parse"](localStorage["getItem"]("zoom")), !1),
       Kr(),
       (Or = function (e, r) {
