@@ -29,7 +29,7 @@ var client = {
       client.cursors.forEach((cursor, id) => {
         if (cursor.n == args[0]) ids.push(id);
       });
-      // clientMessage is defined, glitch just doesn't know it yet! 🎅🎅🐡
+      // clientMessage isn't defined 😔
       clientMessage(ids.join(", "));
     },
   },
@@ -39,7 +39,7 @@ var emotes = ["correct", "wrong", "neutral", "catchill"];
 function convertToEmote(msg) {
   return msg.replace(/:([a-zA-Z0-9_-]+):/g, (match, p1) =>
     emotes.includes(p1)
-      ? `<img class="emoji" src="https://dimkatextwall.glitch.me/static/emotes/${p1}.webp">`
+      ? `<img class="emoji" src="https://${location.host}/static/emotes/${p1}.webp">`
       : match
   );
 }
@@ -2182,7 +2182,7 @@ function convertToEmote(msg) {
       (l["innerText"] = name),
         (l.style["color"] = "#FFFFFF" == se[color] ? "#222222" : se[color]),
         registered &&
-          ((l["href"] = "/~" + name), l.onclick = wn),
+          ((l["href"] = "/~" + name)),
         (l.title = "(" + id + ")");
       c["appendChild"](l),
         c.appendChild(document.createTextNode(": " + message));
@@ -2190,11 +2190,12 @@ function convertToEmote(msg) {
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
         '<a href="$1" target="_blank">$1</a>'
       );
-      console.log(l, l.onclick);
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
       twemoji.parse(c);
       c.innerHTML = convertToEmote(c.innerHTML);
+      l.onclick = wn;
+      console.log(l.onclick);
       i.appendChild(c),
         u && gn(),
         hn["classList"]["contains"]("open") || yn["classList"]["add"]("show");
