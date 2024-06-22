@@ -12,7 +12,7 @@ function discordLogin() {
     "width=400,height=700"
   );
   discordLoginInterval = setInterval(() => {
-    loginPopup.postMessage("", "https://dimkatextwall.glitch.me");
+    loginPopup.postMessage("", "https://unitextwall.glitch.me");
     if (loginPopup.closed) cancelDiscordLogin();
   }, 500);
   discordloginbtn.disabled = true;
