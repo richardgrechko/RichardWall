@@ -675,7 +675,7 @@ function dumpCursors(ws) {
     }
   });
 }
-// falling how are you hiding your ip
+// i still don't understand
 function getIp(req) {
   var ipAddr = req.socket.remoteAddress;
   if (ipAddr == "127.0.0.1") ipAddr = Math.random().toString();
