@@ -7,7 +7,7 @@ var discordchoosename = document.getElementById("discordchoosename");
 
 function discordLogin() {
   loginPopup = window.open(
-    "https://discord.com/api/oauth2/authorize?client_id=1201515886683619368&response_type=code&redirect_uri=https%3A%2F%2Fdimkatextwall.glitch.me%2Fauthorized.html&scope=identify",
+    "https://discord.com/api/oauth2/authorize?client_id=1201515886683619368&response_type=code&redirect_uri=https%3A%2F%2Funitextwall.glitch.me%2Fauthorized.html&scope=identify",
     "",
     "width=400,height=700"
   );

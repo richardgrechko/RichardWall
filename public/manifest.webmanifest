@@ -1,7 +1,7 @@
 {
     "short_name": "TextWall",
     "name": "Uni's TextWall",
-    "description": "Multiplayer text editor, but better.",
+    "description": "A clone of a multiplayer text editor, but better.",
     "icons": [
       {
         "src": "https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/image(6).png",
