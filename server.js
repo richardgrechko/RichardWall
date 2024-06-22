@@ -348,7 +348,7 @@ function parseChar(chr) {
 }
 
 function validateUsername(str) {
-  if (str.length < 1 || str.length > 64) return false;
+  if (str.length < 3 || str.length > 64) return false;
   var validChars =
     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-.";
   for (var i = 0; i < str.length; i++) {
