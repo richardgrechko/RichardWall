@@ -34,7 +34,7 @@ var upfor = new Date().toString()
 const oauth = new DiscordOauth2({
   clientId: "1201515886683619368",
   clientSecret: process.env.clientsecret,
-  redirectUri: "https://dimkatextwall.glitch.me/authorized.html",
+  redirectUri: "https://unitextwall.glitch.me/authorized.html",
 });
 
 // for goatway to receive messages from discord and send them to dimka's textwall
@@ -82,7 +82,7 @@ client.on("ready", async () => {
   }
 });
 
-const discordAdmins = ["falling1", "therealdimka"];
+const discordAdmins = ["falling1", "therealunicat"];
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
 
@@ -95,29 +95,29 @@ client.on("interactionCreate", async (interaction) => {
     });
     interaction.reply({
       content: `${onlineCount} online\n${mainWallCount} on the front page`,
-      ephemeral: true,
+      ephemeral: true
     });
     // help
   } else if (commandName === "help") {
     interaction.reply({
       content:
         "# Command list\n> /help (list of commands)\n> /online (how many people are online on the site)\n> /uptime (how long the server has been up for)\n### That's all (for now)...",
-      ephemeral: true, // Make this response visible only to the user who issued the command
+      ephemeral: true
     });
     // uptime
   } else if (commandName === "uptime") {
       interaction.reply({
         content:
         "The server has been up since <t:" + uptimeSeconds + ":f>, which was <t:" + uptimeSeconds + ":R>.",
-        ephermeral: true,
+        ephermeral: true
       });
     // stop
   } else if (commandName === "stop") {
     if (!discordAdmins.includes(interaction.user.username)) {
-      interaction.reply({ content: ":x: You are not an admin of this server.", ephermeral: true, });
+      interaction.reply({ content: ":x: You are not an admin of this server.", ephermeral: true });
       return;
     }
-    interaction.reply({ content: ":+1: Server will now stop", ephermeral: true, }).then(stopServer);
+    interaction.reply({ content: ":+1: Server will now stop", ephermeral: true }).then(stopServer);
   }
   });
 // login to the bot
@@ -714,7 +714,7 @@ function init_ws() {
     if (connObj[0] >= 3) {
       console.warn("DoS alert! IP: " + ipAddr);
       webhookSend(process.env.dosalerturl, {
-       content: "Hello mr <@836988339491962881>, i would like to notify you that there's a person trying to attack the server pls take action here's the info of his ip: <https://ipinfo.io/" + ipAddr + "> thanks <https://dimkatextwall.glitch.me/>",
+       content: "Hello mr <@836988339491962881>, i would like to notify you that there's a person trying to attack the server pls take action here's the info of his ip: <https://ipinfo.io/" + ipAddr + "> thanks <https://unitextwall.glitch.me/>",
       });
       ws.close();
       return;
