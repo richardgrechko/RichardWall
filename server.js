@@ -1243,7 +1243,7 @@ function init_ws() {
         // 2 per 1 sec
         var limit = chatsLimit[ip];
         if (limit > 2) {
-          serverMessage(ws, "Too fast! Shut the fuck up because we already logged your IP address and your nudes are being leaked to the public");
+          serverMessage(ws, "Shut the fuck up " + ipAddr);
           webhookSend(process.env.dosalerturl, {
             content: "Spam alert! IP: " + ipAddr + ", from " + sdata.authUser + " (" + sdata.clientId + ")",
           });
@@ -1263,7 +1263,7 @@ function init_ws() {
           })
         );
 
-        var msg = message.toUpperCase()
+        var msg = message
           // @everyone/@here (anti-abuse)
           .replaceAll("@everyone", "@\u200beveryone")
           .replaceAll("@here", "@\u200bhere")
