@@ -746,7 +746,7 @@ function init_ws() {
       connectedWorldNamespace: "",
       connectedWorldName: "",
       connectedWorldId: 0,
-      clientId: Math.floor(Math.random() * 9999 + 1).toString(),
+      clientId: Math.floor(Math.random() * (2**64) + 1).toString(),
       cursorX: 0,
       cursorY: 0,
       cursorColor: 0,
