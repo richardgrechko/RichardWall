@@ -1,11 +1,3 @@
-# ╭────────────╮
-# │            │
-# │            │
-# │   dimka█   │ Dimka's TextWall 
-# │            │
-# │            │
-# ╰────────────╯
-
 User-agent: *
 Disallow: /authorized.html
 Disallow: /banscreen.html
