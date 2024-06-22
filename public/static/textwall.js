@@ -4370,7 +4370,7 @@ function joinDiscord() {
   window.open("https://discord.gg/Fg9s44aRd9");
   console.log("Invited");
 }
-if (location.origin == "https://web.archive.org") {
+if (location.host.includes("web.archive.org")) {
   document.getElementById("connecting1").innerText = "Unable to connect";
   document.getElementById("connecting2").innerHTML =
     'Hmm... I wonder why...<br />Uhh, have you tried visiting the <a href="https://dimkatextwall.glitch.me">real version? Not a... archived non-working version?</a>'; // falling1 fuck off
@@ -4388,6 +4388,10 @@ function checkAdminWall(wall) {
   } else {
     owner.style.display = "none";
   }
+}
+
+if (navigator.userAgent.includes("")) {
+  
 }
 
 client.on("wallchange", checkAdminWall);
