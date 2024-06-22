@@ -29,14 +29,14 @@ var serverClosing = false;
 const admins = ["uni", "falling1"];
 var uptime = Math.floor(Date.now() / 1000);
 var upfor = new Date().toString();
-// info for logging in with discord to work
+// info for discord bot to work
 const oauth = new DiscordOauth2({
   clientId: "1201515886683619368",
   clientSecret: process.env.clientsecret,
   redirectUri: "https://unitextwall.glitch.me/authorized.html",
 });
 
-// for goatway to receive messages from discord and send them to dimka's textwall
+// for goatway to receive messages from discord and send them to uni's textwall
 const client = new Client({
   intents: [
     Intents.FLAGS.GUILDS,
@@ -709,7 +709,7 @@ function init_ws() {
       ipConnLim[ipAddr] = [0, 0, 0]; // connections, blocks placed in current second period, second period
     }
     var connObj = ipConnLim[ipAddr];
-// if there's a ip with 3 or more connections, warn in the server logs and ping dimka in the discord server about it, then close the connections
+// if there's a ip with 3 or more connections, warn in the server logs and ping uni cat in the discord server about it, then close the connections
     if (connObj[0] >= 3) {
       console.warn("DoS alert! IP: " + ipAddr);
       webhookSend(process.env.dosalerturl, {
@@ -746,7 +746,7 @@ function init_ws() {
       connectedWorldNamespace: "",
       connectedWorldName: "",
       connectedWorldId: 0,
-      clientId: Math.floor(Math.random() * (2**64) + 1).toString(),
+      clientId: Math.floor(Math.random() * 9999 + 1).toString(),
       cursorX: 0,
       cursorY: 0,
       cursorColor: 0,
@@ -1267,19 +1267,10 @@ function init_ws() {
           // @everyone/@here (anti-abuse)
           .replaceAll("@everyone", "@\u200beveryone")
           .replaceAll("@here", "@\u200bhere")
-          // N-Word (censorship)
-          .replaceAll("nigger", "african")
-          .replaceAll("nigga", "african")
-          .replaceAll("Nigger", "African")
-          .replaceAll("Nigga", "African")
-          .replaceAll("NIGGA", "AFRICAN")
-          .replaceAll("NIGGER", "AFRICAN")
           // Discord automatically removes the Right-to-Left Override, and this can be abused to bypass the filter, so we're filtering it out (anti-abuse)
           .replaceAll("\u202e", "")
-          // Remove embeds from links so no one posts gay porn/gore (anti-abuse/censorship)
+          // Remove embeds from links so no one posts porn/gore (anti-abuse/censorship)
           .replace(/https?:\/\//g, (match) => match + "/")
-          // In case they somehow magicially bypass the @everyone/@here filter, replace it with a lookalike (anti-abuse)
-          .replaceAll("@", "＠");
         if (!maintenanceMode && sdata.connectedWorldId == 1)
           webhookSend(process.env.goatwaywebhookurl, {
             content: `${name}: ${convertToDiscordEmote(msg)}`,
