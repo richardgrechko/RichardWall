@@ -2175,6 +2175,10 @@ function convertToEmote(msg) {
     window.addChat = addChat;
     window.clientMessage = clientMessage;
     function addChat(name, color, message, registered, id) {
+      function teleportToUsersWall(e) {
+        e.preventDefault();
+        teleportTo("~" + name); // 'teleportTo' is not defined.
+      }
       var o = t,
         i = document.getElementById("chatbox"),
         c = document["createElement"]("p"),
@@ -2182,7 +2186,7 @@ function convertToEmote(msg) {
       (l["innerText"] = name),
         (l.style["color"] = "#FFFFFF" == se[color] ? "#222222" : se[color]),
         registered &&
-          ((l["href"] = "/~" + name)),
+          ((l["href"] = "/~" + name)), // teleportTo is not defined glitch just doesnt know it right 
         (l.title = "(" + id + ")");
       c["appendChild"](l),
         c.appendChild(document.createTextNode(": " + message));
@@ -2195,7 +2199,7 @@ function convertToEmote(msg) {
       twemoji.parse(c);
       c.innerHTML = convertToEmote(c.innerHTML);
       console.log(wn);
-      l.onclick = wn;
+      if (registered) l.onclick = teleportToUsersWall;
       i.appendChild(c),
         u && gn(),
         hn["classList"]["contains"]("open") || yn["classList"]["add"]("show");
