@@ -4385,10 +4385,10 @@ function checkAdminWall(wall) {
 
 if (
   navigator.userAgent.includes("median") &&
-  !navigator.userAgent.includes("1.02")
+  !navigator.userAgent.includes("1.03")
 ) {
-  if (confirm("Your mobile app is out of date, wanna update?")) {
-    window.open("https://files.catbox.moe/6cbwcj.apk");
+  if (confirm("Your app is out of date, wanna update?")) {
+    window.open("https://files.catbox.moe/ojyqxh.apk");
   }
 }
 
