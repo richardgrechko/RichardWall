@@ -27,9 +27,8 @@ var port = 8080;
 var loginToType = false;
 var serverClosing = false;
 const admins = ["uni", "falling1"];
-var uptime = (Date.now() / 1000).toString();
-var uptimeSeconds = uptime.substring(0, uptime.length - 4);
-var upfor = new Date().toString() 
+var uptime = Math.floor(Date.now() / 1000);
+var upfor = new Date().toString();
 // info for logging in with discord to work
 const oauth = new DiscordOauth2({
   clientId: "1201515886683619368",
@@ -108,7 +107,7 @@ client.on("interactionCreate", async (interaction) => {
   } else if (commandName === "uptime") {
       interaction.reply({
         content:
-        "The server has been up since <t:" + uptimeSeconds + ":f>, which was <t:" + uptimeSeconds + ":R>.",
+        "The server has been up since <t:" + uptime + ":f>, which was <t:" + uptime + ":R>.",
         ephermeral: true
       });
     // stop
