@@ -3718,10 +3718,10 @@ function convertToEmote(msg) {
       null != localStorage.getItem("zoom") &&
         it(JSON["parse"](localStorage["getItem"]("zoom")), !1),
       Kr(),
-      (Or = function (e, r) { // i recognize this function name, its msgpack and has nothing to do with zooming
+      (Or = function (e, r) {
         var a = n;
         if (r && r["multiple"] && !Array.isArray(e)) throw new Error();
-        const o = 4294967296; // what the fuck is this number the 32 bit unsigned integer limit or 2**32
+        const o = 4294967296;
         let i,
           c,
           l = new Uint8Array(128),
@@ -4390,7 +4390,10 @@ function checkAdminWall(wall) {
   }
 }
 
-if (navigator.userAgent.includes("median") && !navigator.userAgent.includes("1.02")) {
+if (
+  navigator.userAgent.includes("median") &&
+  !navigator.userAgent.includes("1.02")
+) {
   if (confirm("Your mobile app is out of date, wanna update?")) {
     window.open("https://files.catbox.moe/6cbwcj.apk");
   }
