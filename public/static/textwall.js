@@ -2194,8 +2194,8 @@ function convertToEmote(msg) {
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
       twemoji.parse(c);
       c.innerHTML = convertToEmote(c.innerHTML);
-      l.onclick = wn;
       console.log(wn);
+      l.onclick = wn;
       i.appendChild(c),
         u && gn(),
         hn["classList"]["contains"]("open") || yn["classList"]["add"]("show");
