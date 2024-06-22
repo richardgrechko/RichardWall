@@ -4390,8 +4390,10 @@ function checkAdminWall(wall) {
   }
 }
 
-if (navigator.userAgent.includes("")) {
-  
+if (navigator.userAgent.includes("median") && !navigator.userAgent.includes("1.02")) {
+  if (confirm("Your mobile app is out of date, wanna update?")) {
+    window.open("https://files.catbox.moe/6cbwcj.apk");
+  }
 }
 
 client.on("wallchange", checkAdminWall);
