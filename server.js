@@ -1601,7 +1601,7 @@ function init_ws() {
           if (account) {
             var db_pass = account.password;
             var isValid = account.discord ? true : checkHash(db_pass, pass);
-            if (isValid && account.discord && pass == "confirm") {
+            if (isValid || (account.discord && pass == "confirm")) {
               db.prepare("DELETE FROM users WHERE id=?").run(account.id);
               db.prepare("UPDATE worlds SET namespace=? WHERE namespace=?").run(
                 "del-" + Math.random() + "-" + account.username,
@@ -1819,7 +1819,7 @@ function init_ws() {
           if (account) {
             var db_pass = account.password;
             var isValid = account.discord ? true : checkHash(db_pass, pass);
-            if (isValid && account.discord && pass == "confirm") {
+            if (isValid || (account.discord && pass == "confirm")) {
               var userCheck = db
                 .prepare("SELECT * FROM users WHERE username=? COLLATE NOCASE")
                 .get(newUser);
