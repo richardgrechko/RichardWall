@@ -3715,7 +3715,7 @@ function convertToEmote(msg) {
         );
       }, 0),
       Zn(Ce.x, Ce.y),
-      null != localStorage.getItemf("zoom") &&
+      null != localStorage.getItem("zoom") &&
         it(JSON["parse"](localStorage["getItem"]("zoom")), !1),
       Kr(),
       (Or = function (e, r) {
