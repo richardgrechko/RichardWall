@@ -35,11 +35,11 @@ var client = {
   },
 };
 
-var emotes = ["correct", "wrong", "neutral", "catchill"];
+var emotes = ["correct", "wrong", "neutral", "chillcat"];
 function convertToEmote(msg) {
   return msg.replace(/:([a-zA-Z0-9_-]+):/g, (match, p1) =>
     emotes.includes(p1)
-      ? `<img class="emoji" src="https://${location.host}/static/emotes/${p1}.webp">`
+      ? `<img class="emoji" src="/static/emotes/${p1}.webp">`
       : match
   );
 }
@@ -2195,7 +2195,7 @@ function convertToEmote(msg) {
       twemoji.parse(c);
       c.innerHTML = convertToEmote(c.innerHTML);
       l.onclick = wn;
-      console.log(l.onclick);
+      console.log(wn);
       i.appendChild(c),
         u && gn(),
         hn["classList"]["contains"]("open") || yn["classList"]["add"]("show");
@@ -4365,21 +4365,13 @@ function write(text) {
 }
 document.addEventListener("keydown", function (event) {
   if (event.ctrlKey && event.key === "/") {
-    document.getElementById("shortcuts").className = "open";
+    if (document.getElementById("shortcuts").className == "open") {
+      document.getElementById("shortcuts").className = "";
+    } else {
+      document.getElementById("shortcuts").className = "open";
+    }
   }
 });
-function joinDiscord() {
-  window.open("https://discord.gg/Fg9s44aRd9");
-  console.log("Invited");
-}
-if (location.host.includes("web.archive.org")) {
-  document.getElementById("connecting1").innerText = "Unable to connect";
-  document.getElementById("connecting2").innerHTML =
-    'Hmm... I wonder why...<br />Uhh, have you tried visiting the <a href="https://dimkatextwall.glitch.me">real version? Not a... archived non-working version?</a>'; // falling1 fuck off
-  console.log(
-    "You're on web.archive.org, please visit the original version:\nhttps://dimkatextwall.glitch.me"
-  );
-}
 var owner = document.getElementById("owner");
 function checkAdminWall(wall) {
   if (["~Dimka", "~falling1"].includes(wall)) {
