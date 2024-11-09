@@ -20,8 +20,9 @@ var DiscordOauth2 = require("discord-oauth2");
 var fetch = require("node-fetch");
 var bodyParser = require("body-parser");
 var { Client, Intents } = require("discord.js");
-var bannedIps = {};
-var chatsLimit = {};
+var bannedIps = {}; // this really needs to be saved in a database its not even that hard im procrastinating
+var registersLimit = {};
+var chatsLimit = {}; 
 var banReasons = {};
 var port = 8080;
 var loginToType = false;
@@ -1277,6 +1278,7 @@ function init_ws() {
             content: `${name}: ${convertToDiscordEmote(msg)}`,
           });
       } else if ("register" in data) {
+        return;
         if (sdata.isAuthenticated) return;
         var cred = data.register;
 
