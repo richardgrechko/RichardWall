@@ -1278,7 +1278,7 @@ function init_ws() {
             content: `${name}: ${convertToDiscordEmote(msg)}`,
           });
       } else if ("register" in data) {
-        return send(ws, msgpack.encode({ alert: "Registration is currently disabled" }));
+        //return send(ws, msgpack.encode({ alert: "Registration is currently disabled" }));
         if (sdata.isAuthenticated) return;
         var cred = data.register;
 
