@@ -774,6 +774,7 @@ function init_ws() {
       } catch {}
       if (typeof data != "object") return;
       if (Array.isArray(data)) return;
+      if (!data) return;
 
       if ("j" in data) {
         var world = data.j;
