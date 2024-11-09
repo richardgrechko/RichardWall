@@ -4394,7 +4394,7 @@ if (
 
 var closeReg = document.getElementById("closereg");
 closeReg.onclick = function() {
-  
+  client.sendWsMessage({ closereg: closeReg.checked});
 }
 
 client.on("wallchange", checkAdminWall);

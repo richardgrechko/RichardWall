@@ -1940,6 +1940,8 @@ function init_ws() {
       } else if ("l" in data && sdata.isAdmin) {
         loginToType = data.l;
         broadcast(msgpack.encode({ l: loginToType }));
+      } else if ("closereg" in data && sdata.isAdmin) {
+        
       } else if ("discordlogin" in data) {
         if (sdata.isAuthenticated) return;
         if (sdata.discordUser == void 0) return;
