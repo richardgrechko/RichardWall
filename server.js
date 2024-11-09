@@ -26,6 +26,7 @@ var chatsLimit = {};
 var banReasons = {};
 var port = 8080;
 var loginToType = false;
+var registrationClosed = false;
 var serverClosing = false;
 const admins = ["uni", "falling1"];
 var uptime = Math.floor(Date.now() / 1000);
@@ -985,6 +986,7 @@ function init_ws() {
         dumpCursors(ws);
         sdata.isConnected = true;
         send(ws, msgpack.encode({ l: loginToType }));
+        send(ws, msgpack.encode({ regclosed: registrationClosed }));
       } else if ("r" in data) {
         if (!sdata.isConnected) return;
         var regions = data.r;
@@ -1278,6 +1280,9 @@ function init_ws() {
             content: `${name}: ${convertToDiscordEmote(msg)}`,
           });
       } else if ("register" in data) {
+        if (registrationClosed) {
+          return send(ws, msgpack.encode({ noreg: true }));
+        }
         //return send(ws, msgpack.encode({ alert: "Registration is currently disabled" }));
         if (sdata.isAuthenticated) return;
         var cred = data.register;
@@ -1941,7 +1946,9 @@ function init_ws() {
         loginToType = data.l;
         broadcast(msgpack.encode({ l: loginToType }));
       } else if ("closereg" in data && sdata.isAdmin) {
-        
+        var closed = data.closereg;
+        registrationClosed = closed;
+        broadcast(msgpack.encode({ regclosed: closed }));
       } else if ("discordlogin" in data) {
         if (sdata.isAuthenticated) return;
         if (sdata.discordUser == void 0) return;

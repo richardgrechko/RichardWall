@@ -2422,6 +2422,9 @@ function convertToEmote(msg) {
         case "l":
           (U = a.l), (document.getElementById("l")["checked"] = a.l), xn();
           break;
+        case "regclosed":
+          var closed = a.regclosed;
+          document.getElementById("closereg").checked = closed;
         case "perms":
           (j = a["perms"]),
             (X["style"]["display"] = 2 == j || 1 == j ? "block" : "none"),
