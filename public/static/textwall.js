@@ -4392,5 +4392,10 @@ if (
   }
 }
 
+var closeReg = document.getElementById("closereg");
+closeReg.onclick = function() {
+  
+}
+
 client.on("wallchange", checkAdminWall);
 console.log("textwall.js has loaded!");
