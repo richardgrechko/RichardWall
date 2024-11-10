@@ -2425,6 +2425,7 @@ function convertToEmote(msg) {
         case "regclosed":
           var closed = a.regclosed;
           document.getElementById("closereg").checked = closed;
+          break;
         case "perms":
           (j = a["perms"]),
             (X["style"]["display"] = 2 == j || 1 == j ? "block" : "none"),
