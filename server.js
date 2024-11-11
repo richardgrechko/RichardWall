@@ -716,7 +716,7 @@ function init_ws() {
     if (connObj[0] >= 3) {
       console.warn("DoS alert! IP: " + ipAddr);
       webhookSend(process.env.dosalerturl, {
-       content: "Hello mr <@836988339491962881>, i would like to notify you that there's a person trying to attack the server pls take action here's the info of his ip: <https://ipinfo.io/" + ipAddr + "> thanks <https://unitextwall.glitch.me/>",
+       content: "<@836988339491962881>, <https://ipinfo.io/" + ipAddr + "> thanks <https://unitextwall.glitch.me/> also the id is" + sdata.clientId,
       });
       ws.close();
       return;
