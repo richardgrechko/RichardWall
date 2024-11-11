@@ -716,7 +716,7 @@ function init_ws() {
     if (connObj[0] >= 3) {
       console.warn("DoS alert! IP: " + ipAddr);
       webhookSend(process.env.dosalerturl, {
-       content: "<@836988339491962881>, <https://ipinfo.io/" + ipAddr + "> thanks <https://unitextwall.glitch.me/> also the id is"
+       content: "<@836988339491962881>, <https://ipinfo.io/" + ipAddr + "> thanks <https://unitextwall.glitch.me/>"
       });
       ws.close();
       return;
@@ -1197,7 +1197,20 @@ function init_ws() {
           });
           serverMessage(ws, "Banned clients!");
           return;
-        }
+        }/*
+        if (cmd == "/banbyip" && sdata.isAdmin) {
+          var ip = args.shift()
+          var clients = getClientsByIp(ip);
+          clients.forEach((client) => {
+            bannedIps[client.sdata.clientId] = client.sdata.ipAddr;
+            var banReason = getStringArg(args.join(" "));
+            banReasons[client.sdata.ipAddr] = banReason;
+            send(client, msgpack.encode({ banned: banReason }));
+            client._socket.end();
+          });
+          serverMessage(ws, "Banned clients!");
+          return;
+        }*/
         if (cmd == "/getip" && sdata.isAdmin) {
           var id = parseInt(args.shift());
           if (isNaN(id)) return serverMessage(ws, "Invalid id");
