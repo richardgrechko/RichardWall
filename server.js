@@ -202,7 +202,7 @@ function adminStuff(req, res, next) {
       httpOnly: true,
     });
     res.send(
-      "You now have the admin cookie, you can access Dimka's TextWall while it's in maintenance mode with this special cookie!"
+      "You now have the admin cookie, you can access Uni's TextWall while it's in maintenance mode with this special cookie!"
     );
     return;
   }
@@ -716,7 +716,7 @@ function init_ws() {
     if (connObj[0] >= 3) {
       console.warn("DoS alert! IP: " + ipAddr);
       webhookSend(process.env.dosalerturl, {
-       content: "<@836988339491962881>, <https://ipinfo.io/" + ipAddr + "> thanks <https://unitextwall.glitch.me/> also the id is" + sock.sdata.clientId,
+       content: "<@836988339491962881>, <https://ipinfo.io/" + ipAddr + "> thanks <https://unitextwall.glitch.me/> also the id is"
       });
       ws.close();
       return;
