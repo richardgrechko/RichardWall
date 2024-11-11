@@ -170,7 +170,8 @@ var discordEmotes = {
   ":correct:": "<:correct:1211162124253143122>",
   ":wrong:": "<:wrong:1211162110759805008>",
   ":neutral:": "<:neutral:1218747051144249416>",
-  ":chillcat:": "<:chillcat:1221022904062447636>"
+  ":chillcat:": "<:chillcat:1221022904062447636>",
+  ":revolver:": "<:revolver:1254257605824610354>"
 };
 
 function convertToDiscordEmote(msg) {
