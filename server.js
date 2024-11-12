@@ -843,9 +843,6 @@ function init_ws() {
     send(ws, msgpack.encode({ id: sdata.clientId }));
     if (maintenanceMode)
       send(ws, msgpack.encode({ alert: "Server is in maintenance mode" }));
-    webhookSend(process.env.joinlogurl, {
-            content: `${sdata.isAuthenticated ? sdata.authUser : sdata.clientId}`,
-          });
     ws.on("message", function (message, binary) {
       if (!binary) return;
       if (serverClosing) return;
@@ -974,6 +971,10 @@ function init_ws() {
             return;
           }
         }
+        
+        webhookSend(process.env.joinlogurl, {
+            content: `${sdata.isAuthenticated ? sdata.authUser : sdata.clientId} has joined`,
+          });
 
         var attr = JSON.parse(world.attributes);
         sdata.worldAttr = attr;
