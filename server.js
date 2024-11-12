@@ -31,6 +31,74 @@ var serverClosing = false;
 const admins = ["uni", "falling1"];
 var uptime = Math.floor(Date.now() / 1000);
 var upfor = new Date().toString();
+// public/static/colors.js
+var colors = {
+  "0": "black",
+  "1": "grey",
+  "2": "light grey",
+  "3": "light pink",
+  "4": "red",
+  "5": "orange",
+  "6": "brown",
+  "7": "yellow",
+  "8": "light green",
+  "9": "green",
+  "10": "light blue",
+  "11": "blue",
+  "12": "dark blue",
+  "13": "purple",
+  "14": "dark purple",
+  "15": "dark red",
+  "16": "dark green",
+  "17": "dark teal",
+  "18": "teal",
+  "19": "indigo",
+  "20": "periwinkle",
+  // 20: discord?!?!?!?!?
+  "21": "pink",
+  "22": "dark brown",
+  "23": "burgundy",
+  "24": "pale yellow",
+  "25": "light teal",
+  "26": "lavender",
+  "27": "pale purple",
+  "28": "magenta",
+  "29": "beige",
+  "30": "dark grey",
+  "black": 0,
+  "grey": 1,
+  "light grey": 2,
+  "light pink": 3,
+  "red": 4,
+  "orange": 5,
+  "brown": 6,
+  "yellow": 7,
+  "light green": 8,
+  "green": 9,
+  "light blue": 10,
+  "blue": 11,
+  "dark blue": 12,
+  "purple": 13,
+  "dark purple": 14,
+  "dark red": 15,
+  "dark green": 16,
+  "dark teal": 17,
+  "teal": 18,
+  "indigo": 19,
+  "periwinkle": 20,
+  "pink": 21,
+  "dark brown": 22,
+  "burgundy": 23,
+  "pale yellow": 24,
+  "light teal": 25,
+  "lavender": 26,
+  "pale purple": 27,
+  "magenta": 28,
+  "beige": 29,
+  "dark grey": 30
+};
+var colours = colors; //british spellign
+// end of colors.js
 // info for discord bot to work
 const oauth = new DiscordOauth2({
   clientId: "1201515886683619368",
@@ -1165,9 +1233,8 @@ function init_ws() {
           if (isNaN(id)) return serverMessage(ws, "Invalid id");
           var client = getClientById(id);
           if (!client) return serverMessage(ws, "Client not found");
-          bannedIps[client.sdata.clientId] = client.sdata.ipAddr;
           var banReason = getStringArg(args.join(" "));
-          banReasons[client.sdata.ipAddr] = banReason;
+          addBan(client.sdata.ipAddr, banReason, Date.now());
           send(client, msgpack.encode({ banned: banReason }));
           client._socket.end();
           serverMessage(ws, "Banned client!");
@@ -1298,7 +1365,7 @@ function init_ws() {
           .replace(/https?:\/\//g, (match) => match + "/")
         if (!maintenanceMode && sdata.connectedWorldId == 1)
           webhookSend(process.env.goatwaywebhookurl, {
-            content: `${name}: ${convertToDiscordEmote(msg)}`,
+            content: `[${colors[sdata.cursorColor]}] ${name}: ${convertToDiscordEmote(msg)}`,
           });
       } else if ("register" in data) {
         if (registrationClosed) {
