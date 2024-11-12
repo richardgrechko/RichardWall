@@ -239,6 +239,10 @@ function maintenancePage(req, res, next) {
     return res.status(503).sendFile(__dirname + "/public/maintenance.html");
 }
 
+function addBan(ip, reason, bannedAt) {
+  
+}
+
 var app = express();
 app.use("/*", banScreen);
 app.use("/*", adminStuff);
