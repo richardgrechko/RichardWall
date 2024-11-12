@@ -314,6 +314,9 @@ function addBan(ip, reason, bannedAt) {
 function getBan(ip) {
   return db.prepare("SELECT * FROM bans WHERE ip = ?").get(ip);
 }
+function removeBan(ip) {
+  db.prepare("DELETE FROM bans WHERE ip = ?").get(ip);
+}
 var app = express();
 app.use("/*", banScreen);
 app.use("/*", adminStuff);
@@ -1262,31 +1265,27 @@ function init_ws() {
           if (!client) return serverMessage(ws, "Client not found");
           var ip = client.sdata.ipAddr;
           var banReason = getStringArg(args.join(" "));
-          addBan(ip)
+          addBan(ip, banReason, Date.now());
           var clients = getClientsByIp(ip);
           clients.forEach((client) => {
-            bannedIps[client.sdata.clientId] = client.sdata.ipAddr;
-            
-            banReasons[client.sdata.ipAddr] = banReason;
             send(client, msgpack.encode({ banned: banReason }));
             client._socket.end();
           });
           serverMessage(ws, "Banned clients!");
           return;
-        }/*
+        }
         if (cmd == "/banbyip" && sdata.isAdmin) {
-          var ip = args.shift()
+          var ip = args.shift();
+          var banReason = getStringArg(args.join(" "));
+          addBan(ip, banReason, Date.now());
           var clients = getClientsByIp(ip);
-          clients.forEach((client) => {
-            bannedIps[client.sdata.clientId] = client.sdata.ipAddr;
-            var banReason = getStringArg(args.join(" "));
-            banReasons[client.sdata.ipAddr] = banReason;
+          clients.forEach((client) => {;
             send(client, msgpack.encode({ banned: banReason }));
             client._socket.end();
           });
           serverMessage(ws, "Banned clients!");
           return;
-        }*/
+        }
         if (cmd == "/getip" && sdata.isAdmin) {
           var id = parseInt(args.shift());
           if (isNaN(id)) return serverMessage(ws, "Invalid id");
@@ -1298,7 +1297,7 @@ function init_ws() {
         }
 
         if (cmd == "/unban" && sdata.isAdmin) {
-          var id = parseInt(args[0]);
+          var ip = args[0]
           if (isNaN(id)) return serverMessage(ws, "Invalid id");
           delete bannedIps[id];
           serverMessage(ws, "Unbanned client!");
@@ -1367,7 +1366,7 @@ function init_ws() {
           .replace(/https?:\/\//g, (match) => match + "/")
         if (!maintenanceMode && sdata.connectedWorldId == 1)
           webhookSend(process.env.goatwaywebhookurl, {
-            content: `:${colors[sdata.cursorColor]}_circle: ${name}: ${convertToDiscordEmote(msg)}`,
+            content: `${name}: ${convertToDiscordEmote(msg)}`,
           });
       } else if ("register" in data) {
         if (registrationClosed) {
