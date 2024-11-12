@@ -4387,15 +4387,6 @@ function checkAdminWall(wall) {
   }
 }
 
-if (
-  navigator.userAgent.includes("median") &&
-  !navigator.userAgent.includes("1.03")
-) {
-  if (confirm("Your app is out of date, wanna update?")) {
-    window.open("https://files.catbox.moe/ojyqxh.apk");
-  }
-}
-
 var closeReg = document.getElementById("closereg");
 closeReg.onclick = function() {
   client.sendWsMessage({ closereg: closeReg.checked});
