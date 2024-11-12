@@ -309,6 +309,7 @@ function maintenancePage(req, res, next) {
 }
 
 function addBan(ip, reason, bannedAt) {
+  if (getBan(ip)) return false;
   db.prepare("INSERT INTO bans VALUES (?, ?, ?)").run(ip, reason, bannedAt);
 }
 function getBan(ip) {
@@ -316,6 +317,9 @@ function getBan(ip) {
 }
 function removeBan(ip) {
   db.prepare("DELETE FROM bans WHERE ip = ?").run(ip);
+}
+function getBans() {
+  return db.prepare("SELECT * FROM bans").all();
 }
 var app = express();
 app.use("/*", banScreen);
@@ -1237,7 +1241,7 @@ function init_ws() {
           var client = getClientById(id);
           if (!client) return serverMessage(ws, "Client not found");
           var banReason = getStringArg(args.join(" "));
-          addBan(client.sdata.ipAddr, banReason, Date.now());
+          if (!getBan(client.sdata.ipAddr)) addBan(client.sdata.ipAddr, banReason, Date.now());
           send(client, msgpack.encode({ banned: banReason }));
           client._socket.end();
           serverMessage(ws, "Banned client!");
@@ -1277,6 +1281,7 @@ function init_ws() {
         if (cmd == "/banbyip" && sdata.isAdmin) {
           var ip = args.shift();
           var banReason = getStringArg(args.join(" "));
+          if (getBan(ip)) serverMessage(ws, "IP already banned.");
           addBan(ip, banReason, Date.now());
           var clients = getClientsByIp(ip);
           clients.forEach((client) => {;
@@ -1297,14 +1302,15 @@ function init_ws() {
         }
 
         if (cmd == "/unban" && sdata.isAdmin) {
-          var ip = args[0]
-          if (isNaN(id)) return serverMessage(ws, "Invalid id");
-          delete bannedIps[id];
+          var ip = args[0];
+          removeBan(ip);
           serverMessage(ws, "Unbanned client!");
           return;
         }
         if (cmd == "/bans" && sdata.isAdmin) {
-          return serverMessage(ws, Object.keys(bannedIps).join(", "));
+          var bans = getBans();
+          var bansArray = bans.map(x=>x.ip);
+          serverMessage(ws, )
         }
         if (cmd == "/uptime") {
           return serverMessage(ws, "The server has been up since " + upfor);
