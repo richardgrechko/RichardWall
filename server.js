@@ -315,7 +315,7 @@ function getBan(ip) {
   return db.prepare("SELECT * FROM bans WHERE ip = ?").get(ip);
 }
 function removeBan(ip) {
-  db.prepare("DELETE FROM bans WHERE ip = ?").get(ip);
+  db.prepare("DELETE FROM bans WHERE ip = ?").run(ip);
 }
 var app = express();
 app.use("/*", banScreen);
