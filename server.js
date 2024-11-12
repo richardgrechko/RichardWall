@@ -240,7 +240,7 @@ function maintenancePage(req, res, next) {
 }
 
 function addBan(ip, reason, bannedAt) {
-  
+  db.prepare("INSERT INTO bans VALUES (?, ?, ?)").run(ip, reason, bannedAt);
 }
 
 var app = express();
