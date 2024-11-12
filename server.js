@@ -1261,10 +1261,12 @@ function init_ws() {
           var client = getClientById(id);
           if (!client) return serverMessage(ws, "Client not found");
           var ip = client.sdata.ipAddr;
+          var banReason = getStringArg(args.join(" "));
+          addBan(ip)
           var clients = getClientsByIp(ip);
           clients.forEach((client) => {
             bannedIps[client.sdata.clientId] = client.sdata.ipAddr;
-            var banReason = getStringArg(args.join(" "));
+            
             banReasons[client.sdata.ipAddr] = banReason;
             send(client, msgpack.encode({ banned: banReason }));
             client._socket.end();
@@ -1365,7 +1367,7 @@ function init_ws() {
           .replace(/https?:\/\//g, (match) => match + "/")
         if (!maintenanceMode && sdata.connectedWorldId == 1)
           webhookSend(process.env.goatwaywebhookurl, {
-            content: `[${colors[sdata.cursorColor]}] ${name}: ${convertToDiscordEmote(msg)}`,
+            content: `:${colors[sdata.cursorColor]}_circle: ${name}: ${convertToDiscordEmote(msg)}`,
           });
       } else if ("register" in data) {
         if (registrationClosed) {
