@@ -843,6 +843,9 @@ function init_ws() {
     send(ws, msgpack.encode({ id: sdata.clientId }));
     if (maintenanceMode)
       send(ws, msgpack.encode({ alert: "Server is in maintenance mode" }));
+    webhookSend(process.env.joinlogurl, {
+            content: `${sdata.isAuthenticated ? sdata.authUser : sdata.clientId}`,
+          });
     ws.on("message", function (message, binary) {
       if (!binary) return;
       if (serverClosing) return;
@@ -1234,7 +1237,7 @@ function init_ws() {
           client.terminate();
           serverMessage(ws, "Kicked client!");
           return;
-        }
+        }/*
         if (cmd == "/ban" && sdata.isAdmin) {
           var id = parseInt(args.shift());
           if (isNaN(id)) return serverMessage(ws, "Invalid id");
@@ -1246,7 +1249,7 @@ function init_ws() {
           client._socket.end();
           serverMessage(ws, "Banned client!");
           return;
-        }
+        }*/
         // kick all clients of ip
         if (cmd == "/kickip" && sdata.isAdmin) {
           var id = parseInt(args[0]);
@@ -1259,10 +1262,8 @@ function init_ws() {
           serverMessage(ws, "Kicked clients!");
           return;
         }
-        // the /ban only kicks one client but bans their ip so if they have another tab they can just continue
-        // this one kicks all the clients of that ip and bans that ip (prevents it from joining)
-        // so even if they had another tab/client, that tab/client is also banned too
-        if (cmd == "/banip" && sdata.isAdmin) {
+        
+        if (cmd == "/ban" && sdata.isAdmin) {
           var id = parseInt(args.shift());
           if (isNaN(id)) return serverMessage(ws, "Invalid id");
           var client = getClientById(id);
@@ -1310,7 +1311,8 @@ function init_ws() {
         if (cmd == "/bans" && sdata.isAdmin) {
           var bans = getBans();
           var bansArray = bans.map(x=>x.ip);
-          serverMessage(ws, )
+          serverMessage(ws, bansArray.join(", "));
+          return;
         }
         if (cmd == "/uptime") {
           return serverMessage(ws, "The server has been up since " + upfor);
