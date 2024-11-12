@@ -2144,6 +2144,9 @@ async function initServer() {
     db.prepare(
       "CREATE TABLE 'chunks' (world_id INTEGER NOT NULL, x INTEGER NOT NULL, y INTEGER NOT NULL, text TEXT, colorFmt TEXT, protected INTEGER)"
     ).run();
+    db.prepare(
+    
+    ).run();
 
     db.prepare("CREATE INDEX 'ic' ON 'chunks' (world_id, x, y)").run();
     db.prepare("CREATE INDEX 'iu' ON 'users' (username)").run();
