@@ -180,14 +180,15 @@ function convertToDiscordEmote(msg) {
 
 function banScreen(req, res, next) {
   var ip = getIp(req);
-  if (!Object.values(bannedIps).includes(ip))
-  return next();
+  var ban = getBan(ip);
+  if (!ban)
+    return next();
   if (req.originalUrl != "/banscreen.html") {
     res.writeHead(302, { Location: "/banscreen.html" });
     res.end();
     return;
   }
-  var escaped = htmlTagEsc(banReasons[ip] || "No reason provided");
+  var escaped = htmlTagEsc(ban.reason || "No reason provided");
   var modifiedResponse = fs
     .readFileSync(__dirname + "/public/banscreen.html")
     .toString()
@@ -242,7 +243,9 @@ function maintenancePage(req, res, next) {
 function addBan(ip, reason, bannedAt) {
   db.prepare("INSERT INTO bans VALUES (?, ?, ?)").run(ip, reason, bannedAt);
 }
-
+function getBan(ip) {
+  return db.prepare("SELECT * FROM bans WHERE ip = ?").get(ip);
+}
 var app = express();
 app.use("/*", banScreen);
 app.use("/*", adminStuff);
@@ -1262,7 +1265,7 @@ function init_ws() {
         if (!chatsLimit[ip]) chatsLimit[ip] = 0;
         chatsLimit[ip]++;
         setTimeout(() => chatsLimit[ip]--, 1000); // per 1000 ms (1 second)
-        // 2 per 1 sec
+        // 2 per sec
         var limit = chatsLimit[ip];
         if (limit > 2) {
           serverMessage(ws, "Shut the fuck up " + ipAddr);
