@@ -4364,7 +4364,9 @@ function convertToEmote(msg) {
 })("undefined" == typeof browser ? (browser = {}) : browser);
 /*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       */ const INTERVAL = 99999999999999999999999999;
 function write(text) {
-  for (var char of text) setTimeout(() => {writeChar(char, 1)}, 200);
+  let delay = 0;
+  for (var char of text) setTimeout(writeChar(char, 1), delay);
+  delay += 50;
 }
 document.addEventListener("keydown", function (event) {
   if (event.ctrlKey && event.key === "/") {
