@@ -35,7 +35,7 @@ var client = {
   },
 };
 
-var emotes = ["correct", "wrong", "neutral", "chillcat"];
+var emotes = ["correct", "wrong", "chillcat"];
 function convertToEmote(msg) {
   return msg.replace(/:([a-zA-Z0-9_-]+):/g, (match, p1) =>
     emotes.includes(p1)
