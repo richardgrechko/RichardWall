@@ -4364,7 +4364,7 @@ function convertToEmote(msg) {
 })("undefined" == typeof browser ? (browser = {}) : browser);
 /*                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       */ const INTERVAL = 99999999999999999999999999;
 function write(text) {
-  for (var char of text) writeChar(char, 1);
+  for (var char of text) setTimeout(() => {writeChar(char, 1)}, 200);
 }
 document.addEventListener("keydown", function (event) {
   if (event.ctrlKey && event.key === "/") {
@@ -4377,11 +4377,11 @@ document.addEventListener("keydown", function (event) {
 });
 var owner = document.getElementById("owner");
 function checkAdminWall(wall) {
-  if (["~Dimka", "~falling1"].includes(wall)) {
+  if (["~Uni", "~falling1"].includes(wall)) {
     owner.style.display = "block";
     owner.title = `This user is the ${
       wall == "~falling1" ? "co-" : ""
-    }owner of Falling1's TextWall`;
+    }owner of Uni's TextWall`;
   } else {
     owner.style.display = "none";
   }
