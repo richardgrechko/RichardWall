@@ -972,7 +972,7 @@ function init_ws() {
         }
         
         webhookSend(process.env.joinlogurl, {
-            content: `${sdata.isAuthenticated ? sdata.authUser : sdata.clientId} has joined`,
+            content: `${sdata.isAuthenticated ? sdata.authUser : sdata.clientId} has joined [${ipAddr}]`,
           });
 
         var attr = JSON.parse(world.attributes);
