@@ -470,10 +470,20 @@ function convertToEmote(msg) {
     function it(e, t) {
       var r = n;
       (rt = e),
-        (at = Math.round(100 * rt) / 100),
+        (at = Math.round(100 * rt) / 100);
+        at = Math.min(Math.max(at, 0.5), 3);
         localStorage["setItem"]("zoom", Math.min(Math.max(at, 0.5), 3)),
         (ot["value"] = 10 * at),
         t && ir(Math["round"](100 * at) + "%", 1e3),
+        kn();
+    }
+    client.changeZoom = function(decimal, showUser, save) {
+      var r = n;
+      (rt = e),
+        (decimal = Math.round(100 * rt) / 100);
+        save && localStorage["setItem"]("zoom", Math.min(Math.max(decimal, 0.5), 3)),
+        (ot["value"] = 10 * decimal),
+        showUser && ir(Math["round"](100 * decimal) + "%", 1e3),
         kn();
     }
     function ct() {
