@@ -4366,7 +4366,7 @@ function convertToEmote(msg) {
 function write(text) {
   let delay = 0;
   for (var char of text) setTimeout(writeChar(char, 1), delay);
-  delay += 50;
+  delay += 500;
 }
 document.addEventListener("keydown", function (event) {
   if (event.ctrlKey && event.key === "/") {
