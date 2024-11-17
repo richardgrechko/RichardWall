@@ -360,12 +360,16 @@ server.on("upgrade", (request, socket, head) => {
     wss.emit("connection", ws, request);
   });
 });
-function webhookSend(url, data) {
-  return fetch(url, {
+function webhookSend(url, data, retryCount) {
+  var promise = fetch(url, {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
     method: "POST",
   });
+  promise.catch(err => {
+    
+  });
+  return promise;
 }
 async function runserver() {
   server.listen(port, function () {
