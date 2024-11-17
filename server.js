@@ -337,7 +337,7 @@ app.post("/sendmail", (req, res) => {
   if (req.body.length > 1000) return;
   webhookSend(process.env.mailwebhookurl, {
     content: "\u005C" + req.body,
-  }).then(() => res.send("OK"));
+  }, 2).then(() => res.send("OK"));
 });
 // to send people to the public folder, and right file
 app.get("/*", (req, res) => {
@@ -367,7 +367,8 @@ function webhookSend(url, data, retryCount) {
     method: "POST",
   });
   promise.catch(err => {
-    
+    console.log(`Webhook sending failed (retries left: ${retryCount}):`, err);
+    if (retryCount) webhookSend(url, data, retryCount - 1);
   });
   return promise;
 }
@@ -384,7 +385,7 @@ async function runserver() {
       content: maintenanceMode
         ? ":octagonal_sign: The server is in maintenance mode. <@&1197267875107442789>"
         : ":white_check_mark: The server is up! :D",
-    });
+    }, 2);
   });
   init_ws();
 }
@@ -977,7 +978,7 @@ function init_ws() {
         
         webhookSend(process.env.joinlogurl, {
             content: `${sdata.isAuthenticated ? sdata.authUser : sdata.clientId} has joined`,
-          });
+          }, 2);
 
         var attr = JSON.parse(world.attributes);
         sdata.worldAttr = attr;
