@@ -2202,7 +2202,7 @@ function convertToEmote(msg) {
       );
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
-      twemoji.parse(c);
+      twemoji.parse(c, { base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/" });
       c.innerHTML = convertToEmote(c.innerHTML);
       c.childNodes[0].onclick = l.onclick;
       i.appendChild(c),
