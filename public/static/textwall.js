@@ -35,6 +35,14 @@ var client = {
   },
 };
 
+
+let wsUrl = "wss://" + location.host + "/ws";
+
+if (location.protocol !== "https:") {
+    wsUrl = "ws://" + location.host + "/ws";
+}
+
+
 var emotes = ["correct", "wrong", "chillcat"];
 function convertToEmote(msg) {
   return msg.replace(/:([a-zA-Z0-9_-]+):/g, (match, p1) =>
@@ -3648,10 +3656,8 @@ function convertToEmote(msg) {
         (a["readyState"] != WebSocket.CONNECTING &&
           a["readyState"] != WebSocket.OPEN)
       ) {
-        var t = "wss://" + location.host + "/ws";
-        "https:" !== location.protocol &&
-          (t = "ws://" + location["host"] + "/ws"),
-          ((window.ws = a = new WebSocket(t))["binaryType"] = "arraybuffer"),
+
+          ((window.ws = a = new WebSocket(wsUrl))["binaryType"] = "arraybuffer"),
           (client.sendWsMessage = (data) => {
             a.send(Or(data));
           }),
