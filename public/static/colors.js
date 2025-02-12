@@ -69,3 +69,8 @@ var colors = {
   "dark grey": 30
 };
 var colours = colors; //british spellign
+
+function convertFmt(color, bold, italic, underline, strike) {
+	var format = (bold << 3) | (italic << 2) | (underline << 1) | strike;
+	return format * 31 + color;
+};
