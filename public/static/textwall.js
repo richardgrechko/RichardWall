@@ -438,7 +438,7 @@ function convertToEmote(msg) {
       Qe = null,
       _e = [];
     
-    window.writeBuffer = Me;
+   
     for (ne = 0; ne < 200; ne++) _e[ne] = " ";
     var et = [];
     for (ne = 0; ne < 200; ne++) et[ne] = 0;
@@ -2259,6 +2259,7 @@ function convertToEmote(msg) {
             (k["style"]["cursor"] = "text"),
             Pe["clear"](),
             (Me = []),
+             window.writeBuffer = Me
             (K = !1),
             On(),
             tt["showchat"]["checked"] && hn["classList"].remove("hidden"),
