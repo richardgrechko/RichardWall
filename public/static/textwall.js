@@ -3357,7 +3357,8 @@ function convertToEmote(msg) {
               ) {
                 for (d = o + 1; d < r["length"]; d++) window.writeBuffer["unshift"](r[d]);
                 break;
-              }
+              }  // i think i know what this does, if the edit goes across 4 chunks, then it puts some edits at the start
+                 // i guess 
             }
             a.send(Or({
               e: t
