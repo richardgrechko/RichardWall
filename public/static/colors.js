@@ -1,3 +1,5 @@
+// useful stuff for scripting
+
 //color id to color name
 //and color name to color id
 //what is this for? writechar?
@@ -70,7 +72,30 @@ var colors = {
 };
 var colours = colors; //british spellign
 
+// lets you use decorations in writeChar functions
 function convertFmt(color, bold, italic, underline, strike) {
 	var format = (bold << 3) | (italic << 2) | (underline << 1) | strike;
 	return format * 31 + color;
+};
+
+// might not be used because getCharInfo already does this for you but just in case
+function parseFmt(chr) {
+	var col = chr % 31;
+	var format = Math.floor(chr / 31);
+	return {
+		color: col,
+		bold: (format & 8) == 8,
+		italic: (format & 4) == 4,
+		underline: (format & 2) == 2,
+		strike: (format & 1) == 1,
+	};
+};
+
+function XYtoChunkCoords(x1, y1) {
+	var chunkX = Math.floor(x1 / 20);
+	var chunkY = Math.floor(y1 / 10);
+	var x = x1 - Math.floor(x1 / 20) * 20;
+	var y = y1 - Math.floor(y1 / 10) * 10;
+	var index = y * 20 + x;
+	return [chunkX, chunkY, index];
 };
