@@ -3350,7 +3350,9 @@ function convertToEmote(msg) {
                 if (t[d][0] == i && t[d][1] == c) {
                   t[d]["push"](l, u, s);
                   continue e;
-                }                                                  // r spliced part
+                }
+              t["push"]([i, c, l, u, s])                           // r spliced part
+              /*
               if (                                                 // o index of current edit
                 (t["push"]([i, c, l, u, s]),
                   4 == t["length"] && o + 1 < r["length"])
@@ -3358,7 +3360,11 @@ function convertToEmote(msg) {
                 for (d = o + 1; d < r["length"]; d++) window.writeBuffer["unshift"](r[d]);
                 break;
               }  // i think i know what this does, if the edit goes across 4 chunks, then it puts some edits at the start
-                 // i guess 
+                 // duck did this probably so that the closest edit to the cursor will be first, so the server doesnt kick the client
+                 // (bro had to get around his own anti-scripting stuff)
+                 // this can be an issue if you NEED edits to be in a specific order
+                 // but since we're not on the anti-script site textwall.cc, we don't need this
+                 */
             }
             a.send(Or({
               e: t
