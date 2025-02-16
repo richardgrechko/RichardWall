@@ -33,6 +33,7 @@ var client = {
       clientMessage(ids.join(", "));
     },
   },
+  
 };
 
 
@@ -42,6 +43,7 @@ if (location.protocol !== "https:") {
     wsUrl = "ws://" + location.host + "/ws";
 }
 
+let flushInterval = 0;
 
 var emotes = ["correct", "wrong", "chillcat"];
 function convertToEmote(msg) {
@@ -3314,51 +3316,57 @@ function convertToEmote(msg) {
       }
       return e != t ? ((ge = !0), Math["round"](e)) : e;
     }
-    setInterval(function () {
-      var e = n;
-      if (a && a["readyState"] == a["OPEN"]) {
-        if ((Le || Oe || Re || De) && 0 != we.size) {
-          var t = {};
-          Le && (t.l = [Ce.x, Ce.y]),
-            Oe && (t.c = client.color),
-            Re && (t.n = tt["anonymous"]["checked"]),
-            De && (t.p = [qe.coords.x, qe.coords.y]),
-            a["send"](Or({ ce: t })),
-            (Le = !1),
-            (Oe = !1),
-            (Re = !1),
-            (De = !1);
-        }
-        if (window.writeBuffer.length > 0) {
-          var r;
-          (r = window.writeBuffer["splice"](0, 64)), (t = []);
-          e: for (var o = 0; o < r.length; o++) {
-            for (
-              var i = r[o][0],
-                c = r[o][1],
-                l = r[o][2],
-                u = r[o][3],
-                s = r[o][4],
-                d = 0;
-              d < t["length"];
-              d++
-            )
-              if (t[d][0] == i && t[d][1] == c) {
-                t[d]["push"](l, u, s);
-                continue e;
-              }
-            if (
-              (t["push"]([i, c, l, u, s]),
-              4 == t["length"] && o + 1 < r["length"])
-            ) {
-              for (d = o + 1; d < r["length"]; d++) window.writeBuffer["unshift"](r[d]);
-              break;
-            }
+    client.setFlushInterval = function(ms) {
+      clearInterval(flushInterval);
+      flushInterval = setInterval(function() {
+        var e = n;
+        if (a && a["readyState"] == a["OPEN"]) {
+          if ((Le || Oe || Re || De) && 0 != we.size) {
+            var t = {};
+            Le && (t.l = [Ce.x, Ce.y]),
+              Oe && (t.c = client.color),
+              Re && (t.n = tt["anonymous"]["checked"]),
+              De && (t.p = [qe.coords.x, qe.coords.y]),
+              a["send"](Or({
+                ce: t
+              })),
+              (Le = !1),
+              (Oe = !1),
+              (Re = !1),
+              (De = !1);
           }
-          a.send(Or({ e: t }));
+          if (window.writeBuffer.length > 0) {
+            var r;
+            (r = window.writeBuffer["splice"](0, 64)), (t = []);
+            e: for (var o = 0; o < r.length; o++) {
+              for (
+                var i = r[o][0],
+                  c = r[o][1],
+                  l = r[o][2],
+                  u = r[o][3],
+                  s = r[o][4],
+                  d = 0; d < t["length"]; d++
+              )
+                if (t[d][0] == i && t[d][1] == c) {
+                  t[d]["push"](l, u, s);
+                  continue e;
+                }
+              if (
+                (t["push"]([i, c, l, u, s]),
+                  4 == t["length"] && o + 1 < r["length"])
+              ) {
+                for (d = o + 1; d < r["length"]; d++) window.writeBuffer["unshift"](r[d]);
+                break;
+              }
+            }
+            a.send(Or({
+              e: t
+            }));
+          }
         }
-      }
-    }, 200);
+      }, ms);
+    }
+    client.setFlushIn
     var wr = performance.now(),
       Mr = 100,
       kr = performance["now"]() + 1e3;
