@@ -3350,8 +3350,8 @@ function convertToEmote(msg) {
                 if (t[d][0] == i && t[d][1] == c) {
                   t[d]["push"](l, u, s);
                   continue e;
-                }
-              if (
+                }                                                  // r spliced part
+              if (                                                 // o index of current edit
                 (t["push"]([i, c, l, u, s]),
                   4 == t["length"] && o + 1 < r["length"])
               ) {
@@ -3366,7 +3366,7 @@ function convertToEmote(msg) {
         }
       }, ms);
     }
-    client.setFlushIn
+    client.setFlushInterval(200);
     var wr = performance.now(),
       Mr = 100,
       kr = performance["now"]() + 1e3;
