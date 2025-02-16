@@ -387,13 +387,14 @@ function convertToEmote(msg) {
       me[se["length"]] = "rgba(255, 255, 255, 0.2)";
     })();
     client.color = 0;
+    window.writeBuffer = [];
     var he,
       ye,
       ge,
       be = Yr(se[client.color], 0.6),
       xe = !1,
       we = new Map(),
-      Me = [],
+      
       ke = [],
       Ee = new Map(),
       Se = new Worker("/static/ping.js"),
@@ -2146,7 +2147,7 @@ function convertToEmote(msg) {
         Xn(),
         we["clear"](),
         Pe["clear"](),
-        (Me = []),
+        (window.writeBuffer = []),
         0)
       );
     }
@@ -2258,8 +2259,7 @@ function convertToEmote(msg) {
             ($e = {}),
             (k["style"]["cursor"] = "text"),
             Pe["clear"](),
-            (Me = []),
-             window.writeBuffer = Me
+            (window.writeBuffer = []),
             (K = !1),
             On(),
             tt["showchat"]["checked"] && hn["classList"].remove("hidden"),
@@ -2908,7 +2908,7 @@ function convertToEmote(msg) {
               Be["length"] > 1e3 && Be["pop"]()),
           (s["txt"][A] = e),
           (s.clr[A] = C),
-          Me.push([c / 20, l / 10, e.codePointAt(), A, C]),
+          window.writeBuffer.push([c / 20, l / 10, e.codePointAt(), A, C]),
           (S = 2),
           It(u, Dt(A))),
         (Ce["lastedit"].x = Ce.x),
@@ -3004,7 +3004,7 @@ function convertToEmote(msg) {
               Be["length"] > 1e3 && Be["pop"]()),
           (s["txt"][A] = e),
           (s.clr[A] = C),
-          Me.push([c / 20, l / 10, e.codePointAt(), A, C]),
+          window.writeBuffer.push([c / 20, l / 10, e.codePointAt(), A, C]),
           (S = 2),
           It(u, Dt(A))),
         Hn(),
@@ -3329,9 +3329,9 @@ function convertToEmote(msg) {
             (Re = !1),
             (De = !1);
         }
-        if (Me.length > 0) {
+        if (window.writeBuffer.length > 0) {
           var r;
-          (r = Me["splice"](0, 64)), (t = []);
+          (r = window.writeBuffer["splice"](0, 64)), (t = []);
           e: for (var o = 0; o < r.length; o++) {
             for (
               var i = r[o][0],
@@ -3351,7 +3351,7 @@ function convertToEmote(msg) {
               (t["push"]([i, c, l, u, s]),
               4 == t["length"] && o + 1 < r["length"])
             ) {
-              for (d = o + 1; d < r["length"]; d++) Me["unshift"](r[d]);
+              for (d = o + 1; d < r["length"]; d++) window.writeBuffer["unshift"](r[d]);
               break;
             }
           }
