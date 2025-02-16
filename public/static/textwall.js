@@ -437,6 +437,8 @@ function convertToEmote(msg) {
       Ge = [],
       Qe = null,
       _e = [];
+    
+    window.writeBuffer 
     for (ne = 0; ne < 200; ne++) _e[ne] = " ";
     var et = [];
     for (ne = 0; ne < 200; ne++) et[ne] = 0;
