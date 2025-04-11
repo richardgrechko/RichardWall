@@ -1653,7 +1653,7 @@ function init_ws() {
             sdata.authUser.toLowerCase()
         ) {
           var exists = db
-            .prepare("SELECT * FROM members WHERE username=? COLLATE NOCASE")
+            .prepare("SELECT * FROM members WHERE username=? COLLATE NOCASEAND world_id=?")
             .get(member);
           if (!exists) {
             db.prepare("INSERT INTO members VALUES(?, ?)").run(
