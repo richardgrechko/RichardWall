@@ -802,13 +802,13 @@ function init_ws() {
       ws.close();
       return;
     }
-
-    if (getBan(ipAddr)) {
+    var ban = getBan(ipAddr);
+    if (ban) {
             console.log("Somebody tried to join, but they're banned! Their IP is " + getIp(req));
       send(
         ws,
         msgpack.encode({
-          banned: banReasons[ipAddr],
+          banned: ban.reason,
         })
       );
 
