@@ -228,12 +228,7 @@ function checkHash(hash, pass) {
 }
 function htmlTagEsc(str) {
   return str.replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/\n/g, "<br>");
-} // bro it can be like client side or smth lmao
-// for the goatway
-// 
-// naho hlets not stack a replace on a replace - im lazy, why not?
-// uhhhhhhhhhhhh so it takes the same time to go through the emotes
-// because if theres multiple it has to check all of them
+}
 var discordEmotes = {
   ":correct:": "<:correct:1211162124253143122>",
   ":wrong:": "<:wrong:1211162110759805008>",
@@ -326,12 +321,12 @@ app.use("/*", adminStuff);
 app.use("/*", maintenancePage);
 app.use(express.static("public"));
 app.use(bodyParser.text());
-app.get(".data/data.sqlite3", (req, res, next) => {
+app.get("/.data/data.sqlite3", (req, res, next) => {
   if (
     cookie.parse(req.headers.cookie + "").adminthing != process.env.adminthing
   )
     return next();
-  res.sendFile(__dirname + ".data/data.sqlite3");
+  res.sendFile(__dirname + "/.data/data.sqlite3");
 });
 app.post("/sendmail", (req, res) => {
   if (req.body.length > 1000) return;
