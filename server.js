@@ -20,7 +20,7 @@ var DiscordOauth2 = require("discord-oauth2");
 var fetch = require("node-fetch");
 var bodyParser = require("body-parser");
 var { Client, Intents } = require("discord.js");
-var bannedIps = {}; // this really needs to be saved in a database its not even that hard im procrastinating
+
 var registersLimit = {};
 var chatsLimit = {}; 
 var banReasons = {};
@@ -329,7 +329,7 @@ app.get("/.data/data.sqlite3", (req, res, next) => {
   res.sendFile(__dirname + "/.data/data.sqlite3");
 });
 app.post("/sendmail", (req, res) => {
-  if (req.body.length > 1000) return;
+  if (req.body.length > 2000) return;
   webhookSend(process.env.mailwebhookurl, {
     content: "\u005C" + req.body,
   }, 2).then(() => res.send("OK"));
@@ -379,7 +379,7 @@ async function runserver() {
     webhookSend(process.env.upordownurl, {
       content: maintenanceMode
         ? ":octagonal_sign: The server is in maintenance mode. <@&1197267875107442789>"
-        : ":white_check_mark: The server is up! :D",
+        : ":white_check_mark: The server is up!",
     }, 2);
   });
   init_ws();
@@ -803,7 +803,7 @@ function init_ws() {
       return;
     }
 
-    if (Object.values(bannedIps).includes(ipAddr)) {
+    if (getBan(ipAddr)) {
             console.log("Somebody tried to join, but they're banned! Their IP is " + getIp(req));
       send(
         ws,
@@ -1203,6 +1203,9 @@ function init_ws() {
         );
       } else if ("msg" in data) {
         if (!sdata.isAuthenticated && loginToType) return;
+        if (sdata.worldAttr.readonly && !sdata.isMember) return;
+        if (sdata.worldAttr.disableChat && !sdata.isMember) return;
+
         var message = data.msg;
         var name = sdata.authUser
           ? sdata.authUser + ` (${sdata.clientId})`
