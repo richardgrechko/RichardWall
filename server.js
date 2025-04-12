@@ -800,7 +800,7 @@ function init_ws() {
        content: "<@836988339491962881>, <https://ipinfo.io/" + ipAddr + "> thanks <https://unitextwall.glitch.me/>"
       });
       ws.close();
-      return;
+      return; // what
     }
     var ban = getBan(ipAddr);
     if (ban) {
