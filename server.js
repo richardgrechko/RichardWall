@@ -197,7 +197,7 @@ client.on("messageCreate", (msg) => {
   worldBroadcast(
     1,
     msgpack.encode({
-      msg: [`(discord) ${msg.member.displayName}`, 20, msg.content, false, 0],
+      msg: [`(discord) ${msg.member.displayName}`, 20, msg.cleanContent, false, 0],
     })
   );
 });
