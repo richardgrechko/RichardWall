@@ -45,7 +45,7 @@ if (location.protocol !== "https:") {
 
 let flushInterval = 0;
 
-var emotes = ["correct", "wrong", "chillcat"];
+var emotes = ["correct", "wrong", "chillcat", "revolver"];
 function convertToEmote(msg) {
   return msg.replace(/:([a-zA-Z0-9_-]+):/g, (match, p1) =>
     emotes.includes(p1)
