@@ -414,13 +414,13 @@ function send(ws, data) {
 
 function constructChar(color, bold, italic, underline, strike) {
   var format = strike | (underline << 1) | (italic << 2) | (bold << 3);
-  var n = format * 31 + color;
+  var n = format * 34 + color;
   return String.fromCharCode(n + 192);
 }
 
 function parseChar(chr) {
-  var col = chr % 31;
-  var format = Math.floor(chr / 31);
+  var col = chr % 34;
+  var format = Math.floor(chr / 34);
   return {
     color: col,
     bold: (format & 8) == 8,

@@ -2545,8 +2545,8 @@ var client = {
         if (!chunk) return;
         var i = (y - chunkY) * 20 + (x - chunkX);
         char.char = chunk.txt[i];
-        char.color = chunk.clr[i] % 31;
-        var format = Math.floor(chunk.clr[i] / 31);
+        char.color = chunk.clr[i] % 34;
+        var format = Math.floor(chunk.clr[i] / 34);
         char.decorations = {
           bold: (format & 8) == 8,
           italic: (format & 4) == 4,
@@ -3413,7 +3413,7 @@ var client = {
         return 31 * t + e;
       }
       function Zr(e) {
-        return [e % 31, Math["floor"](e / 31)];
+        return [e % 34, Math["floor"](e / 34)];
       }
       isNaN(Ce.x) && (Ce.x = 0),
         isNaN(Ce.y) && (Ce.y = 0),
