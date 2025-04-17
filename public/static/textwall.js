@@ -214,21 +214,21 @@ function convertToEmote(msg) {
       V = String.fromCharCode(10240),
       Z = String["fromCharCode"](27),
       $ = {
-        "JetBrains Mono": 
+        "JetBrains Mono": 17,
         Inconsolata: 18,
         "IBM Plex Mono": 16,
-        "Roboto Mono": 16,
+        "Roboto Mono": 17,
         "Courier Prime": 16,
         Courier: 16,
         "Courier New": 16,
         "Cutive Mono": 18,
         Cousine: 16,
-        Unifont: 16,
-        Terminus: 16,
+        Unifont: 19,
+        Terminus: 18,
         Fixed: 16,
         monospace: 18,
         "Ubuntu Mono": 20,
-        "Libertinus Mono": 16,
+        "Libertinus Mono": 19,
         Fixedsys: 18,
         Pointfree: 16,
         Monofur: 18,
@@ -236,7 +236,7 @@ function convertToEmote(msg) {
         Twemoji: 20,
         Custom: 20,
       };
-    var G = "Inconsolata",
+    var G = "JetBrains Mono",
       Q = Math.floor($[G] * v) + "px " + G + ", monospace, Special";
     const _ = new Map();
     _["set"]("Unifont", void 0),
@@ -4417,7 +4417,7 @@ document.addEventListener("keydown", function (event) {
 });
 var owner = document.getElementById("owner");
 function checkAdminWall(wall) {
-  if (["~Uni", "~falling1"].includes(wall)) {
+  if (["~Richard"].includes(wall)) {
     owner.style.display = "block";
     owner.title = `This user is the ${
       wall == "~falling1" ? "co-" : ""
