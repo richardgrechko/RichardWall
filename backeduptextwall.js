@@ -743,7 +743,12 @@ var client = {
       }
       function Ut(e, t, r, a, o, i, c) {
         var l = n;
-        e["drawChar"](r, t, Math["floor"](a), Math["floor"](o + (10 * i - c / 2)));
+        e["drawChar"](
+          r,
+          t,
+          Math["floor"](a),
+          Math["floor"](o + (10 * i - c / 2))
+        );
       }
       function Wt(e) {
         var t = n;

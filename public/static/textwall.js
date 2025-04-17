@@ -372,7 +372,7 @@ function convertToEmote(msg) {
         "Blue",
         "Light Blue",
         "Indigo",
-        "Periwinkle",
+        "Blueberry",
         "Lavender",
         "Dark Purple",
         "Purple",
