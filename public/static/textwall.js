@@ -214,6 +214,7 @@ function convertToEmote(msg) {
       V = String.fromCharCode(10240),
       Z = String["fromCharCode"](27),
       $ = {
+        "JetBrains Mono": 
         Inconsolata: 18,
         "IBM Plex Mono": 16,
         "Roboto Mono": 16,
@@ -657,7 +658,7 @@ function convertToEmote(msg) {
           E.fillText(
             e,
             Math.round(t - i["width"] / 2 + 5 * v),
-            Math["round"](r + 31 * v)
+            Math["round"](r + 34 * v)
           );
       }
     }
