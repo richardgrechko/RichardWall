@@ -18,7 +18,7 @@ var colors = {
   "9": "Beige",
   "10": "Dark Yellow",
   "11": "Yellow",
-  "12": "dark blue",
+  "12": "Light Yellow",
   "13": "purple",
   "14": "dark purple",
   "15": "dark red",

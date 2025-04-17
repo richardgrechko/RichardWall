@@ -4072,7 +4072,7 @@ var client = {
     })("undefined" == typeof browser ? (browser = {}) : browser);
 })("undefined" == typeof browser ? (browser = {}) : browser);
 function joinDiscord() {
-  window.open("https://discord.gg/Fg9s44aRd9");
+  window.open("https://discord.gg/hC3sqrZW");
   console.log("Invited");
 };
 
