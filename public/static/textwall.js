@@ -2794,7 +2794,7 @@ function convertToEmote(msg) {
     var zn = 0,
       qn = performance["now"](),
       Yn = 0;
-    const Jn = [4, 5, 7, 8, 9, 18, 11, 20, 13, 28, 15];
+    const Jn = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32];
     client.chat = {
       send: (msg) => {
         msg = msg.toString().slice(0, 400);
