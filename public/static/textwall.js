@@ -2479,16 +2479,12 @@ function convertToEmote(msg) {
           Fn(a["addmem"]),
             (optionsmenu.scrollTop = optionsmenu["clientHeight"]);
           break;
-        case "ml":
-          for (
-            memberList = a.ml,
-              document["getElementById"]("memberlist")["innerHTML"] = "",
-              s = 0;
-            s < memberList["length"];
-            s++
-          )
-            Fn(memberList[s]);
-          break;
+            case "ml":
+                for (memberList = a.ml,
+                document["getElementById"]("memberlist")["innerHTML"] = "",
+                s = 0; s < memberList[t(500)]; s++)
+                    Fn(memberList[s]);
+                break;
         case "wl":
           Ln((Y = a.wl));
           break;
