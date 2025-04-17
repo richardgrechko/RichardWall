@@ -4415,7 +4415,7 @@ function checkAdminWall(wall) {
     owner.style.display = "block";
     owner.title = `This user is the ${
       wall == "~falling1" ? "co-" : ""
-    }owner of Uni's TextWall`;
+    }owner of TextWall`;
   } else {
     owner.style.display = "none";
   }
