@@ -190,7 +190,7 @@ client.on("interactionCreate", async (interaction) => {
   }
   });
 // login to the bot
-client.login(process.env.discordbottoken);
+//client.login(process.env.discordbottoken);
 client.on("messageCreate", (msg) => {
   if (msg.channelId != "1202685655054950502" || msg.author.bot || !msg.content)
     return;

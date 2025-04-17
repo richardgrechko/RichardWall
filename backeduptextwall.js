@@ -185,7 +185,7 @@ var client = {
         (k["style"]["width"] = window["innerWidth"] + "px"),
         (k["style"]["height"] = window["innerHeight"] + "px"),
         (E.imageSmoothingEnabled = !1);
-      const S = "#FFFFFF",
+      const S = "#edf2ff",
         I = "#EBEBEB";
       var C = S,
         A = I,
@@ -617,7 +617,7 @@ var client = {
               [a]
             ),
             E["fill"](),
-            (E["fillStyle"] = "#FFFFFF"),
+            (E["fillStyle"] = "#edf2ff"),
             E.fillText(
               e,
               Math.round(t - i["width"] / 2 + 5 * v),
@@ -751,7 +751,7 @@ var client = {
       function Kt(e, t) {
         var r = n;
         tt["disablecolour"]["checked"] && (t = 0),
-          (e["fillStyle"] = xe && 0 == t ? "#FFFFFF" : se[t]);
+          (e["fillStyle"] = xe && 0 == t ? "#edf2ff" : se[t]);
       }
       function Xt(e, t) {
         var r = n,
@@ -1083,7 +1083,7 @@ var client = {
         var d = Pe["get"](e);
         (c["type"] = "checkbox"), (c["checked"] = 1 == d["highlighted"]), a.appendChild(c);
         var f = d.c;
-        (o["style"].backgroundColor = "#FFFFFF" == se[f] ? "#222222" : se[f]),
+        (o["style"].backgroundColor = "#edf2ff" == se[f] ? "#2b2c2e" : se[f]),
           (o.style["fontSize"] = "10px"),
           (o["style"].userSelect = "all"),
           (o["innerText"] = d.n || e),
@@ -2174,7 +2174,7 @@ var client = {
                 c = document["createElement"]("p"),
                 l = document.createElement("a");
               (l["innerText"] = e),
-                (l.style["color"] = "#FFFFFF" == se[n] ? "#222222" : se[n]),
+                (l.style["color"] = "#edf2ff" == se[n] ? "#2b2c2e" : se[n]),
                 a && ((l["href"] = "/~" + e), l["addEventListener"]("click", wn)), l.title = "(" + id + ")"
                 c["appendChild"](l),
                 c.appendChild(document.createTextNode(": " + r));
@@ -3162,7 +3162,7 @@ var client = {
                   null != M &&
                     M["highlighted"] &&
                     ((E.lineWidth = 3 * v),
-                    (E["strokeStyle"] = p == se["length"] ? "#FFFFFF" : se[p]),
+                    (E["strokeStyle"] = p == se["length"] ? "#edf2ff" : se[p]),
                     E["beginPath"](),
                     E["moveTo"](
                       Math["round"](10 * M["rawx"] * v + r / 2),
