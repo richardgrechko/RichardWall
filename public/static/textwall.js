@@ -331,9 +331,18 @@ function convertToEmote(msg) {
         '#0799a6',
         '#26dced',
         '#a1f0f7',
-        '#0799a6',
-        '#26dced',
-        '#a1f0f7'
+        '#072fa6',
+        '#2658ed',
+        '#a1b7f7',
+        '#2f07a6',
+        '#5826ed',
+        '#b6a1f7',
+        '#6407a6',
+        '#9a26ed',
+        '#d3a1f7',
+        '#a607a6',
+        '#ed26ed',
+        '#f7a1f7'
       ],
       de = [
         "Black/White",

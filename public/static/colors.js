@@ -38,6 +38,9 @@ var colors = {
   "28": "magenta",
   "29": "beige",
   "30": "dark grey",
+  "31": "magenta",
+  "32": "beige",
+  "33": "dark grey",
   "black": 0,
   "grey": 1,
   "light grey": 2,
@@ -68,20 +71,23 @@ var colors = {
   "pale purple": 27,
   "magenta": 28,
   "beige": 29,
-  "dark grey": 30
+  "dark grey": 30,
+  "magenta": 31,
+  "beige": 32,
+  "dark grey": 33
 };
 var colours = colors; //british spellign
 
 // lets you use decorations in writeChar functions
 function convertFmt(color, bold, italic, underline, strike) {
 	var format = (bold << 3) | (italic << 2) | (underline << 1) | strike;
-	return format * 31 + color;
+	return format * 34 + color;
 };
 
 // might not be used because getCharInfo already does this for you but just in case
 function parseFmt(chr) {
-	var col = chr % 31;
-	var format = Math.floor(chr / 31);
+	var col = chr % 34;
+	var format = Math.floor(chr / 34);
 	return {
 		color: col,
 		bold: (format & 8) == 8,
