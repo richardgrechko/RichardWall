@@ -250,8 +250,8 @@ function convertToEmote(msg) {
     const ee = Object.keys($)["length"],
       te = document["getElementById"]("fontselect");
     for (var ne = 0; te["length"] > 0; ne++);
+    var option;
     for (ne = 0; ne < ee; ne++)
-      var option
       (option = document["createElement"]("option")),
         (option["text"] = Object.keys($)[ne]),
         te.add(option);
