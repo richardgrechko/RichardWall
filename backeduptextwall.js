@@ -1644,13 +1644,11 @@ var client = {
           if (e.isTrusted) {
             var r = document["getElementById"]("loginname"),
               o = document["getElementById"]("loginpass");
-            mn.test(r["value"])
-              ? 0 != r.value.length
-                ? 0 != o.value["length"]
-                  ? (vn(!0), a.send(Or({ login: [r["value"], o["value"]] })))
-                  : ir("Please type your password.", 3e3)
-                : ir("Please type your username.", 3e3)
-              : ir("Username is invalid.", 3e3);
+            0 != r.value.length
+              ? 0 != o.value["length"]
+                ? (vn(!0), a.send(Or({ login: [r["value"], o["value"]] })))
+                : ir("Please type your password.", 3e3)
+              : ir("Please type your username.", 3e3);
           }
         }),
         document.getElementById("registerbtn")["addEventListener"]("click", function (e) {
