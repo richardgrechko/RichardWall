@@ -670,7 +670,7 @@ function convertToEmote(msg) {
           E.fillText(
             e,
             Math.round(t - i["width"] / 2 + 5 * v),
-            Math["round"](r + 40 * v)
+            Math["round"](r + 31 * v)
           );
       }
     }
