@@ -433,12 +433,6 @@ function parseChar(chr) {
 
 function validateUsername(str) {
   if (str.length < 3 || str.length > 64) return false;
-  var validChars =
-    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_-.";
-  for (var i = 0; i < str.length; i++) {
-    var chr = str[i];
-    if (!validChars.includes(chr)) return false;
-  }
   return true;
 }
 
@@ -1398,18 +1392,6 @@ function init_ws() {
         if (user.length > 24) return;
         if (pass.length > 64) return;
 
-        var isValid = validateUsername(user);
-        if (!isValid) {
-          send(
-            ws,
-            msgpack.encode({
-              alert:
-                "Bad username - it must be 1-24 chars and have the following chars: A-Z a-z 0-9 - _ .",
-            })
-          );
-          return;
-        }
-
         var userObj = db
           .prepare("SELECT * FROM 'users' WHERE username=? COLLATE NOCASE")
           .get(user);
@@ -1905,7 +1887,6 @@ function init_ws() {
         if (typeof pass != "string") return;
         if (newUser.length > 64) return;
         if (pass.length > 128) return;
-        if (!validateUsername(newUser)) return;
 
         var tokenData = db
           .prepare("SELECT * FROM tokens WHERE token=?")
@@ -2074,19 +2055,6 @@ function init_ws() {
             if (user && user.discord != discordUser.id) {
               send(ws, msgpack.encode({ discordnametaken: true }));
               return;
-            }
-            if (username) {
-              var isValid = validateUsername(username);
-              if (!isValid) {
-                send(
-                  ws,
-                  msgpack.encode({
-                    alert:
-                      "Bad username - it must be 1-24 chars and have the following chars: A-Z a-z 0-9 - _ .",
-                  })
-                );
-                return;
-              }
             }
             if (!user) {
               var rowId = createDiscordAccount(username, discordUser.id);
