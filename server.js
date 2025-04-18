@@ -412,8 +412,8 @@ function send(ws, data) {
   }
 }
 
-function constructChar(color, bold, italic, underline, strike) {
-  var format = strike | (underline << 1) | (italic << 2) | (bold << 3);
+function constructChar(color, bold, italic, underline, overline, strike) {
+  var format = (overline << 4) | (bold << 3) | (italic << 2) | (underline << 1) | strike;
   var n = format * 34 + color;
   return String.fromCharCode(n + 192);
 }
@@ -423,10 +423,11 @@ function parseChar(chr) {
   var format = Math.floor(chr / 34);
   return {
     color: col,
-    bold: (format & 8) == 8,
-    italic: (format & 4) == 4,
-    underline: (format & 2) == 2,
-    strike: (format & 1) == 1,
+		bold: (format & 8) == 8,
+		italic: (format & 4) == 4,
+		underline: (format & 2) == 2,
+    overline: (format & 16) == 16,
+		strike: (format & 1) == 1,
   };
 }
 

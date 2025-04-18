@@ -246,6 +246,7 @@ function convertToEmote(msg) {
       te = document["getElementById"]("fontselect");
     for (var ne = 0; te["length"] > 0; ne++);
     for (ne = 0; ne < ee; ne++)
+      var option
       (option = document["createElement"]("option")),
         (option["text"] = Object.keys($)[ne]),
         te.add(option);
@@ -258,6 +259,7 @@ function convertToEmote(msg) {
       bold: { el: document["getElementById"]("bold"), enabled: !1 },
       italic: { el: document["getElementById"]("italic"), enabled: !1 },
       underline: { el: document.getElementById("underline"), enabled: !1 },
+      overline: { el: document.getElementById("overline"), enabled: !1 },
       strikethrough: {
         el: document.getElementById("strikethrough"),
         enabled: !1,
@@ -297,6 +299,7 @@ function convertToEmote(msg) {
         ae.bold["enabled"] && (t += 8),
         ae.italic.enabled && (t += 4),
         ae["underline"]["enabled"] && (t += 2),
+        ae["overline"]["enabled"] && (t += 16),
         ae["strikethrough"]["enabled"] && (t += 1),
         t
       );
@@ -306,6 +309,7 @@ function convertToEmote(msg) {
       br("bold", Boolean(8 & e)),
         br("italic", Boolean(4 & e)),
         br("underline", Boolean(2 & e)),
+        br("overline", Boolean(16 & e)),
         br("strikethrough", Boolean(1 & e));
     }
     const ue = 192,
@@ -1466,6 +1470,9 @@ function convertToEmote(msg) {
               break;
             case 66:
               e.ctrlKey && (e["preventDefault"](), br("bold"), ie(!0));
+              break;
+            case 50:
+              e.ctrlKey && (e["preventDefault"](), br("overline"), ie(!0));
               break;
             case 73:
               e.ctrlKey &&
@@ -2838,6 +2845,7 @@ function convertToEmote(msg) {
         bold: (format & 8) == 8,
         italic: (format & 4) == 4,
         underline: (format & 2) == 2,
+        overline: (format & 16) == 16,
         strike: (format & 1) == 1,
       };
       return char;

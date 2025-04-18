@@ -240,6 +240,7 @@ var client = {
         te = document["getElementById"]("fontselect");
       for (var ne = 0; te["length"] > 0; ne++);
       for (ne = 0; ne < ee; ne++)
+        var option;
         (option = document["createElement"]("option")),
           (option["text"] = Object.keys($)[ne]),
           te.add(option);
@@ -284,19 +285,21 @@ var client = {
         var e = n,
           t = 0;
         return (
-          ae.bold["enabled"] && (t += 8),
-          ae.italic.enabled && (t += 4),
-          ae["underline"]["enabled"] && (t += 2),
-          ae["strikethrough"]["enabled"] && (t += 1),
+          ae.bold["enabled"] && (t += 16),
+          ae.italic.enabled && (t += 8),
+          ae["underline"]["enabled"] && (t += 4),
+          ae["strikethrough"]["enabled"] && (t += 2),
+          ae["overline"]["enabled"] && (t += 1),
           t
         );
       }
       function le(e) {
         var t = n;
-        br("bold", Boolean(8 & e)),
-          br("italic", Boolean(4 & e)),
-          br("underline", Boolean(2 & e)),
-          br("strikethrough", Boolean(1 & e));
+        br("bold", Boolean(16 & e)),
+          br("italic", Boolean(8 & e)),
+          br("underline", Boolean(4 & e)),
+          br("strikethrough", Boolean(2 & e)),
+          br("overline", Boolean(1 & e));
       }
       const ue = 192,
       se = [
