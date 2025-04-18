@@ -734,27 +734,87 @@ function convertToEmote(msg) {
     }
     var Bt = RegExp("^[a-zA-Z0-9_-]{1,24}$");
     function Ft(e) {
-      return 65 + Math["floor"](26 * e);
+      return "ABCDEFGHIJKLMNOPQRSTUVWXYZ"[Math["floor"](26 * e)].codePointAt();
     }
     function Pt(e) {
       return 48 + Math.floor(10 * e);
     }
     function Lt(e) {
-      return "AEIOU"[Math["floor"](5 * e)].codePointAt();
+      return "AIEOU"[Math["floor"](5 * e)].codePointAt();
+    }
+    function Asymt(e) {
+      return "~!@#$%^&*()_+{}|:<>?`-=[];',./\"\\"[Math["floor"](32 * e)].codePointAt();
     }
     function Ot(e) {
       var t = n;
-      return "BCDFGHJKLMNPQRSTVWXYZ"[Math["floor"](21 * e)]["codePointAt"]();
+      return "BCDFGHJKLMNPÞRSTVWXYZQ"[Math["floor"](22 * e)]["codePointAt"]();
+    }
+    function IPAA(e) {
+      return "aäæɐɑɒʌeɘəɚɛɜɝɞiɨɪoøœɔɵɶuʉʊɯyɤɥʏ"[Math["floor"](32 * e)]["codePointAt"]();
+    }
+    function IPAB(e) {
+      return "bɓʙꞵcçɕdðɖɗʣʥʤᶑfgɠɡɢɣʛhħɦɧʜjɟʝklɫɬɭɮʟmɱnŋɲɳɴθpþɸqrɹɺɻɽɾʀʁsʂʃʄtʈʦʧvʋⱱwɰʍxχzʐʑʒǀǂǃʘʔʡʕʢ"[Math["floor"](76 * e)]["codePointAt"]();
+    }
+    function IPAC(e) {
+      return "aäæɐɑɒʌeɘəɚɛɜɝɞiɨɪoøœɔɵɶuʉʊɯyɤɥʏbɓʙꞵcçɕdðɖɗʣʥʤᶑfgɠɡɢɣʛhħɦɧʜjɟʝklɫɬɭɮʟmɱnŋɲɳɴθpþɸqrɹɺɻɽɾʀʁsʂʃʄtʈʦʧvʋⱱwɰʍxχzʐʑʒǀǂǃʘʔʡʕʢ"[Math["floor"](116 * e)]["codePointAt"]();
+    }
+    function ArrowB(e) {
+      return "↕↔⤡⤢"[Math["floor"](4 * e)]["codePointAt"]();
+    }
+    function ArrowA(e) {
+      return "←↑→↓↖↗↘↙"[Math["floor"](8 * e)]["codePointAt"]();
+    }
+    function ArrowD(e) {
+      return "←↑→↓"[Math["floor"](4 * e)]["codePointAt"]();
+    }
+    function ArrowC(e) {
+      return "←↑→↓↔↕↖↗↘↙⤡⤢"[Math["floor"](12 * e)]["codePointAt"]();
+    }
+    function BinaryA(e) {
+      return "01"[Math["floor"](2 * e)]["codePointAt"]();
+    }
+    function HexA(e) {
+      return "0123456789ABCDEF"[Math["floor"](16 * e)]["codePointAt"]();
+    }
+    function HexB(e) {
+      return "0123456789abcdef"[Math["floor"](16 * e)]["codePointAt"]();
+    }
+    function ToneA(e) {
+      return "˥˦˧˨˩"[Math["floor"](5 * e)]["codePointAt"]();
+    }
+    function SegA(e) {
+      return 130032 + Math.floor(10 * e);
+    }
+    function SegB(e) {
+      return 130032 + Math.floor(2 * e);
+    }
+    function BrailleA(e) {
+      return 10240 + Math.floor(256 * e);
+    }
+    function HexagramA(e) {
+      return 19904 + Math.floor(64 * e);
+    }
+    function FullUniA(e) {
+      return Math.floor(65535 * e);
+    }
+    function LNums(e) {
+      return "0123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm"[Math["floor"](62 * e)]["codePointAt"]();
+    }
+    function LowNums(e) {
+      return "0123456789qwertyuiopasdfghjklzxcvbnm"[Math["floor"](36 * e)]["codePointAt"]();
+    }
+    function UppNums(e) {
+      return "0123456789QWERTYUIOPASDFGHJKLZCVBNM"[Math["floor"](35 * e)]["codePointAt"]();
     }
     function Rt(e) {
       const t = Math.random();
       switch (e - 58112) {
         case 0:
-          return t < 0.41 ? Ft(t) + 32 : t < 0.83 ? Ft(t) : Pt(t);
+          return LNums(t);
         case 1:
-          return t < 0.72 ? Ft(t) + 32 : Pt(t);
+          return LowNums(t);
         case 2:
-          return t < 0.72 ? Ft(t) : Pt(t);
+          return UppNums(t);
         case 3:
           return t < 0.5 ? Ft(t) + 32 : Ft(t);
         case 4:
@@ -775,8 +835,40 @@ function convertToEmote(msg) {
           return Ot(t) + 32;
         case 12:
           return Ot(t);
+        case 13:
+          return IPAA(t);
+        case 14:
+          return IPAB(t);
+        case 15:
+          return IPAC(t);
+        case 16:
+          return ArrowA(t);
+        case 17:
+          return ArrowB(t);
+        case 18:
+          return ArrowC(t);
+        case 19:
+          return ArrowD(t);
+        case 20:
+          return BinaryA(t);
+        case 21:
+          return HexA(t);
+        case 22:
+          return HexB(t);
+        case 23:
+          return SegA(t);
+        case 24:
+          return SegB(t);
+        case 25:
+          return ToneA(t);
+        case 26:
+          return BrailleA(t);
+        case 27:
+          return Asymt(t);
+        case 28:
+          return HexagramA(t);
       }
-      return 97;
+      return FullUniA(t);
     }
     function Dt(e) {
       return (e + 2) % 20 < 2;
