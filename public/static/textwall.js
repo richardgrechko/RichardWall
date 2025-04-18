@@ -983,16 +983,42 @@ function convertToEmote(msg) {
                       if (
                         (4 & T && ((L = !0), Ht(e)),
                         (h = B) >= 58112 &&
-                          h <= 58124 &&
+                          h <= 58161 &&
                           ((B = Rt(B)), (S = String["fromCodePoint"](B))),
                         ((u = B) >= 9472 &&
                           u <= 9632 &&
                           !(u >= 9476 && u <= 9483) &&
                           !(u >= 9548 && u <= 9551)) ||
-                          (u >= 9698 && u <= 9701) ||
+                          (u >= 117760 && u <= 118527) ||
+                          (u >= 129792 && u <= 130031) ||
+                         (u >= 9698 && u <= 9701) ||
                           qr(B))
                       )
                         (e["font"] = Math["round"](20 * y) + "px Special"),
+                          e["fillText"](
+                            S,
+                            Math["round"](w),
+                            Math["floor"](M + 15 * y)
+                          );
+                      if (
+                        (4 & T && ((L = !0), Ht(e)),
+                        (h = B) >= 58112 &&
+                          h <= 58161 &&
+                          ((B = Rt(B)), (S = String["fromCodePoint"](B))),
+                        ((u = B) >= 12320 &&
+                          u <= 40959 &&
+                          !(u >= 19904 && u <= 19967) &&
+                          !(u >= 9548 && u <= 9551)) ||
+                          (u >= 43360 && u <= 43391) ||
+                          (u >= 44032 && u <= 55291) ||
+                          (u >= 65072 && u <= 65103) ||
+                          (u >= 9312 && u <= 9471) ||
+                          (u >= 10102 && u <= 10131) ||
+                          (u >= 11904 && u <= 12287) ||
+                          (u >= 127488 && u <= 127743) ||
+                          (u >= 63744 && u <= 64255))
+                      )
+                        (e["font"] = Math["round"](10 * y) + "px MS Gothic"),
                           e["fillText"](
                             S,
                             Math["round"](w),
@@ -2587,17 +2613,19 @@ function convertToEmote(msg) {
             xn();
           break;
         case "addmem":
-          var optionsmenu
           Fn(a["addmem"]),
             (optionsmenu.scrollTop = optionsmenu["clientHeight"]);
           break;
-            case "ml":
-                var memberList
-                for (memberList = a.ml,
-                document["getElementById"]("memberlist")["innerHTML"] = "",
-                s = 0; s < memberList[t(500)]; s++)
-                    Fn(memberList[s]);
-                break;
+        case "ml":
+          for (
+            memberList = a.ml,
+              document["getElementById"]("memberlist")["innerHTML"] = "",
+              s = 0;
+            s < memberList["length"];
+            s++
+          )
+            Fn(memberList[s]);
+          break;
         case "wl":
           Ln((Y = a.wl));
           break;
@@ -2932,7 +2960,7 @@ function convertToEmote(msg) {
       char.char = chunk.txt[i];
       char.color = chunk.clr[i] % 40;
       char.protected = chunk.protected ? true : false;
-      var format = Math.floor(chunk.clr[i] / 37);
+      var format = Math.floor(chunk.clr[i] / 40);
       char.decorations = {
         bold: (format & 8) == 8,
         italic: (format & 4) == 4,
