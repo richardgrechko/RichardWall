@@ -326,15 +326,18 @@ function convertToEmote(msg) {
         '#bfbf08',
         '#eded26',
         '#f7f7a1',
+        '#63bf08',
+        '#80eb15',
+        '#b3f273',
         '#069e06',
         '#0ecd0e',
         '#54ed54',
         '#069c82',
         '#26dced',
         '#a1f0f7',
-        '#0890d4',
-        '#26abed',
-        '#a1daf7',
+        '#087fd4',
+        '#269aed',
+        '#a1d3f7',
         '#083cd4',
         '#2658ed',
         '#a1b7f7',
@@ -365,6 +368,9 @@ function convertToEmote(msg) {
         "Sunflower",
         "Yellow",
         "Pale Yellow",
+        "???",
+        "Chartreuse",
+        "???",
         "Dark Green",
         "Green",
         "Light Green",
@@ -388,7 +394,7 @@ function convertToEmote(msg) {
         "Pink",
       ],
       fe = [
-        0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36
+        0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39
       ];
     function ve(e) {
       for (var t = n, r = 0; r < se["length"]; r++) if (fe[r] == e) return r;
@@ -664,7 +670,7 @@ function convertToEmote(msg) {
           E.fillText(
             e,
             Math.round(t - i["width"] / 2 + 5 * v),
-            Math["round"](r + 37 * v)
+            Math["round"](r + 40 * v)
           );
       }
     }
@@ -2798,7 +2804,7 @@ function convertToEmote(msg) {
     var zn = 0,
       qn = performance["now"](),
       Yn = 0;
-    const Jn = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35];
+    const Jn = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38];
     client.chat = {
       send: (msg) => {
         msg = msg.toString().slice(0, 400);
@@ -2825,7 +2831,7 @@ function convertToEmote(msg) {
       if (!chunk) return;
       var i = (y - chunkY) * 20 + (x - chunkX);
       char.char = chunk.txt[i];
-      char.color = chunk.clr[i] % 37;
+      char.color = chunk.clr[i] % 40;
       char.protected = chunk.protected ? true : false;
       var format = Math.floor(chunk.clr[i] / 37);
       char.decorations = {
@@ -3747,10 +3753,10 @@ function convertToEmote(msg) {
       return e * e;
     }
     function Vr(e, t) {
-      return 37 * t + e;
+      return 40 * t + e;
     }
     function Zr(e) {
-      return [e % 37, Math["floor"](e / 37)];
+      return [e % 40, Math["floor"](e / 40)];
     }
     isNaN(Ce.x) && (Ce.x = 0),
       isNaN(Ce.y) && (Ce.y = 0),
