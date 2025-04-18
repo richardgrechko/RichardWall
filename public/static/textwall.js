@@ -2476,10 +2476,12 @@ function convertToEmote(msg) {
             xn();
           break;
         case "addmem":
+          var optionsmenu
           Fn(a["addmem"]),
             (optionsmenu.scrollTop = optionsmenu["clientHeight"]);
           break;
             case "ml":
+                var memberList
                 for (memberList = a.ml,
                 document["getElementById"]("memberlist")["innerHTML"] = "",
                 s = 0; s < memberList[t(500)]; s++)
