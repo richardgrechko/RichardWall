@@ -1239,8 +1239,7 @@ function init_ws() {
           var client = getClientById(id);
           if (!client) return serverMessage(ws, "Client not found");
           if (isNaN(muteDuration) || muteDuration < 0) return serverMessage(ws, "Invalid duration");
-          client.muteTimer = args[1];
-          client.mutedUntil = (Date.now() + client.muteTimer);
+          client.mutedUntil = (Date.now() + muteDuration);
           client.waitUntilUnmuted = ((client.mutedUntil)-Date.now())/1000;
           serverMessage(ws, "Muted client for " + parseInt(args[1]) + " seconds!");
           return;
@@ -1361,7 +1360,7 @@ function init_ws() {
         // 2 per sec
         var limit = chatsLimit[ip];
         if (limit > 2) {
-          serverMessage(ws, "Shut the fuck up " + ipAddr);
+          serverMessage(ws, "Stfu, your IP is " + ipAddr);
           webhookSend(process.env.dosalerturl, {
             content: "Spam alert! IP: " + ipAddr + ", from " + sdata.authUser + " (" + sdata.clientId + ")",
           });

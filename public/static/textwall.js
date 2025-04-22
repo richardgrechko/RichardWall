@@ -2360,6 +2360,9 @@ function convertToEmote(msg) {
       c.innerHTML = c.innerHTML.replace(
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
         '<a href="$1" target="_blank">$1</a>'
+      ).replace(
+        /@/g,
+        '<a href="$1" target="_blank">$1</a>'
       );
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
