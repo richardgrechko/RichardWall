@@ -3579,7 +3579,7 @@ var client_commands = {
       Ur,
       Wr = Pr();
     if (Wr.length > 0)
-      if (Wr["startsWith"]("~")) (o = "/" + Wr), Fr || Zn(0, 0);
+      if (Wr["startsWith"]("@")) (o = "/" + Wr), Fr || Zn(0, 0);
       else {
         var Hr = Lr(Wr);
         (Ce.x = Hr.x), (Ce.y = Hr.y);

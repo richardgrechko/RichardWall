@@ -2393,10 +2393,10 @@ function convertToEmote(msg) {
             "textwall" == W && (nt["private"]["disabled"] = !0),
             "textwall" != W
               ? "main" != H
-                ? ((o = "/~" + W + "/" + H), history["pushState"]({}, null, o))
-                : ((o = "/~" + W), history["pushState"]({}, null, o))
+                ? ((o = "/@" + W + "/" + H), history["pushState"]({}, null, o))
+                : ((o = "/@" + W), history["pushState"]({}, null, o))
               : ((o = "/"),
-                Pr()["startsWith"]("~") && history["pushState"]({}, null, o),
+                Pr()["startsWith"]("@") && history["pushState"]({}, null, o),
                 (J["style"]["display"] = "none")),
             client.emit("wallchange", getWallName()); // getwallname isnt defined
           (Gt = !1),
@@ -2738,9 +2738,9 @@ function convertToEmote(msg) {
       var e = n,
         t = document["getElementById"]("name");
       (t["innerText"] = je),
-        (t["href"] = "/~" + je),
+        (t["href"] = "/@" + je),
         (t["onclick"] = function (e) {
-          e.preventDefault(), vr("~" + je);
+          e.preventDefault(), vr("@" + je);
         });
     }
     function Fn(e) {
@@ -2780,7 +2780,7 @@ function convertToEmote(msg) {
             (v["alt"] = v["title"] = "Private"))
           : ((v["src"] = "/static/lock_open.svg"),
             (v["alt"] = v.title = "Public"));
-        const e = "~" + W + ("main" == c ? "" : "/" + c);
+        const e = "@" + W + ("main" == c ? "" : "/" + c);
         f["appendChild"](v),
           f["appendChild"](document["createTextNode"](e)),
           (f.href = "/" + f["innerText"]),
@@ -2941,26 +2941,13 @@ function convertToEmote(msg) {
         return new Map().get(a,e)
       }
     }
-    rainbowModeMap.set("Light",[6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39]),
-    rainbowModeMap.set("Normal",[5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]),
-    rainbowModeMap.set("Dark",[4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37]);
+    rainbowModeMap.set("Light",[0x6, 0x9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39]),
+    rainbowModeMap.set("Normal",[0x5, 0x8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]),
+    rainbowModeMap.set("Dark",[0x4, 0x7, 0xA, 13, 16, 19, 22, 25, 28, 31, 34, 37]);
     function rainbowModeChange(e) {
-      var t = n;
+      var t = n, a;
       if (((rainbowMode = e), _["has"](rainbowMode))){
-        var a = rainbowModeMap.get(rainbowMode);
-        switch (rainbowMode) {
-          case "Normal":
-            a = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]
-            break;
-          case "Light":
-            a = [6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39]
-            break;
-          case "Dark":
-            a = [4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37]
-            break;
-          default:
-            a = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]
-        }
+        a = rainbowModeMap.get(rainbowMode);
       }
     }
     document.getElementById
@@ -3371,7 +3358,7 @@ function convertToEmote(msg) {
     }
     function vr(e) {
       var t = n,
-        r = (e = (e = fr(e))["replace"](/\~\/*/, "~"))["split"]("/");
+        r = (e = (e = fr(e))["replace"](/\@\/*/, "@"))["split"]("/");
       if (
         ((e = r["shift"]()),
         r["length"] > 0 && (e += "/" + r["shift"]()),
@@ -3848,7 +3835,7 @@ function convertToEmote(msg) {
       Ur,
       Wr = Pr();
     if (Wr.length > 0)
-      if (Wr["startsWith"]("~")) (o = "/" + Wr), Fr || Zn(0, 0);
+      if (Wr["startsWith"]("@")) (o = "/" + Wr), Fr || Zn(0, 0);
       else {
         var Hr = Lr(Wr);
         (Ce.x = Hr.x), (Ce.y = Hr.y);
@@ -4598,10 +4585,10 @@ document.addEventListener("keydown", function (event) {
 });
 var owner = document.getElementById("owner");
 function checkAdminWall(wall) {
-  if (["~Richard"].includes(wall)) {
+  if (["@Richard"].includes(wall)) {
     owner.style.display = "block";
     owner.title = `This user is the ${
-      wall == "~falling1" ? "co-" : ""
+      wall == "@falling1" ? "co-" : ""
     }owner of TextWall`;
   } else {
     owner.style.display = "none";

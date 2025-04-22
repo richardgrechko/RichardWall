@@ -2232,7 +2232,7 @@
 
         function Vr(e) {
             var r = n;
-            if ("" == (e = decodeURI(e.toLowerCase())) || "~main" == e) return {
+            if ("" == (e = decodeURI(e.toLowerCase())) || "@main" == e) return {
                 x: 0,
                 y: 0
             };
