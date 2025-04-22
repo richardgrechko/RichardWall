@@ -2078,7 +2078,7 @@ function convertToEmote(msg) {
             void r.focus()
           );
         }
-        "confirm" == r["value"].toLowerCase()
+        "confirm" == r["value"]
           ? (r.parentElement["removeChild"](r.previousSibling),
             r.parentNode["removeChild"](r),
             a["send"](Or({ dw: 0 })),
@@ -2228,7 +2228,7 @@ function convertToEmote(msg) {
     function En() {
       var e = n,
         t = h;
-      "textwall" != W && ((t = "~" + W), "main" != H && (t += "/" + H)),
+      "textwall" != W && ((t = "@" + W), "main" != H && (t += "/" + H)),
         null == a || a["readyState"] == a.CLOSED
           ? (document["title"] = h + " (disconnected)")
           : (document["title"] = y
@@ -2274,8 +2274,8 @@ function convertToEmote(msg) {
       var t = "textwall",
         r = "main",
         o = location["pathname"]["split"]("/")["splice"](1, 2);
-      o[0]["startsWith"]("~") &&
-        "" == (t = o[0]["replace"]("~", "")) &&
+      o[0]["startsWith"]("@") &&
+        "" == (t = o[0]["replace"]("@", "")) &&
         (t = "textwall"),
         o[1] && (r = o[1]),
         Cn(t, r);
@@ -2286,8 +2286,8 @@ function convertToEmote(msg) {
         (W == e && H == t) ||
         K ||
         ((K = !0),
-        (e = e["toLowerCase"]()),
-        (t = t["toLowerCase"]()),
+        (e = e),
+        (t = t),
         clearInterval(he),
         clearInterval(ye),
         nr(),
@@ -2353,7 +2353,7 @@ function convertToEmote(msg) {
       (l["innerText"] = name),
         (l.style["color"] = "#FFFFFF" == se[color] ? "#222222" : se[color]),
         registered &&
-          ((l["href"] = "/~" + name), l.onclick = wn), // teleportTo is not defined glitch just doesnt know it right 
+          ((l["href"] = "/@" + name), l.onclick = wn), // teleportTo is not defined glitch just doesnt know it right 
         (l.title = "(" + id + ")");
       c["appendChild"](l),
         c.appendChild(document.createTextNode(": " + message));
@@ -2792,7 +2792,6 @@ function convertToEmote(msg) {
           d.appendChild(f),
           s["appendChild"](d);
       }
-      if (W == je["toLowerCase"]()) {
         var m = q["appendChild"](document["createElement"]("form"));
         (m.style["display"] = "flex"),
           (m.style["justifyContent"] = "space-between");
@@ -2813,7 +2812,6 @@ function convertToEmote(msg) {
                 ? (Cn(W, r), Zn(0, 0), M.classList["remove"]("open"))
                 : ir("Invalid wall name", 2e3);
           });
-      }
     }
     function On() {
       var e = n;
@@ -3377,10 +3375,10 @@ function convertToEmote(msg) {
       if (
         ((e = r["shift"]()),
         r["length"] > 0 && (e += "/" + r["shift"]()),
-        (e = (e = fr(e))["toLowerCase"]())["startsWith"]("~") && "~main" != e)
+        (e = fr(e))["startsWith"]("@") && "@main" != e)
       ) {
         var a = e["split"]("/"),
-          o = a[0]["replace"]("~", ""),
+          o = a[0]["replace"]("@", ""),
           i = "main";
         a.length > 1 && (i = a[1]), Cn(o, i), Zn(0, 0);
       } else {
@@ -3798,7 +3796,7 @@ function convertToEmote(msg) {
     window.getWallName = Pr;
     function Lr(e) {
       var t = n;
-      if ("" == (e = decodeURI(e["toLowerCase"]())) || "~main" == e)
+      if ("" == (e = decodeURI(e["toLowerCase"]())) || "@main" == e)
         return { x: 0, y: 0 };
       var r = (function (e) {
         for (var n, r = t, a = [], o = e + "", i = 0; i < o["length"]; )
