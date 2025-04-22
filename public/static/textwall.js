@@ -2540,12 +2540,11 @@ function convertToEmote(msg) {
             registered: T[3],
             id: T[4],
           });
-          if (muted)
-          {
+          if (client.waitUntilUnmuted > client.mutedUntil) {
+            system.mutedMessage()
+          } else {
             addChat(T[0], T[1], T[2], T[3], T[4])
           }
-          else
-{};
           break;
         case "rc":
           Pe["delete"](a.rc), (ge = !0), On();
@@ -2972,10 +2971,12 @@ function convertToEmote(msg) {
         a.send(Or({ msg }));
       },
     };
-    var muteTimer = 0, mutedUntil = (Date.now() + muteTimer), waitUntilUnmuted = Date.now()+(mutedUntil)/1000;
     var system = {
-      onmute: () => {
-        addChat("[SYSTEM]",0b101,"You are muted. Wait for " + waitUntilUnmuted.toFixed(2) + " seconds.",true,0);
+      mutedMessage: () => {
+        addChat("[SYSTEM]",0b101,"You are muted. Wait for " + client.waitUntilUnmuted.toFixed(2) + " seconds.",true,0);
+      },
+      chat: (e) => {
+        addChat("[SYSTEM]",0b101,e,true,0);
       },
     };
     window.writeChar = Vn;
@@ -4591,7 +4592,7 @@ document.addEventListener("keydown", function (event) {
 });
 var owner = document.getElementById("owner");
 function checkAdminWall(wall) {
-  if (["@Richard"].includes(wall)) {
+  if (["@Richard","@ThatRedmiNoteGuy"].includes(wall)) {
     owner.style.display = "block";
     owner.title = `This user is the ${
       wall == "@falling1" ? "co-" : ""
