@@ -2937,7 +2937,7 @@ function convertToEmote(msg) {
       });
     var zn = 0,
       qn = performance["now"](),
-      Yn = 0, Jn;
+      Yn = 0, Jn = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38];
     function rainbowModeChange(e) {
       var t = n;
       if (((G = e), _["has"](G))){
@@ -2956,13 +2956,13 @@ function convertToEmote(msg) {
             a = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]
         }
       }
-      return a
+      Jn = a
     }
     document.getElementById
     ("rainbowmodeselect")
     .onchange = function (e) {
       var t = n;
-      Jn = rainbowModeChange(e.target.value)
+      rainbowModeChange(e.target.value)
       console.log(Jn)
     };
     client.chat = {
@@ -3130,7 +3130,6 @@ function convertToEmote(msg) {
             ir("Please log in before typing.", 3e3),
           0
         );
-      var Jn;
       tt.rainbow["checked"] &&
         color !== undefined &&
         !r &&

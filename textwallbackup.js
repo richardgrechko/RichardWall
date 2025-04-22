@@ -2796,7 +2796,6 @@ var client_commands = {
             ir("Please log in before typing.", 3e3),
           0
         );
-      var Jn;
       tt.rainbow["checked"] &&
         !r &&
         (mr(Jn[Yn]), ++Yn == Jn.length && (Yn = 0));
