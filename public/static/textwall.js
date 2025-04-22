@@ -2235,7 +2235,7 @@ function convertToEmote(msg) {
               ? "textwall" != W
                 ? t
                 : h
-              : t + " (" + Ue + " around)");
+              : t + " (" + Ue + " " + (Ue == 1 ? "person" : "people") + ")");
     }
     function Sn(e) {
       var t = n;
@@ -2816,7 +2816,7 @@ function convertToEmote(msg) {
     function On() {
       var e = n;
       (Ue = Pe["size"]),
-        (Ke["innerText"] = Ue + " around"),
+        (Ke["innerText"] = Ue + " " + ((Ue == 1) ? "person" : "people")),
         (document.getElementById("chatmsg")["placeholder"] =
           0 == Ue
             ? "chat with nobody"
@@ -2864,7 +2864,7 @@ function convertToEmote(msg) {
     }
     function Hn() {
       var e = n;
-      (He.innerText = "X " + Ce.x + " Y " + -Ce.y),
+      (He.innerText = Ce.x + " X, " + -Ce.y + " Y"),
         Ce.x + qe["offset"].x / v / 10 <= 0 &&
           Mn(10 * -Ce.x * v, qe["offset"].y),
         Ce.x + qe["offset"].x / v / 10 >= window["innerWidth"] / at / 10 - 1 &&
