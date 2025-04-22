@@ -2982,6 +2982,11 @@ function convertToEmote(msg) {
         a.send(Or({ msg }));
       },
     };
+    var system = {
+      onmute: () => {
+        a.send(Or({ msg: "You are muted" }));
+      },
+    };
     window.writeChar = Vn;
     window.writeCharAt = writeCharAt;
     window.getCharInfo = getCharInfo;
