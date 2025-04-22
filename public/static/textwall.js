@@ -2941,13 +2941,13 @@ function convertToEmote(msg) {
         return new Map().get(a,e)
       }
     }
-    rainbowModeMap.set("Light",[0x6, 0x9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39]),
-    rainbowModeMap.set("Normal",[0x5, 0x8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]),
-    rainbowModeMap.set("Dark",[0x4, 0x7, 0xA, 13, 16, 19, 22, 25, 28, 31, 34, 37]);
+    rainbowModeMap.set("Light",[0x6, 0x9, 0xC, 0xF, 0x12, 0x15, 0x18, 0x1B, 0x1E, 0x21, 0x24, 0x27]),
+    rainbowModeMap.set("Normal",[0x5, 0x8, 0xB, 0xE, 0x11, 0x14, 0x17, 0x1A, 0x1D, 0x20, 0x23, 0x26]),
+    rainbowModeMap.set("Dark",[0x4, 0x7, 0xA, 0xD, 0x10, 0x13, 0x16, 0x19, 0x1C, 0x1F, 0x22, 0x25]);
     function rainbowModeChange(e) {
       var t = n, a;
       if (((rainbowMode = e), _["has"](rainbowMode))){
-        a = rainbowModeMap.get(rainbowMode);
+        Jn = rainbowModeMap.get(rainbowMode);
       }
     }
     document.getElementById
@@ -2955,7 +2955,7 @@ function convertToEmote(msg) {
     .onchange = function (e) {
       var t = n;
       rainbowModeChange(e.target.value)
-      console.log(rainbowModeMap)
+      console.log(rainbowModeMap.get(e.target.value))
     };
     client.chat = {
       send: (msg) => {
