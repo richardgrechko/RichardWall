@@ -2363,7 +2363,7 @@ function convertToEmote(msg) {
       );
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
-      twemoji.parse(c, { base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/" });
+      twemoji.parse(c, { base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/" }); // twemoji isnt defined
       c.innerHTML = convertToEmote(c.innerHTML);
       c.childNodes[0].onclick = l.onclick;
       i.appendChild(c),
@@ -2398,7 +2398,7 @@ function convertToEmote(msg) {
               : ((o = "/"),
                 Pr()["startsWith"]("~") && history["pushState"]({}, null, o),
                 (J["style"]["display"] = "none")),
-            client.emit("wallchange", getWallName());
+            client.emit("wallchange", getWallName()); // getwallname isnt defined
           (Gt = !1),
             (he = setInterval(Qt, 250)),
             (ye = setInterval(_t, 2e3)),
@@ -2618,10 +2618,12 @@ function convertToEmote(msg) {
             xn();
           break;
         case "addmem":
+          let optionsmenu;
           Fn(a["addmem"]),
             (optionsmenu.scrollTop = optionsmenu["clientHeight"]);
           break;
         case "ml":
+          let memberList;
           for (
             memberList = a.ml,
               document["getElementById"]("memberlist")["innerHTML"] = "",
@@ -2935,8 +2937,42 @@ function convertToEmote(msg) {
       });
     var zn = 0,
       qn = performance["now"](),
-      Yn = 0, Jn;
+      Yn = 0;
+    document.getElementById
+    ("rainbowmodeselect")
+    .onchange = function () {
+    if
+    (document.
+     querySelector
+      ("select#rainbowmodeselect")
+     .value = "Normal"
+    )
+    {
       Jn = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]
+    }
+    else if
+    (document.
+     querySelector
+      ("select#rainbowmodeselect")
+     .value = "Light"
+    )
+    {
+      Jn = [6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39]
+    }
+    else if
+    (document.
+     querySelector
+      ("select#rainbowmodeselect")
+     .value = "Dark"
+    )
+    {
+      Jn = [4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37]
+    }
+    vt(document.
+     querySelector
+      ("select#rainbowmodeselect")
+      .value)
+    };
     client.chat = {
       send: (msg) => {
         msg = msg.toString().slice(0, 400);
