@@ -2937,11 +2937,11 @@ function convertToEmote(msg) {
       });
     var zn = 0,
       qn = performance["now"](),
-      Yn = 0;
+      Yn = 0, Jn = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38];
     function rainbowModeChange(e) {
       var t = n;
-      var a = _.get(e);
-      if (a == null) {
+      if (((G = e), _["has"](G))){
+        var a = _.get(G);
         switch (a) {
           case "Normal":
             Jn = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]
@@ -2962,6 +2962,7 @@ function convertToEmote(msg) {
     .onchange = function (e) {
       var t = n;
       rainbowModeChange(e.target.value)
+      console.log(Jn)
     };
     client.chat = {
       send: (msg) => {
@@ -3033,7 +3034,6 @@ function convertToEmote(msg) {
             ir("Please log in before typing.", 3e3),
           0
         );
-      var Jn = [5,8,11,14,17,20,23,26,29,32,35,38];
       tt.rainbow["checked"] &&
         !r &&
         (mr(Jn[Yn]), ++Yn == Jn.length && (Yn = 0));
