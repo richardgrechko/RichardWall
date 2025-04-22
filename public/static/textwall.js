@@ -2864,7 +2864,7 @@ function convertToEmote(msg) {
     }
     function Hn() {
       var e = n;
-      (He.innerText = Ce.x + "," + -Ce.y),
+      (He.innerText = "X " + Ce.x + " Y " + -Ce.y),
         Ce.x + qe["offset"].x / v / 10 <= 0 &&
           Mn(10 * -Ce.x * v, qe["offset"].y),
         Ce.x + qe["offset"].x / v / 10 >= window["innerWidth"] / at / 10 - 1 &&
