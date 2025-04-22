@@ -2937,33 +2937,40 @@ function convertToEmote(msg) {
       });
     var zn = 0,
       qn = performance["now"](),
-      Yn = 0, Jn = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38], rainbowMode = "Normal";
+      Yn = 0, Jn = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38], rainbowMode = "Normal", rainbowModeMap = new Map();
+    class rainbowModeClass {
+      constructor(a,e) {
+        return new Map().get(a,e)
+      }
+    }
+    rainbowModeMap.set("Light",[6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39]),
+    rainbowModeMap.set("Normal",[5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]),
+    rainbowModeMap.set("Dark",[4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37]);
     function rainbowModeChange(e) {
       var t = n;
       if (((rainbowMode = e), _["has"](rainbowMode))){
-        var a = _.get(rainbowMode);
+        var a = rainbowModeMap.get(rainbowMode);
         switch (rainbowMode) {
           case "Normal":
-            a = _.set(e,[5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38])
+            a = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]
             break;
           case "Light":
-            a = _.set(e,[6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39])
+            a = [6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39]
             break;
           case "Dark":
-            a = _.set(e,[4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37])
+            a = [4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37]
             break;
           default:
-            a = _.set(e,[5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38])
+            a = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]
         }
       }
-      Jn = a
     }
     document.getElementById
     ("rainbowmodeselect")
     .onchange = function (e) {
       var t = n;
       rainbowModeChange(e.target.value)
-      console.log(Jn)
+      console.log(rainbowModeMap)
     };
     client.chat = {
       send: (msg) => {
