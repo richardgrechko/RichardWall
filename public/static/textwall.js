@@ -2937,12 +2937,12 @@ function convertToEmote(msg) {
       });
     var zn = 0,
       qn = performance["now"](),
-      Yn = 0, Jn = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38];
+      Yn = 0, Jn = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38], rainbowMode = "Normal";
     function rainbowModeChange(e) {
       var t = n;
-      if (((G = e), _["has"](G))){
-        var a = _.get(G);
-        switch (G) {
+      if (((rainbowMode = e), _["has"](rainbowMode))){
+        var a = _.get(rainbowMode);
+        switch (rainbowMode) {
           case "Normal":
             a = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]
             break;
