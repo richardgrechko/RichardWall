@@ -2937,32 +2937,32 @@ function convertToEmote(msg) {
       });
     var zn = 0,
       qn = performance["now"](),
-      Yn = 0, Jn = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38];
+      Yn = 0, Jn;
     function rainbowModeChange(e) {
       var t = n;
       if (((G = e), _["has"](G))){
         var a = _.get(G);
-        switch (a) {
+        switch (G) {
           case "Normal":
-            Jn = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]
+            a = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]
             break;
           case "Light":
-            Jn = [6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39]
+            a = [6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39]
             break;
           case "Dark":
-            Jn = [4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37]
+            a = [4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37]
             break;
           default:
-            Jn = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]
+            a = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]
         }
       }
+      return a
     }
-    rainbowModeChange(document.getElementById("rainbowmodeselect").value)
     document.getElementById
     ("rainbowmodeselect")
     .onchange = function (e) {
       var t = n;
-      rainbowModeChange(e.target.value)
+      Jn = rainbowModeChange(e.target.value)
       console.log(Jn)
     };
     client.chat = {
