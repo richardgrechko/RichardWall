@@ -2940,16 +2940,20 @@ function convertToEmote(msg) {
       Yn = 0;
     function rainbowModeChange(e) {
       var t = n;
-      if (null == a) {
-        switch (G) {
-          case "Unifont":
-            a = new r("/static/fonts/unifont-15.0.01.hex", Sn);
+      var a = _.get(e);
+      if (a == null) {
+        switch (a) {
+          case "Normal":
+            Jn = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]
             break;
-          case "Terminus":
-            a = new r("/static/fonts/terminus.hex", Sn);
+          case "Light":
+            Jn = [6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39]
+            break;
+          case "Dark":
+            Jn = [4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37]
             break;
           default:
-            a = new r("/static/fonts/fixed.hex", Sn);
+            Jn = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]
         }
       }
     }
@@ -2957,38 +2961,7 @@ function convertToEmote(msg) {
     ("rainbowmodeselect")
     .onchange = function (e) {
       var t = n;
-      document.
-     querySelector
-      ("select#rainbowmodeselect")
-     .value = e
-    if
-    (document.
-     querySelector
-      ("select#rainbowmodeselect")
-     .value = "Normal"
-    )
-    {
-      Jn = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38]
-    }
-    else if
-    (document.
-     querySelector
-      ("select#rainbowmodeselect")
-     .value = "Light"
-    )
-    {
-      Jn = [6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39]
-    }
-    else if
-    (document.
-     querySelector
-      ("select#rainbowmodeselect")
-     .value = "Dark"
-    )
-    {
-      Jn = [4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37]
-    }
-      rainbowModeChange(e)
+      rainbowModeChange(e.target.value)
     };
     client.chat = {
       send: (msg) => {
