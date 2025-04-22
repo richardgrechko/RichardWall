@@ -2349,20 +2349,24 @@ function convertToEmote(msg) {
       var o = t,
         i = document.getElementById("chatbox"),
         c = document["createElement"]("p"),
-        l = document.createElement("a");
+        l = document.createElement("a"),
+        s = document.createElement("msg");
       (l["innerText"] = name),
         (l.style["color"] = "#FFFFFF" == se[color] ? "#222222" : se[color]),
         registered &&
           ((l["href"] = "/@" + name), l.onclick = wn), // teleportTo is not defined glitch just doesnt know it right 
         (l.title = "(" + id + ")");
+      s.innerText = message;
       c["appendChild"](l),
-        c.appendChild(document.createTextNode(": " + message));
-      c.innerHTML = c.innerHTML.replace(
+      c.appendChild(document.createTextNode(": ")),
+      c.appendChild(s);
+      s.innerHTML = s.innerHTML.replace(
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
-        '<a href="$1" target="_blank">$1</a>'
-      ).replace(
-        /@/g,
-        '<a href="$1" target="_blank">$1</a>'
+        '<a href="/$1" target="_blank">$1</a>'
+      );
+      s.innerHTML = s.innerHTML.replace(
+        /(@[\w?=._-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
+        '<a href="/$1" target="_blank">$1</a>'
       );
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
