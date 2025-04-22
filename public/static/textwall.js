@@ -2957,6 +2957,7 @@ function convertToEmote(msg) {
         }
       }
     }
+    rainbowModeChange(document.getElementById("rainbowmodeselect").value)
     document.getElementById
     ("rainbowmodeselect")
     .onchange = function (e) {
