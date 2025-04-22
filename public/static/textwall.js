@@ -2361,10 +2361,6 @@ function convertToEmote(msg) {
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
         '<a href="$1" target="_blank">$1</a>'
       );
-      c.innerHTML = c.innerHTML.replace(
-        /@|{A-Z}{a-z}{0-9}/g,
-        '<a href="/$1">$1</a>'
-      );
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
       twemoji.parse(c, { base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/" }); // twemoji isnt defined
@@ -2544,7 +2540,12 @@ function convertToEmote(msg) {
             registered: T[3],
             id: T[4],
           });
-          addChat(T[0], T[1], T[2], T[3], T[4]);
+          if (muted)
+          {
+            addChat(T[0], T[1], T[2], T[3], T[4])
+          }
+          else
+{};
           break;
         case "rc":
           Pe["delete"](a.rc), (ge = !0), On();
@@ -2971,9 +2972,10 @@ function convertToEmote(msg) {
         a.send(Or({ msg }));
       },
     };
+    var muteTimer = 0, mutedUntil = (Date.now() + muteTimer), waitUntilUnmuted = Date.now()+(mutedUntil)/1000;
     var system = {
       onmute: () => {
-        addChat("System", 0, "You are muted", false, 0);
+        addChat("[SYSTEM]",0b101,"You are muted. Wait for " + waitUntilUnmuted.toFixed(2) + " seconds.",true,0);
       },
     };
     window.writeChar = Vn;
