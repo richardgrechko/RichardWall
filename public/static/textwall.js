@@ -2938,9 +2938,29 @@ function convertToEmote(msg) {
     var zn = 0,
       qn = performance["now"](),
       Yn = 0;
+    function rainbowModeChange(e) {
+      var t = n;
+      if (null == a) {
+        switch (G) {
+          case "Unifont":
+            a = new r("/static/fonts/unifont-15.0.01.hex", Sn);
+            break;
+          case "Terminus":
+            a = new r("/static/fonts/terminus.hex", Sn);
+            break;
+          default:
+            a = new r("/static/fonts/fixed.hex", Sn);
+        }
+      }
+    }
     document.getElementById
     ("rainbowmodeselect")
-    .onchange = function () {
+    .onchange = function (e) {
+      var t = n;
+      document.
+     querySelector
+      ("select#rainbowmodeselect")
+     .value = e
     if
     (document.
      querySelector
@@ -2968,10 +2988,7 @@ function convertToEmote(msg) {
     {
       Jn = [4, 7, 10, 13, 16, 19, 22, 25, 28, 31, 34, 37]
     }
-    vt(document.
-     querySelector
-      ("select#rainbowmodeselect")
-      .value)
+      rainbowModeChange(e)
     };
     client.chat = {
       send: (msg) => {
@@ -3043,6 +3060,7 @@ function convertToEmote(msg) {
             ir("Please log in before typing.", 3e3),
           0
         );
+      var Jn = [5,8,11,14,17,20,23,26,29,32,35,38];
       tt.rainbow["checked"] &&
         !r &&
         (mr(Jn[Yn]), ++Yn == Jn.length && (Yn = 0));
@@ -3138,6 +3156,7 @@ function convertToEmote(msg) {
             ir("Please log in before typing.", 3e3),
           0
         );
+      var Jn;
       tt.rainbow["checked"] &&
         color !== undefined &&
         !r &&
