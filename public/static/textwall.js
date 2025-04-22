@@ -2945,9 +2945,10 @@ function convertToEmote(msg) {
       }
     }
     function rainbowModeChange(e) {
-      var t = n, a;
+      var t = n;
       if (((rainbowMode = e), rainbowModeMap["has"](rainbowMode))){
         Jn = rainbowModeMap.get(rainbowMode);
+        localStorage["setItem"]("rainbowmode", rainbowMode);
       }
     }
     document.getElementById
@@ -2955,7 +2956,6 @@ function convertToEmote(msg) {
     .onchange = function (e) {
       var t = n;
       rainbowModeChange(e.target.value)
-      console.log(rainbowModeMap.get(e.target.value))
     };
     client.chat = {
       send: (msg) => {
