@@ -2361,6 +2361,10 @@ function convertToEmote(msg) {
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
         '<a href="$1" target="_blank">$1</a>'
       );
+      c.innerHTML = c.innerHTML.replace(
+        /@|{A-Z}{a-z}{0-9}/g,
+        '<a href="/$1">$1</a>'
+      );
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
       twemoji.parse(c, { base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/" }); // twemoji isnt defined
@@ -2969,7 +2973,7 @@ function convertToEmote(msg) {
     };
     var system = {
       onmute: () => {
-        a.send(Or({ msg: "You are muted" }));
+        addChat("System", 0, "You are muted", false, 0);
       },
     };
     window.writeChar = Vn;
