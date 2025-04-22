@@ -2935,18 +2935,18 @@ function convertToEmote(msg) {
       });
     var zn = 0,
       qn = performance["now"](),
-      Yn = 0, Jn = [5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35, 38], rainbowMode = "Normal", rainbowModeMap = new Map();
-    class rainbowModeClass {
-      constructor(a,e) {
-        return new Map().get(a,e)
-      }
-    }
+      Yn = 0, Jn = [0x5, 0x8, 0xB, 0xE, 0x11, 0x14, 0x17, 0x1A, 0x1D, 0x20, 0x23, 0x26], rainbowMode = "Normal", rainbowModeMap = new Map();
     rainbowModeMap.set("Light",[0x6, 0x9, 0xC, 0xF, 0x12, 0x15, 0x18, 0x1B, 0x1E, 0x21, 0x24, 0x27]),
     rainbowModeMap.set("Normal",[0x5, 0x8, 0xB, 0xE, 0x11, 0x14, 0x17, 0x1A, 0x1D, 0x20, 0x23, 0x26]),
     rainbowModeMap.set("Dark",[0x4, 0x7, 0xA, 0xD, 0x10, 0x13, 0x16, 0x19, 0x1C, 0x1F, 0x22, 0x25]);
+    class rainbowModeClass {
+      constructor(e,t) {
+        return rainbowMode.set(e,t)
+      }
+    }
     function rainbowModeChange(e) {
       var t = n, a;
-      if (((rainbowMode = e), _["has"](rainbowMode))){
+      if (((rainbowMode = e), rainbowModeMap["has"](rainbowMode))){
         Jn = rainbowModeMap.get(rainbowMode);
       }
     }
