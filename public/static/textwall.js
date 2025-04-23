@@ -2953,10 +2953,10 @@ function convertToEmote(msg) {
     function rainbowModeChange(e) {
       var t = n;
       if (((rainbowMode = e), rainbowModeMap["has"](rainbowMode))){
-        Jn = rainbowModeMap.get(rainbowMode),
-        localStorage["setItem"]("rainbowmode", rainbowMode),
-        (document.getElementById("rainbowmodeselect").value = rainbowMode);
+        Jn = rainbowModeMap.get(rainbowMode);
       }
+      localStorage["setItem"]("rainbowmode", rainbowMode),
+      (document.getElementById("rainbowmodeselect").value = rainbowMode);
     }
     document.getElementById
     ("rainbowmodeselect")
