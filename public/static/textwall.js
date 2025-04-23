@@ -2347,7 +2347,7 @@ function convertToEmote(msg) {
     window.addChat = addChat;
     window.clientMessage = clientMessage;
     function uppercase(e,t) {
-      if (t === true || t === 1) {
+      if (t == 1) {
         return e.toUpperCase()
       } else {
         return e
@@ -2357,12 +2357,13 @@ function convertToEmote(msg) {
       var r = n, listedWords = [], results = "";
       for (let a = 0; a < 2**t.length; a++) {
         for (let o = 0; o < t.length; o++) {
-          results += uppercase(t[o],(a).toString(2).padStart(t.length,0)[o])
+          results += uppercase(t[o],a.toString(2).padStart(t.length,0)[o])
         }
         listedWords.push(results)
         results = ""
         e = e.replaceAll(listedWords[a],"#".repeat(t.length))
       }
+      return e
     }
     function addChat(name, color, message, registered, id) {
       var o = t,
@@ -2383,10 +2384,13 @@ function convertToEmote(msg) {
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
         '<a href="/$1" target="_blank">$1</a>'
       );
-      s.innerHTML = s.innerHTML.replace(
-        /(@[\w?=._-]+(?![\w\s?&._-]*>))/g,
-        '<a href="/$1">$1</a>'
-      );
+      s.innerHTML = censor(s.innerHTML,"skibidi");
+      s.innerHTML = censor(s.innerHTML,"rizz");
+      s.innerHTML = censor(s.innerHTML,"rizzler");
+      s.innerHTML = censor(s.innerHTML,"gyatt");
+      s.innerHTML = censor(s.innerHTML,"sigma"); // sigma, beta and alpha will be censored due to gen alpha
+      s.innerHTML = censor(s.innerHTML,"beta");
+      s.innerHTML = censor(s.innerHTML,"alpha");
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
       twemoji.parse(c, { base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/" }); // twemoji isnt defined
