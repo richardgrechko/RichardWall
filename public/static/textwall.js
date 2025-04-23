@@ -2395,6 +2395,15 @@ function convertToEmote(msg) {
       s.innerHTML = censor(s.innerHTML,"beta");
       s.innerHTML = censor(s.innerHTML,"alpha");
       s.innerHTML = censor(s.innerHTML,"sprunki"); // save this game from brainrot pls
+      s.innerHTML = censor(s.innerHTML,"dandy's world");
+      s.innerHTML = censor(s.innerHTML,"numberblocks");
+      s.innerHTML = censor(s.innerHTML,);
+      s.innerHTML = censor(s.innerHTML,String.fromCharCode(110)+String.fromCharCode(105)+String.fromCharCode(97).repeat(2)+String.fromCharCode(101)+String.fromCharCode(114));
+      // to prevent censoring alphabet we have this
+      s.innerHTML = s.innerHTML.replace(
+        /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
+        '<a href="/$1" target="_blank">$1</a>'
+      );
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
       twemoji.parse(c, { base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/" }); // twemoji isnt defined
