@@ -812,6 +812,9 @@ function convertToEmote(msg) {
     function UppNums(e) {
       return "0123456789QWERTYUIOPASDFGHJKLZCVBNM"[Math["floor"](35 * e)]["codePointAt"]();
     }
+    function FailureA(e) {
+      return "0158ABHKZacdjnrt"[Math["floor"](35 * e)]["codePointAt"]();
+    }
     function Rt(e) {
       const t = Math.random();
       switch (e - 58112) {
