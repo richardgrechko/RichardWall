@@ -571,7 +571,7 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
             target="_blank"
             ><button>Edit Project</button></a
           ><br />
-          <button onclick='client.chat.send("/stop");'>Stop Server</button
+          <button onclick="client.chat.send(&quot;/stop&quot;);">Stop Server</button
           ><br />
           <textarea id="alerttext" placeholder="Announce a thing"></textarea
           ><br />
@@ -588,8 +588,13 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
             value="💨"
           /><br />
           <table id="admintable">
-            <button id="mute">
-              
+            <button onclick="
+            let userMute = prompt(&quot;What user would you mute?&quot;)
+            let muteDuration = parseInt(prompt(&quot;For how long?&quot;))
+            if (userMute === client.id) addChat(&quot;[SYSTEM]&quot;, 0b101, &quot;Why mute yourself?&quot;, true, 0)
+            if (muteDuration > 0) addChat(&quot;[SYSTEM]&quot;, 0b101, &quot;Muted &quot; + userMute + &quot; for &quot; + muteDuration + &quot; seconds.&quot;, true, 0)
+                             " id="mute">
+              Mute
             </button>
           </table>
         </div>
