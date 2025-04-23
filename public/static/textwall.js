@@ -2346,6 +2346,13 @@ function convertToEmote(msg) {
     }
     window.addChat = addChat;
     window.clientMessage = clientMessage;
+    function censor(e,t) {
+      var r = n, listedWords = [];
+      for (let i = 0; i < 2**t.length; i++) {
+        
+      }
+      e = e.replaceAll(t,"#".repeat(t.length))
+    }
     function addChat(name, color, message, registered, id) {
       var o = t,
         i = document.getElementById("chatbox"),
@@ -2368,10 +2375,6 @@ function convertToEmote(msg) {
       s.innerHTML = s.innerHTML.replace(
         /(@[\w?=._-]+(?![\w\s?&._-]*>))/g,
         '<a href="/$1">$1</a>'
-      );
-      s.innerHTML = s.innerHTML.replaceAll(
-        "skibidi",
-        "*******"
       );
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
