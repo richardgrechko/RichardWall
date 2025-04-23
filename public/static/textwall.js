@@ -2284,7 +2284,7 @@ function convertToEmote(msg) {
         }
         listedWords.push(results)
         results = ""
-        e = e.replaceAll(listedWords[a],"#".repeat(t.length))
+        e = e.replaceAll(listedWords[a],"".repeat(t.length))
       }
       return e
     }
