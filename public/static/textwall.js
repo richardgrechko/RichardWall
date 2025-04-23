@@ -2950,16 +2950,12 @@ function convertToEmote(msg) {
     rainbowModeMap.set("Light",[0x6, 0x9, 0xC, 0xF, 0x12, 0x15, 0x18, 0x1B, 0x1E, 0x21, 0x24, 0x27]),
     rainbowModeMap.set("Normal",[0x5, 0x8, 0xB, 0xE, 0x11, 0x14, 0x17, 0x1A, 0x1D, 0x20, 0x23, 0x26]),
     rainbowModeMap.set("Dark",[0x4, 0x7, 0xA, 0xD, 0x10, 0x13, 0x16, 0x19, 0x1C, 0x1F, 0x22, 0x25]);
-    class rainbowModeClass {
-      constructor(e,t) {
-        return rainbowMode.set(e,t)
-      }
-    }
     function rainbowModeChange(e) {
       var t = n;
       if (((rainbowMode = e), rainbowModeMap["has"](rainbowMode))){
-        Jn = rainbowModeMap.get(rainbowMode);
-        localStorage["setItem"]("rainbowmode", rainbowMode);
+        Jn = rainbowModeMap.get(rainbowMode),
+        localStorage["setItem"]("rainbowmode", rainbowMode),
+        (document.getElementById("rainbowmodeselect").value = rainbowMode);
       }
     }
     document.getElementById
