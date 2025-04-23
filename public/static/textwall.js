@@ -2369,6 +2369,10 @@ function convertToEmote(msg) {
         /(@[\w?=._-]+(?![\w\s?&._-]*>))/g,
         '<a href="/$1">$1</a>'
       );
+      s.innerHTML = s.innerHTML.replaceAll(
+        "skibidi",
+        "*******"
+      );
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
       twemoji.parse(c, { base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/" }); // twemoji isnt defined
