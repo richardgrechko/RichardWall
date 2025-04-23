@@ -219,20 +219,17 @@ function convertToEmote(msg) {
         "Cousine": 16,                                              
         "Consolas": 18,                                             
         "Ubuntu Mono": 19,                                          
-        "Inconsolata": 18,                                          
-        "CMU Typewriter Text": 19,                                  
+        "Inconsolata": 18,                                                                           
         "monospace": 18,                                            
         "Roboto Mono": 16,                                          
         "Source Code Pro": 17,                                                                            
-        "IBM Plex Mono": 16,                                        
-        "Segoe Mono Boot": 18,                                      
+        "IBM Plex Mono": 16,                                                                   
         "Anonymous Pro": 19,                                        
         "MS Gothic": 18,                                            
         "Chivo Mono": 17,                                           
         "Unifont": 0,                                              
         "Terminus": 0,                                             
-        "Lucida Console": 16,                                       
-        "Fragment Mono": 16,                                        
+        "Lucida Console": 16,                                                                      
         "DM Mono": 16,                                              
         "JetBrains Mono": 17,                                       
         "Cascadia Mono": 17,                                        
@@ -747,24 +744,9 @@ function convertToEmote(msg) {
     function Lt(e) {
       return "AIEOU"[Math["floor"](5 * e)].codePointAt();
     }
-    function Asymt(e) {
-      return "~!@#$%^&*()_+{}|:<>?`-=[];',./\"\\"[Math["floor"](32 * e)].codePointAt();
-    }
     function Ot(e) {
       var t = n;
       return "BCDFGHJKLMNPÞRSTVWXYZQ"[Math["floor"](22 * e)]["codePointAt"]();
-    }
-    function ArrowB(e) {
-      return "↕↔⤡⤢"[Math["floor"](4 * e)]["codePointAt"]();
-    }
-    function ArrowA(e) {
-      return "←↑→↓↖↗↘↙"[Math["floor"](8 * e)]["codePointAt"]();
-    }
-    function ArrowD(e) {
-      return "←↑→↓"[Math["floor"](4 * e)]["codePointAt"]();
-    }
-    function ArrowC(e) {
-      return "←↑→↓↔↕↖↗↘↙⤡⤢"[Math["floor"](12 * e)]["codePointAt"]();
     }
     function BinaryA(e) {
       return "01"[Math["floor"](2 * e)]["codePointAt"]();
@@ -775,9 +757,6 @@ function convertToEmote(msg) {
     function HexB(e) {
       return "0123456789abcdef"[Math["floor"](16 * e)]["codePointAt"]();
     }
-    function BrailleA(e) {
-      return 10240 + Math.floor(256 * e);
-    }
     function LNums(e) {
       return "0123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm"[Math["floor"](62 * e)]["codePointAt"]();
     }
@@ -786,6 +765,9 @@ function convertToEmote(msg) {
     }
     function UppNums(e) {
       return "0123456789QWERTYUIOPASDFGHJKLZCVBNM"[Math["floor"](35 * e)]["codePointAt"]();
+    }
+    function OBreak(e) {
+      return "oooooooooooooooo"[Math["floor"](16 * e)]["codePointAt"]();
     }
     function Rt(e) {
       const t = Math.random();
@@ -816,26 +798,8 @@ function convertToEmote(msg) {
           return Ot(t) + 32;
         case 12:
           return Ot(t);
-        case 16:
-          return ArrowA(t);
-        case 17:
-          return ArrowB(t);
-        case 18:
-          return ArrowC(t);
-        case 19:
-          return ArrowD(t);
-        case 20:
-          return BinaryA(t);
-        case 21:
-          return HexA(t);
-        case 22:
-          return HexB(t);
-        case 26:
-          return BrailleA(t);
-        case 27:
-          return Asymt(t);
       }
-      return FullUniA(t);
+      return OBreak(t*1.01);
     }
     function Dt(e) {
       return (e + 2) % 20 < 2;
