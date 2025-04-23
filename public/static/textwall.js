@@ -2361,8 +2361,7 @@ function convertToEmote(msg) {
         }
         listedWords.push(results)
         results = ""
-        if (e.includes("alphabet")) e = e.replaceAll(listedWords[a],listedWords[a])
-        if (!e.includes("alphabet")) e = e.replaceAll(listedWords[a],"#".repeat(t.length))
+        e = e.replaceAll(listedWords[a],"#".repeat(t.length))
       }
       return e
     }
