@@ -359,7 +359,7 @@ function convertToEmote(msg) {
       ],
       de = [
         "black/white",
-        "Dark Gray",
+        "Dark gray",
         "Gray",
         "Light Gray",
         "Ruby",
