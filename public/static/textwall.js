@@ -2346,12 +2346,23 @@ function convertToEmote(msg) {
     }
     window.addChat = addChat;
     window.clientMessage = clientMessage;
-    function censor(e,t) {
-      var r = n, listedWords = [];
-      for (let i = 0; i < 2**t.length; i++) {
-        
+    function uppercase(e,t) {
+      if (t === true || t === 1) {
+        return e.toUpperCase()
+      } else {
+        return e
       }
-      e = e.replaceAll(t,"#".repeat(t.length))
+    }
+    function censor(e,t) {
+      var r = n, listedWords = [], results = "";
+      for (let a = 0; a < 2**t.length; a++) {
+        for (let o = 0; o < t.length; o++) {
+          results += uppercase(t[o],(a).toString(2).padStart(t.length,0)[o])
+        }
+        listedWords.push(results)
+        results = ""
+        e = e.replaceAll(listedWords[a],"#".repeat(t.length))
+      }
     }
     function addChat(name, color, message, registered, id) {
       var o = t,
