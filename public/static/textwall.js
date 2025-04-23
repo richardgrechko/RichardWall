@@ -2339,8 +2339,11 @@ function convertToEmote(msg) {
         u && gn(),
         hn["classList"]["contains"]("open") || yn["classList"]["add"]("show");
     }
+    function usersMessage(msg,user) {
+      addChat(user, 0, msg, false, 0);
+    }
     function clientMessage(msg) {
-      addChat("Client", 0, msg, false, 0);
+      usersMessage(msg,"Client")
     }
     function Tn(e) {
       var t = n,
