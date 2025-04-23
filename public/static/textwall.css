@@ -598,7 +598,7 @@ td {
 }
 @font-face {
   font-family: special;
-  src: url(https://cdn.glitch.global/32dadb8b-db6a-421e-8c38-70fd74a12607/special.otf?v=1744635266528);
+  src: url(fonts/special.ttf?v=10);
   }
 @font-face {
   font-family: lucida console;
