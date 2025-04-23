@@ -2384,13 +2384,17 @@ function convertToEmote(msg) {
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
         '<a href="/$1" target="_blank">$1</a>'
       );
+      // main brainrot words will be censored
       s.innerHTML = censor(s.innerHTML,"skibidi");
-      s.innerHTML = censor(s.innerHTML,"rizz");
       s.innerHTML = censor(s.innerHTML,"rizzler");
+      s.innerHTML = censor(s.innerHTML,"rizz");
       s.innerHTML = censor(s.innerHTML,"gyatt");
-      s.innerHTML = censor(s.innerHTML,"sigma"); // sigma, beta and alpha will be censored due to gen alpha
+      s.innerHTML = censor(s.innerHTML,"gyat");
+      s.innerHTML = censor(s.innerHTML,"ohio"); // if this is where you live, i am sorry
+      s.innerHTML = censor(s.innerHTML,"sigma"); // sigma, beta and alpha will be censored due to them being gen alpha words
       s.innerHTML = censor(s.innerHTML,"beta");
       s.innerHTML = censor(s.innerHTML,"alpha");
+      s.innerHTML = censor(s.innerHTML,"sprunki"); // save this game from brainrot pls
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
       twemoji.parse(c, { base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/" }); // twemoji isnt defined
