@@ -223,8 +223,7 @@ function convertToEmote(msg) {
         "CMU Typewriter Text": 19,                                  
         "monospace": 18,                                            
         "Roboto Mono": 16,                                          
-        "Source Code Pro": 17,                                      
-        "Noto Sans Mono": 16,                                       
+        "Source Code Pro": 17,                                                                            
         "IBM Plex Mono": 16,                                        
         "Segoe Mono Boot": 18,                                      
         "Anonymous Pro": 19,                                        
@@ -755,15 +754,6 @@ function convertToEmote(msg) {
       var t = n;
       return "BCDFGHJKLMNPÞRSTVWXYZQ"[Math["floor"](22 * e)]["codePointAt"]();
     }
-    function IPAA(e) {
-      return "aäæɐɑɒʌeɘəɚɛɜɝɞiɨɪoøœɔɵɶuʉʊɯyɤɥʏ"[Math["floor"](32 * e)]["codePointAt"]();
-    }
-    function IPAB(e) {
-      return "bɓʙꞵcçɕdðɖɗʣʥʤᶑfgɠɡɢɣʛhħɦɧʜjɟʝklɫɬɭɮʟmɱnŋɲɳɴθpþɸqrɹɺɻɽɾʀʁsʂʃʄtʈʦʧvʋⱱwɰʍxχzʐʑʒǀǂǃʘʔʡʕʢ"[Math["floor"](76 * e)]["codePointAt"]();
-    }
-    function IPAC(e) {
-      return "aäæɐɑɒʌeɘəɚɛɜɝɞiɨɪoøœɔɵɶuʉʊɯyɤɥʏbɓʙꞵcçɕdðɖɗʣʥʤᶑfgɠɡɢɣʛhħɦɧʜjɟʝklɫɬɭɮʟmɱnŋɲɳɴθpþɸqrɹɺɻɽɾʀʁsʂʃʄtʈʦʧvʋⱱwɰʍxχzʐʑʒǀǂǃʘʔʡʕʢ"[Math["floor"](116 * e)]["codePointAt"]();
-    }
     function ArrowB(e) {
       return "↕↔⤡⤢"[Math["floor"](4 * e)]["codePointAt"]();
     }
@@ -785,23 +775,8 @@ function convertToEmote(msg) {
     function HexB(e) {
       return "0123456789abcdef"[Math["floor"](16 * e)]["codePointAt"]();
     }
-    function ToneA(e) {
-      return "˥˦˧˨˩"[Math["floor"](5 * e)]["codePointAt"]();
-    }
-    function SegA(e) {
-      return 130032 + Math.floor(10 * e);
-    }
-    function SegB(e) {
-      return 130032 + Math.floor(2 * e);
-    }
     function BrailleA(e) {
       return 10240 + Math.floor(256 * e);
-    }
-    function HexagramA(e) {
-      return 19904 + Math.floor(64 * e);
-    }
-    function FullUniA(e) {
-      return Math.floor(65535 * e);
     }
     function LNums(e) {
       return "0123456789QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm"[Math["floor"](62 * e)]["codePointAt"]();
@@ -811,9 +786,6 @@ function convertToEmote(msg) {
     }
     function UppNums(e) {
       return "0123456789QWERTYUIOPASDFGHJKLZCVBNM"[Math["floor"](35 * e)]["codePointAt"]();
-    }
-    function FailureA(e) {
-      return "0158ABHKZacdjnrt"[Math["floor"](35 * e)]["codePointAt"]();
     }
     function Rt(e) {
       const t = Math.random();
@@ -844,12 +816,6 @@ function convertToEmote(msg) {
           return Ot(t) + 32;
         case 12:
           return Ot(t);
-        case 13:
-          return IPAA(t);
-        case 14:
-          return IPAB(t);
-        case 15:
-          return IPAC(t);
         case 16:
           return ArrowA(t);
         case 17:
@@ -864,18 +830,10 @@ function convertToEmote(msg) {
           return HexA(t);
         case 22:
           return HexB(t);
-        case 23:
-          return SegA(t);
-        case 24:
-          return SegB(t);
-        case 25:
-          return ToneA(t);
         case 26:
           return BrailleA(t);
         case 27:
           return Asymt(t);
-        case 28:
-          return HexagramA(t);
       }
       return FullUniA(t);
     }
