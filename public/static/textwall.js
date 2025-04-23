@@ -2361,7 +2361,8 @@ function convertToEmote(msg) {
         }
         listedWords.push(results)
         results = ""
-        e = e.replaceAll(listedWords[a],"#".repeat(t.length))
+        if (e.includes("alphabet")) e = e.replaceAll(listedWords[a],listedWords[a])
+        if (!e.includes("alphabet")) e = e.replaceAll(listedWords[a],"#".repeat(t.length))
       }
       return e
     }
@@ -2393,13 +2394,14 @@ function convertToEmote(msg) {
       s.innerHTML = censor(s.innerHTML,"ohio"); // if this is where you live, i am sorry
       s.innerHTML = censor(s.innerHTML,"sigma"); // sigma, beta and alpha will be censored due to them being gen alpha words
       s.innerHTML = censor(s.innerHTML,"beta");
-      s.innerHTML = censor(s.innerHTML,"alpha");
+      s.innerHTML = censor(s.innerHTML,"alpha"); // alphabet wouldn't have been censored
+      s.innerHTML = censor(s.innerHTML,"hawk tuah");
       s.innerHTML = censor(s.innerHTML,"sprunki"); // save this game from brainrot pls
       s.innerHTML = censor(s.innerHTML,"dandy's world");
       s.innerHTML = censor(s.innerHTML,"numberblocks");
-      s.innerHTML = censor(s.innerHTML,);
-      s.innerHTML = censor(s.innerHTML,String.fromCharCode(110)+String.fromCharCode(105)+String.fromCharCode(97).repeat(2)+String.fromCharCode(101)+String.fromCharCode(114));
-      // to prevent censoring alphabet we have this
+      s.innerHTML = censor(s.innerHTML,atob('bmlnZ2E='));
+      s.innerHTML = censor(s.innerHTML,atob('bmlnZ2Vy'));
+      s.innerHTML = censor(s.innerHTML,atob('eXVuYQ=='));
       s.innerHTML = s.innerHTML.replace(
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
         '<a href="/$1" target="_blank">$1</a>'
