@@ -2284,7 +2284,7 @@ function convertToEmote(msg) {
         }
         listedWords.push(results)
         results = ""
-        e = e.replaceAll(listedWords[a],"".repeat(t.length))
+        e = e.replaceAll(listedWords[a],"*".repeat(t.length))
       }
       return e
     }
@@ -2321,6 +2321,8 @@ function convertToEmote(msg) {
       s.innerHTML = censor(s.innerHTML,"sprunki"); // save this game from brainrot pls
       s.innerHTML = censor(s.innerHTML,"dandy's world");
       s.innerHTML = censor(s.innerHTML,"numberblocks");
+      s.innerHTML = censor(s.innerHTML,"pedophile");
+      s.innerHTML = censor(s.innerHTML,"pedo");
       s.innerHTML = censor(s.innerHTML,atob('bmlnZ2E='));
       s.innerHTML = censor(s.innerHTML,atob('bmlnZ2Vy'));
       s.innerHTML = censor(s.innerHTML,atob('eXVuYQ=='));
