@@ -2243,87 +2243,35 @@ function convertToEmote(msg) {
     }
     window.addChat = addChat;
     window.clientMessage = clientMessage;
-    function uppercase(e,t) {
-      if (t == 1) {
-        return e.toUpperCase()
-      } else {
-        return e
-      }
-    }
-    function censor(e,t,replaceLetter) {
-      var r = n, listedWords = [], results = "";
-      for (let a = 0; a < 2**t.length; a++) {
-        for (let o = 0; o < t.length; o++) {
-          results += uppercase(t[o],a.toString(2).padStart(t.length,0)[o])
-        }
-        listedWords.push(results)
-        results = ""
-        if (replaceLetter == 0) {
-          e = e.replaceAll(listedWords[a],"*".repeat(t.length))
-        } else {
-          e = e.replaceAll(listedWords[a],replaceLetter.repeat(1))
-        }
-      }
-      return e
-    }
     function addChat(name, color, message, registered, id) {
       var o = t,
         i = document.getElementById("chatbox"),
         c = document["createElement"]("p"),
-        l = document.createElement("a"),
-        s = document.createElement("msg");
+        l = document.createElement("a");
       (l["innerText"] = name),
         (l.style["color"] = "#FFFFFF" == se[color] ? "#222222" : se[color]),
         registered &&
-          ((l["href"] = "/@" + name), l.onclick = wn), // teleportTo is not defined glitch just doesnt know it right 
+          ((l["href"] = "/~" + name), l.onclick = wn), // teleportTo is not defined glitch just doesnt know it right 
         (l.title = "(" + id + ")");
-      s.innerText = message;
       c["appendChild"](l),
-      c.appendChild(document.createTextNode(": ")),
-      c.appendChild(s);
-      s.innerHTML = s.innerHTML.replace(
+        c.appendChild(document.createTextNode(": " + message));
+      c.innerHTML = c.innerHTML.replace(
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
-        '<a href="/$1" target="_blank">$1</a>'
-      );
-      // main brainrot words will be censored
-      s.innerHTML = censor(s.innerHTML,"skibidi", 0);
-      s.innerHTML = censor(s.innerHTML,"rizzler", 0);
-      s.innerHTML = censor(s.innerHTML,"rizz", "charisma");
-      s.innerHTML = censor(s.innerHTML,"gyatt", "ass");
-      s.innerHTML = censor(s.innerHTML,"gyat", "ass");
-      s.innerHTML = censor(s.innerHTML,"ohio", "united states state"); // if this is where you live, i am sorry
-      s.innerHTML = censor(s.innerHTML,"sigma", "greek s"); // sigma, beta and alpha will be censored due to them being gen alpha words
-      s.innerHTML = censor(s.innerHTML,"beta", "greek b");
-      s.innerHTML = censor(s.innerHTML,"alphabet", "alphаbet");
-      s.innerHTML = censor(s.innerHTML,"alpha", "greek a"); // alphabet wouldn't have been censored
-      s.innerHTML = censor(s.innerHTML,"haԝk tuah", 0);
-      s.innerHTML = censor(s.innerHTML,"sprunki", 0); // save this game from brainrot pls
-      s.innerHTML = censor(s.innerHTML,"dandy's world", "cringe game");
-      s.innerHTML = censor(s.innerHTML,"numberblocks", "cringe cartoon");
-      s.innerHTML = censor(s.innerHTML,"pedophile", "kid toucher");
-      s.innerHTML = censor(s.innerHTML,"pedo", "kid");
-      s.innerHTML = censor(s.innerHTML,atob('bmlnZ2E='), "black girl");
-      s.innerHTML = censor(s.innerHTML,atob('bmlnZ2Vy'), "black boy");
-      s.innerHTML = censor(s.innerHTML,atob('eXVuYQ=='), atob('bmlnZ2Vy')); // what is this
-      s.innerHTML = s.innerHTML.replace(
-        /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
-        '<a href="/$1" target="_blank">$1</a>'
+        '<a href="$1" target="_blank">$1</a>'
       );
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
-      twemoji.parse(c, { base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/" }); // twemoji isnt defined
+      twemoji.parse(c, { base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/" });
       c.innerHTML = convertToEmote(c.innerHTML);
       c.childNodes[0].onclick = l.onclick;
       i.appendChild(c),
         u && gn(),
         hn["classList"]["contains"]("open") || yn["classList"]["add"]("show");
     }
-    function usersMessage(msg,user) {
-      addChat(user, 0, msg, false, 0);
-    }
     function clientMessage(msg) {
-      usersMessage(msg,"Client")
+      addChat("Client", 0, msg, false, 0);
     }
+    
     function Tn(e) {
       var t = n,
         r = new Uint8Array(e["data"]).buffer,
@@ -2344,12 +2292,12 @@ function convertToEmote(msg) {
             "textwall" == W && (nt["private"]["disabled"] = !0),
             "textwall" != W
               ? "main" != H
-                ? ((o = "/@" + W + "/" + H), history["pushState"]({}, null, o))
-                : ((o = "/@" + W), history["pushState"]({}, null, o))
+                ? ((o = "/~" + W + "/" + H), history["pushState"]({}, null, o))
+                : ((o = "/~" + W), history["pushState"]({}, null, o))
               : ((o = "/"),
-                Pr()["startsWith"]("@") && history["pushState"]({}, null, o),
+                Pr()["startsWith"]("~") && history["pushState"]({}, null, o),
                 (J["style"]["display"] = "none")),
-            client.emit("wallchange", getWallName()); // getwallname isnt defined
+            client.emit("wallchange", getWallName());
           (Gt = !1),
             (he = setInterval(Qt, 250)),
             (ye = setInterval(_t, 2e3)),
@@ -2491,11 +2439,7 @@ function convertToEmote(msg) {
             registered: T[3],
             id: T[4],
           });
-          if (client.waitUntilUnmuted > client.mutedUntil) {
-            system.mutedMessage()
-          } else {
-            addChat(T[0], T[1], T[2], T[3], T[4])
-          }
+          addChat(T[0], T[1], T[2], T[3], T[4]);
           break;
         case "rc":
           Pe["delete"](a.rc), (ge = !0), On();
@@ -2573,12 +2517,10 @@ function convertToEmote(msg) {
             xn();
           break;
         case "addmem":
-          let optionsmenu;
           Fn(a["addmem"]),
             (optionsmenu.scrollTop = optionsmenu["clientHeight"]);
           break;
         case "ml":
-          let memberList;
           for (
             memberList = a.ml,
               document["getElementById"]("memberlist")["innerHTML"] = "",

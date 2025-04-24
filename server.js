@@ -1349,6 +1349,10 @@ function init_ws() {
           else stopServer();
           return;
         }
+        if (
+          ["/8ball"].includes(cmd)) {
+          addChat("8ball", Math.floor(Math.random()*31),eightballmessages[Math.floor(Math.random()*31)],false,26619);
+        }
         if (["/maintenance"].includes(cmd) && sdata.isAdmin) {
           var maintenanceMode = 1;
           return;
