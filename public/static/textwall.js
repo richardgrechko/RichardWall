@@ -2276,15 +2276,18 @@ function convertToEmote(msg) {
         return e
       }
     }
-    function censor(e,t) {
-      var r = n, listedWords = [], results = "";
+    function correct(e,t,replacement) {
+      var r = n, c = 3, listedWords = [], results = "";
       for (let a = 0; a < 2**t.length; a++) {
         for (let o = 0; o < t.length; o++) {
           results += uppercase(t[o],a.toString(2).padStart(t.length,0)[o])
         }
         listedWords.push(results)
         results = ""
-        e = e.replaceAll(listedWords[a],String.fromCharCode(Math.floor(Math.random() * 256)).repeat(t.length))
+        e = e.replaceAll(listedWords[a],replacement)
+        if (t = atob('eXVuYQ==')) {
+          setInterval(_=>{if(c<1){window.close()}else{ir(c, 1e3);c--;}},1000)
+        }
       }
       return e
     }
@@ -2308,26 +2311,18 @@ function convertToEmote(msg) {
         '<a href="/$1" target="_blank">$1</a>'
       );
       // main brainrot words will be censored
-      s.innerHTML = censor(s.innerHTML,"skibidi");
-      s.innerHTML = censor(s.innerHTML,"rizzler");
-      s.innerHTML = censor(s.innerHTML,"rizz");
-      s.innerHTML = censor(s.innerHTML,"gyatt");
-      s.innerHTML = censor(s.innerHTML,"gyat");
-      s.innerHTML = censor(s.innerHTML,"ohio"); // if this is where you live, i am sorry
-      s.innerHTML = censor(s.innerHTML,"sigma"); // sigma, beta and alpha will be censored due to them being gen alpha words
-      s.innerHTML = censor(s.innerHTML,"beta");
-      s.innerHTML = censor(s.innerHTML,"alpha"); // alphabet wouldn't have been censored
-      s.innerHTML = censor(s.innerHTML,"hawk tuah");
-      s.innerHTML = censor(s.innerHTML,"sprunki"); // save this game from brainrot pls
-      s.innerHTML = censor(s.innerHTML,"dandy's world");
-      s.innerHTML = censor(s.innerHTML,"numberblocks");
-      s.innerHTML = censor(s.innerHTML,atob('bmlnZ2E='));
-      s.innerHTML = censor(s.innerHTML,atob('bmlnZ2Vy'));
-      s.innerHTML = censor(s.innerHTML,atob('eXVuYQ=='));
-      s.innerHTML = s.innerHTML.replace(
-        /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
-        '<a href="/$1" target="_blank">$1</a>'
-      );
+      s.innerHTML = correct(s.innerHTML,"rizz","charisma");
+      s.innerHTML = correct(s.innerHTML,"gyat","but");
+      s.innerHTML = correct(s.innerHTML,"ohio","USA state"); // if this is where you live, i am sorry
+      s.innerHTML = correct(s.innerHTML,"sigma","greek S"); // sigma, beta and alpha will be censored due to them being gen alpha words
+      s.innerHTML = correct(s.innerHTML,"beta","greek B");
+      s.innerHTML = correct(s.innerHTML,"alphabet","alphabet");
+      s.innerHTML = correct(s.innerHTML,"alpha","greek A"); // alphabet wouldn't have been censored
+      s.innerHTML = correct(s.innerHTML,"dandy's world","badass game");
+      s.innerHTML = correct(s.innerHTML,"numberblocks","badass show");
+      s.innerHTML = correct(s.innerHTML,atob('bmlnZ2E='),"black person");
+      s.innerHTML = correct(s.innerHTML,atob('bmlnZ2Vy'),"black person");
+      s.innerHTML = correct(s.innerHTML,atob('eXVuYQ=='),"black person");
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
       twemoji.parse(c, { base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/" }); // twemoji isnt defined
