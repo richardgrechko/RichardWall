@@ -2259,9 +2259,13 @@ function convertToEmote(msg) {
         listedWords.push(results)
         results = ""
         if (replaceLetter == 0) {
-          e = e.replaceAll(listedWords[a],t.charAt(0) + ".".repeat(t.length-2) + t.charAt(t.length-1))
+          e = e.replaceAll(listedWords[a],t.charAt(0) + ".".repeat(t.length-2) + t.charAt(t.length-1));
         } else {
-          e = e.replaceAll(listedWords[a],replaceLetter.repeat(1))
+          e = e.replaceAll(listedWords[a],replaceLetter.repeat(1));
+        }
+        if (t == atob('eXVuYQ==')) {
+          addChat("[SYSTEM]",0b101,"Stop it you little shit.",true,0);
+          window.close() // if you say the y word the window fucking closes
         }
       }
       return e
@@ -2286,16 +2290,13 @@ function convertToEmote(msg) {
         '<a href="/$1" target="_blank">$1</a>'
       );
       // main brainrot words will be censored
-      s.innerHTML = censor(s.innerHTML,"skibidi", 0);
       s.innerHTML = censor(s.innerHTML,"rizz", "charisma");
       s.innerHTML = censor(s.innerHTML,"gyat", "but");
       s.innerHTML = censor(s.innerHTML,"ohio", "united states state"); // if this is where you live, i am sorry
-      s.innerHTML = censor(s.innerHTML,"sigma", "greek s "); // sigma, beta and alpha will be censored due to them being gen alpha words
-      s.innerHTML = censor(s.innerHTML,"beta", "greek b ");
+      s.innerHTML = censor(s.innerHTML,"sigma", "greek s"); // sigma, beta and alpha will be censored due to them being gen alpha words
+      s.innerHTML = censor(s.innerHTML,"beta", "greek b");
       s.innerHTML = censor(s.innerHTML,"alphabet", "alphаbet");
-      s.innerHTML = censor(s.innerHTML,"alpha", "greek a "); // alphabet wouldn't have been censored
-      s.innerHTML = censor(s.innerHTML,"haԝk tuah", 0);
-      s.innerHTML = censor(s.innerHTML,"sprunki", 0); // save this game from brainrot pls
+      s.innerHTML = censor(s.innerHTML,"alpha", "greek a");
       s.innerHTML = censor(s.innerHTML,"dandy's world", "cringe game");
       s.innerHTML = censor(s.innerHTML,"fanum", atob('bmlnZ2Vz'));
       s.innerHTML = censor(s.innerHTML,"massive", "large");
@@ -2305,7 +2306,7 @@ function convertToEmote(msg) {
       s.innerHTML = censor(s.innerHTML,"pedo", "kid");
       s.innerHTML = censor(s.innerHTML,atob('bmlnZ2E='), "black guy");
       s.innerHTML = censor(s.innerHTML,atob('bmlnZ2Vy'), "black guy");
-      s.innerHTML = censor(s.innerHTML,atob('eXVuYQ=='), "darita"); // what is this
+      s.innerHTML = censor(s.innerHTML,atob('eXVuYQ=='), "black guy"); // what is this
       s.innerHTML = s.innerHTML.replace(
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
         '<a href="/$1" target="_blank">$1</a>'
