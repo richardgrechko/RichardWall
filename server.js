@@ -971,7 +971,7 @@ function init_ws() {
             return;
           }
         }
-        addChat(`${sdata.isAuthenticated ? sdata.authUser : sdata.clientId} has joined`,0,"",false,0)
+        
         webhookSend(process.env.joinlogurl, {
             content: `${sdata.isAuthenticated ? sdata.authUser : sdata.clientId} has joined`,
           }, 2);
@@ -1348,10 +1348,6 @@ function init_ws() {
             }).then(stopServer);
           else stopServer();
           return;
-        }
-        if (
-          ["/8ball"].includes(cmd)) {
-          addChat("8ball", Math.floor(Math.random()*31),eightballmessages[Math.floor(Math.random()*20)],false,26619);
         }
         if (["/maintenance"].includes(cmd) && sdata.isAdmin) {
           var maintenanceMode = 1;
