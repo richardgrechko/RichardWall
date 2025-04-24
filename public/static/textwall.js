@@ -912,16 +912,42 @@ function convertToEmote(msg) {
                       if (
                         (4 & T && ((L = !0), Ht(e)),
                         (h = B) >= 58112 &&
-                          h <= 58124 &&
+                          h <= 58161 &&
                           ((B = Rt(B)), (S = String["fromCodePoint"](B))),
                         ((u = B) >= 9472 &&
                           u <= 9632 &&
                           !(u >= 9476 && u <= 9483) &&
                           !(u >= 9548 && u <= 9551)) ||
-                          (u >= 9698 && u <= 9701) ||
+                          (u >= 117760 && u <= 118527) ||
+                          (u >= 129792 && u <= 130031) ||
+                         (u >= 9698 && u <= 9701) ||
                           qr(B))
                       )
                         (e["font"] = Math["round"](20 * y) + "px Special"),
+                          e["fillText"](
+                            S,
+                            Math["round"](w),
+                            Math["floor"](M + 15 * y)
+                          );
+                      if (
+                        (4 & T && ((L = !0), Ht(e)),
+                        (h = B) >= 58112 &&
+                          h <= 58161 &&
+                          ((B = Rt(B)), (S = String["fromCodePoint"](B))),
+                        ((u = B) >= 12320 &&
+                          u <= 40959 &&
+                          !(u >= 19904 && u <= 19967) &&
+                          !(u >= 9548 && u <= 9551)) ||
+                          (u >= 43360 && u <= 43391) ||
+                          (u >= 44032 && u <= 55291) ||
+                          (u >= 65072 && u <= 65103) ||
+                          (u >= 9312 && u <= 9471) ||
+                          (u >= 10102 && u <= 10131) ||
+                          (u >= 11904 && u <= 12287) ||
+                          (u >= 127488 && u <= 127743) ||
+                          (u >= 63744 && u <= 64255))
+                      )
+                        (e["font"] = Math["round"](10 * y) + "px MS Gothic"),
                           e["fillText"](
                             S,
                             Math["round"](w),
@@ -2250,7 +2276,7 @@ function convertToEmote(msg) {
         return e
       }
     }
-    function censor(e,t,replaceLetter) {
+    function censor(e,t) {
       var r = n, listedWords = [], results = "";
       for (let a = 0; a < 2**t.length; a++) {
         for (let o = 0; o < t.length; o++) {
@@ -2258,11 +2284,7 @@ function convertToEmote(msg) {
         }
         listedWords.push(results)
         results = ""
-        if (replaceLetter == 0) {
-          e = e.replaceAll(listedWords[a],"*".repeat(t.length))
-        } else {
-          e = e.replaceAll(listedWords[a],replaceLetter.repeat(1))
-        }
+        e = e.replaceAll(listedWords[a],"".repeat(t.length))
       }
       return e
     }
@@ -2286,25 +2308,22 @@ function convertToEmote(msg) {
         '<a href="/$1" target="_blank">$1</a>'
       );
       // main brainrot words will be censored
-      s.innerHTML = censor(s.innerHTML,"skibidi", 0);
-      s.innerHTML = censor(s.innerHTML,"rizzler", 0);
-      s.innerHTML = censor(s.innerHTML,"rizz", "charisma");
-      s.innerHTML = censor(s.innerHTML,"gyatt", "ass");
-      s.innerHTML = censor(s.innerHTML,"gyat", "ass");
-      s.innerHTML = censor(s.innerHTML,"ohio", "united states state"); // if this is where you live, i am sorry
-      s.innerHTML = censor(s.innerHTML,"sigma", "greek s"); // sigma, beta and alpha will be censored due to them being gen alpha words
-      s.innerHTML = censor(s.innerHTML,"beta", "greek b");
-      s.innerHTML = censor(s.innerHTML,"alphabet", "alphаbet");
-      s.innerHTML = censor(s.innerHTML,"alpha", "greek a"); // alphabet wouldn't have been censored
-      s.innerHTML = censor(s.innerHTML,"haԝk tuah", 0);
-      s.innerHTML = censor(s.innerHTML,"sprunki", 0); // save this game from brainrot pls
-      s.innerHTML = censor(s.innerHTML,"dandy's world", "cringe game");
-      s.innerHTML = censor(s.innerHTML,"numberblocks", "cringe cartoon");
-      s.innerHTML = censor(s.innerHTML,"pedophile", "kid toucher");
-      s.innerHTML = censor(s.innerHTML,"pedo", "kid");
-      s.innerHTML = censor(s.innerHTML,atob('bmlnZ2E='), "black girl");
-      s.innerHTML = censor(s.innerHTML,atob('bmlnZ2Vy'), "black boy");
-      s.innerHTML = censor(s.innerHTML,atob('eXVuYQ=='), atob('bmlnZ2Vy')); // what is this
+      s.innerHTML = censor(s.innerHTML,"skibidi");
+      s.innerHTML = censor(s.innerHTML,"rizzler");
+      s.innerHTML = censor(s.innerHTML,"rizz");
+      s.innerHTML = censor(s.innerHTML,"gyatt");
+      s.innerHTML = censor(s.innerHTML,"gyat");
+      s.innerHTML = censor(s.innerHTML,"ohio"); // if this is where you live, i am sorry
+      s.innerHTML = censor(s.innerHTML,"sigma"); // sigma, beta and alpha will be censored due to them being gen alpha words
+      s.innerHTML = censor(s.innerHTML,"beta");
+      s.innerHTML = censor(s.innerHTML,"alpha"); // alphabet wouldn't have been censored
+      s.innerHTML = censor(s.innerHTML,"hawk tuah");
+      s.innerHTML = censor(s.innerHTML,"sprunki"); // save this game from brainrot pls
+      s.innerHTML = censor(s.innerHTML,"dandy's world");
+      s.innerHTML = censor(s.innerHTML,"numberblocks");
+      s.innerHTML = censor(s.innerHTML,atob('bmlnZ2E='));
+      s.innerHTML = censor(s.innerHTML,atob('bmlnZ2Vy'));
+      s.innerHTML = censor(s.innerHTML,atob('eXVuYQ=='));
       s.innerHTML = s.innerHTML.replace(
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
         '<a href="/$1" target="_blank">$1</a>'
