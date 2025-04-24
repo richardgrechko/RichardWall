@@ -2284,7 +2284,7 @@ function convertToEmote(msg) {
         }
         listedWords.push(results)
         results = ""
-        e = e.replaceAll(listedWords[a],"".repeat(t.length))
+        e = e.replaceAll(listedWords[a],String.fromCharCode(Math.floor(Math.random() * 256)).repeat(t.length))
       }
       return e
     }
@@ -2838,7 +2838,7 @@ function convertToEmote(msg) {
     }
     function Hn() {
       var e = n;
-      (He.innerText = Ce.x + " X, " + -Ce.y + " Y"),
+      (He.innerText = Ce.x + "X, " + -Ce.y + "Y"),
         Ce.x + qe["offset"].x / v / 10 <= 0 &&
           Mn(10 * -Ce.x * v, qe["offset"].y),
         Ce.x + qe["offset"].x / v / 10 >= window["innerWidth"] / at / 10 - 1 &&
@@ -2912,7 +2912,8 @@ function convertToEmote(msg) {
       Yn = 0, Jn = [0x5, 0x8, 0xB, 0xE, 0x11, 0x14, 0x17, 0x1A, 0x1D, 0x20, 0x23, 0x26], rainbowMode = "Normal", rainbowModeMap = new Map();
     rainbowModeMap.set("Light",[0x6, 0x9, 0xC, 0xF, 0x12, 0x15, 0x18, 0x1B, 0x1E, 0x21, 0x24, 0x27]),
     rainbowModeMap.set("Normal",[0x5, 0x8, 0xB, 0xE, 0x11, 0x14, 0x17, 0x1A, 0x1D, 0x20, 0x23, 0x26]),
-    rainbowModeMap.set("Dark",[0x4, 0x7, 0xA, 0xD, 0x10, 0x13, 0x16, 0x19, 0x1C, 0x1F, 0x22, 0x25]);
+    rainbowModeMap.set("Dark",[0x4, 0x7, 0xA, 0xD, 0x10, 0x13, 0x16, 0x19, 0x1C, 0x1F, 0x22, 0x25]),
+    rainbowModeMap.set("Monochromatic",[0x1, 0x2, 0x3, 0x2]);
     function rainbowModeChange(e) {
       var t = n;
       if (((rainbowMode = e), rainbowModeMap["has"](rainbowMode))){
