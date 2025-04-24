@@ -2916,6 +2916,7 @@ function convertToEmote(msg) {
       (rainbowOption = document["createElement"]("option")),
         (rainbowOption["text"] = rainbowArray[rainbowModeLength]),
         document.getElementById("rainbowmodeselect").add(rainbowOption);
+    document.getElementById("rainbowmodeselect").value = localStorage.rainbowmode
     function rainbowModeChange(e) {
       var t = n;
       if (((rainbowMode = e), rainbowModeMap["has"](rainbowMode))){
