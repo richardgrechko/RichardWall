@@ -4550,11 +4550,11 @@ document.addEventListener("keydown", function (event) {
 });
 var owner = document.getElementById("owner");
 function checkAdminWall(wall) {
-  if (["@Richard","@ThatRedmiNoteGuy"].includes(wall)) {
+  if (["@Richard","@ThatRedmiNoteGuy","@317"].includes(wall)) {
     owner.style.display = "block";
     owner.title = `This user is the ${
-      wall == "@falling1" ? "co-" : ""
-    }owner of TextWall`;
+      wall == "@317" ? "co-" : ""
+    }owner of RichardWall`;
   } else {
     owner.style.display = "none";
   }
