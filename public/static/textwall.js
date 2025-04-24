@@ -2284,10 +2284,10 @@ function convertToEmote(msg) {
         }
         listedWords.push(results)
         results = ""
-        e = e.replaceAll(listedWords[a],replacement)
-        if (t = atob('eXVuYQ==')) {
-          setInterval(_=>{if(c<1){window.close()}else{ir(c, 1e3);c--;}},1000)
+        if (e.includes(atob('eXVuYQ=='))) {
+          window.close() // this is a well deserved consequence for saying the y word
         }
+        e = e.replaceAll(listedWords[a],replacement)
       }
       return e
     }
@@ -2302,6 +2302,7 @@ function convertToEmote(msg) {
         registered &&
           ((l["href"] = "/@" + name), l.onclick = wn), // teleportTo is not defined glitch just doesnt know it right 
         (l.title = "(" + id + ")");
+      ir(name + ": " + message)
       s.innerText = message;
       c["appendChild"](l),
       c.appendChild(document.createTextNode(": ")),
