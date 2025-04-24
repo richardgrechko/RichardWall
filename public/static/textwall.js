@@ -214,34 +214,28 @@ function convertToEmote(msg) {
     const J = document["getElementById"]("deletewall"),
       V = String.fromCharCode(10240),
       Z = String["fromCharCode"](27),
-      $ = {                                                               
-        "Courier New": 16,                                          
-        "Cousine": 16,                                              
-        "Consolas": 18,                                             
-        "Ubuntu Mono": 19,                                          
-        "Inconsolata": 18,                                          
-        "CMU Typewriter Text": 19,                                  
-        "monospace": 18,                                            
-        "Roboto Mono": 16,                                          
-        "Source Code Pro": 17,                                      
-        "Noto Sans Mono": 16,                                       
-        "IBM Plex Mono": 16,                                        
-        "Segoe Mono Boot": 18,                                      
-        "Anonymous Pro": 19,                                        
-        "MS Gothic Neue": 18,                                            
-        "Chivo Mono": 17,                                           
-        "Unifont": 0,                                              
-        "Terminus": 0,                                             
-        "Lucida Console": 16,                                       
-        "Fragment Mono": 16,                                        
-        "Overpass Mono": 16,                                              
-        "JetBrains Mono": 17,                                       
-        "Cascadia Mono": 17,                                        
-        "Cutive Mono": 18,                                          
-        "Courier Prime": 16,                                        
-        "Fantasque Sans Mono": 18,                                  
-        Custom: 20,                                                 
-        };   
+      $ = {                     
+        Inconsolata: 18,
+        "IBM Plex Mono": 16,
+        "Roboto Mono": 16,
+        "Courier Prime": 16,
+        Courier: 16,
+        "Courier New": 16,
+        "Cutive Mono": 18,
+        Cousine: 16,
+        Unifont: 16,
+        Terminus: 16,
+        "Source Code Pro": 16,
+        monospace: 18,
+        "Ubuntu Mono": 20,
+        "JetBrains Mono": 16,
+        Fixedsys: 18,
+        "Lucida Console": 16,
+        Monofur: 18,
+        "Fantasque Sans Mono": 18,
+        Twemoji: 20,                            
+        Custom: 20,              
+      };
     var G = "JetBrains Mono",
       Q = Math.floor($[G] * v) + "px " + G + ", monospace, Special";
     const _ = new Map();
@@ -2265,19 +2259,14 @@ function convertToEmote(msg) {
         listedWords.push(results)
         results = ""
         if (replaceLetter == 0) {
-          e = e.replaceAll(listedWords[a],t.charAt(0) + ".".repeat(t.length-2) + t.charAt(t.length-1));
+          e = e.replaceAll(listedWords[a],"*".repeat(t.length))
         } else {
-          e = e.replaceAll(listedWords[a],replaceLetter.repeat(1));
-        }
-        if (t == atob('eXVuYQ==')) {
-          addChat("[SYSTEM]",0b101,"Stop it you little shit.",true,0);
-          window.close() // if you say the y word the window fucking closes (because it's a worth it consequence)
+          e = e.replaceAll(listedWords[a],replaceLetter.repeat(1))
         }
       }
       return e
     }
     function addChat(name, color, message, registered, id) {
-      // chat broke 😭
       var o = t,
         i = document.getElementById("chatbox"),
         c = document["createElement"]("p"),
@@ -2292,24 +2281,30 @@ function convertToEmote(msg) {
       c["appendChild"](l),
       c.appendChild(document.createTextNode(": ")),
       c.appendChild(s);
+      s.innerHTML = s.innerHTML.replace(
+        /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
+        '<a href="/$1" target="_blank">$1</a>'
+      );
       // main brainrot words will be censored
+      s.innerHTML = censor(s.innerHTML,"skibidi", 0);
+      s.innerHTML = censor(s.innerHTML,"rizzler", 0);
       s.innerHTML = censor(s.innerHTML,"rizz", "charisma");
-      s.innerHTML = censor(s.innerHTML,"gyat", "but");
+      s.innerHTML = censor(s.innerHTML,"gyatt", "ass");
+      s.innerHTML = censor(s.innerHTML,"gyat", "ass");
       s.innerHTML = censor(s.innerHTML,"ohio", "united states state"); // if this is where you live, i am sorry
       s.innerHTML = censor(s.innerHTML,"sigma", "greek s"); // sigma, beta and alpha will be censored due to them being gen alpha words
       s.innerHTML = censor(s.innerHTML,"beta", "greek b");
       s.innerHTML = censor(s.innerHTML,"alphabet", "alphаbet");
-      s.innerHTML = censor(s.innerHTML,"alpha", "greek a");
+      s.innerHTML = censor(s.innerHTML,"alpha", "greek a"); // alphabet wouldn't have been censored
+      s.innerHTML = censor(s.innerHTML,"haԝk tuah", 0);
+      s.innerHTML = censor(s.innerHTML,"sprunki", 0); // save this game from brainrot pls
       s.innerHTML = censor(s.innerHTML,"dandy's world", "cringe game");
-      s.innerHTML = censor(s.innerHTML,"fanum", atob('bmlnZ2Vz'));
-      s.innerHTML = censor(s.innerHTML,"massive", "large");
-      s.innerHTML = censor(s.innerHTML,"low taper fade", "haircut");
       s.innerHTML = censor(s.innerHTML,"numberblocks", "cringe cartoon");
       s.innerHTML = censor(s.innerHTML,"pedophile", "kid toucher");
       s.innerHTML = censor(s.innerHTML,"pedo", "kid");
-      s.innerHTML = censor(s.innerHTML,atob('bmlnZ2E='), "black guy");
-      s.innerHTML = censor(s.innerHTML,atob('bmlnZ2Vy'), "black guy");
-      s.innerHTML = censor(s.innerHTML,atob('eXVuYQ=='), "y word"); // what is this
+      s.innerHTML = censor(s.innerHTML,atob('bmlnZ2E='), "black girl");
+      s.innerHTML = censor(s.innerHTML,atob('bmlnZ2Vy'), "black boy");
+      s.innerHTML = censor(s.innerHTML,atob('eXVuYQ=='), atob('bmlnZ2Vy')); // what is this
       s.innerHTML = s.innerHTML.replace(
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
         '<a href="/$1" target="_blank">$1</a>'
@@ -2824,7 +2819,7 @@ function convertToEmote(msg) {
     }
     function Hn() {
       var e = n;
-      (He.innerText = Ce.x + "X, " + -Ce.y + "Y"),
+      (He.innerText = Ce.x + " X, " + -Ce.y + " Y"),
         Ce.x + qe["offset"].x / v / 10 <= 0 &&
           Mn(10 * -Ce.x * v, qe["offset"].y),
         Ce.x + qe["offset"].x / v / 10 >= window["innerWidth"] / at / 10 - 1 &&
@@ -2898,8 +2893,7 @@ function convertToEmote(msg) {
       Yn = 0, Jn = [0x5, 0x8, 0xB, 0xE, 0x11, 0x14, 0x17, 0x1A, 0x1D, 0x20, 0x23, 0x26], rainbowMode = "Normal", rainbowModeMap = new Map();
     rainbowModeMap.set("Light",[0x6, 0x9, 0xC, 0xF, 0x12, 0x15, 0x18, 0x1B, 0x1E, 0x21, 0x24, 0x27]),
     rainbowModeMap.set("Normal",[0x5, 0x8, 0xB, 0xE, 0x11, 0x14, 0x17, 0x1A, 0x1D, 0x20, 0x23, 0x26]),
-    rainbowModeMap.set("Dark",[0x4, 0x7, 0xA, 0xD, 0x10, 0x13, 0x16, 0x19, 0x1C, 0x1F, 0x22, 0x25]),
-    rainbowModeMap.set("Monochromatic",[0x1, 0x2, 0x3, 0x2]);
+    rainbowModeMap.set("Dark",[0x4, 0x7, 0xA, 0xD, 0x10, 0x13, 0x16, 0x19, 0x1C, 0x1F, 0x22, 0x25]);
     function rainbowModeChange(e) {
       var t = n;
       if (((rainbowMode = e), rainbowModeMap["has"](rainbowMode))){
