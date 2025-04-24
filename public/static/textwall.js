@@ -2905,11 +2905,18 @@ function convertToEmote(msg) {
       });
     var zn = 0,
       qn = performance["now"](),
-      Yn = 0, Jn = [0x5, 0x8, 0xB, 0xE, 0x11, 0x14, 0x17, 0x1A, 0x1D, 0x20, 0x23, 0x26], rainbowMode = "Normal", rainbowModeMap = new Map();
+      Yn = 0, Jn = [0x5, 0x8, 0xB, 0xE, 0x11, 0x14, 0x17, 0x1A, 0x1D, 0x20, 0x23, 0x26], rainbowMode = "Normal", rainbowModeMap = new Map(), rainbowArray = ["Light", "Normal", "Dark", "Monochromatic"];
     rainbowModeMap.set("Light",[0x6, 0x9, 0xC, 0xF, 0x12, 0x15, 0x18, 0x1B, 0x1E, 0x21, 0x24, 0x27]),
     rainbowModeMap.set("Normal",[0x5, 0x8, 0xB, 0xE, 0x11, 0x14, 0x17, 0x1A, 0x1D, 0x20, 0x23, 0x26]),
     rainbowModeMap.set("Dark",[0x4, 0x7, 0xA, 0xD, 0x10, 0x13, 0x16, 0x19, 0x1C, 0x1F, 0x22, 0x25]),
     rainbowModeMap.set("Monochromatic",[0x1, 0x2, 0x3, 0x2]);
+    for (var rainbowModeLength = 0; rainbowArray["length"] > 0; rainbowModeLength++);
+    var rainbowOption;
+    for (rainbowModeLength = 0; rainbowModeLength < rainbowArray["length"]; rainbowModeLength++)
+      (rainbowOption = document["createElement"]("option")),
+        (rainbowOption["text"] = Object.keys($)[ne]),
+        te.add(rainbowOption);
+    document.getElementById("rainbowmodeselect")["value"] = G;
     function rainbowModeChange(e) {
       var t = n;
       if (((rainbowMode = e), rainbowModeMap["has"](rainbowMode))){
