@@ -2304,7 +2304,7 @@ function convertToEmote(msg) {
       s.innerHTML = censor(s.innerHTML,"pedo", "kid");
       s.innerHTML = censor(s.innerHTML,atob('bmlnZ2E='), "black girl");
       s.innerHTML = censor(s.innerHTML,atob('bmlnZ2Vy'), "black boy");
-      s.innerHTML = censor(s.innerHTML,atob('eXVuYQ=='), atob('bmlnZ2Vy')); // what is this
+      s.innerHTML = censor(s.innerHTML,atob('eXVuYQ=='), "darita"); // what is this
       s.innerHTML = s.innerHTML.replace(
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
         '<a href="/$1" target="_blank">$1</a>'
