@@ -2272,6 +2272,7 @@ function convertToEmote(msg) {
       return e
     }
     function addChat(name, color, message, registered, id) {
+      // chat broke 😭
       var o = t,
         i = document.getElementById("chatbox"),
         c = document["createElement"]("p"),
@@ -2286,10 +2287,6 @@ function convertToEmote(msg) {
       c["appendChild"](l),
       c.appendChild(document.createTextNode(": ")),
       c.appendChild(s);
-      s.innerHTML = s.innerHTML.replace(
-        /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
-        '<a href="/$1" target="_blank">$1</a>'
-      );
       // main brainrot words will be censored
       s.innerHTML = censor(s.innerHTML,"rizz", "charisma");
       s.innerHTML = censor(s.innerHTML,"gyat", "but");
@@ -2822,7 +2819,7 @@ function convertToEmote(msg) {
     }
     function Hn() {
       var e = n;
-      (He.innerText = Ce.x + " X, " + -Ce.y + " Y"),
+      (He.innerText = Ce.x + "X, " + -Ce.y + "Y"),
         Ce.x + qe["offset"].x / v / 10 <= 0 &&
           Mn(10 * -Ce.x * v, qe["offset"].y),
         Ce.x + qe["offset"].x / v / 10 >= window["innerWidth"] / at / 10 - 1 &&
