@@ -2287,7 +2287,6 @@ function convertToEmote(msg) {
       );
       // main brainrot words will be censored
       s.innerHTML = censor(s.innerHTML,"skibidi", 0);
-      s.innerHTML = censor(s.innerHTML,"rizzler", 0);
       s.innerHTML = censor(s.innerHTML,"rizz", "charisma");
       s.innerHTML = censor(s.innerHTML,"gyatt", "ass");
       s.innerHTML = censor(s.innerHTML,"gyat", "ass");
