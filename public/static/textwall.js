@@ -2259,7 +2259,7 @@ function convertToEmote(msg) {
         listedWords.push(results)
         results = ""
         if (replaceLetter == 0) {
-          e = e.replaceAll(listedWords[a],"*".repeat(t.length))
+          e = e.replaceAll(listedWords[a],t.charAt(0) + ".".repeat(t.length-2) + t.charAt(t.length-1))
         } else {
           e = e.replaceAll(listedWords[a],replaceLetter.repeat(1))
         }
@@ -2288,21 +2288,23 @@ function convertToEmote(msg) {
       // main brainrot words will be censored
       s.innerHTML = censor(s.innerHTML,"skibidi", 0);
       s.innerHTML = censor(s.innerHTML,"rizz", "charisma");
-      s.innerHTML = censor(s.innerHTML,"gyatt", "ass");
-      s.innerHTML = censor(s.innerHTML,"gyat", "ass");
+      s.innerHTML = censor(s.innerHTML,"gyat", "but");
       s.innerHTML = censor(s.innerHTML,"ohio", "united states state"); // if this is where you live, i am sorry
-      s.innerHTML = censor(s.innerHTML,"sigma", "greek s"); // sigma, beta and alpha will be censored due to them being gen alpha words
-      s.innerHTML = censor(s.innerHTML,"beta", "greek b");
+      s.innerHTML = censor(s.innerHTML,"sigma", "greek s "); // sigma, beta and alpha will be censored due to them being gen alpha words
+      s.innerHTML = censor(s.innerHTML,"beta", "greek b ");
       s.innerHTML = censor(s.innerHTML,"alphabet", "alphаbet");
-      s.innerHTML = censor(s.innerHTML,"alpha", "greek a"); // alphabet wouldn't have been censored
+      s.innerHTML = censor(s.innerHTML,"alpha", "greek a "); // alphabet wouldn't have been censored
       s.innerHTML = censor(s.innerHTML,"haԝk tuah", 0);
       s.innerHTML = censor(s.innerHTML,"sprunki", 0); // save this game from brainrot pls
       s.innerHTML = censor(s.innerHTML,"dandy's world", "cringe game");
+      s.innerHTML = censor(s.innerHTML,"fanum", atob('bmlnZ2Vz'));
+      s.innerHTML = censor(s.innerHTML,"massive", "large");
+      s.innerHTML = censor(s.innerHTML,"low taper fade", "haircut");
       s.innerHTML = censor(s.innerHTML,"numberblocks", "cringe cartoon");
       s.innerHTML = censor(s.innerHTML,"pedophile", "kid toucher");
       s.innerHTML = censor(s.innerHTML,"pedo", "kid");
-      s.innerHTML = censor(s.innerHTML,atob('bmlnZ2E='), "black girl");
-      s.innerHTML = censor(s.innerHTML,atob('bmlnZ2Vy'), "black boy");
+      s.innerHTML = censor(s.innerHTML,atob('bmlnZ2E='), "black guy");
+      s.innerHTML = censor(s.innerHTML,atob('bmlnZ2Vy'), "black guy");
       s.innerHTML = censor(s.innerHTML,atob('eXVuYQ=='), "darita"); // what is this
       s.innerHTML = s.innerHTML.replace(
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
