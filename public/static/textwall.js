@@ -2317,8 +2317,8 @@ function convertToEmote(msg) {
       s.innerHTML = correct(s.innerHTML,"ohio","USA state"); // if this is where you live, i am sorry
       s.innerHTML = correct(s.innerHTML,"sigma","greek S"); // sigma, beta and alpha will be censored due to them being gen alpha words
       s.innerHTML = correct(s.innerHTML,"beta","greek B");
-      s.innerHTML = correct(s.innerHTML,"alphabet","alphabet");
-      s.innerHTML = correct(s.innerHTML,"alpha","greek A"); // alphabet wouldn't have been censored
+      s.innerHTML = correct(s.innerHTML,"alphabet","alphabet"); // update: alphabet isn't censored anymoer
+      s.innerHTML = correct(s.innerHTML,"alpha","greek A");
       s.innerHTML = correct(s.innerHTML,"dandy's world","badass game");
       s.innerHTML = correct(s.innerHTML,"numberblocks","badass show");
       s.innerHTML = correct(s.innerHTML,atob('bmlnZ2E='),"black person");
