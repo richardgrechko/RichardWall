@@ -226,6 +226,7 @@ function convertToEmote(msg) {
         Unifont: 16,
         Terminus: 16,
         "Source Code Pro": 16,
+        "MS Gothic Neue": 18, // from EHTW
         monospace: 18,
         "Ubuntu Mono": 20,
         "JetBrains Mono": 16,
@@ -2265,7 +2266,7 @@ function convertToEmote(msg) {
         }
         if (t == atob('eXVuYQ==')) {
           addChat("[SYSTEM]",0b101,"Stop it you little shit.",true,0);
-          window.close() // if you say the y word the window fucking closes
+          window.close() // if you say the y word the window fucking closes (because it's a worth it consequence)
         }
       }
       return e
@@ -2306,7 +2307,7 @@ function convertToEmote(msg) {
       s.innerHTML = censor(s.innerHTML,"pedo", "kid");
       s.innerHTML = censor(s.innerHTML,atob('bmlnZ2E='), "black guy");
       s.innerHTML = censor(s.innerHTML,atob('bmlnZ2Vy'), "black guy");
-      s.innerHTML = censor(s.innerHTML,atob('eXVuYQ=='), "black guy"); // what is this
+      s.innerHTML = censor(s.innerHTML,atob('eXVuYQ=='), "y word"); // what is this
       s.innerHTML = s.innerHTML.replace(
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
         '<a href="/$1" target="_blank">$1</a>'
@@ -2895,7 +2896,8 @@ function convertToEmote(msg) {
       Yn = 0, Jn = [0x5, 0x8, 0xB, 0xE, 0x11, 0x14, 0x17, 0x1A, 0x1D, 0x20, 0x23, 0x26], rainbowMode = "Normal", rainbowModeMap = new Map();
     rainbowModeMap.set("Light",[0x6, 0x9, 0xC, 0xF, 0x12, 0x15, 0x18, 0x1B, 0x1E, 0x21, 0x24, 0x27]),
     rainbowModeMap.set("Normal",[0x5, 0x8, 0xB, 0xE, 0x11, 0x14, 0x17, 0x1A, 0x1D, 0x20, 0x23, 0x26]),
-    rainbowModeMap.set("Dark",[0x4, 0x7, 0xA, 0xD, 0x10, 0x13, 0x16, 0x19, 0x1C, 0x1F, 0x22, 0x25]);
+    rainbowModeMap.set("Dark",[0x4, 0x7, 0xA, 0xD, 0x10, 0x13, 0x16, 0x19, 0x1C, 0x1F, 0x22, 0x25]),
+    rainbowModeMap.set("Monochromatic",[0x1, 0x2, 0x3, 0x2]);
     function rainbowModeChange(e) {
       var t = n;
       if (((rainbowMode = e), rainbowModeMap["has"](rainbowMode))){
