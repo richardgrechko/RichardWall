@@ -2312,7 +2312,7 @@ function convertToEmote(msg) {
         '<a href="/$1" target="_blank">$1</a>'
       );
       // main brainrot words will be censored
-      s.innerHTML = correct(s.innerHTML,"rizz","charisma");
+      s.innerHTML = correct(s.innerHTML,"rizz","charisma"); // charismaler 😭
       s.innerHTML = correct(s.innerHTML,"gyat","but");
       s.innerHTML = correct(s.innerHTML,"ohio","USA state"); // if this is where you live, i am sorry
       s.innerHTML = correct(s.innerHTML,"sigma","greek S"); // sigma, beta and alpha will be censored due to them being gen alpha words
