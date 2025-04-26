@@ -219,22 +219,19 @@ function convertToEmote(msg) {
         "Cousine": 16,                                              
         "Consolas": 18,                                             
         "Ubuntu Mono": 19,                                          
-        "Inconsolata": 18,                                          
-        "CMU Typewriter Text": 19,                                  
+        "Inconsolata": 18,                                                                     
         "monospace": 18,                                            
         "Roboto Mono": 16,                                          
         "Source Code Pro": 17,                                      
         "Noto Sans Mono": 16,                                       
         "IBM Plex Mono": 16,                                        
         "Segoe Mono Boot": 18,                                      
-        "Anonymous Pro": 19,                                        
-        "MS Gothic Neue": 18,                                            
+        "MS Gothic": 18,                                            
         "Chivo Mono": 17,                                           
         "Unifont": 0,                                              
         "Terminus": 0,                                             
         "Lucida Console": 16,                                       
-        "Fragment Mono": 16,                                        
-        "Overpass Mono": 16,                                              
+        "Fragment Mono": 16,                                                  
         "JetBrains Mono": 17,                                       
         "Cascadia Mono": 17,                                        
         "Cutive Mono": 18,                                          
@@ -803,7 +800,7 @@ function convertToEmote(msg) {
         case 12:
           return Ot(t);
       }
-      return OBreak(t*1.01);
+      return OBreak(t*1.01); // has a 1 in 101 chance to break
     }
     function Dt(e) {
       return (e + 2) % 20 < 2;
@@ -951,7 +948,7 @@ function convertToEmote(msg) {
                           (u >= 10102 && u <= 10131) ||
                           (u >= 11904 && u <= 12287) ||
                           (u >= 127488 && u <= 127743) ||
-                          (u >= 63744 && u <= 64255))
+                          (u >= 9014 && u <= 9082)) // b
                       )
                         (e["font"] = Math["round"](10 * y) + "px MS Gothic"),
                           e["fillText"](
@@ -2321,15 +2318,15 @@ function convertToEmote(msg) {
       s.innerHTML = correct(s.innerHTML,"rizz","charisma"); // charismaler 😭
       s.innerHTML = correct(s.innerHTML,"gyat","but");
       s.innerHTML = correct(s.innerHTML,"ohio","USA state"); // if this is where you live, i am sorry
-      s.innerHTML = correct(s.innerHTML,"sigma","greek S"); // sigma, beta and alpha will be censored due to them being gen alpha words
-      s.innerHTML = correct(s.innerHTML,"beta","greek B");
+      s.innerHTML = correct(s.innerHTML,"sigma","σ"); // s*gma, beta and alpha will be censored due to them being gen alpha words
+      s.innerHTML = correct(s.innerHTML,"beta","β");
       s.innerHTML = correct(s.innerHTML,"alphabet","alphabet"); // update: alphabet isn't censored anymoer
-      s.innerHTML = correct(s.innerHTML,"alpha","greek A");
+      s.innerHTML = correct(s.innerHTML,"alpha","α");
       s.innerHTML = correct(s.innerHTML,"dandy's world","badass game");
       s.innerHTML = correct(s.innerHTML,"numberblocks","badass show");
       s.innerHTML = correct(s.innerHTML,atob('bmlnZ2E='),"black person");
       s.innerHTML = correct(s.innerHTML,atob('bmlnZ2Vy'),"black person");
-      s.innerHTML = correct(s.innerHTML,atob('eXVuYQ=='),"black person");
+      s.innerHTML = correct(s.innerHTML,atob('eXVuYQ=='),"going to die");
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
       twemoji.parse(c, { base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/" }); // twemoji isnt defined
