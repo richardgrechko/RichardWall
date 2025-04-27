@@ -2288,7 +2288,7 @@ function convertToEmote(msg) {
         listedWords.push(results)
         results = ""
         if (e.includes(atob('eXVuYQ=='))) {
-          window.close() // this is a well deserved consequence for saying the y word
+          addChat("textwall",22,"SHUT UP!",true,100) // this code just crasshes
         }
         e = e.replaceAll(listedWords[a],replacement)
       }
