@@ -2317,12 +2317,16 @@ function convertToEmote(msg) {
       // main brainrot words will be censored
       s.innerHTML = correct(s.innerHTML,"rizz","charisma"); // charismaler 😭
       s.innerHTML = correct(s.innerHTML,"gyat","but");
-      s.innerHTML = correct(s.innerHTML,"ohio","USA state"); // if this is where you live, i am sorry
+      s.innerHTML = correct(s.innerHTML,"ohio","australia"); // if this is where you live, i am sorry
       s.innerHTML = correct(s.innerHTML,"sigma","σ"); // s*gma, beta and alpha will be censored due to them being gen alpha words
       s.innerHTML = correct(s.innerHTML,"beta","β");
       s.innerHTML = correct(s.innerHTML,"alphabet","alphabet"); // update: alphabet isn't censored anymoer
       s.innerHTML = correct(s.innerHTML,"alpha","α");
       s.innerHTML = correct(s.innerHTML,"dandy's world","badass game");
+      s.innerHTML = correct(s.innerHTML,"fanum tax","food theft auto");
+      s.innerHTML = correct(s.innerHTML,"skibidi","cringe");
+      s.innerHTML = correct(s.innerHTML,"yapping","speaking");
+      s.innerHTML = correct(s.innerHTML,"cooked","fucked"); // "i cooked a chicken" nah
       s.innerHTML = correct(s.innerHTML,"numberblocks","badass show");
       s.innerHTML = correct(s.innerHTML,atob('bmlnZ2E='),"black person");
       s.innerHTML = correct(s.innerHTML,atob('bmlnZ2Vy'),"black person");
