@@ -189,7 +189,7 @@ function convertToEmote(msg) {
       (k["style"]["width"] = window["innerWidth"] + "px"),
       (k["style"]["height"] = window["innerHeight"] + "px"),
       (E.imageSmoothingEnabled = !1);
-    const S = "#edf1ff",
+    const S = "#f2f5fc",
       I = "#EBEBEB";
     var C = S,
       A = I,
@@ -673,7 +673,7 @@ function convertToEmote(msg) {
             [a]
           ),
           E["fill"](),
-          (E["fillStyle"] = "#FFFFFF"),
+          (E["fillStyle"] = "#f2f5fc"),
           E.fillText(
             e,
             Math.round(t - i["width"] / 2 + 5 * v),
@@ -833,7 +833,7 @@ function convertToEmote(msg) {
     function Kt(e, t) {
       var r = n;
       tt["disablecolour"]["checked"] && (t = 0),
-        (e["fillStyle"] = xe && 0 == t ? "#edf1ff" : se[t]);
+        (e["fillStyle"] = xe && 0 == t ? "#f2f5fc" : se[t]);
     }
     function Xt(e, t) {
       var r = n,
@@ -1191,7 +1191,7 @@ function convertToEmote(msg) {
         (c["checked"] = 1 == d["highlighted"]),
         a.appendChild(c);
       var f = d.c;
-      (o["style"].backgroundColor = "#edf1ff" == se[f] ? "#222222" : se[f]),
+      (o["style"].backgroundColor = "#f2f5fc" == se[f] ? "#222222" : se[f]),
         (o.style["fontSize"] = "10px"),
         (o["style"].userSelect = "all"),
         (o["innerText"] = d.n || e),
@@ -2301,7 +2301,7 @@ function convertToEmote(msg) {
         l = document.createElement("a"),
         s = document.createElement("msg");
       (l["innerText"] = name),
-        (l.style["color"] = "#FFFFFF" == se[color] ? "#222222" : se[color]),
+        (l.style["color"] = "#f2f5fc" == se[color] ? "#222222" : se[color]),
         registered &&
           ((l["href"] = "/@" + name), l.onclick = wn), // teleportTo is not defined glitch just doesnt know it right 
         (l.title = "(" + id + ")");
@@ -2314,19 +2314,23 @@ function convertToEmote(msg) {
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
         '<a href="/$1" target="_blank">$1</a>'
       );
-      // main brainrot words will be censored
+      s.innerHTML = s.innerHTML.replace(
+        /(@[\w?=._-]+(?![\w\s?._-]*>))/g,
+        '<a id="userwall" target="_blank">$1</a>'
+      );
+      // main brainrot words will be corrected
       s.innerHTML = correct(s.innerHTML,"rizz","charisma"); // charismaler 😭
       s.innerHTML = correct(s.innerHTML,"gyat","but");
       s.innerHTML = correct(s.innerHTML,"ohio","australia"); // if this is where you live, i am sorry
-      s.innerHTML = correct(s.innerHTML,"sigma","σ"); // s*gma, beta and alpha will be censored due to them being gen alpha words
+      s.innerHTML = correct(s.innerHTML,"sigma","σ"); // s*gma, beta and alpha will be corrected due to them being gen alpha words
       s.innerHTML = correct(s.innerHTML,"beta","β");
-      s.innerHTML = correct(s.innerHTML,"alphabet","alphabet"); // update: alphabet isn't censored anymoer
       s.innerHTML = correct(s.innerHTML,"alpha","α");
+      s.innerHTML = correct(s.innerHTML,"αbet","alphabet"); // okay fuck
       s.innerHTML = correct(s.innerHTML,"dandy's world","badass game");
       s.innerHTML = correct(s.innerHTML,"fanum tax","food theft auto");
       s.innerHTML = correct(s.innerHTML,"skibidi","cringe");
       s.innerHTML = correct(s.innerHTML,"yapping","speaking");
-      s.innerHTML = correct(s.innerHTML,"cooked","fucked"); // "i cooked a chicken" nah
+      s.innerHTML = correct(s.innerHTML,"cook","fuck"); // "i cooked a chicken" nah
       s.innerHTML = correct(s.innerHTML,"numberblocks","badass show");
       s.innerHTML = correct(s.innerHTML,atob('bmlnZ2E='),"black person");
       s.innerHTML = correct(s.innerHTML,atob('bmlnZ2Vy'),"black person");
@@ -3628,7 +3632,7 @@ function convertToEmote(msg) {
                 null != M &&
                   M["highlighted"] &&
                   ((E.lineWidth = 3 * v),
-                  (E["strokeStyle"] = p == se["length"] ? "#FFFFFF" : se[p]),
+                  (E["strokeStyle"] = p == se["length"] ? "#f2f5fc" : se[p]),
                   E["beginPath"](),
                   E["moveTo"](
                     Math["round"](10 * M["rawx"] * v + r / 2),
