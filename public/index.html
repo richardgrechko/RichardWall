@@ -149,6 +149,26 @@
         </table>
       </div>
     </div>
+    <div id="chat" class="hidden">
+      <div class="buttoncontainer">
+        <div id="chatbutton">
+          <img alt="chat" class="button" src="/static/chat.svg" />
+          <div id="unread"></div>
+        </div>
+      </div>
+      <div class="chatcontainer">
+        <div id="chatbox"></div>
+        <div class="msgcontainer">
+          <input
+            maxlength="400"
+            type="text"
+            title="type a message"
+            id="chatmsg"
+          />
+          <img alt="send" id="sendmsg" class="button" src="/static/send.svg" />
+        </div>
+      </div>
+    </div>
     <div id="usermenu" class="hidden">
       <div id="optionsmenu">
         <h1>Options</h1>
@@ -382,21 +402,26 @@
                   maxlength="64"
                   minlength="1"
                 /><br />
-          <div id="chat" class="open" bis_skin_checked="1">
-      <div class="buttoncontainer" bis_skin_checked="1">
-        <div id="chatbutton" bis_skin_checked="1">
-          <img alt="chat" class="button" src="/static/chat.svg">
-          <div id="unread" bis_skin_checked="1"></div>
+                <input
+                  type="submit"
+                  id="deleteaccount"
+                  value="Delete account"
+                />
+              </fieldset>
+            </form>
+          </div>
         </div>
-      </div>
-      <div class="chatcontainer" bis_skin_checked="1">
-        <div id="chatbox" bis_skin_checked="1"></div>
-        <div class="msgcontainer" bis_skin_checked="1">
-          <input maxlength="700" type="text" title="type a message" id="chatmsg" placeholder="chat with 2 other users">
-          <img alt="send" id="sendmsg" class="button" src="/static/send.svg">
-        </div>
-      </div>
-    </div>
+        <div>
+          <h2>Miscellaneous</h2>
+
+          <h3>Oneko</h3>
+          <button onclick="summonOneko();">Summon an Oneko cat</button><br />
+          <button onclick="onekoDisaster();">ONEKO DISASTER!</button><br />
+          <button onclick="superOnekoDisaster();">SUPER ONEKO DISASTER</button
+          ><br />
+          <button onclick="ultraOnekoDisaster();">
+            ULTRA ONEKO DISASTER!!!
+          </button>
           <button onclick="removeOneko();">Remove a Oneko cat</button><br />
           <button onclick="removeDisasters();">Cancel Oneko Disasters</button
           ><br /><br />
