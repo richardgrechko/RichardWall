@@ -32,7 +32,14 @@
     <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
     <script src="/warning.js"></script>
   </head>
-  <body>
+  <body id="ui">
+    <script>
+      function changeTab(e) {
+        if (e == "settings") {
+          
+        }
+      }
+    </script>
     <script>
       var $buoop = {
         required: { e: 79, f: 117, o: 100, s: -6, c: 116 },
@@ -153,7 +160,7 @@
         </table>
       </div>
     </div>
-    <div id="usermenu" class="hidden">
+      <div id="optionsmenu">
       <div id="settingstabs" class="tabs">
 						<div class="tab active" id="settings-tab" data-panel="settings-panel">Settings</div>
 						<div class="tab" id="explore-tab" data-panel="explore-panel">Explore</div>
@@ -170,6 +177,7 @@
           <div id="unread"></div>
         </div>
       </div>
+      <div class="chat-panel hidden">
       <div class="chatcontainer">
         <div id="chatbox">
           <div class="hidden" id="chataction">
@@ -196,8 +204,6 @@
           <img alt="send" id="sendmsg" class="button" src="/static/send.svg" />
         </div>
       </div>
-    </div>
-      <div id="optionsmenu">
         <h1>Options</h1>
         <input id="showothercurs" type="checkbox" /><label for="showothercurs"
           >Show other cursors</label
@@ -440,18 +446,6 @@
         </div>
         <div>
           <h2>Miscellaneous</h2>
-
-          <h3>Oneko</h3>
-          <button onclick="summonOneko();">Summon an Oneko cat</button><br />
-          <button onclick="onekoDisaster();">ONEKO DISASTER!</button><br />
-          <button onclick="superOnekoDisaster();">SUPER ONEKO DISASTER</button
-          ><br />
-          <button onclick="ultraOnekoDisaster();">
-            ULTRA ONEKO DISASTER!!!
-          </button>
-          <button onclick="removeOneko();">Remove a Oneko cat</button><br />
-          <button onclick="removeDisasters();">Cancel Oneko Disasters</button
-          ><br /><br />
           <button
             onclick="joinDiscord();"
             style="background-color: #5865f2; color: #ffffff"

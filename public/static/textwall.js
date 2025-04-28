@@ -178,7 +178,7 @@ function convertToEmote(msg) {
     const g = document["getElementById"]("toast");
     var p;
     const b = document["getElementById"]("clipboard"),
-      x = document["getElementById"]("usermenu"),
+      x = document["getElementById"]("optionsmenu"),
       w = document["getElementById"]("colourlist"),
       M = document["getElementById"]("teleport");
     var k = document["getElementById"]("canvas");
