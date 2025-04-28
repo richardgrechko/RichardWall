@@ -149,15 +149,30 @@
         </table>
       </div>
     </div>
-    <div id="chat" class="hidden">
-      <div class="buttoncontainer">
+    <div id="usermenu" class="hidden">
+        <div id="chat" class="hidden">
+      <div class="buttoncontainer hidden">
         <div id="chatbutton">
           <img alt="chat" class="button" src="/static/chat.svg" />
           <div id="unread"></div>
         </div>
       </div>
       <div class="chatcontainer">
-        <div id="chatbox"></div>
+        <div id="chatbox">
+          <div class="hidden" id="chataction">
+										<span class="hidden" id="chatextra"></span>
+										
+										<a id="chatvisit" class="no-select" title="Visit Wall">
+											<img alt="open" src="/static/open.svg">
+											<span></span>
+										</a>
+					
+										<a id="chatblock" class="no-select" title="Block">
+											<img alt="block" src="/static/block.svg">
+											<span></span>
+										</a>
+									</div>
+        </div>
         <div class="msgcontainer">
           <input
             maxlength="400"
@@ -169,7 +184,6 @@
         </div>
       </div>
     </div>
-    <div id="usermenu" class="hidden">
       <div id="optionsmenu">
         <h1>Options</h1>
         <input id="showothercurs" type="checkbox" /><label for="showothercurs"

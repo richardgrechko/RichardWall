@@ -390,17 +390,34 @@ td {
   transform: translateX(0px);
 }
 .chatcontainer {
-  width: 250px;
-  background-color: rgba(30, 30, 30, 0.8);
-  border-radius: 0 0 0 5px;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  pointer-events: auto;
+    border-radius: 0 0 0 5px;
+    height: 100%;
+    gap: 7px;
+    display: flex
+;
+    flex-direction: column;
+    pointer-events: auto;
 }
 .msgcontainer {
   display: flex;
   justify-content: stretch;
+}
+#chataction > #walllist > span > a {
+    display: inline-flex
+;
+    align-items: center;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.1s;
+}
+#chatvisit {
+    background-color: #000000;
+}
+#chatblock {
+    background-color: #d44b4b;
 }
 #chatbox {
   background-color: #ffffff;
