@@ -162,12 +162,15 @@ h3 {
   cursor: pointer;
 }
 #optionsmenu {
-  width: 100%;
-  overflow: auto;
-  -ms-overflow-style: none;
-  overflow-wrap: break-word;
-  scrollbar-width: none;
-  max-height: 526px;
+    display: flex
+;
+    flex-direction: column;
+    flex: 1;
+    width: 0;
+}
+#settingstabs {
+    flex-shrink: 0;
+    margin-bottom: 5px;
 }
 input {
   vertical-align: middle;
