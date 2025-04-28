@@ -205,76 +205,50 @@
         </div>
       </div>
         <h1>Options</h1>
-        <input id="showothercurs" type="checkbox" /><label for="showothercurs"
-          >Show other cursors</label
-        ><br />
-        <input id="shownametags" type="checkbox" /><label for="shownametags"
-          >Show nametags</label
-        ><br />
-        <input id="showchat" type="checkbox" /><label
-          for="showchat"
-          id="showcht"
-          >Show chat</label
-        ><br id="newlineshowchat" />
-        <input id="disablecolour" type="checkbox" /><label for="disablecolour"
-          >Disable color</label
-        ><br />
-        <input id="smoothpanning" type="checkbox" /><label for="smoothpanning"
-          >Smooth panning</label
-        ><br />
-        <input id="smoothcursors" type="checkbox" /><label for="smoothcursors"
-          >Smooth cursors</label
-        ><br />
-        <input id="copycolour" type="checkbox" /><label for="copycolour"
-          >Copy colors</label
-        ><br />
-        <input id="copydecorations" type="checkbox" /><label
-          for="copydecorations"
-          >Copy decorations</label
-        ><br />
-        <input id="rainbow" type="checkbox" /><label for="rainbow"
-          >Rainbow text</label
-        ><br /><br />
-        <label></label>
-        <label for="zoom">Zoom: </label
-        ><input
-          type="range"
-          min="5"
-          max="30"
-          value="10"
-          id="zoom"
-        /><br /><br />
-        <label for="rainbowmodeselect"
-          >Rainbow mode: </label
-        ><select id="rainbowmodeselect">
-        </select><br /><br />
-        <label for="fontselect">Font: </label
-        ><select id="fontselect"></select
-        ><br />
-        <fieldset id="fontmenu" class="hidden">
-          <legend>Custom Font</legend>
-          <label for="customfont">Name:</label
-          ><input id="customfont" type="text" /><br />
-          <label for="customfontsize">Size:</label
-          ><input
-            id="customfontsize"
-            type="number"
-            min="1"
-            max="20"
-            value="20"
-          /><br />
-        </fieldset>
-        <label></label>
-        <fieldset id="thememenu" class="hidden">
-          <legend>Custom Theme</legend>
-          <label for="primary">Primary:</label
-          ><input id="primary" type="color" value="#FFFCE5" /><br />
-          <label for="secondary">Secondary:</label
-          ><input id="secondary" type="color" value="#FBFFBD" /><br />
-          <input id="themetext" type="checkbox" /><label for="themetext"
-            >White text</label
-          >
-        </fieldset>
+        <div id="settings-panel" class="">
+							<input id="showothercurs" type="checkbox"><label for="showothercurs">Show other cursors</label><br>
+							<input id="shownametags" type="checkbox"><label for="shownametags">Show nametags</label><br>
+							<input id="showchat" type="checkbox"><label for="showchat">Show chat</label><br>
+							<input id="blockanonymouschat" type="checkbox"><label for="blockanonymouschat">Block anonymous chat</label><br>
+							<input id="disablecolour" type="checkbox"><label for="disablecolour">Disable colour</label><br>
+							<input id="smoothpanning" type="checkbox"><label for="smoothpanning">Smooth panning</label><br>
+							<input id="smoothcursors" type="checkbox"><label for="smoothcursors">Smooth cursors</label><br>
+							<input id="copycolour" type="checkbox"><label for="copycolour">Copy colours</label><br>
+							<input id="copydecorations" type="checkbox"><label for="copydecorations">Copy decorations</label><br>
+							<input id="rainbow" type="checkbox"><label for="rainbow">Rainbow text</label><br><br>
+							<label for="zoom">Zoom: </label><input type="range" min="5" max="50" value="10" id="zoom"><br><br>
+              <label for="rainbowmodeselect">Rainbow mode: </label><select id="rainbowmodeselect"></select><br><br>
+							<label for="fontselect">Font: </label><select id="fontselect"></select><br>
+				
+							<fieldset id="fontmenu" class="hidden">
+								<legend>Custom Font</legend>
+								<div class="field-row">
+									<label for="customfont">Name:</label>
+									<input id="customfont" type="text">
+								</div>
+								<div class="field-row">
+									<label for="customfontsize">Size:</label>
+									<input id="customfontsize" type="number" min="1" max="20" value="20">
+								</div>
+							</fieldset>
+				
+							<fieldset id="thememenu" class="">
+								<legend>Custom Theme</legend>
+								<div class="field-row">
+									<label for="primary">Primary: </label>
+									<input id="primary" type="color" value="#FFFCE5">
+								</div>
+								<div class="field-row">
+									<label for="secondary">Secondary: </label>
+									<input id="secondary" type="color" value="#FBFFBD">
+								</div>
+								<input id="themetext" type="checkbox"><label for="themetext">White text</label>
+							</fieldset>
+			
+							<br>
+							<input type="button" class="" id="blocklistbutton" value="Show Chat Blocklist">
+							<div id="blocklist" class="hidden"><div class="member">3rdvai2024</div><div class="member">chopshop</div><div class="member">goodperson</div><div class="member">let_me_out</div></div>
+						</div>
         <h3 id="logintext">Log in</h3>
         <div id="loginwithdiscord">
           <button type="button" onclick="discordLogin()" id="discordloginbtn">
@@ -631,9 +605,10 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
       </div>
       <div class="sidething">
         <div id="closemenu">
-          <img alt="cancel" src="/static/cancel.svg" />
+          <svg height="12" width="6">
+							<polygon points="0,6 6,0 6,12"></polygon>
+						</svg>
         </div>
-        <div id="colourlist"></div>
       </div>
     </div>
     <div id="connecting">

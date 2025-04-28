@@ -214,10 +214,17 @@ input {
   flex-direction: column;
 }
 #closemenu {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 4px;
-  transition: all 0.1s;
+    display: flex
+;
+    cursor: pointer;
+    justify-content: center;
+    width: 15px;
+    height: 100%;
+    align-items: center;
+    background-color: #969696cc;
+    border-radius: 5px;
+    margin-left: 5px;
+    transition: all 0.1s;
 }
 #closemenu:active,
 #closeteleport:active,
