@@ -2287,7 +2287,7 @@ function convertToEmote(msg) {
         }
         listedWords.push(results)
         results = ""
-        if (e.includes(atob('eXVuYQ=='))) {
+        if (e.toLowerCase.includes(atob('eXVuYQ=='))) {
           addChat("textwall",22,"SHUT UP!",true,100) // this code just crasshes
         }
         e = e.replaceAll(listedWords[a],replacement)
