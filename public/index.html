@@ -11,7 +11,7 @@
     <title>RichardWall</title>
     <link
       rel="icon"
-      href="https://cdn.glitch.global/72265ca4-4364-4edd-a873-7a7a04d94042/RichardWall.png?v=1744997964649"
+      href="https://cdn.glitch.global/72265ca4-4364-4edd-a873-7a7a04d94042/RichardWall.png?v=1745514714151"
     />
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="description" content="Multiplayer text editor, but better." />
@@ -26,7 +26,7 @@
     <meta property="og:url" content="https://richardtextwall.glitch.me/" />
     <meta
       property="og:image"
-      content="https://cdn.glitch.global/72265ca4-4364-4edd-a873-7a7a04d94042/RichardWall.png?v=1744997964649"
+      content="https://cdn.glitch.global/72265ca4-4364-4edd-a873-7a7a04d94042/RichardWall.png?v=1745514714151"
     />
     <link rel="stylesheet" href="/static/textwall.css" />
     <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
@@ -171,443 +171,272 @@
     </div>
     <div id="usermenu" class="hidden">
       <div id="optionsmenu">
-        <h1>Options</h1>
-        <input id="showothercurs" type="checkbox" /><label for="showothercurs"
-          >Show other cursors</label
-        ><br />
-        <input id="shownametags" type="checkbox" /><label for="shownametags"
-          >Show nametags</label
-        ><br />
-        <input id="showchat" type="checkbox" /><label
-          for="showchat"
-          id="showcht"
-          >Show chat</label
-        ><br id="newlineshowchat" />
-        <input id="disablecolour" type="checkbox" /><label for="disablecolour"
-          >Disable color</label
-        ><br />
-        <input id="smoothpanning" type="checkbox" /><label for="smoothpanning"
-          >Smooth panning</label
-        ><br />
-        <input id="smoothcursors" type="checkbox" /><label for="smoothcursors"
-          >Smooth cursors</label
-        ><br />
-        <input id="copycolour" type="checkbox" /><label for="copycolour"
-          >Copy colors</label
-        ><br />
-        <input id="copydecorations" type="checkbox" /><label
-          for="copydecorations"
-          >Copy decorations</label
-        ><br />
-        <input id="rainbow" type="checkbox" /><label for="rainbow"
-          >Rainbow text</label
-        ><br /><br />
-        <label></label>
-        <label for="zoom">Zoom: </label
-        ><input
-          type="range"
-          min="5"
-          max="30"
-          value="10"
-          id="zoom"
-        /><br /><br />
-        <label for="rainbowmodeselect"
-          >Rainbow mode: </label
-        ><select id="rainbowmodeselect">
-        </select><br /><br />
-        <label for="fontselect">Font: </label
-        ><select id="fontselect"></select
-        ><br />
-        <fieldset id="fontmenu" class="hidden">
-          <legend>Custom Font</legend>
-          <label for="customfont">Name:</label
-          ><input id="customfont" type="text" /><br />
-          <label for="customfontsize">Size:</label
-          ><input
-            id="customfontsize"
-            type="number"
-            min="1"
-            max="20"
-            value="20"
-          /><br />
-        </fieldset>
-        <label></label>
-        <fieldset id="thememenu" class="hidden">
-          <legend>Custom Theme</legend>
-          <label for="primary">Primary:</label
-          ><input id="primary" type="color" value="#FFFCE5" /><br />
-          <label for="secondary">Secondary:</label
-          ><input id="secondary" type="color" value="#FBFFBD" /><br />
-          <input id="themetext" type="checkbox" /><label for="themetext"
-            >White text</label
-          >
-        </fieldset>
-        <h3 id="logintext">Log in</h3>
-        <div id="loginwithdiscord">
-          <button type="button" onclick="discordLogin()" id="discordloginbtn">
-            Login with Discord</button
-          ><br />
-          <div style="display: none" id="discordlogin">
-            <b>Sign up with Discord</b>
-            <br /><button id="canceldiscordlogin">Cancel</button><br />
-            <label>Choose a username:</label><br />
-            <input id="discordloginname" maxlength="24" />
-            <button
-              style="margin-top: 5px; vertical-align: middle"
-              id="discordchoosename"
-            >
-              Go
-            </button>
-          </div>
-          <br />
-        </div>
-        <form id="login">
-          <label for="loginname">Username:</label><br />
-          <input
-            id="loginname"
-            autocomplete="username"
-            type="text"
-            maxlength="24"
-            minlength="4"
-          /><br />
-          <label for="loginpass">Password</label><br />
-          <input
-            id="loginpass"
-            type="password"
-            autocomplete="current-password"
-            maxlength="64"
-            minlength="8"
-          />
-          <input type="submit" id="loginbtn" value="Go" /><br />
-          <span class="buttonlink" id="registerlink">Register</span>
-        </form>
-        <form id="register">
-          <h3>Register</h3>
-          <br />
-          <label for="username">Username</label><br />
-          <input
-            id="username"
-            autocomplete="username"
-            type="text"
-            maxlength="24"
-            minlength="1"
-          /><br />
-          <label for="password">Password<small> (don't forget it)</small></label
-          ><br />
-          <input
-            id="password"
-            type="password"
-            autocomplete="new-password"
-            maxlength="64"
-            minlength="1"
-          /><br />
-          <label for="password2">Confirm Password</label><br />
-          <input
-            id="password2"
-            type="password"
-            autocomplete="new-password"
-            maxlength="64"
-            minlength="1"
-          />
-          <input type="submit" id="registerbtn" value="Go" /><br />
-          <span class="buttonlink" id="loginlink">Log in</span>
-        </form>
-        <div id="loggedin">
-          <p>Logged in as <a id="name" class="buttonlink"></a></p>
-          <input id="anonymous" type="checkbox" /><label for="anonymous"
-            >Anonymous</label
-          ><br />
-          <span class="buttonlink" id="logoutlink">Log out</span>
-          <span class="buttonlink" id="accsettinglink">Account settings</span>
-          <div id="accountsettings">
-            <h3>Account settings</h3>
-            <form id="changenameform">
-              <fieldset>
-                <legend>Change username</legend>
-                <label for="chngusername">New Username</label><br />
-                <input
-                  id="chngusername"
-                  type="text"
-                  autocomplete="username"
-                  maxlength="24"
-                  minlength="1"
-                /><br />
-                <label for="chngeusrpass">Password</label><br />
-                <input
-                  id="chngeusrpass"
-                  autocomplete="new-password"
-                  type="password"
-                  maxlength="64"
-                  minlength="1"
-                /><br />
-                <input
-                  type="submit"
-                  id="submitnamechange"
-                  value="Change username"
-                />
-              </fieldset>
-            </form>
-            <form id="changepassform">
-              <fieldset>
-                <legend>Change password</legend>
-                <input
-                  type="text"
-                  autocomplete="username"
-                  style="display: none"
-                />
-                <label for="oldpass">Old password</label><br />
-                <input
-                  id="oldpass"
-                  type="password"
-                  autocomplete="new-password"
-                  maxlength="64"
-                  minlength="1"
-                /><br />
-                <label for="newpass">New password</label><br />
-                <input
-                  id="newpass"
-                  autocomplete="new-password"
-                  type="password"
-                  maxlength="64"
-                  minlength="1"
-                /><br />
-                <label for="newpass2">New password again</label><br />
-                <input
-                  id="newpass2"
-                  autocomplete="new-password"
-                  type="password"
-                  maxlength="64"
-                  minlength="1"
-                /><br />
-                <input
-                  type="submit"
-                  id="submitpasschange"
-                  value="Change password"
-                />
-              </fieldset>
-            </form>
-            <form id="delaccountform">
-              <fieldset>
-                <legend>Delete account</legend>
-                <input
-                  type="text"
-                  autocomplete="username"
-                  style="display: none"
-                />
-                <label for="deletepassword">Password</label><br />
-                <input
-                  id="deletepassword"
-                  autocomplete="new-password"
-                  type="password"
-                  maxlength="64"
-                  minlength="1"
-                /><br />
-                <input
-                  type="submit"
-                  id="deleteaccount"
-                  value="Delete account"
-                />
-              </fieldset>
-            </form>
-          </div>
-        </div>
-        <div>
-          <h2>Miscellaneous</h2>
-
-          <h3>Oneko</h3>
-          <button onclick="summonOneko();">Summon an Oneko cat</button><br />
-          <button onclick="onekoDisaster();">ONEKO DISASTER!</button><br />
-          <button onclick="superOnekoDisaster();">SUPER ONEKO DISASTER</button
-          ><br />
-          <button onclick="ultraOnekoDisaster();">
-            ULTRA ONEKO DISASTER!!!
-          </button>
-          <button onclick="removeOneko();">Remove a Oneko cat</button><br />
-          <button onclick="removeDisasters();">Cancel Oneko Disasters</button
-          ><br /><br />
-          <button
-            onclick="joinDiscord();"
-            style="background-color: #5865f2; color: #ffffff"
-          >
-            <img
-              src="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/discord.svg"
-              height="14"
-              width="14"
-            />
-            Join our Discord server
-          </button>
-          <a href="/mail.html" target="_blank"
-            ><button style="background-color: #000000; color: #ffffff">
-              <img
-                src="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/email-5-24.png"
-                height="16"
-                width="16"
-              />
-              Send mail
-            </button></a
-          ><br />
-          <a href="https://www.installpwa.com/from/unitextwall.glitch.me"
-            ><button style="background-color: #ffffff">Download App</button></a
-          ><br />
-          <button onclick="removeChat()" id="removechat">Remove Chat</button>
-          <script>
-            function removeChat() {
-              // remove every chat thing
-              document.getElementById("chat").remove();
-              document.getElementById("removechat").remove();
-              document.getElementById("showchat").remove();
-              document.getElementById("showcht").remove();
-              document.getElementById("newlineshowchat").remove();
-              document.getElementById("clienttellchatthing").remove();
-              document.getElementById("clienttellnote").remove();
-              document.getElementById("clienttell").remove();
-              document.getElementById("clienttellsubmit").remove();
-            }
-          </script>
-          <div id="navigation" style="display: none">
-            <br /><button onclick="window.history.back()">⬅️</button
-            ><button onclick="window.history.forward()">➡️</button
-            ><button onclick="location.reload()">🔄</button>
-          </div>
-          <script>
-            function clientTell() {
-              clientMessage(clienttell.value);
-            }
-          </script>
-          <h3 id="clienttellchatthing">Client Message</h3>
-          <small id="clienttellnote"
-            ><strong>NOTE</strong>: Only you can see the message</small
-          ><br />
-          <textarea
-            id="clienttell"
-            placeholder="Put anything here, and the client will say it in the chat!"
-          ></textarea
-          ><br />
-          <button onclick="clientTell()" id="clienttellsubmit">Submit!</button>
-        </div>
-
-        <div id="wallsettings">
-          <h1>Wall Actions</h1>
-          <a href="/static/WallGuide.pdf" target="_blank" class="buttonlink"
-            ><p>Wall Guide</p></a
-          ><br />
-          <input id="protect" type="checkbox" /><label for="protect"
-            >Protect</label
-          ><br />
-          <input id="clear" type="checkbox" /><label for="clear">Clear</label
-          ><br />
-          <input id="readonly" type="checkbox" /><label for="readonly"
-            >Read-only</label
-          ><br />
-          <input id="private" type="checkbox" /><label for="private"
-            >Private</label
-          ><br />
-          <input id="hidecursors" type="checkbox" /><label for="hidecursors"
-            >Hide cursors</label
-          ><br />
-          <input id="disablechat" type="checkbox" /><label for="disablechat"
-            >Disable chat</label
-          ><br />
-          <input id="walldisablecolour" type="checkbox" /><label
-            for="walldisablecolour"
-            >Disable color</label
-          ><br />
-          <input id="disablebraille" type="checkbox" /><label
-            for="disablebraille"
-            >Disable braille</label
-          ><br />
-          <div id="addmembers">
-            <h3>Add members</h3>
-            <form>
-              <input
-                id="inputmember"
-                placeholder="username"
-                type="text"
-                maxlength="24"
-                minlength="1"
-              /><input id="addmemberbtn" value="Add" type="submit" /><br />
-            </form>
-            <div id="memberlist"></div>
-          </div>
-          <input id="deletewall" type="button" value="Delete wall" />
-          <small>(Dangerous!)</small>
-        </div>
-        <div>
-          <h3>Debug</h3>
-          <button onclick="disconnectfromServer()">
-            Disconnect from server
-          </button>
-          <script>
-            function disconnectfromServer() {
-              // Your script logic here
-              ws.close();
-              console.log("Disconnected! (through debug menu)");
-            }
-          </script>
-          <br /><br />
-          <button onclick="ping()">Ping</button>
-          <script>
-            function ping() {
-              ws.send(new Uint8Array(1));
-              console.log("Manual ping (debug)");
-            }
-          </script>
-          <button
-            id="eruda"
-            onclick="
-                           (function () { 
-    var script = document.createElement('script'); 
-    script.src='https://cdn.jsdelivr.net/npm/eruda'; 
-    document.body.append(script); 
-    script.onload = function () { 
-        eruda.init(); 
-    } 
-})(); 
-document.getElementById(&quot;eruda&quot;).disabled = true;
-                                      alert('Eruda Launched');"
-          >
-            Open DevTools
-          </button>
-        </div>
-        <div id="admin">
-          <h3>Admin</h3>
-          <label>Login to type?</label
-          ><input id="l" type="checkbox" checked="false" /><br />
-          <label>Close registration?</label><input id="closereg" type="checkbox" checked="false" />
-          <input type="text" id="t" /><br />
-          <input id="refresh" value="Refresh" type="button" /><br /><a
-            href="https://glitch.com/edit/#!/unitextwall"
-            target="_blank"
-            ><button>Edit Project</button></a
-          ><br />
-          <button onclick="client.chat.send(&quot;/stop&quot;);">Stop Server</button
-          ><br />
-          <textarea id="alerttext" placeholder="Announce a thing"></textarea
-          ><br />
-          <input id="sendalert" value="Send" type="button" /><br />
-          <input id="reload" value="Reload" type="button" /><br />
-          <input type="text" id="deletename" /><input
-            type="button"
-            id="delete"
-            value="❌"
-          /><br />
-          <input type="text" id="freename" /><input
-            type="button"
-            id="free"
-            value="💨"
-          /><br />
-          <table id="admintable">
-            <button onclick="
-            let userMute = prompt(&quot;What user would you mute?&quot;)
-            let muteDuration = parseInt(prompt(&quot;For how long?&quot;))
-            if (userMute === client.id) addChat(&quot;[SYSTEM]&quot;, 0b101, &quot;Why mute yourself?&quot;, true, 0)
-            if (muteDuration > 0) addChat(&quot;[SYSTEM]&quot;, 0b101, &quot;Muted &quot; + userMute + &quot; for &quot; + muteDuration + &quot; seconds.&quot;, true, 0)
-                             " id="mute">
-              Mute
-            </button>
-          </table>
-        </div>
-      </div>
+					<div id="settingstabs" class="tabs">
+						<div class="tab active" id="settings-tab" data-panel="settings-panel">Settings</div>
+						<div class="tab" id="explore-tab" data-panel="explore-panel">Explore</div>
+						<div class="tab" id="account-tab" data-panel="account-panel">Account</div>
+						<div class="tab" id="chat-tab" data-panel="chat-panel">Chat</div>
+						<div class="tab" id="wall-settings-tab" data-panel="wall-settings-panel">Wall Settings</div>
+						<div class="tab" id="admin-tab" data-panel="admin-panel">Admin</div>
+					</div>
+					<div class="panels small-scrollbar">
+						<div id="settings-panel">
+							<input id="showothercurs" type="checkbox"><label for="showothercurs">Show other cursors</label><br>
+							<input id="shownametags" type="checkbox"><label for="shownametags">Show nametags</label><br>
+							<input id="showchat" type="checkbox"><label for="showchat">Show chat</label><br>
+							<input id="blockanonymouschat" type="checkbox"><label for="blockanonymouschat">Block anonymous chat</label><br>
+							<input id="disablecolour" type="checkbox"><label for="disablecolour">Disable colour</label><br>
+							<input id="smoothpanning" type="checkbox"><label for="smoothpanning">Smooth panning</label><br>
+							<input id="smoothcursors" type="checkbox"><label for="smoothcursors">Smooth cursors</label><br>
+							<input id="copycolour" type="checkbox"><label for="copycolour">Copy colours</label><br>
+							<input id="copydecorations" type="checkbox"><label for="copydecorations">Copy decorations</label><br>
+							<input id="rainbow" type="checkbox"><label for="rainbow">Rainbow text</label><br><br>
+							<label for="zoom">Zoom: </label><input type="range" min="5" max="30" value="10" id="zoom"><br><br>
+							<label for="fontselect">Font: </label><select id="fontselect"></select><br>
+				
+							<fieldset id="fontmenu" class="hidden">
+								<legend>Custom Font</legend>
+								<div class="field-row">
+									<label for="customfont">Name:</label>
+									<input id="customfont" type="text">
+								</div>
+								<div class="field-row">
+									<label for="customfontsize">Size:</label>
+									<input id="customfontsize" type="number" min="1" max="20" value="20">
+								</div>
+							</fieldset>
+				
+							<fieldset id="thememenu" class="hidden">
+								<legend>Custom Theme</legend>
+								<div class="field-row">
+									<label for="primary">Primary: </label>
+									<input id="primary" type="color" value="#FFFCE5">
+								</div>
+								<div class="field-row">
+									<label for="secondary">Secondary: </label>
+									<input id="secondary" type="color" value="#FBFFBD">
+								</div>
+								<input id="themetext" type="checkbox"><label for="themetext">White text</label>
+							</fieldset>
+			
+							<br>
+							<input type="button" class="hidden" id="blocklistbutton" value="Show Chat Blocklist">
+							<div id="blocklist" class="hidden"></div>
+						</div>
+			
+						<div id="explore-panel" class="hidden">
+							<div>
+								<input id="homewallbtn" type="button" value="Home Wall">
+								<hr>
+								<h3>Teleport</h3>
+								<form id="teleportform">
+									<div>
+										<div>
+											<label for="tpx">X:</label>
+											<input id="tpx" value="0" type="number">
+										</div>
+										<div>
+											<label for="tpy">Y:</label>
+											<input id="tpy" value="0" type="number">
+											<input type="submit" value="Go">
+										</div>
+									</div>
+								</form>
+								<hr>
+								<h3>Wall Search</h3>
+								<form id="wallsearchform">
+									<input type="text" id="wallsearchname" maxlength="24" minlength="1" placeholder="Username">
+									<input type="image" id="wallsearchsubmit" src="/static/search.svg">
+								</form>
+							</div>
+							<ul id="wallsearch" is="wall-list"></ul>
+						</div>
+			
+						<div id="account-panel" class="hidden">
+							<form id="login">
+								<h3>Log in</h3>
+								<label for="loginname">Username</label><br>
+								<input id="loginname" autocomplete="username" type="text" maxlength="24" minlength="1"><br>
+				
+								<label for="loginpass">Password</label><br>
+								<input id="loginpass" type="password" autocomplete="current-password" maxlength="64" minlength="1">
+				
+								<input type="submit" id="loginbtn" value="Go"><br>
+								<span class="buttonlink" id="registerlink">Register</span>
+							</form>
+				
+							<form id="register" class="hidden">
+								<h3>Register</h3>
+								<label for="username">Username</label><br>
+								<input id="username" autocomplete="username" type="text" maxlength="24" minlength="3"><br>
+				
+								<label for="password">Password<small> (don't forget it)</small></label><br>
+								<input id="password" type="password" autocomplete="new-password" maxlength="64" minlength="8"><br>
+				
+								<label for="password2">Password again</label><br>
+								<input id="password2" type="password" autocomplete="new-password" maxlength="64" minlength="8">
+				
+								<input type="submit" id="registerbtn" value="Go"><br>
+								<span class="buttonlink" id="loginlink">Log in</span>
+							</form>
+				
+							<div id="loggedin" class="hidden">
+								<div>
+									<span>Logged in as <a id="name" class="buttonlink"></a></span><br>
+									<input id="anonymous" type="checkbox"><label for="anonymous">Anonymous</label>
+									<br><br>
+									<input type="button" id="logoutbutton" value="Log Out">
+									<input type="button" id="accountsettingsbutton" value="Account Settings">
+									<div id="accountsettings" class="hidden">
+										<h3>Account settings</h3>
+										<form id="changenameform">
+											<fieldset>
+												<legend>Change username</legend>
+												<label for="chngusername">New Username</label><br>
+												<input id="chngusername" type="text" autocomplete="username" maxlength="24" minlength="3"><br>
+												<label for="chngeusrpass">Password</label><br>
+												<input id="chngeusrpass" autocomplete="new-password" type="password" maxlength="72"><br>
+												<input type="submit" id="submitnamechange" value="Change username">
+											</fieldset>
+										</form>
+										<form id="changepassform">
+											<fieldset>
+												<legend>Change password</legend>
+												<input type="text" autocomplete="username" style="display: none;">
+												<label for="oldpass">Old password</label><br>
+												<input id="oldpass" type="password" autocomplete="new-password" maxlength="72"><br>
+												<label for="newpass">New password</label><br>
+												<input id="newpass" autocomplete="new-password" type="password" maxlength="72" minlength="8"><br>
+												<label for="newpass2">New password again</label><br>
+												<input id="newpass2" autocomplete="new-password" type="password" maxlength="72" minlength="8"><br>
+												<input type="submit" id="submitpasschange" value="Change password">
+											</fieldset>
+										</form>
+										<form id="delaccountform">
+											<fieldset>
+												<legend>Delete account</legend>
+												<input type="text" autocomplete="username" style="display: none;">
+												<label for="deletepassword">Password</label><br>
+												<input id="deletepassword" autocomplete="new-password" type="password" maxlength="72"><br>
+												<input type="submit" id="deleteaccount" value="Delete account">
+											</fieldset>
+										</form>
+									</div>
+									<h3>Walls</h3>
+									<form id="createwallform">
+										<input type="text" id="newwallname" placeholder="Add a new wall" maxlength="24">
+										<input type="image" id="createwallsubmit" value="Create" src="/static/add_circle.svg">
+									</form>
+								</div>
+								<ul id="mywalls" is="wall-list"></ul>
+							</div>
+						</div>
+		
+						<div id="chat-panel" class="hidden">
+							<div class="chatcontainer">
+								<div id="chatbox">
+									<div class="hidden" id="chataction">
+										<span class="hidden" id="chatextra"></span>
+										
+										<a id="chatvisit" class="no-select" title="Visit Wall">
+											<img alt="open" src="/static/open.svg">
+											<span></span>
+										</a>
+					
+										<a id="chatblock" class="no-select" title="Block">
+											<img alt="block" src="/static/block.svg">
+											<span></span>
+										</a>
+									</div>
+								</div>
+								<form id="msgcontainer">
+									<input maxlength="180" type="text" autocomplete="off" title="type a message" id="chatmsg" class="no-select">
+									<img alt="send" id="sendmsg" class="button" src="/static/send.svg">
+								</form>
+							</div>
+						</div>
+			
+						<div id="wall-settings-panel" class="hidden">
+							<input id="readonly" type="checkbox"><label for="readonly">Read-only</label><br>
+							<input id="private" type="checkbox"><label for="private">Private</label><br>
+							<input id="unlisted" type="checkbox"><label for="unlisted">Unlisted</label><br>
+							<input id="hidecursors" type="checkbox"><label for="hidecursors">Hide cursors</label><br>
+							<input id="disablechat" type="checkbox"><label for="disablechat">Disable chat</label><br>
+							<input id="walldisablecolour" type="checkbox"><label for="walldisablecolour">Disable colour</label><br>
+							<input id="disablebraille" type="checkbox"><label for="disablebraille">Disable braille</label><br>
+							<input id="disableoctants" type="checkbox"><label for="disableoctants">Disable octants</label><br>
+							<div id="addmembers">
+								<h3>Add members</h3>
+								<form>
+									<input id="inputmember" placeholder="Username" type="text" maxlength="24" minlength="1">
+									<input id="addmemberbtn" value="Add" type="image" src="/static/person_add.svg"><br>
+								</form>
+								<div id="memberlist"></div>
+							</div>
+			
+							<div id="wallownersettings">
+								<input type="button" id="resizewall" value="Resize wall">
+								<input type="button" id="renamewall" value="Rename wall">
+								<input type="button" id="deletewall" value="Delete wall">
+							</div>
+		
+							<form id="resizewallform" class="hidden">
+								<fieldset>
+									<legend>Resize wall</legend>
+		
+									<div class="field-row">
+										<label for="resize-miny">Top:</label>
+										<input id="resize-miny" type="number" min="1" max="500" value="1">
+									</div>
+									<div class="field-row">
+										<label for="resize-maxy">Bottom:</label>
+										<input id="resize-maxy" type="number" min="1" max="500" value="1">
+									</div>
+									<div class="field-row">
+										<label for="resize-minx">Left:</label>
+										<input id="resize-minx" type="number" min="1" max="500" value="1">
+									</div>
+									<div class="field-row">
+										<label for="resize-maxx">Right:</label>
+										<input id="resize-maxx" type="number" min="1" max="500" value="1">
+									</div>
+									
+									<input type="button" id="resizewallsubmit" value="Resize">
+									<input type="button" id="resizewallcancel" value="Cancel">
+								</fieldset>
+							</form>
+			
+							<form id="deletewallform" class="hidden">
+								<fieldset>
+									<legend>Delete wall</legend>
+									<span>Are you sure you would like to delete this wall?</span><br>
+									<input type="button" id="deletewallyes" value="Yes">
+									<input type="button" id="deletewallno" value="No">
+								</fieldset>
+							</form>
+			
+							<form id="renamewallform" class="hidden">
+								<fieldset>
+									<legend>Rename wall</legend>
+									<input type="text" maxlength="24" id="renamewallname" placeholder="new name">
+									<input type="submit" id="renamewallbtn" value="Rename">
+									<input type="button" id="renamewallcancelbtn" value="Cancel">
+								</fieldset>
+							</form>
+						</div>
+			
+						<div id="admin-panel" class="hidden"></div>
+					</div>
+				</div>
+		
+				<div id="sidething">
+					<div id="closemenu">
+						<svg height="12" width="6">
+							<polygon points="0,6 6,0 6,12"></polygon>
+						</svg>
+					</div>
+				</div>
+			</div>
       <div class="sidething">
         <div id="closemenu">
           <img alt="cancel" src="/static/cancel.svg" />

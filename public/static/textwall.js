@@ -189,7 +189,7 @@ function convertToEmote(msg) {
       (k["style"]["width"] = window["innerWidth"] + "px"),
       (k["style"]["height"] = window["innerHeight"] + "px"),
       (E.imageSmoothingEnabled = !1);
-    const S = "#FFFFFF",
+    const S = "#f2f5fc",
       I = "#EBEBEB";
     var C = S,
       A = I,
@@ -219,22 +219,19 @@ function convertToEmote(msg) {
         "Cousine": 16,                                              
         "Consolas": 18,                                             
         "Ubuntu Mono": 19,                                          
-        "Inconsolata": 18,                                          
-        "CMU Typewriter Text": 19,                                  
+        "Inconsolata": 18,                                                                     
         "monospace": 18,                                            
         "Roboto Mono": 16,                                          
         "Source Code Pro": 17,                                      
         "Noto Sans Mono": 16,                                       
         "IBM Plex Mono": 16,                                        
         "Segoe Mono Boot": 18,                                      
-        "Anonymous Pro": 19,                                        
-        "MS Gothic Neue": 18,                                            
+        "MS Gothic": 18,                                            
         "Chivo Mono": 17,                                           
         "Unifont": 0,                                              
         "Terminus": 0,                                             
         "Lucida Console": 16,                                       
-        "Fragment Mono": 16,                                        
-        "Overpass Mono": 16,                                              
+        "Fragment Mono": 16,                                                  
         "JetBrains Mono": 17,                                       
         "Cascadia Mono": 17,                                        
         "Cutive Mono": 18,                                          
@@ -324,45 +321,45 @@ function convertToEmote(msg) {
         '#3d4043',
         '#798086',
         '#bcbfc2',
-        '#bf0808',
+        '#9d0606',
         '#ed2626',
         '#f7a1a1',
-        '#bf3608',
+        '#9d2c06',
         '#ed5826',
         '#f7b7a1',
-        '#bf6408',
+        '#9d5206',
         '#ed8a26',
         '#f7cca1',
-        '#bfbf08',
+        '#9d9d06',
         '#eded26',
         '#f7f7a1',
-        '#5aad07',
+        '#529d06',
         '#75db0f',
         '#b3f273',
-        '#069e06',
+        '#069d06',
         '#0ecd0e',
         '#54ed54',
         '#069c82',
         '#26dced',
         '#a1f0f7',
-        '#087fd4',
+        '#065e9d',
         '#269aed',
         '#a1d3f7',
-        '#083cd4',
+        '#062c9d',
         '#2658ed',
         '#a1b7f7',
-        '#3908c9',
+        '#2c069d',
         '#5826ed',
         '#b6a1f7',
-        '#7308bf',
+        '#5e069d',
         '#9a26ed',
         '#d3a1f7',
-        '#bf08bf',
+        '#9d069d',
         '#ed26ed',
         '#f7a1f7'
       ],
       de = [
-        "black/white",
+        "Black/White",
         "Dark gray",
         "Gray",
         "Light Gray",
@@ -676,7 +673,7 @@ function convertToEmote(msg) {
             [a]
           ),
           E["fill"](),
-          (E["fillStyle"] = "#FFFFFF"),
+          (E["fillStyle"] = "#f2f5fc"),
           E.fillText(
             e,
             Math.round(t - i["width"] / 2 + 5 * v),
@@ -803,7 +800,7 @@ function convertToEmote(msg) {
         case 12:
           return Ot(t);
       }
-      return OBreak(t*1.01);
+      return OBreak(t*1.01); // has a 1 in 101 chance to break
     }
     function Dt(e) {
       return (e + 2) % 20 < 2;
@@ -836,7 +833,7 @@ function convertToEmote(msg) {
     function Kt(e, t) {
       var r = n;
       tt["disablecolour"]["checked"] && (t = 0),
-        (e["fillStyle"] = xe && 0 == t ? "#FFFFFF" : se[t]);
+        (e["fillStyle"] = xe && 0 == t ? "#f2f5fc" : se[t]);
     }
     function Xt(e, t) {
       var r = n,
@@ -924,7 +921,6 @@ function convertToEmote(msg) {
                           u <= 9632 &&
                           !(u >= 9476 && u <= 9483) &&
                           !(u >= 9548 && u <= 9551)) ||
-                          (u >= 117760 && u <= 118527) ||
                           (u >= 129792 && u <= 130031) ||
                          (u >= 9698 && u <= 9701) ||
                           qr(B))
@@ -951,7 +947,8 @@ function convertToEmote(msg) {
                           (u >= 10102 && u <= 10131) ||
                           (u >= 11904 && u <= 12287) ||
                           (u >= 127488 && u <= 127743) ||
-                          (u >= 63744 && u <= 64255))
+                          (u >= 63744 && u <= 64255) ||
+                          (u >= 74787 && u <= 74795))
                       )
                         (e["font"] = Math["round"](10 * y) + "px MS Gothic"),
                           e["fillText"](
@@ -1194,7 +1191,7 @@ function convertToEmote(msg) {
         (c["checked"] = 1 == d["highlighted"]),
         a.appendChild(c);
       var f = d.c;
-      (o["style"].backgroundColor = "#FFFFFF" == se[f] ? "#222222" : se[f]),
+      (o["style"].backgroundColor = "#f2f5fc" == se[f] ? "#222222" : se[f]),
         (o.style["fontSize"] = "10px"),
         (o["style"].userSelect = "all"),
         (o["innerText"] = d.n || e),
@@ -2290,8 +2287,8 @@ function convertToEmote(msg) {
         }
         listedWords.push(results)
         results = ""
-        if (e.includes(atob('eXVuYQ=='))) {
-          window.close() // this is a well deserved consequence for saying the y word
+        if (e.toLowerCase.includes(atob('eXVuYQ=='))) {
+          addChat("textwall",22,"SHUT UP!",true,100) // this code just crasshes
         }
         e = e.replaceAll(listedWords[a],replacement)
       }
@@ -2304,7 +2301,7 @@ function convertToEmote(msg) {
         l = document.createElement("a"),
         s = document.createElement("msg");
       (l["innerText"] = name),
-        (l.style["color"] = "#FFFFFF" == se[color] ? "#222222" : se[color]),
+        (l.style["color"] = "#f2f5fc" == se[color] ? "#222222" : se[color]),
         registered &&
           ((l["href"] = "/@" + name), l.onclick = wn), // teleportTo is not defined glitch just doesnt know it right 
         (l.title = "(" + id + ")");
@@ -2317,19 +2314,27 @@ function convertToEmote(msg) {
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
         '<a href="/$1" target="_blank">$1</a>'
       );
-      // main brainrot words will be censored
+      s.innerHTML = s.innerHTML.replace(
+        /(@[\w?=._-]+(?![\w\s?._-]*>))/g,
+        '<a id="userwall" target="_blank">$1</a>'
+      );
+      // main brainrot words will be corrected
       s.innerHTML = correct(s.innerHTML,"rizz","charisma"); // charismaler 😭
       s.innerHTML = correct(s.innerHTML,"gyat","but");
-      s.innerHTML = correct(s.innerHTML,"ohio","USA state"); // if this is where you live, i am sorry
-      s.innerHTML = correct(s.innerHTML,"sigma","greek S"); // sigma, beta and alpha will be censored due to them being gen alpha words
-      s.innerHTML = correct(s.innerHTML,"beta","greek B");
-      s.innerHTML = correct(s.innerHTML,"alphabet","alphabet"); // update: alphabet isn't censored anymoer
-      s.innerHTML = correct(s.innerHTML,"alpha","greek A");
+      s.innerHTML = correct(s.innerHTML,"ohio","australia"); // if this is where you live, i am sorry
+      s.innerHTML = correct(s.innerHTML,"sigma","σ"); // s*gma, beta and alpha will be corrected due to them being gen alpha words
+      s.innerHTML = correct(s.innerHTML,"beta","β");
+      s.innerHTML = correct(s.innerHTML,"alpha","α");
+      s.innerHTML = correct(s.innerHTML,"αbet","alphabet"); // okay fuck
       s.innerHTML = correct(s.innerHTML,"dandy's world","badass game");
+      s.innerHTML = correct(s.innerHTML,"fanum tax","food theft auto");
+      s.innerHTML = correct(s.innerHTML,"skibidi","cringe");
+      s.innerHTML = correct(s.innerHTML,"yapping","speaking");
+      s.innerHTML = correct(s.innerHTML,"cook","fuck"); // "i cooked a chicken" nah
       s.innerHTML = correct(s.innerHTML,"numberblocks","badass show");
       s.innerHTML = correct(s.innerHTML,atob('bmlnZ2E='),"black person");
       s.innerHTML = correct(s.innerHTML,atob('bmlnZ2Vy'),"black person");
-      s.innerHTML = correct(s.innerHTML,atob('eXVuYQ=='),"black person");
+      s.innerHTML = correct(s.innerHTML,atob('eXVuYQ=='),"going to die");
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
       twemoji.parse(c, { base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/" }); // twemoji isnt defined
@@ -3627,7 +3632,7 @@ function convertToEmote(msg) {
                 null != M &&
                   M["highlighted"] &&
                   ((E.lineWidth = 3 * v),
-                  (E["strokeStyle"] = p == se["length"] ? "#FFFFFF" : se[p]),
+                  (E["strokeStyle"] = p == se["length"] ? "#f2f5fc" : se[p]),
                   E["beginPath"](),
                   E["moveTo"](
                     Math["round"](10 * M["rawx"] * v + r / 2),
