@@ -98,7 +98,7 @@
             alpha: !1
         });
         E["width"] = Math["round"](window.innerWidth * m), E["height"] = Math.round(window.innerHeight * m), E.style["width"] = window["innerWidth"] + "px", E.style["height"] = window["innerHeight"] + "px", S.imageSmoothingEnabled = !1;
-        const I = "#edf1ff",
+        const I = "#FFFFFF",
             C = "#EBEBEB";
         var A = I,
             B = C,
@@ -564,7 +564,7 @@
             if ("" != e) {
                 S["fillStyle"] = "rgba(34, 34, 34, 0.4)";
                 var i = S["measureText"](e);
-                S["beginPath"](), S["roundRect"](Math["round"](t - i["width"] / 2), Math["round"](r + 21 * m), Math["round"](i["width"] + 10 * m), Math.round(14 * m), [a]), S.fill(), S["fillStyle"] = "#edf1ff", S["fillText"](e, Math["round"](t - i["width"] / 2 + 5 * m), Math["round"](r + 31 * m))
+                S["beginPath"](), S["roundRect"](Math["round"](t - i["width"] / 2), Math["round"](r + 21 * m), Math["round"](i["width"] + 10 * m), Math.round(14 * m), [a]), S.fill(), S["fillStyle"] = "#FFFFFF", S["fillText"](e, Math["round"](t - i["width"] / 2 + 5 * m), Math["round"](r + 31 * m))
             }
         }
 
@@ -686,7 +686,7 @@
 
         function Zt(e, t) {
             var r = n;
-            ft["disablecolour"]["checked"] && (t = 0), e["fillStyle"] = Be && 0 == t ? "#edf1ff" : xe[t]
+            ft["disablecolour"]["checked"] && (t = 0), e["fillStyle"] = Be && 0 == t ? "#FFFFFF" : xe[t]
         }
 
         function en(e, t, r) {
@@ -951,7 +951,7 @@
             var f = We["get"](e);
             c["type"] = "checkbox", c["checked"] = 1 == f["highlighted"], a["appendChild"](c);
             var d = f.c;
-            o["style"]["backgroundColor"] = "#edf1ff" == xe[d] ? "#222222" : xe[d], o["style"]["fontSize"] = "10px", o["style"]["userSelect"] = "all", o["innerText"] = f.n || e, o["addEventListener"]("click", wn), o["addEventListener"]("dblclick", bn), i["appendChild"](l), i["appendChild"](u), i["appendChild"](s), r["dataset"].id = e, r["appendChild"](a), r["appendChild"](o), r["appendChild"](i), document["getElementById"]("admintable").appendChild(r)
+            o["style"]["backgroundColor"] = "#FFFFFF" == xe[d] ? "#222222" : xe[d], o["style"]["fontSize"] = "10px", o["style"]["userSelect"] = "all", o["innerText"] = f.n || e, o["addEventListener"]("click", wn), o["addEventListener"]("dblclick", bn), i["appendChild"](l), i["appendChild"](u), i["appendChild"](s), r["dataset"].id = e, r["appendChild"](a), r["appendChild"](o), r["appendChild"](i), document["getElementById"]("admintable").appendChild(r)
         }
 
         function kn(e) {
@@ -1706,7 +1706,7 @@
                             i = document["getElementById"]("chatbox"),
                             c = document["createElement"]("p"),
                             l = document["createElement"]("a");
-                        l.innerText = e, l["style"]["color"] = "#edf1ff" == xe[n] ? "#222222" : xe[n], a && (l["href"] = "/~" + e, l["addEventListener"]("click", Pn)), c["appendChild"](l), c["appendChild"](document["createTextNode"](" ~ " + r));
+                        l.innerText = e, l["style"]["color"] = "#FFFFFF" == xe[n] ? "#222222" : xe[n], a && (l["href"] = "/~" + e, l["addEventListener"]("click", Pn)), c["appendChild"](l), c["appendChild"](document["createTextNode"](" ~ " + r));
                         var u = Math["abs"](i.scrollHeight - i["scrollTop"] - i["clientHeight"]) < 5;
                         i["appendChild"](c), u && An(), In.classList.contains("open") || Cn.classList["add"]("show")
                     }(L[0], L[1], L[2], L[3]);
@@ -2249,7 +2249,7 @@
                             y = 20 * ze[f][1] * m;
                         if (ft["showothercurs"].checked && h) {
                             var p = We["get"](ze[f][4]);
-                            null != p && p["highlighted"] && (S["lineWidth"] = 3 * m, S["strokeStyle"] = s == xe["length"] ? "#edf1ff" : xe[s], S["beginPath"](), S["moveTo"](Math.round(10 * p["rawx"] * m + n / 2), Math["round"](20 * p.rawy * m + r)), S["lineTo"](Math["round"](v + n / 2), Math["round"](y + r)), S["stroke"]())
+                            null != p && p["highlighted"] && (S["lineWidth"] = 3 * m, S["strokeStyle"] = s == xe["length"] ? "#FFFFFF" : xe[s], S["beginPath"](), S["moveTo"](Math.round(10 * p["rawx"] * m + n / 2), Math["round"](20 * p.rawy * m + r)), S["lineTo"](Math["round"](v + n / 2), Math["round"](y + r)), S["stroke"]())
                         }
                         S["fillRect"](v, y, n, r)
                     }

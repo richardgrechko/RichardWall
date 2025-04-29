@@ -619,7 +619,7 @@ var client_commands = {
             [a]
           ),
           E["fill"](),
-          (E["fillStyle"] = "#edf1ff"),
+          (E["fillStyle"] = "#FFFFFF"),
           E.fillText(
             e,
             Math.round(t - i["width"] / 2 + 5 * v),
