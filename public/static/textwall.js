@@ -178,7 +178,7 @@ function convertToEmote(msg) {
     const g = document["getElementById"]("toast");
     var p;
     const b = document["getElementById"]("clipboard"),
-      x = document["getElementById"]("optionsmenu"),
+      x = document["getElementById"]("usermenu"),
       w = document["getElementById"]("colourlist"),
       M = document["getElementById"]("teleport");
     var k = document["getElementById"]("canvas");
@@ -2305,12 +2305,11 @@ function convertToEmote(msg) {
         registered &&
           ((l["href"] = "/@" + name), l.onclick = wn), // teleportTo is not defined glitch just doesnt know it right 
         (l.title = "(" + id + ")");
-      ir(name + ": " + message, 3e3)
+      ir(name + ": " + message)
       s.innerText = message;
       c["appendChild"](l),
       c.appendChild(document.createTextNode(": ")),
       c.appendChild(s);
-      c.color = "#000000"
       s.innerHTML = s.innerHTML.replace(
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
         '<a href="/$1" target="_blank">$1</a>'
@@ -2336,7 +2335,6 @@ function convertToEmote(msg) {
       s.innerHTML = correct(s.innerHTML,atob('bmlnZ2E='),"black person");
       s.innerHTML = correct(s.innerHTML,atob('bmlnZ2Vy'),"black person");
       s.innerHTML = correct(s.innerHTML,atob('eXVuYQ=='),"going to die");
-      s.color = "#000000"
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
       twemoji.parse(c, { base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/" }); // twemoji isnt defined

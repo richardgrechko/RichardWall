@@ -32,14 +32,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@latest/dist/twemoji.min.js" crossorigin="anonymous"></script>
     <script src="/warning.js"></script>
   </head>
-  <body id="ui">
-    <script>
-      function changeTab(e) {
-        if (e == "settings") {
-          
-        }
-      }
-    </script>
+  <body>
     <script>
       var $buoop = {
         required: { e: 79, f: 117, o: 100, s: -6, c: 116 },
@@ -142,10 +135,6 @@
             <td>CTRL+U</td>
           </tr>
           <tr>
-            <td><u>Overline</u> text</td>
-            <td>CTRL+2</td>
-          </tr>
-          <tr>
             <td><s>Strikethrough</s> text</td>
             <td>CTRL+S</td>
           </tr>
@@ -160,41 +149,15 @@
         </table>
       </div>
     </div>
-    <div id="usermenu" class="hidden">
-      <div id="optionsmenu">
-      <div id="settingstabs" class="tabs">
-						<div class="tab active" id="settings-tab" data-panel="settings-panel">Settings</div>
-						<div class="tab" id="explore-tab" data-panel="explore-panel">Explore</div>
-						<div class="tab" id="account-tab" data-panel="account-panel">Account</div>
-						<div class="tab" id="chat-tab" data-panel="chat-panel">Chat</div>
-						<div class="tab hidden" id="wall-settings-tab" data-panel="wall-settings-panel">Wall Settings</div>
-						<div class="tab hidden" id="admin-tab" data-panel="admin-panel">Admin</div>
-					</div>
-      <hr>
-        <div id="chat" class="hidden">
-      <div class="buttoncontainer hidden">
+    <div id="chat" class="hidden">
+      <div class="buttoncontainer">
         <div id="chatbutton">
           <img alt="chat" class="button" src="/static/chat.svg" />
           <div id="unread"></div>
         </div>
       </div>
-      <div class="chat-panel hidden">
       <div class="chatcontainer">
-        <div id="chatbox">
-          <div class="hidden" id="chataction">
-										<span class="hidden" id="chatextra"></span>
-										
-										<a id="chatvisit" class="no-select" title="Visit Wall">
-											<img alt="open" src="/static/open.svg">
-											<span></span>
-										</a>
-					
-										<a id="chatblock" class="no-select" title="Block">
-											<img alt="block" src="/static/block.svg">
-											<span></span>
-										</a>
-									</div>
-        </div>
+        <div id="chatbox"></div>
         <div class="msgcontainer">
           <input
             maxlength="400"
@@ -205,51 +168,80 @@
           <img alt="send" id="sendmsg" class="button" src="/static/send.svg" />
         </div>
       </div>
+    </div>
+    <div id="usermenu" class="hidden">
+      <div id="optionsmenu">
         <h1>Options</h1>
-        <div id="settings-panel" class="">
-							<input id="showothercurs" type="checkbox"><label for="showothercurs">Show other cursors</label><br>
-							<input id="shownametags" type="checkbox"><label for="shownametags">Show nametags</label><br>
-							<input id="showchat" type="checkbox"><label for="showchat">Show chat</label><br>
-							<input id="blockanonymouschat" type="checkbox"><label for="blockanonymouschat">Block anonymous chat</label><br>
-							<input id="disablecolour" type="checkbox"><label for="disablecolour">Disable colour</label><br>
-							<input id="smoothpanning" type="checkbox"><label for="smoothpanning">Smooth panning</label><br>
-							<input id="smoothcursors" type="checkbox"><label for="smoothcursors">Smooth cursors</label><br>
-							<input id="copycolour" type="checkbox"><label for="copycolour">Copy colours</label><br>
-							<input id="copydecorations" type="checkbox"><label for="copydecorations">Copy decorations</label><br>
-							<input id="rainbow" type="checkbox"><label for="rainbow">Rainbow text</label><br><br>
-							<label for="zoom">Zoom: </label><input type="range" min="5" max="50" value="10" id="zoom"><br><br>
-              <label for="rainbowmodeselect">Rainbow mode: </label><select id="rainbowmodeselect"></select><br><br>
-							<label for="fontselect">Font: </label><select id="fontselect"></select><br>
-				
-							<fieldset id="fontmenu" class="hidden">
-								<legend>Custom Font</legend>
-								<div class="field-row">
-									<label for="customfont">Name:</label>
-									<input id="customfont" type="text">
-								</div>
-								<div class="field-row">
-									<label for="customfontsize">Size:</label>
-									<input id="customfontsize" type="number" min="1" max="20" value="20">
-								</div>
-							</fieldset>
-				
-							<fieldset id="thememenu" class="">
-								<legend>Custom Theme</legend>
-								<div class="field-row">
-									<label for="primary">Primary: </label>
-									<input id="primary" type="color" value="#FFFCE5">
-								</div>
-								<div class="field-row">
-									<label for="secondary">Secondary: </label>
-									<input id="secondary" type="color" value="#FBFFBD">
-								</div>
-								<input id="themetext" type="checkbox"><label for="themetext">White text</label>
-							</fieldset>
-			
-							<br>
-							<input type="button" class="" id="blocklistbutton" value="Show Chat Blocklist">
-							<div id="blocklist" class="hidden"><div class="member">3rdvai2024</div><div class="member">chopshop</div><div class="member">goodperson</div><div class="member">let_me_out</div></div>
-						</div>
+        <input id="showothercurs" type="checkbox" /><label for="showothercurs"
+          >Show other cursors</label
+        ><br />
+        <input id="shownametags" type="checkbox" /><label for="shownametags"
+          >Show nametags</label
+        ><br />
+        <input id="showchat" type="checkbox" /><label
+          for="showchat"
+          id="showcht"
+          >Show chat</label
+        ><br id="newlineshowchat" />
+        <input id="disablecolour" type="checkbox" /><label for="disablecolour"
+          >Disable color</label
+        ><br />
+        <input id="smoothpanning" type="checkbox" /><label for="smoothpanning"
+          >Smooth panning</label
+        ><br />
+        <input id="smoothcursors" type="checkbox" /><label for="smoothcursors"
+          >Smooth cursors</label
+        ><br />
+        <input id="copycolour" type="checkbox" /><label for="copycolour"
+          >Copy colors</label
+        ><br />
+        <input id="copydecorations" type="checkbox" /><label
+          for="copydecorations"
+          >Copy decorations</label
+        ><br />
+        <input id="rainbow" type="checkbox" /><label for="rainbow"
+          >Rainbow text</label
+        ><br /><br />
+        <label></label>
+        <label for="zoom">Zoom: </label
+        ><input
+          type="range"
+          min="5"
+          max="30"
+          value="10"
+          id="zoom"
+        /><br /><br />
+        <label for="rainbowmodeselect"
+          >Rainbow mode: </label
+        ><select id="rainbowmodeselect">
+        </select><br /><br />
+        <label for="fontselect">Font: </label
+        ><select id="fontselect"></select
+        ><br />
+        <fieldset id="fontmenu" class="hidden">
+          <legend>Custom Font</legend>
+          <label for="customfont">Name:</label
+          ><input id="customfont" type="text" /><br />
+          <label for="customfontsize">Size:</label
+          ><input
+            id="customfontsize"
+            type="number"
+            min="1"
+            max="20"
+            value="20"
+          /><br />
+        </fieldset>
+        <label></label>
+        <fieldset id="thememenu" class="hidden">
+          <legend>Custom Theme</legend>
+          <label for="primary">Primary:</label
+          ><input id="primary" type="color" value="#FFFCE5" /><br />
+          <label for="secondary">Secondary:</label
+          ><input id="secondary" type="color" value="#FBFFBD" /><br />
+          <input id="themetext" type="checkbox" /><label for="themetext"
+            >White text</label
+          >
+        </fieldset>
         <h3 id="logintext">Log in</h3>
         <div id="loginwithdiscord">
           <button type="button" onclick="discordLogin()" id="discordloginbtn">
@@ -421,6 +413,18 @@
         </div>
         <div>
           <h2>Miscellaneous</h2>
+
+          <h3>Oneko</h3>
+          <button onclick="summonOneko();">Summon an Oneko cat</button><br />
+          <button onclick="onekoDisaster();">ONEKO DISASTER!</button><br />
+          <button onclick="superOnekoDisaster();">SUPER ONEKO DISASTER</button
+          ><br />
+          <button onclick="ultraOnekoDisaster();">
+            ULTRA ONEKO DISASTER!!!
+          </button>
+          <button onclick="removeOneko();">Remove a Oneko cat</button><br />
+          <button onclick="removeDisasters();">Cancel Oneko Disasters</button
+          ><br /><br />
           <button
             onclick="joinDiscord();"
             style="background-color: #5865f2; color: #ffffff"
@@ -593,15 +597,22 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
             value="💨"
           /><br />
           <table id="admintable">
+            <button onclick="
+            let userMute = prompt(&quot;What user would you mute?&quot;)
+            let muteDuration = parseInt(prompt(&quot;For how long?&quot;))
+            if (userMute === client.id) addChat(&quot;[SYSTEM]&quot;, 0b101, &quot;Why mute yourself?&quot;, true, 0)
+            if (muteDuration > 0) addChat(&quot;[SYSTEM]&quot;, 0b101, &quot;Muted &quot; + userMute + &quot; for &quot; + muteDuration + &quot; seconds.&quot;, true, 0)
+                             " id="mute">
+              Mute
+            </button>
           </table>
         </div>
       </div>
       <div class="sidething">
         <div id="closemenu">
-          <svg height="12" width="6">
-							<polygon points="0,6 6,0 6,12"></polygon>
-						</svg>
+          <img alt="cancel" src="/static/cancel.svg" />
         </div>
+        <div id="colourlist"></div>
       </div>
     </div>
     <div id="connecting">
