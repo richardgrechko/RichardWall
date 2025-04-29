@@ -1863,7 +1863,7 @@ function convertToEmote(msg) {
             t = document["getElementById"]("accountsettings");
           (t["style"]["display"] =
             "block" == t["style"]["display"] ? "none" : "block"),
-            (document.getElementById("optionsmenu")["scrollTop"] =
+            (document.getElementById("usermenu")["scrollTop"] =
               t["clientHeight"] - 60);
         }),
       document["getElementById"]("changenameform")["addEventListener"](
@@ -1966,7 +1966,7 @@ function convertToEmote(msg) {
         "click",
         function (e) {
           var t = n;
-          e["preventDefault"](), document["getElementById"]("optionsmenu");
+          e["preventDefault"](), document["getElementById"]("usermenu");
           var r = document["getElementById"]("inputmember"),
             o = document["getElementById"]("memberlist"),
             i = r.value.toLowerCase();
@@ -2032,7 +2032,7 @@ function convertToEmote(msg) {
             var t = !1;
             for (const n of Pe["keys"]()) dn(n), (t = !0);
             if (t) {
-              var r = document.getElementById("optionsmenu");
+              var r = document.getElementById("usermenu");
               r["scrollTop"] = r["scrollHeight"];
             }
           }
@@ -3311,7 +3311,7 @@ function convertToEmote(msg) {
           x.style["transform"] = "translateX(-105%)";
           break;
         case 1:
-          var r = document.getElementById("optionsmenu")["clientWidth"];
+          var r = document.getElementById("usermenu")["clientWidth"];
           x["style"]["transform"] = "translateX(" + -r + "px)";
           break;
         default:
