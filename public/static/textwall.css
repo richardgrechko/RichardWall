@@ -391,7 +391,6 @@ td {
 }
 .chatcontainer {
   width: 250px;
-  background-color: rgba(30, 30, 30, 0.8);
 	border-radius: 0 0 0 5px;
 	height: 100%;
 	gap: 7px;
