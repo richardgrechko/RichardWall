@@ -226,7 +226,7 @@ function convertToEmote(msg) {
         "Noto Sans Mono": 16,                                       
         "IBM Plex Mono": 16,                                        
         "Segoe Mono Boot": 18,                                      
-        "MS Gothic": 18,                                            
+        "MS Gothic Neue": 18,                                            
         "Chivo Mono": 17,                                           
         "Unifont": 0,                                              
         "Terminus": 0,                                             
@@ -358,7 +358,7 @@ function convertToEmote(msg) {
         '#d415d4',
         '#f76ee0',
         '#492c03',
-        '#c69653',
+        '#bf9339',
         '#fbdeb6',
       ],
       de = [
