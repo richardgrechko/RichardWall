@@ -357,9 +357,9 @@ function convertToEmote(msg) {
         '#ac0691',
         '#d415d4',
         '#f76ee0',
-        '#583504',
+        '#492c03',
         '#c69653',
-        '#fad49e',
+        '#fbdeb6',
       ],
       de = [
         "Black/White",
@@ -2983,9 +2983,9 @@ function convertToEmote(msg) {
       if (!chunk) return;
       var i = (y - chunkY) * 20 + (x - chunkX);
       char.char = chunk.txt[i];
-      char.color = chunk.clr[i] % 40;
+      char.color = chunk.clr[i] % 43;
       char.protected = chunk.protected ? true : false;
-      var format = Math.floor(chunk.clr[i] / 40);
+      var format = Math.floor(chunk.clr[i] / 43);
       char.decorations = {
         bold: (format & 8) == 8,
         italic: (format & 4) == 4,
@@ -3893,10 +3893,10 @@ function convertToEmote(msg) {
       return e * e;
     }
     function Vr(e, t) {
-      return 40 * t + e;
+      return 43 * t + e;
     }
     function Zr(e) {
-      return [e % 40, Math["floor"](e / 40)];
+      return [e % 43, Math["floor"](e / 43)];
     }
     isNaN(Ce.x) && (Ce.x = 0),
       isNaN(Ce.y) && (Ce.y = 0),
