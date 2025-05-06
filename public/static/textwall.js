@@ -365,7 +365,7 @@ function convertToEmote(msg) {
         "Black/White",
         "Dark Gray",
         "Gray",
-        "Light Gray",
+        "Silver",
         "Maroon",
         "Red",
         "Cherry",
