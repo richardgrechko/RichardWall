@@ -330,7 +330,7 @@ function convertToEmote(msg) {
         '#7f4c05',
         '#ed9418',
         '#f7be6e',
-        '#ac9106',
+        '#c59507',
         '#dbed18',
         '#ecf76e',
         '#5e8a05',
@@ -356,7 +356,10 @@ function convertToEmote(msg) {
         '#be6ef7',
         '#ac0691',
         '#d415d4',
-        '#f76ee0'
+        '#f76ee0',
+        '#583504',
+        '#c69653',
+        '#fad49e',
       ],
       de = [
         "Black/White",
@@ -399,9 +402,12 @@ function convertToEmote(msg) {
         "Dark Magenta",
         "Magenta",
         "Pink",
+        "Chocolate",
+        "Khaki",
+        "Sand",
       ],
       fe = [
-        0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39
+        0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42
       ];
     function ve(e) {
       for (var t = n, r = 0; r < se["length"]; r++) if (fe[r] == e) return r;
