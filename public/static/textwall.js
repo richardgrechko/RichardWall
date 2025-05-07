@@ -2352,7 +2352,8 @@ function convertToEmote(msg) {
       s.innerHTML = correct(s.innerHTML,"fanum tax","food theft auto");
       s.innerHTML = correct(s.innerHTML,"skibidi","cringe");
       s.innerHTML = correct(s.innerHTML,"yapping","speaking");
-      s.innerHTML = correct(s.innerHTML,"cook","fuck"); // "i cooked a chicken" nah
+      s.innerHTML = correct(s.innerHTML,"im cooke","im fucke");
+      s.innerHTML = correct(s.innerHTML,"am i cooke","am i fucke");
       s.innerHTML = correct(s.innerHTML,"numberblocks","badass show");
       s.innerHTML = correct(s.innerHTML,atob('bmlnZ2E='),"black person");
       s.innerHTML = correct(s.innerHTML,atob('bmlnZ2Vy'),"black person");
