@@ -2347,6 +2347,7 @@ function convertToEmote(msg) {
       s.innerHTML = correct(s.innerHTML,"beta","β");
       s.innerHTML = correct(s.innerHTML,"alpha","α");
       s.innerHTML = correct(s.innerHTML,"αbet","alphabet"); // okay fuck
+      s.innerHTML = correct(s.innerHTML,"αnumeric","alphanumeric"); 
       s.innerHTML = correct(s.innerHTML,"dandy's world","badass game");
       s.innerHTML = correct(s.innerHTML,"fanum tax","food theft auto");
       s.innerHTML = correct(s.innerHTML,"skibidi","cringe");
