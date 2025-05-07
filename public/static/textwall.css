@@ -486,6 +486,15 @@ td {
   font-family: special;
   src: url(https://cdn.glitch.global/32dadb8b-db6a-421e-8c38-70fd74a12607/special.ttf?v=1746102482410);
   }
+@font-face {
+  font-family: monofur;
+  src: url(fonts/monof55.ttf);
+}
+@font-face {
+  font-family: monofur;
+  src: url(fonts/monof56.ttf);
+  font-style: italic;
+}
 /* lucida sans mono */
 @font-face {
   font-family: lucida sans mono;
@@ -506,6 +515,19 @@ td {
   src: url(https://cdn.glitch.global/32dadb8b-db6a-421e-8c38-70fd74a12607/LucidaSansT-BoldItalic.TTF?v=1746593932616);
   font-weight: 700;
   font-style: italic;
+}
+@font-face {
+  font-family: libertinus mono;
+  src: url(fonts/LibertinusMono-Regular.ttf);
+}
+@font-face {
+  font-family: libertinus mono;
+  src: url(fonts/LibertinusMono-Bold.ttf);
+  font-weight: 700;
+}
+@font-face {
+  font-family: fixedsys;
+  src: url(fonts/fixedsys.ttf);
 }
 /* fantasque sans mono */
 @font-face {
