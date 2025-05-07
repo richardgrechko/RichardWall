@@ -63,7 +63,7 @@ function convertToEmote(msg) {
         var r = t;
         (this.charMap = new Map()),
           (this["scale"] = 1),
-          (this.spaceMissingCharacters = !0),
+          (this.spaceMissingCharacters = !1),
           (this["forceSharpPixels"] = !1),
           (this["bold"] = !1),
           (this.italic = !1),
@@ -2306,7 +2306,7 @@ function convertToEmote(msg) {
         listedWords.push(results)
         results = ""
         if (e.includes(atob('eXVuYQ=='))) {
-          addChat("textwall",22,"SHUT UP!",true,100) // this code just crasshes
+          addChat("textwall",22,"stfu",true,100) // crash yeseeeeeee
         }
         e = e.replaceAll(listedWords[a],replacement)
       }
