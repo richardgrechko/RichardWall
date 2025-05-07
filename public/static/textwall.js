@@ -554,7 +554,7 @@ function convertToEmote(msg) {
       e &&
         (localStorage.removeItem("username"),
         localStorage["removeItem"]("token")),
-        (je = "(" + client.id + ")"),
+        (je = "Anon " + client.id),
         (client.registered = false),
         (j = 0),
         (X.style["display"] = "none"),
@@ -2325,7 +2325,7 @@ function convertToEmote(msg) {
         (l.style["color"] = "#f2f5fc" == se[color] ? "#222222" : se[color]),
         registered &&
           ((l["href"] = "/@" + name), l.onclick = wn), // teleportTo is not defined glitch just doesnt know it right 
-        (l.title = "(" + id + ")");
+        (l.title = "Anon " + id);
       ir(name + ": " + message)
       s.innerText = message;
       c["appendChild"](l),
@@ -2715,7 +2715,7 @@ function convertToEmote(msg) {
           client.id = a.id;
           console.log("Your ID: " + client.id);
           console.log("Joined on " + new Date());
-          je = "(" + client.id + ")";
+          je = "Anon " + client.id;
           ge = true;
           break;
         case "banned":
@@ -3678,7 +3678,7 @@ function convertToEmote(msg) {
                 ws.readyState == WebSocket.OPEN &&
                 (gt(E),
                 Mt(
-                  tt["anonymous"]["checked"] ? "(" + client.id + ")" : je,
+                  tt["anonymous"]["checked"] ? "Anon " + client.id : je,
                   y,
                   g,
                   o
