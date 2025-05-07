@@ -691,7 +691,7 @@ function convertToEmote(msg) {
             [a]
           ),
           E["fill"](),
-          (E["fillStyle"] = "#f2f5fc"),
+          (E["fillStyle"] = "#FFFFFF"),
           E.fillText(
             e,
             Math.round(t - i["width"] / 2 + 5 * v),
@@ -933,14 +933,15 @@ function convertToEmote(msg) {
                       if (
                         (4 & T && ((L = !0), Ht(e)),
                         (h = B) >= 58112 &&
-                          h <= 58161 &&
+                          h <= 58367 &&
                           ((B = Rt(B)), (S = String["fromCodePoint"](B))),
                         ((u = B) >= 9472 &&
-                          u <= 9632 &&
+                          u <= 9631 &&
                           !(u >= 9476 && u <= 9483) &&
                           !(u >= 9548 && u <= 9551)) ||
+                          (u >= 117760 && u <= 118527) ||
                           (u >= 129792 && u <= 130031) ||
-                         (u >= 9698 && u <= 9701) ||
+                         (u >= 58368 && u <= 58879) ||
                           qr(B))
                       )
                         (e["font"] = Math["round"](20 * y) + "px Special"),
@@ -952,7 +953,7 @@ function convertToEmote(msg) {
                       if (
                         (4 & T && ((L = !0), Ht(e)),
                         (h = B) >= 58112 &&
-                          h <= 58161 &&
+                          h <= 58367 &&
                           ((B = Rt(B)), (S = String["fromCodePoint"](B))),
                         ((u = B) >= 12320 &&
                           u <= 40959 &&
@@ -966,9 +967,10 @@ function convertToEmote(msg) {
                           (u >= 11904 && u <= 12287) ||
                           (u >= 127488 && u <= 127743) ||
                           (u >= 63744 && u <= 64255) ||
-                          (u >= 74787 && u <= 74795))
+                          (u >= 74787 && u <= 74795) ||
+                        [65021, 74795].includes(u))
                       )
-                        (e["font"] = Math["round"](10 * y) + "px MS Gothic"),
+                        (e["font"] = Math["round"](10 * y) + "px Yu Gothic"),
                           e["fillText"](
                             S,
                             Math["round"](w),
