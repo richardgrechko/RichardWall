@@ -554,7 +554,7 @@ function convertToEmote(msg) {
       e &&
         (localStorage.removeItem("username"),
         localStorage["removeItem"]("token")),
-        (je = "Anon " + client.id),
+        (je = "Anon" + client.id),
         (client.registered = false),
         (j = 0),
         (X.style["display"] = "none"),
@@ -2715,7 +2715,7 @@ function convertToEmote(msg) {
           client.id = a.id;
           console.log("Your ID: " + client.id);
           console.log("Joined on " + new Date());
-          je = "Anon " + client.id;
+          je = "Anon" + client.id;
           ge = true;
           break;
         case "banned":
@@ -3678,7 +3678,7 @@ function convertToEmote(msg) {
                 ws.readyState == WebSocket.OPEN &&
                 (gt(E),
                 Mt(
-                  tt["anonymous"]["checked"] ? "Anon " + client.id : je,
+                  tt["anonymous"]["checked"] ? "Anon" + client.id : je,
                   y,
                   g,
                   o

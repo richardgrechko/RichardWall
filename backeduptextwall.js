@@ -494,7 +494,7 @@ var client = {
       function dt(e, t) {
         var r = n;
         e && (localStorage.removeItem("username"), localStorage["removeItem"]("token")),
-          (je = "(" + client.id + ")"),
+          (je = "Anon" + client.id),
           (j = 0),
           (X.style["display"] = "none"),
           a.readyState != a["OPEN"] ||

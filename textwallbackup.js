@@ -482,7 +482,7 @@ var client_commands = {
       e &&
         (localStorage.removeItem("username"),
         localStorage["removeItem"]("token")),
-        (je = "(" + client.id + ")"),
+        (je = "Anon" + client.id),
         (client.registered = false),
         (j = 0),
         (X.style["display"] = "none"),
@@ -2162,7 +2162,7 @@ var client_commands = {
         (l.style["color"] = "#FFFFFF" == se[color] ? "#222222" : se[color]),
         registered &&
           ((l["href"] = "/~" + name), l["addEventListener"]("click", wn)),
-        (l.title = "(" + id + ")");
+        (l.title = "Anon" + id);
       c["appendChild"](l),
         c.appendChild(document.createTextNode(": " + message));
       c.innerHTML = c.innerHTML.replace(/((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g, '<a href="$1" target="_blank">$1</a>');
