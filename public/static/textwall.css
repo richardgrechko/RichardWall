@@ -250,8 +250,7 @@ td {
   align-items: center;
 }
 
-.infobtn > img,
-.button {
+.infobtn > img {
   -webkit-user-drag: none;
   -khtml-user-drag: none;
   -moz-user-drag: none;

@@ -2371,6 +2371,7 @@ function convertToEmote(msg) {
       s.innerHTML = correct(s.innerHTML,"skibidi","cringe");
       s.innerHTML = correct(s.innerHTML,"yapping","speaking");
       s.innerHTML = correct(s.innerHTML,"im cooke","im fucke");
+      s.innerHTML = correct(s.innerHTML,"i'm cooke","i'm fucke");
       s.innerHTML = correct(s.innerHTML,"am i cooke","am i fucke");
       s.innerHTML = correct(s.innerHTML,"numberblocks","badass show");
       s.innerHTML = correct(s.innerHTML,atob('bmlnZ2E='),"black person");
@@ -2838,7 +2839,7 @@ function convertToEmote(msg) {
     function On() {
       var e = n;
       (Ue = Pe["size"]),
-        (Ke["innerText"] = (Ue != 0) ? (Ue + " here") : "No one here."),
+        (Ke["innerText"] = (Ue != 0) ? (Ue + " here") : "No one here"),
         (document.getElementById("chatmsg")["placeholder"] =
           0 == Ue
             ? "No one is here."
