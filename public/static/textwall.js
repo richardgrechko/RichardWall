@@ -3528,19 +3528,21 @@ function convertToEmote(msg) {
         (ge = !0);
     }
     var colorTab;
+    if (localStorage.colorTab == undefined) {
+      colorTab = "Mono"
+    } else {
+      colorTab = localStorage.colorTab
+    }
     if (colorTab = "Mono") {
       document.getElementById("monocolor").classList.add("active")
       addColors("mono")
-    }
-    if (colorTab = "Light") {
+    } else if (colorTab = "Light") {
       document.getElementById("lightcolor").classList.add("active")
       addColors("light")
-    }
-    if (document.getElementById("normalcolor").classList.value.includes("active")) {
+    } else if (colorTab = "Normal") {
       document.getElementById("normalcolor").classList.add("active")
       addColors("normal")
-    }
-    if (document.getElementById("darkcolor").classList.value.includes("active")) {
+    } else if (colorTab = "Dark") {
       document.getElementById("darkcolor").classList.add("active")
       addColors("dark")
     }
