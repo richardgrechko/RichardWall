@@ -3400,6 +3400,7 @@ function convertToEmote(msg) {
         case "mono":
           var monocolourlist = document.createElement("span");
           monocolourlist.id = "monocolourlist";
+          monocolourlist["classList"]["add"]("small-scrollbar")
           monocolourlist["classList"]["add"]("colourlist")
           for (let i = 0; i < monochromeColor.length; i++) {
             var mono = document.createElement("div");
@@ -3418,6 +3419,7 @@ function convertToEmote(msg) {
         case "light":
           var lightcolourlist = document.createElement("span");
           lightcolourlist.id = "lightcolourlist";
+          lightcolourlist["classList"]["add"]("small-scrollbar")
           lightcolourlist["classList"]["add"]("colourlist")
           for (let i = 0; i < lightColor.length; i++) {
             var light = document.createElement("div");
@@ -3436,6 +3438,7 @@ function convertToEmote(msg) {
         case "normal":
           var normalcolourlist = document.createElement("span");
           normalcolourlist.id = "normalcolourlist";
+          normalcolourlist["classList"]["add"]("small-scrollbar")
           normalcolourlist["classList"]["add"]("colourlist")
           for (let i = 0; i < normalColor.length; i++) {
             var normal = document.createElement("div");
@@ -3454,6 +3457,7 @@ function convertToEmote(msg) {
         case "dark":
           var darkcolourlist = document.createElement("span");
           darkcolourlist.id = "darkcolourlist";
+          darkcolourlist["classList"]["add"]("small-scrollbar")
           darkcolourlist["classList"]["add"]("colourlist")
           for (let i = 0; i < darkColor.length; i++) {
             var dark = document.createElement("div");
@@ -3478,19 +3482,18 @@ function convertToEmote(msg) {
       }
       document.getElementById(e.toLowerCase() + "colourlist").classList.remove("hidden");
     }
+    addColors("mono");
+    addColors("light");
+    addColors("normal");
+    addColors("dark");
         var colorTab;
-    if (localStorage.colorTab == undefined) {
+    if (localStorage.colorTab === undefined) {
       colorTab = "Mono"
       localStorage.setItem("colorTab", colorTab)
     } else {
       colorTab = localStorage.colorTab
     };
-    addColors("mono");
-    addColors("light");
-    addColors("normal");
-    addColors("dark");
-    localStorage.setItem("colorTab", colorTab);
-    setColorTab(localStorage.colorTab.toLowerCase())
+    setColorTab(localStorage.colorTab)
     document.getElementById("monocolor").addEventListener("click",function(){
       colorTab = "Mono";
       localStorage.setItem("colorTab", colorTab)
@@ -3527,7 +3530,6 @@ function convertToEmote(msg) {
       document.getElementById("darkcolor").classList.add("active");
       setColorTab(colorTab);
     })
-    localStorage.setItem("colorTab",colorTab)
     function sr(e) {
       var t = n,
         r = document.createElement("div");
