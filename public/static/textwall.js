@@ -1678,10 +1678,34 @@ function convertToEmote(msg) {
         }
       ),
       document["getElementById"]("undo")["addEventListener"]("click", function () {
-        // undo function goes here
+          var e = t;
+          if (0 != Be["length"]) {
+            var n = Be["shift"]();
+            (Ce.x = n[0]), (Ce.y = n[1]);
+            var r = client.color,
+            a = ce(),
+            o = Zr(n[3]);
+            (client.color = o[0]),
+            le(o[1]),
+            Vn(n[2], 0, !0) || Be.unshift(n),
+            (client.color = r),
+            le(a);
+          }
       }),
       document["getElementById"]("redo")["addEventListener"]("click", function () {
-        // redo function goes here
+          var e = r;
+          if (0 != Fe["length"]) {
+            var t = Fe["shift"]();
+            (Ce.x = t[0]), (Ce.y = t[1]);
+            var n = client.color,
+            a = ce(),
+            o = Zr(t[3]);
+            (client.color = o[0]),
+            le(o[1]),
+            Vn(t[2], 1, !1) || Fe["unshift"](t),
+            (client.color = n),
+            le(a);
+          }
       }),
       document.getElementById("theme").addEventListener("click", function () {
         yr();
