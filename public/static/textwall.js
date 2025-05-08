@@ -3345,7 +3345,7 @@ function convertToEmote(msg) {
       (document["getElementById"]("paste").style["display"] = "none");
     var lr = 0;
     function ur(e) {
-      var t = n, colorsShown = false;
+      var t = n;
       switch (
         (ie(!1), ((2 == e && 2 == lr) || (1 == e && 1 == lr)) && (e = 0), e)
       ) {
@@ -3353,9 +3353,8 @@ function convertToEmote(msg) {
           x.style["transform"] = "translateX(-105%)";
           break;
         case 1:
-          colorsShown = !colorsShown
-          if (colorsShown) document.getElementById("colourlist").classList.add("hidden")
-          else document.getElementById("colourlist").classList.remove("hidden")
+          var r = document.getElementById("usermenu")["clientWidth"];
+          x["style"]["transform"] = "translateX(" + -r + "px)";
           break;
         default:
           (x.style.transform = "translateX(0px)"),
@@ -3368,7 +3367,6 @@ function convertToEmote(msg) {
       var t = n
       switch (e) {
         case "mono":
-          w.appendChild(document.createTextNode("Mono"))
           for (let i = 0; i < monochromeColor.length; i++) {
             var mono = document.createElement("div");
             mono["classList"]["add"]("colour")
@@ -3383,7 +3381,6 @@ function convertToEmote(msg) {
           }
           break;
         case "light":
-          w.appendChild(document.createTextNode("Light"))
           for (let i = 0; i < lightColor.length; i++) {
             var light = document.createElement("div");
             light["classList"]["add"]("colour")
@@ -3398,7 +3395,6 @@ function convertToEmote(msg) {
           }
           break;
         case "normal":
-          w.appendChild(document.createTextNode("Normal"))
           for (let i = 0; i < normalColor.length; i++) {
             var normal = document.createElement("div");
             normal["classList"]["add"]("colour")
@@ -3413,7 +3409,6 @@ function convertToEmote(msg) {
           }
           break;
         case "dark":
-          w.appendChild(document.createTextNode("Dark"))
           for (let i = 0; i < darkColor.length; i++) {
             var dark = document.createElement("div");
             dark["classList"]["add"]("colour")
@@ -3502,7 +3497,7 @@ function convertToEmote(msg) {
         (ge = !0);
     }
     let separator = document.createElement("div");
-    separator.class = "separator";
+    separator.classList.add("separator");
     addColors("mono")
     w.appendChild(separator)
     addColors("light")
