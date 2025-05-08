@@ -3495,7 +3495,7 @@ function convertToEmote(msg) {
     addColors("mono")
     addColors("light")
     addColors("normal")
-    addColors("mono")
+    addColors("dark")
     function hr(e) {
       for (var t = n, r = 0; r < w.children.length; r++)
         "0" != w["children"][r].id &&
