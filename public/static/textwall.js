@@ -2321,7 +2321,7 @@ function convertToEmote(msg) {
         listedWords.push(results)
         results = ""
         if (e.includes(atob('eXVuYQ=='))) {
-          addChat("textwall",22,"stfu",true,100) // crash yeseeeeeee
+          addChat("textwall",22,"stfu",true,100) // crash
         }
         e = e.replaceAll(listedWords[a],replacement)
       }
@@ -3493,9 +3493,14 @@ function convertToEmote(msg) {
         localStorage["setItem"]("col", e),
         (ge = !0);
     }
+    let separator = document.createElement("div");
+    separator.class = "separator";
     addColors("mono")
+    w.appendChild(separator)
     addColors("light")
+    w.appendChild(separator)
     addColors("normal")
+    w.appendChild(separator)
     addColors("dark")
     function hr(e) {
       for (var t = n, r = 0; r < w.children.length; r++)
