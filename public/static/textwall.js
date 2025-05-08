@@ -247,7 +247,6 @@ function convertToEmote(msg) {
         "Terminus": 0,
         "Ubuntu Mono": 19,
         "Unifont": 0,
-        "Victor Mono": 15,
         "Yu Mono Gothic": 18,                               
         Custom: 20,                                                 
         };
