@@ -3546,6 +3546,26 @@ function convertToEmote(msg) {
       document.getElementById("darkcolor").classList.add("active")
       addColors("dark")
     }
+    document.getElementById("monocolor").addEventListener("click",function(){
+      colorTab = "Mono"
+      document.getElementById("monocolor").classList.add("active")
+      addColors("mono")
+    })
+    document.getElementById("lightcolor").addEventListener("click",function(){
+      colorTab = "Light"
+      document.getElementById("lightcolor").classList.add("active")
+      addColors("light")
+    })
+    document.getElementById("normalcolor").addEventListener("click",function(){
+      colorTab = "Normal"
+      document.getElementById("normalcolor").classList.add("active")
+      addColors("normal")
+    })
+    document.getElementById("darkcolor").addEventListener("click",function(){
+      colorTab = "Dark"
+      document.getElementById("darkcolor").classList.add("active")
+      addColors("dark")
+    })
     localStorage.setItem("colorTab",colorTab)
     function hr(e) {
       for (var t = n, r = 0; r < w.children.length; r++)
