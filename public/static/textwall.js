@@ -1394,6 +1394,7 @@ function convertToEmote(msg) {
                 u = Ce.y;
               (Ce.x = r), (Ce.y = o);
               for (var s = "", d = "", f = !1, v = !1, h = o; h <= c; h++) {
+                var copiedSelection = "";
                 for (var y = r; y <= i; y++) {
                   var g = rr();
                   if (g) {
@@ -1401,15 +1402,17 @@ function convertToEmote(msg) {
                     var [p, b] = Zr(g[1]);
                     tt["copycolour"]["checked"] &&
                     tt["copydecorations"]["checked"]
-                      ? (d += String["fromCharCode"](ue + g[1]))
+                      ? (copiedSelection += String["fromCharCode"](ue + g[1]))
                       : tt.copycolour["checked"]
-                      ? (d += String["fromCharCode"](ue + p))
+                      ? (copiedSelection += String["fromCharCode"](ue + p))
                       : tt["copydecorations"].checked &&
-                        (d += String["fromCharCode"](ue + Vr(0, b))),
+                        (copiedSelection += String["fromCharCode"](ue + Vr(0, b))),
                       Qn(g[0], b) || (0 != b && (v = !0), 0 != p && (f = !0)),
                       Ce.x++;
                   }
                 }
+                copiedSelection = btoa(copiedSelection);
+                d += copiedSelection;
                 (Ce.x = r), Ce.y++, (s += "\n"), (d += "�");
               }
               (s = s["slice"](0, -1)),
