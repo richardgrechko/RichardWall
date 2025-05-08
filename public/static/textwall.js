@@ -3400,6 +3400,8 @@ function convertToEmote(msg) {
         case "mono":
           for (let i = 0; i < monochromeColor.length; i++) {
             var mono = document.createElement("div");
+            var monocolourlist = document.createElement("div");
+            monocolourlist.id = "monocolourlist"
             mono["classList"]["add"]("colour")
             mono["style"]["backgroundColor"] = se[monochromeColor[i]]
             mono.addEventListener("click", function (t) {
@@ -3408,12 +3410,15 @@ function convertToEmote(msg) {
             mono.setAttribute("id", monochromeColor[i]),
             (mono["style"]["backgroundColor"] = se[monochromeColor[i]]),
             (mono["title"] = de[monochromeColor[i]])
-            w.appendChild(mono);
+            monocolourlist.appendChild(mono);
+            w.appendChild(monocolourlist);
           }
           break;
         case "light":
           for (let i = 0; i < lightColor.length; i++) {
             var light = document.createElement("div");
+            var lightcolourlist = document.createElement("div");
+            lightcolourlist.id = "lightcolourlist"
             light["classList"]["add"]("colour")
             light["style"]["backgroundColor"] = se[lightColor[i]]
             light.addEventListener("click", function (t) {
@@ -3422,12 +3427,15 @@ function convertToEmote(msg) {
             light.setAttribute("id", lightColor[i]),
             (light["style"]["backgroundColor"] = se[lightColor[i]]),
             (light["title"] = de[lightColor[i]])
-            w.appendChild(light);
+            lightcolourlist.appendChild(light);
+            w.appendChild(lightcolourlist);
           }
           break;
         case "normal":
           for (let i = 0; i < normalColor.length; i++) {
             var normal = document.createElement("div");
+            var normalcolourlist = document.createElement("div");
+            normalcolourlist.id = "normalcolourlist"
             normal["classList"]["add"]("colour")
             normal["style"]["backgroundColor"] = se[normalColor[i]]
             normal.addEventListener("click", function (t) {
@@ -3436,12 +3444,15 @@ function convertToEmote(msg) {
             normal.setAttribute("id", normalColor[i]),
             (normal["style"]["backgroundColor"] = se[normalColor[i]]),
             (normal["title"] = de[normalColor[i]])
-            w.appendChild(normal);
+            normalcolourlist.appendChild(normal);
+            w.appendChild(normalcolourlist);
           }
           break;
         case "dark":
           for (let i = 0; i < darkColor.length; i++) {
             var dark = document.createElement("div");
+            var darkcolourlist = document.createElement("div");
+            darkcolourlist.id = "darkcolourlist"
             dark["classList"]["add"]("colour")
             dark["style"]["backgroundColor"] = se[darkColor[i]]
             dark.addEventListener("click", function (t) {
@@ -3450,11 +3461,66 @@ function convertToEmote(msg) {
             dark.setAttribute("id", darkColor[i]),
             (dark["style"]["backgroundColor"] = se[darkColor[i]]),
             (dark["title"] = de[darkColor[i]])
-            w.appendChild(dark);
+            darkcolourlist.appendChild(dark);
+            w.appendChild(darkcolourlist);
           }
           break;
       }
     }
+        var colorTab;
+    if (localStorage.colorTab == "undefined") {
+      colorTab = "Mono"
+      localStorage.setItem("colorTab", colorTab)
+    } else {
+      colorTab = localStorage.colorTab
+    };
+    localStorage.setItem("colorTab", colorTab);
+    addColors("mono");
+    addColors("light");
+    addColors("normal");
+    addColors("dark");
+    document.getElementById(localStorage.colorTab.toLowerCase() + "color").classList.add("active");
+    document.getElementById("monocolor").addEventListener("click",function(){
+      colorTab = "Mono";
+      localStorage.setItem("colorTab", colorTab)
+      for (let i = 0; i < document.getElementsByClassName("colourtabs")[0].children.length; i++) {
+        document.getElementsByClassName("colourtabs")[0].children[i].classList.remove("active")
+      };
+      document.getElementById("monocolor").classList.add("active");
+      document.getElementById("monocolourlist").innerHTML = "";
+      addColors("mono")
+    });
+    document.getElementById("lightcolor").addEventListener("click",function(){
+      colorTab = "Light";
+      localStorage.setItem("colorTab", colorTab)
+      for (let i = 0; i < document.getElementsByClassName("colourtabs")[0].children.length; i++) {
+        document.getElementsByClassName("colourtabs")[0].children[i].classList.remove("active")
+      };
+      document.getElementById("lightcolor").classList.add("active");
+      document.getElementById("colourlist").innerHTML = "";
+      addColors("light")
+    });
+    document.getElementById("normalcolor").addEventListener("click",function(){
+      colorTab = "Normal";
+      localStorage.setItem("colorTab", colorTab)
+      for (let i = 0; i < document.getElementsByClassName("colourtabs")[0].children.length; i++) {
+        document.getElementsByClassName("colourtabs")[0].children[i].classList.remove("active")
+      };
+      document.getElementById("normalcolor").classList.add("active");
+      document.getElementById("colourlist").innerHTML = "";
+      addColors("normal")
+    });
+    document.getElementById("darkcolor").addEventListener("click",function(){
+      colorTab = "Dark";
+      localStorage.setItem("colorTab", colorTab)
+      for (let i = 0; i < document.getElementsByClassName("colourtabs")[0].children.length; i++) {
+        document.getElementsByClassName("colourtabs")[0].children[i].classList.remove("active")
+      };
+      document.getElementById("darkcolor").classList.add("active");
+      document.getElementById("colourlist").innerHTML = "";
+      addColors("dark")
+    })
+    localStorage.setItem("colorTab",colorTab)
     function sr(e) {
       var t = n,
         r = document.createElement("div");
@@ -3502,6 +3568,14 @@ function convertToEmote(msg) {
       }
       M["classList"]["remove"]("open");
     }
+    function hr(e) {
+      for (var t = n, r = 0; r < w.children.length; r++)
+        "0" != w["children"][r].id &&
+          (e
+            ? w["children"][r]["classList"].add("hidden")
+            : w["children"][r].classList.remove("hidden"));
+      e && mr(0);
+    }
     function mr(e) {
       var t = n;
       (tt["disablecolour"]["checked"] || nt["disableColour"]["checked"]) &&
@@ -3526,59 +3600,6 @@ function convertToEmote(msg) {
           ["setAttribute"]("content", se[e]),
         localStorage["setItem"]("col", e),
         (ge = !0);
-    }
-    var colorTab;
-    if (localStorage.colorTab == undefined) {
-      colorTab = "Mono"
-    } else {
-      colorTab = localStorage.colorTab
-    }
-    localStorage.setItem("colorTab", colorTab)
-    addColors(localStorage.colorTab.toLowerCase())
-    document.getElementById("monocolor").addEventListener("click",function(){
-      colorTab = "Mono";
-      for (let i = 0; i < document.getElementsByClassName("colourtabs")[0].children.length; i++) {
-        document.getElementsByClassName("colourtabs")[0].children[i].classList.remove("active")
-      };
-      document.getElementById("monocolor").classList.add("active");
-      document.getElementById("colourlist").innerHTML = "";
-      addColors("mono")
-    });
-    document.getElementById("lightcolor").addEventListener("click",function(){
-      colorTab = "Light";
-      for (let i = 0; i < document.getElementsByClassName("colourtabs")[0].children.length; i++) {
-        document.getElementsByClassName("colourtabs")[0].children[i].classList.remove("active")
-      };
-      document.getElementById("lightcolor").classList.add("active");
-      document.getElementById("colourlist").innerHTML = "";
-      addColors("light")
-    });
-    document.getElementById("normalcolor").addEventListener("click",function(){
-      colorTab = "Normal";
-      for (let i = 0; i < document.getElementsByClassName("colourtabs")[0].children.length; i++) {
-        document.getElementsByClassName("colourtabs")[0].children[i].classList.remove("active")
-      };
-      document.getElementById("normalcolor").classList.add("active");
-      document.getElementById("colourlist").innerHTML = "";
-      addColors("normal")
-    });
-    document.getElementById("darkcolor").addEventListener("click",function(){
-      colorTab = "Dark";
-      for (let i = 0; i < document.getElementsByClassName("colourtabs")[0].children.length; i++) {
-        document.getElementsByClassName("colourtabs")[0].children[i].classList.remove("active")
-      };
-      document.getElementById("darkcolor").classList.add("active");
-      document.getElementById("colourlist").innerHTML = "";
-      addColors("dark")
-    })
-    localStorage.setItem("colorTab",colorTab)
-    function hr(e) {
-      for (var t = n, r = 0; r < w.children.length; r++)
-        "0" != w["children"][r].id &&
-          (e
-            ? w["children"][r]["classList"].add("hidden")
-            : w["children"][r].classList.remove("hidden"));
-      e && mr(0);
     }
     function yr(e) {
       var t = n;
