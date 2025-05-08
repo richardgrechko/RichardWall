@@ -3497,13 +3497,10 @@ function convertToEmote(msg) {
         (ge = !0);
     }
     let separator = document.createElement("div");
-    separator.classList.add("separator");
+    separator.classList.add("separator")
     addColors("mono")
-    w.appendChild(separator)
     addColors("light")
-    w.appendChild(separator)
     addColors("normal")
-    w.appendChild(separator)
     addColors("dark")
     function hr(e) {
       for (var t = n, r = 0; r < w.children.length; r++)

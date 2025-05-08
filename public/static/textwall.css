@@ -6022,7 +6022,7 @@ td {
 
 .separator {
 	flex-shrink: 0;
-	background-color: #777777;
+	background-color: #ffffff;
 	width: 2px;
 	height: 24px;
 	margin: 5px;
