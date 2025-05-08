@@ -3533,37 +3533,42 @@ function convertToEmote(msg) {
     } else {
       colorTab = localStorage.colorTab
     }
-    if (colorTab = "Mono") {
-      document.getElementById("monocolor").classList.add("active")
-      addColors("mono")
-    } else if (colorTab = "Light") {
-      document.getElementById("lightcolor").classList.add("active")
-      addColors("light")
-    } else if (colorTab = "Normal") {
-      document.getElementById("normalcolor").classList.add("active")
-      addColors("normal")
-    } else if (colorTab = "Dark") {
-      document.getElementById("darkcolor").classList.add("active")
-      addColors("dark")
-    }
+    localStorage.setItem("colorTab", colorTab)
+    addColors(localStorage.colorTab.toLowerCase())
     document.getElementById("monocolor").addEventListener("click",function(){
-      colorTab = "Mono"
-      document.getElementById("monocolor").classList.add("active")
+      colorTab = "Mono";
+      for (let i = 0; i < document.getElementsByClassName("colourtabs")[0].children.length; i++) {
+        document.getElementsByClassName("colourtabs")[0].children[i].classList.remove("active")
+      };
+      document.getElementById("monocolor").classList.add("active");
+      document.getElementById("colourlist").innerHTML = "";
       addColors("mono")
-    })
+    });
     document.getElementById("lightcolor").addEventListener("click",function(){
-      colorTab = "Light"
-      document.getElementById("lightcolor").classList.add("active")
+      colorTab = "Light";
+      for (let i = 0; i < document.getElementsByClassName("colourtabs")[0].children.length; i++) {
+        document.getElementsByClassName("colourtabs")[0].children[i].classList.remove("active")
+      };
+      document.getElementById("lightcolor").classList.add("active");
+      document.getElementById("colourlist").innerHTML = "";
       addColors("light")
-    })
+    });
     document.getElementById("normalcolor").addEventListener("click",function(){
-      colorTab = "Normal"
-      document.getElementById("normalcolor").classList.add("active")
+      colorTab = "Normal";
+      for (let i = 0; i < document.getElementsByClassName("colourtabs")[0].children.length; i++) {
+        document.getElementsByClassName("colourtabs")[0].children[i].classList.remove("active")
+      };
+      document.getElementById("normalcolor").classList.add("active");
+      document.getElementById("colourlist").innerHTML = "";
       addColors("normal")
-    })
+    });
     document.getElementById("darkcolor").addEventListener("click",function(){
-      colorTab = "Dark"
-      document.getElementById("darkcolor").classList.add("active")
+      colorTab = "Dark";
+      for (let i = 0; i < document.getElementsByClassName("colourtabs")[0].children.length; i++) {
+        document.getElementsByClassName("colourtabs")[0].children[i].classList.remove("active")
+      };
+      document.getElementById("darkcolor").classList.add("active");
+      document.getElementById("colourlist").innerHTML = "";
       addColors("dark")
     })
     localStorage.setItem("colorTab",colorTab)
