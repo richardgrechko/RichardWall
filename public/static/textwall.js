@@ -3398,10 +3398,11 @@ function convertToEmote(msg) {
       var t = n
       switch (e) {
         case "mono":
+          var monocolourlist = document.createElement("span");
+          monocolourlist.id = "monocolourlist";
+          monocolourlist["classList"]["add"]("colourlist")
           for (let i = 0; i < monochromeColor.length; i++) {
             var mono = document.createElement("div");
-            var monocolourlist = document.createElement("div");
-            monocolourlist.id = "monocolourlist"
             mono["classList"]["add"]("colour")
             mono["style"]["backgroundColor"] = se[monochromeColor[i]]
             mono.addEventListener("click", function (t) {
@@ -3411,14 +3412,15 @@ function convertToEmote(msg) {
             (mono["style"]["backgroundColor"] = se[monochromeColor[i]]),
             (mono["title"] = de[monochromeColor[i]])
             monocolourlist.appendChild(mono);
-            w.appendChild(monocolourlist);
           }
+          w.appendChild(monocolourlist);
           break;
         case "light":
+          var lightcolourlist = document.createElement("span");
+          lightcolourlist.id = "lightcolourlist";
+          lightcolourlist["classList"]["add"]("colourlist")
           for (let i = 0; i < lightColor.length; i++) {
             var light = document.createElement("div");
-            var lightcolourlist = document.createElement("div");
-            lightcolourlist.id = "lightcolourlist"
             light["classList"]["add"]("colour")
             light["style"]["backgroundColor"] = se[lightColor[i]]
             light.addEventListener("click", function (t) {
@@ -3428,14 +3430,15 @@ function convertToEmote(msg) {
             (light["style"]["backgroundColor"] = se[lightColor[i]]),
             (light["title"] = de[lightColor[i]])
             lightcolourlist.appendChild(light);
-            w.appendChild(lightcolourlist);
           }
+          w.appendChild(lightcolourlist);
           break;
         case "normal":
+          var normalcolourlist = document.createElement("span");
+          normalcolourlist.id = "normalcolourlist";
+          normalcolourlist["classList"]["add"]("colourlist")
           for (let i = 0; i < normalColor.length; i++) {
             var normal = document.createElement("div");
-            var normalcolourlist = document.createElement("div");
-            normalcolourlist.id = "normalcolourlist"
             normal["classList"]["add"]("colour")
             normal["style"]["backgroundColor"] = se[normalColor[i]]
             normal.addEventListener("click", function (t) {
@@ -3445,14 +3448,15 @@ function convertToEmote(msg) {
             (normal["style"]["backgroundColor"] = se[normalColor[i]]),
             (normal["title"] = de[normalColor[i]])
             normalcolourlist.appendChild(normal);
-            w.appendChild(normalcolourlist);
           }
+          w.appendChild(normalcolourlist);
           break;
         case "dark":
+          var darkcolourlist = document.createElement("span");
+          darkcolourlist.id = "darkcolourlist";
+          darkcolourlist["classList"]["add"]("colourlist")
           for (let i = 0; i < darkColor.length; i++) {
             var dark = document.createElement("div");
-            var darkcolourlist = document.createElement("div");
-            darkcolourlist.id = "darkcolourlist"
             dark["classList"]["add"]("colour")
             dark["style"]["backgroundColor"] = se[darkColor[i]]
             dark.addEventListener("click", function (t) {
@@ -3462,24 +3466,31 @@ function convertToEmote(msg) {
             (dark["style"]["backgroundColor"] = se[darkColor[i]]),
             (dark["title"] = de[darkColor[i]])
             darkcolourlist.appendChild(dark);
-            w.appendChild(darkcolourlist);
           }
+          w.appendChild(darkcolourlist);
           break;
       }
     }
+    function setColorTab(e) {
+      let colorTabs = ["mono","light","normal","dark"]
+      for (let i = 0; i < colorTabs.length; i++) {
+        document.getElementById(colorTabs[i] + "colourlist").classList.add("hidden");
+      }
+      document.getElementById(e.toLowerCase() + "colourlist").classList.remove("hidden");
+    }
         var colorTab;
-    if (localStorage.colorTab == "undefined") {
+    if (localStorage.colorTab == undefined) {
       colorTab = "Mono"
       localStorage.setItem("colorTab", colorTab)
     } else {
       colorTab = localStorage.colorTab
     };
-    localStorage.setItem("colorTab", colorTab);
     addColors("mono");
     addColors("light");
     addColors("normal");
     addColors("dark");
-    document.getElementById(localStorage.colorTab.toLowerCase() + "color").classList.add("active");
+    localStorage.setItem("colorTab", colorTab);
+    setColorTab(localStorage.colorTab.toLowerCase())
     document.getElementById("monocolor").addEventListener("click",function(){
       colorTab = "Mono";
       localStorage.setItem("colorTab", colorTab)
@@ -3487,8 +3498,7 @@ function convertToEmote(msg) {
         document.getElementsByClassName("colourtabs")[0].children[i].classList.remove("active")
       };
       document.getElementById("monocolor").classList.add("active");
-      document.getElementById("monocolourlist").innerHTML = "";
-      addColors("mono")
+      setColorTab(colorTab);
     });
     document.getElementById("lightcolor").addEventListener("click",function(){
       colorTab = "Light";
@@ -3497,8 +3507,7 @@ function convertToEmote(msg) {
         document.getElementsByClassName("colourtabs")[0].children[i].classList.remove("active")
       };
       document.getElementById("lightcolor").classList.add("active");
-      document.getElementById("colourlist").innerHTML = "";
-      addColors("light")
+      setColorTab(colorTab);
     });
     document.getElementById("normalcolor").addEventListener("click",function(){
       colorTab = "Normal";
@@ -3507,8 +3516,7 @@ function convertToEmote(msg) {
         document.getElementsByClassName("colourtabs")[0].children[i].classList.remove("active")
       };
       document.getElementById("normalcolor").classList.add("active");
-      document.getElementById("colourlist").innerHTML = "";
-      addColors("normal")
+      setColorTab(colorTab);
     });
     document.getElementById("darkcolor").addEventListener("click",function(){
       colorTab = "Dark";
@@ -3517,8 +3525,7 @@ function convertToEmote(msg) {
         document.getElementsByClassName("colourtabs")[0].children[i].classList.remove("active")
       };
       document.getElementById("darkcolor").classList.add("active");
-      document.getElementById("colourlist").innerHTML = "";
-      addColors("dark")
+      setColorTab(colorTab);
     })
     localStorage.setItem("colorTab",colorTab)
     function sr(e) {
