@@ -1402,16 +1402,17 @@ function convertToEmote(msg) {
                     var [p, b] = Zr(g[1]);
                     tt["copycolour"]["checked"] &&
                     tt["copydecorations"]["checked"]
-                      ? (copiedSelection += String["fromCharCode"](ue + g[1]).charCodeAt().padStart("0",4))
+                      ? (copiedSelection += String(g[1]).padStart(4,"0"))
                       : tt.copycolour["checked"]
-                      ? (copiedSelection += String["fromCharCode"](ue + p).charCodeAt().padStart("0",4))
+                      ? (copiedSelection += String(p).padStart(4,"0"))
                       : tt["copydecorations"].checked &&
-                        (copiedSelection += String["fromCharCode"](ue + Vr(0, b)).charCodeAt().padStart("0",4)),
+                        (copiedSelection += String(Vr(0, b)).padStart(4,"0")),
                       Qn(g[0], b) || (0 != b && (v = !0), 0 != p && (f = !0)),
                       Ce.x++;
+                    copiedSelection += ","
                   }
                 }
-                d += copiedSelection;
+                d += copiedSelection.slice(0,copiedSelection.lastIndexOf(","));
                 (Ce.x = r), Ce.y++, (s += "\n"), (d += "�");
               }
               (s = s["slice"](0, -1)),
@@ -1593,11 +1594,14 @@ function convertToEmote(msg) {
           }
       }),
       function convertToTextwall(e) {
-        var splitting = e.split(Z)
+        var splitting = e.split(Z);
+        var twDecolor = splitting[1].split(",");
         var result = "";
         result += splitting[0];
         result += Z;
-        result += splitting[1];
+        for (let i = 0; i < twDecolor.length; i++) {
+          result += String.fromCharCode(ue + twDecolor[i]);
+        }
         return result;
       }
       i.addEventListener("paste", function (e) {
