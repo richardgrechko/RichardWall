@@ -1677,6 +1677,12 @@ function convertToEmote(msg) {
           });
         }
       ),
+      document["getElementById"]("undo")["addEventListener"]("click", function () {
+        // undo function goes here
+      }),
+      document["getElementById"]("redo")["addEventListener"]("click", function () {
+        // redo function goes here
+      }),
       document.getElementById("theme").addEventListener("click", function () {
         yr();
       }),
@@ -2832,7 +2838,7 @@ function convertToEmote(msg) {
     function On() {
       var e = n;
       (Ue = Pe["size"]),
-        (Ke["innerText"] = Ue + " here"),
+        (Ke["innerText"] = (Ue != 0) ? (Ue + " here") : "No one here."),
         (document.getElementById("chatmsg")["placeholder"] =
           0 == Ue
             ? "No one is here."
