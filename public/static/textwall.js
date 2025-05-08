@@ -275,6 +275,7 @@ function convertToEmote(msg) {
         te.add(option);
     te["value"] = G;
     const re = document.getElementById("decorations");
+    re.style = "display: inline;"
     re["addEventListener"]("contextmenu", function (e) {
       e["preventDefault"]();
     });

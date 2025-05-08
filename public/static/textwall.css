@@ -69,6 +69,7 @@ h3 {
 }
 #info {
   background-color: rgba(30, 30, 30, 0.8);
+  width: 400px;
   color: #ffffff;
   padding: 5px 0;
   font-size: 18px;
@@ -188,25 +189,31 @@ input {
 #closeshortcut:active {
   transform: scale(0.9);
 }
+.toolbar-container {
+	max-width: 100%;
+}
+
+.toolbar {
+	background-color: var(--surface-background);
+	border-radius: 5px;
+	max-width: 100%;
+	margin: 8px;
+	padding: 5px;
+	pointer-events: all;
+}
+
+.colours {
+	display: flex;
+}
+
 #colourlist {
-  transition: none;
-  overflow: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  background-color: rgba(32, 32, 32, 0.35);
-  border-radius: 0 0 5px 5px;
-}
-#colourtabs {
-  transition: none;
-  overflow: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  background-color: rgba(32, 32, 32, 0.35);
-  border-radius: 5px 5px 0 0;
-}
-#colourlist::-webkit-scrollbar,
-#optionsmenu::-webkit-scrollbar {
-  display: none;
+	display: flex;
+	overflow-x: auto;
+	overflow-y: hidden;
+	flex-grow: 1;
+	width: 0;
+	background-color: #ffffff33;
+	border-radius: 5px;
 }
 .colour {
 	min-width: 30px;
@@ -219,17 +226,6 @@ input {
 .colour.selected{
 	border: 3px solid white;
 	border-radius: 50%;
-}
-.colours {
-	display: flex;
-}
-.toolbar {
-	background-color: var(--surface-background);
-	border-radius: 5px;
-	max-width: 100%;
-	margin: 8px;
-	padding: 5px;
-	pointer-events: all;
 }
 #zoom {
   width: 150px;
@@ -6018,42 +6014,6 @@ td {
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-.buttons {
-  display: flex;
-  justify-content: stretch;
-  width: 100vw;
-  height: 40px;
-  user-select: none;
-}
-@media only screen and (min-width: 750px) {
-  #info {
-    top: 0;
-    bottom: unset;
-    border-radius: 0 0 5px 0;
-    padding: 5px;
-  }
-  .infobtn > img {
-    width: 20px;
-  }
-  .buttons {
-    width: 100%;
-    height: unset;
-  }
-  #usermenu {
-    margin-top: 60px;
-  }
-}
-ul::-webkit-scrollbar {
-  width: 8px;
-}
-ul::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 5px;
-}
-ul::-webkit-scrollbar-thumb {
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 5px;
-}
 .small-scrollbar::-webkit-scrollbar {
 	width: 5px;
 	height: 5px;
