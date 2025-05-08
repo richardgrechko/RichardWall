@@ -1593,14 +1593,14 @@ function convertToEmote(msg) {
               e["ctrlKey"] && (e.preventDefault(), it(rt - 0.1, !0));
           }
       }),
-      function convertToTextwall(e) {
-        var splitting = e.split(Z);
+      function convertToTextwall(copied) {
+        var splitting = copied.split("�");
         var twDecolor = splitting[1].split(",");
         var result = "";
         result += splitting[0];
-        result += Z;
+        result += "�";
         for (let i = 0; i < twDecolor.length; i++) {
-          result += String.fromCharCode(ue + twDecolor[i]);
+          result += (192 + twDecolor[i]);
         }
         return result;
       }
