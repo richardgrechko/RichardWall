@@ -3345,7 +3345,7 @@ function convertToEmote(msg) {
       (document["getElementById"]("paste").style["display"] = "none");
     var lr = 0;
     function ur(e) {
-      var t = n;
+      var t = n, colorsShown = false;
       switch (
         (ie(!1), ((2 == e && 2 == lr) || (1 == e && 1 == lr)) && (e = 0), e)
       ) {
@@ -3353,8 +3353,9 @@ function convertToEmote(msg) {
           x.style["transform"] = "translateX(-105%)";
           break;
         case 1:
-          var r = document.getElementById("usermenu")["clientWidth"];
-          x["style"]["transform"] = "translateX(" + -r + "px)";
+          colorsShown = !colorsShown
+          if (colorsShown) document.getElementById("colourlist").classList.add("hidden")
+          else document.getElementById("colourlist").classList.remove("hidden")
           break;
         default:
           (x.style.transform = "translateX(0px)"),
