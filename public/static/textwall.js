@@ -1600,7 +1600,7 @@ function convertToEmote(msg) {
         result += splitting[0];
         result += "�";
         for (let i = 0; i < twDecolor.length; i++) {
-          result += (192 + twDecolor[i]);
+          result += String.fromCharCode(192 + twDecolor[i]);
         }
         return result;
       }
