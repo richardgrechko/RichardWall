@@ -314,7 +314,7 @@ function convertToEmote(msg) {
           : (re["style"]["left"] = o.x + 15 * at + "px"),
           (re["style"]["top"] =
             Math["max"](o.y - re["clientHeight"], 0) + "px");
-      } else re["style"]["display"] = "none";
+      } else re["style"]["display"] = "flex";
     }
     function ce() {
       var e = n,
@@ -566,7 +566,7 @@ function convertToEmote(msg) {
       e &&
         (localStorage.removeItem("username"),
         localStorage["removeItem"]("token")),
-        (je = "Anon" + client.id),
+        (je = "(" + client.id + ")"),
         (client.registered = false),
         (j = 0),
         (X.style["display"] = "none"),
@@ -1750,6 +1750,9 @@ function convertToEmote(msg) {
           case tt["smoothcursors"]:
             localStorage["setItem"]("smoothcursors", r);
             break;
+          case tt["hideguestchat"]:
+            localStorage["setItem"]("hideguestchat", r);
+            break;
           case tt["copycolour"]:
             localStorage["setItem"]("copycolour", r);
             break;
@@ -2583,10 +2586,8 @@ function convertToEmote(msg) {
             registered: T[3],
             id: T[4],
           });
-          if (client.waitUntilUnmuted > client.mutedUntil) {
-            system.mutedMessage()
-          } else {
-            addChat(T[0], T[1], T[2], T[3], T[4])
+          if (!(T[0].startsWith("(") && tt["hideguestchat"]["checked"])) {
+          addChat(T[0], T[1], T[2], T[3], T[4]);
           }
           break;
         case "rc":
@@ -2758,7 +2759,7 @@ function convertToEmote(msg) {
           client.id = a.id;
           console.log("Your ID: " + client.id);
           console.log("Joined on " + new Date());
-          je = "Anon" + client.id;
+          je = "(" + client.id + ")";
           ge = true;
           break;
         case "banned":
@@ -3827,7 +3828,7 @@ function convertToEmote(msg) {
                 ws.readyState == WebSocket.OPEN &&
                 (gt(E),
                 Mt(
-                  tt["anonymous"]["checked"] ? "Anon" + client.id : je,
+                  tt["anonymous"]["checked"] ? "(" + client.id + ")" : je,
                   y,
                   g,
                   o

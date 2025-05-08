@@ -424,6 +424,7 @@
             shownametags: document["getElementById"]("shownametags"),
             showchat: document.getElementById("showchat"),
             disablecolour: document["getElementById"]("disablecolour"),
+            hideguestchat: document["getElementById"]("hideguestchat"),
             smoothpanning: document["getElementById"]("smoothpanning"),
             smoothcursors: document["getElementById"]("smoothcursors"),
             copycolour: document.getElementById("copycolour"),
