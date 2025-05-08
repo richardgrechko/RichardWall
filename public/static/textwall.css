@@ -209,15 +209,27 @@ input {
   display: none;
 }
 .colour {
-  width: 30px;
-  height: 30px;
-  margin: 3px;
-  border-radius: 25%;
-  box-sizing: border-box;
-  transition: all 50ms;
+	min-width: 30px;
+	height: 30px;
+	margin: 3px;
+	border-radius: 35%;
+	box-sizing: border-box;
+	transition: all 100ms;
 }
-.colour.selected {
-  border: 3px solid #ffffff;
+.colour.selected{
+	border: 3px solid white;
+	border-radius: 50%;
+}
+.colours {
+	display: flex;
+}
+.toolbar {
+	background-color: var(--surface-background);
+	border-radius: 5px;
+	max-width: 100%;
+	margin: 8px;
+	padding: 5px;
+	pointer-events: all;
 }
 #zoom {
   width: 150px;
@@ -6041,4 +6053,18 @@ ul::-webkit-scrollbar-track {
 ul::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 5px;
+}
+.small-scrollbar::-webkit-scrollbar {
+	width: 5px;
+	height: 5px;
+}
+  
+.small-scrollbar::-webkit-scrollbar-track {
+	background: rgba(255, 255, 255, 0);
+	border-radius: 5px;
+}
+  
+.small-scrollbar::-webkit-scrollbar-thumb {
+	background-color: rgba(255, 255, 255, 0.5);
+	border-radius: 5px;
 }
