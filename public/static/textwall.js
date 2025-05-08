@@ -189,7 +189,7 @@ function convertToEmote(msg) {
       (k["style"]["width"] = window["innerWidth"] + "px"),
       (k["style"]["height"] = window["innerHeight"] + "px"),
       (E.imageSmoothingEnabled = !1);
-    const S = "#f2f5fc",
+    const S = "#ffffff",
       I = "#EBEBEB";
     var C = S,
       A = I,
@@ -227,33 +227,36 @@ function convertToEmote(msg) {
         "Courier Prime": 16,
         "Cousine": 16,
         "Cutive Mono": 18,
+        "DM Mono": 18,
         "Fantasque Sans Mono": 18,
+        "Fragment Mono": 16,
         "Fira Code": 18,
         "Fira Mono": 18,
-        "Fixedsys": 18,
-        "Fragment Mono": 16,
         "IBM Plex Mono": 16,
         "Inconsolata": 18,
         "JetBrains Mono": 17,
         "Kode Mono": 17,
-        "Libertinus Mono": 17,
+        "Lekton": 19,
         "Lucida Sans Mono": 16,
         "Martian Mono": 15,
         "MS Gothic Neue": 18,
-        "Monofur": 18,
         "monospace": 18,
+        "Nanum Gothic Coding": 19,
         "Noto Sans Mono": 16,
         "Overpass Mono": 16,
+        "Oxygen Mono": 17,
         "PT Mono": 16,
-        "Roboto Mono": 16,
+        "Roboto Mono": 17,
         "Segoe Mono Boot": 18,
+        "Sometype Mono": 17,
         "Source Code Pro": 17,
         "Space Mono": 16,
-        "Terminus": 15,
+        "Terminus": 0,
         "Ubuntu Mono": 19,
-        "Unifont": 15,
-        "Victor Mono": 18,
-        "Yu Mono Gothic": 18,                               
+        "Ubuntu Sans Mono": 17,
+        "Unifont": 0,
+        "Victor Mono": 15,
+        "Yu Mono Gothic": 18,
         Custom: 20,                                                 
         };
     var G = "JetBrains Mono",
@@ -856,7 +859,7 @@ function convertToEmote(msg) {
     function Kt(e, t) {
       var r = n;
       tt["disablecolour"]["checked"] && (t = 0),
-        (e["fillStyle"] = xe && 0 == t ? "#f2f5fc" : se[t]);
+        (e["fillStyle"] = xe && 0 == t ? "#ffffff" : se[t]);
     }
     function Xt(e, t) {
       var r = n,
@@ -1216,7 +1219,7 @@ function convertToEmote(msg) {
         (c["checked"] = 1 == d["highlighted"]),
         a.appendChild(c);
       var f = d.c;
-      (o["style"].backgroundColor = "#f2f5fc" == se[f] ? "#222222" : se[f]),
+      (o["style"].backgroundColor = "#ffffff" == se[f] ? "#222222" : se[f]),
         (o.style["fontSize"] = "10px"),
         (o["style"].userSelect = "all"),
         (o["innerText"] = d.n || e),
@@ -2326,7 +2329,7 @@ function convertToEmote(msg) {
         l = document.createElement("a"),
         s = document.createElement("msg");
       (l["innerText"] = name),
-        (l.style["color"] = "#f2f5fc" == se[color] ? "#222222" : se[color]),
+        (l.style["color"] = "#ffffff" == se[color] ? "#222222" : se[color]),
         registered &&
           ((l["href"] = "/@" + name), l.onclick = wn), // teleportTo is not defined glitch just doesnt know it right 
         (l.title = "Anon " + id);
@@ -3659,7 +3662,7 @@ function convertToEmote(msg) {
                 null != M &&
                   M["highlighted"] &&
                   ((E.lineWidth = 3 * v),
-                  (E["strokeStyle"] = p == se["length"] ? "#f2f5fc" : se[p]),
+                  (E["strokeStyle"] = p == se["length"] ? "#ffffff" : se[p]),
                   E["beginPath"](),
                   E["moveTo"](
                     Math["round"](10 * M["rawx"] * v + r / 2),
