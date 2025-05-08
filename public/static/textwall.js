@@ -3527,10 +3527,24 @@ function convertToEmote(msg) {
         localStorage["setItem"]("col", e),
         (ge = !0);
     }
-    addColors("mono")
-    addColors("light")
-    addColors("normal")
-    addColors("dark")
+    var colorTab;
+    if (colorTab = "Mono") {
+      document.getElementById("monocolor").classList.add("active")
+      addColors("mono")
+    }
+    if (colorTab = "Light") {
+      document.getElementById("lightcolor").classList.add("active")
+      addColors("light")
+    }
+    if (document.getElementById("normalcolor").classList.value.includes("active")) {
+      document.getElementById("normalcolor").classList.add("active")
+      addColors("normal")
+    }
+    if (document.getElementById("darkcolor").classList.value.includes("active")) {
+      document.getElementById("darkcolor").classList.add("active")
+      addColors("dark")
+    }
+    localStorage.setItem("colorTab",colorTab)
     function hr(e) {
       for (var t = n, r = 0; r < w.children.length; r++)
         "0" != w["children"][r].id &&
