@@ -614,65 +614,6 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
         </div>
       </div>
     </div>
-    <div class="toolbar-container">
-      <div class="colours toolbar">
-        <div id="colourlist" class="small-scrollbar"></div>
-    </div>
-    <div id="toollist" class="tools toolbar small-scrollbar">
-				<div id="copy" title="Copy" class="tool">
-					<img id="copyico" alt="copy" src="/static/copy.svg">
-				</div>
-				<div id="paste" title="Paste" class="tool">
-					<img id="pasteico" alt="paste" src="/static/paste.svg">
-				</div>
-	
-				<div class="separator"></div>
-	
-				<div id="undo" title="Undo" class="tool disabled">
-					<img alt="undo" src="/static/undo.svg">
-				</div>
-				<div id="redo" title="Redo" class="tool disabled">
-					<img alt="redo" src="/static/redo.svg">
-				</div>
-	
-				<div class="separator"></div>
-	
-				<div id="opencolours" title="Colours" class="tool enabled">
-					<img alt="colour" src="/static/palette.svg">
-				</div>
-				<div id="bold" title="Bold" class="tool">
-					<img alt="bold" src="/static/bold.svg">
-				</div>
-				<div id="italic" title="Italic" class="tool">
-					<img alt="italic" src="/static/italic.svg">
-				</div>
-				<div id="underline" title="Underline" class="tool">
-					<img alt="underline" src="/static/underline.svg">
-				</div>
-				<div id="overline" title="Overline" class="tool">
-					<img alt="overline" src="/static/overline.svg">
-				</div>
-				<div id="strikethrough" title="Strikethrough" class="tool">
-					<img alt="strikethrough" src="/static/strikethrough.svg">
-				</div>
-	
-				<div class="separator"></div>
-	
-				<div id="paintbrush" title="Paint" class="tool">
-					<img alt="paintbrush" src="/static/brush.svg">
-				</div>
-				<div id="erase" title="Erase" class="tool">
-					<img alt="erase" src="/static/erase.svg">
-        <div
-          id="owner"
-          title="This user is the owner of RichardWall."
-          class="infobtn"
-          style="display: none"
-        >
-          <img alt="👑" src="/static/crown.png" />
-				</div>
-			</div>
-    </div>
     <div id="connecting">
       <div class="connectingtext">
         <h1 id="connecting1"><noscript>No JavaScript</noscript></h1>
@@ -697,19 +638,69 @@ document.getElementById(&quot;eruda&quot;).disabled = true;
         <span id="nearby">0 people</span>
         <span id="coords">0X, 0Y</span>
       </div>
-      <div class="buttons">
+      
+    <div class="toolbar-container">
+      <div class="colours toolbar">
+        <div id="colourlist" class="small-scrollbar"></div>
+    </div>
+    <div id="toollist" class="tools toolbar small-scrollbar">
+				<div id="copy" title="Copy" class="tool">
+					<img id="copyico" alt="copy" src="/static/copy.svg">
+				</div>
+				<div id="paste" title="Paste" class="tool">
+					<img id="pasteico" alt="paste" src="/static/paste.svg">
+				</div>
+	
+				<div class="separator"></div>
+	
+				<div id="undo" title="Undo" class="tool disabled">
+					<img alt="undo" src="/static/undo.svg">
+				</div>
+				<div id="redo" title="Redo" class="tool disabled">
+					<img alt="redo" src="/static/redo.svg">
+				</div>
+	
+				<div class="separator"></div>
+      
+	
+				<div id="options" title="Options" class="tool enabled">
+					<img alt="options" src="/static/settings.svg">
+				</div>
+				<div id="openmenu" title="Colours" class="tool enabled">
+					<img alt="colour" src="/static/palette.svg">
+				</div>
+				<div id="decorations">
+          <div id="bold" title="Bold" class="tool">
+					<img alt="bold" src="/static/bold.svg">
+				</div>
+				<div id="italic" title="Italic" class="tool">
+					<img alt="italic" src="/static/italic.svg">
+				</div>
+				<div id="underline" title="Underline" class="tool">
+					<img alt="underline" src="/static/underline.svg">
+				</div>
+				<div id="overline" title="Overline" class="tool">
+					<img alt="overline" src="/static/overline.svg">
+				</div>
+				<div id="strikethrough" title="Strikethrough" class="tool">
+					<img alt="strikethrough" src="/static/strikethrough.svg">
+				</div>
         </div>
-        <!--
-        <div title="Discord" class="infobtn">
-          <a href="https://discord.gg/rNAQaF8FDs" target="_blank"
-            ><img
-              alt="discord"
-              src="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/discord.svg"
-              style="width: 20px; padding-top: 4.85px"
-          /></a>
+	
+				<div class="separator"></div>
+          <div id="goto" title="Teleport" class="infobtn">
+          <img alt="↗" src="/static/go.svg">
         </div>
--->
-      </div>
+        <div
+          id="owner"
+          title="This user is the owner of RichardWall."
+          class="infobtn"
+          style="display: none"
+        >
+          <img alt="👑" src="/static/crown.png" />
+				</div>
+			</div>
+    </div>
     </div>
     <script src="/static/colors.js"></script>
     <script src="/static/pep.min.js"></script>
