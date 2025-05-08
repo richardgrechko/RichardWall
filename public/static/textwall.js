@@ -3496,8 +3496,6 @@ function convertToEmote(msg) {
         localStorage["setItem"]("col", e),
         (ge = !0);
     }
-    let separator = document.createElement("div");
-    separator.classList.add("separator")
     addColors("mono")
     addColors("light")
     addColors("normal")
@@ -4669,12 +4667,12 @@ document.addEventListener("keydown", function (event) {
 var owner = document.getElementById("owner");
 function checkAdminWall(wall) {
   if (["@Richard","@ThatRedmiNoteGuy","@317"].includes(wall)) {
-    owner.style.display = "block";
+    owner.classList.remove("hidden");
     owner.title = `This user is the ${
       wall == "@317" ? "co-" : ""
     }owner of RichardWall`;
   } else {
-    owner.style.display = "none";
+    owner.classList.add("hidden");
   }
 }
 
