@@ -2827,13 +2827,13 @@ function convertToEmote(msg) {
     function On() {
       var e = n;
       (Ue = Pe["size"]),
-        (Ke["innerText"] = Ue + " " + ((Ue == 1) ? "person" : "people")),
+        (Ke["innerText"] = Ue + " here"),
         (document.getElementById("chatmsg")["placeholder"] =
           0 == Ue
-            ? "chat with nobody"
+            ? "No one is here."
             : 1 == Ue
-            ? "chat with 1 other user"
-            : "chat with " + Ue + " other users"),
+            ? "Chat with 1 person."
+            : "Chat with " + Ue + " people."),
         y || En();
     }
     function Rn(e) {
