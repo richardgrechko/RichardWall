@@ -3617,6 +3617,11 @@ function convertToEmote(msg) {
         en(),
         mr(client.color),
         Sn();
+        if (xe) {
+        document.getElementById("0").style.backgroundColor = "#ffffff"
+      } else {
+        document.getElementById("0").style.backgroundColor = "#000000"
+      }
     }
     function gr(e) {
       var t = n;
@@ -3631,11 +3636,6 @@ function convertToEmote(msg) {
             texttheme: P["checked"],
           })
         );
-      if (P.checked) {
-        document.getElementById("0").style.color = "#ffffff"
-      } else {
-        document.getElementById("0").style.color = "#000000"
-      }
     }
     function pr(e) {
       var t = n;
