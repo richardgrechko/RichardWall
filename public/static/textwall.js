@@ -244,7 +244,6 @@ function convertToEmote(msg) {
         "Nanum Gothic Coding": 19,
         "Noto Sans Mono": 16,
         "Overpass Mono": 16,
-        "Oxygen Mono": 17,
         "PT Mono": 16,
         "Roboto Mono": 17,
         "Segoe Mono Boot": 18,
