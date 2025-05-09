@@ -508,6 +508,7 @@ function convertToEmote(msg) {
       showothercurs: document.getElementById("showothercurs"),
       shownametags: document["getElementById"]("shownametags"),
       showchat: document["getElementById"]("showchat"),
+      hideguestchat: document["getElementById"]("hideguestchat"),
       disablecolour: document.getElementById("disablecolour"),
       smoothpanning: document["getElementById"]("smoothpanning"),
       smoothcursors: document.getElementById("smoothcursors"),
