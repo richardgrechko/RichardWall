@@ -1401,17 +1401,16 @@ function convertToEmote(msg) {
                     var [p, b] = Zr(g[1]);
                     tt["copycolour"]["checked"] &&
                     tt["copydecorations"]["checked"]
-                      ? (copiedSelection += String(g[1]).padStart(4,"0"))
+                      ? (copiedSelection += String.fromCharCode(192 + g[1]))
                       : tt.copycolour["checked"]
-                      ? (copiedSelection += String(p).padStart(4,"0"))
+                      ? (copiedSelection += String.fromCharCode(192 + p))
                       : tt["copydecorations"].checked &&
-                        (copiedSelection += String(Vr(0, b)).padStart(4,"0")),
+                        (copiedSelection += String.fromCharCode(192 + Vr(0, b))),
                       Qn(g[0], b) || (0 != b && (v = !0), 0 != p && (f = !0)),
                       Ce.x++;
-                    copiedSelection += ","
                   }
                 }
-                d += copiedSelection.slice(0,copiedSelection.lastIndexOf(","));
+                d += copiedSelection;
                 (Ce.x = r), Ce.y++, (s += "\n"), (d += "�");
               }
               (s = s["slice"](0, -1)),
@@ -1591,18 +1590,7 @@ function convertToEmote(msg) {
             case 189:
               e["ctrlKey"] && (e.preventDefault(), it(rt - 0.1, !0));
           }
-      }),
-      function convertToTextwall(copied) {
-        var splitting = copied.split("�");
-        var twDecolor = splitting[1].split(",");
-        var result = "";
-        result += splitting[0];
-        result += "�";
-        for (let i = 0; i < twDecolor.length; i++) {
-          result += String.fromCharCode(192 + twDecolor[i]);
-        }
-        return result;
-      }
+      })
       i.addEventListener("paste", function (e) {
         var t = n;
         e["isTrusted"] &&
@@ -3643,6 +3631,11 @@ function convertToEmote(msg) {
             texttheme: P["checked"],
           })
         );
+      if (P.checked) {
+        document.getElementById("0").style.color = "#ffffff"
+      } else {
+        document.getElementById("0").style.color = "#000000"
+      }
     }
     function pr(e) {
       var t = n;
