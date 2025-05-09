@@ -3494,9 +3494,9 @@ function convertToEmote(msg) {
       }
     }
     addColors("mono");
-    addColors("light");
-    addColors("normal");
     addColors("dark");
+    addColors("normal");
+    addColors("light");
     function sr(e) {
       var t = n,
         r = document.createElement("div");
