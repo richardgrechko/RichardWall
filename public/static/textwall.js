@@ -257,7 +257,7 @@ function convertToEmote(msg) {
         "Yu Mono Gothic": 18,
         Custom: 20,                                                 
         };
-    var G = "JetBrains Mono",
+    var G = "Anonymous Pro",
       Q = Math.floor($[G] * v) + "px " + G + ", monospace, Special";
     const _ = new Map();
     _["set"]("Unifont", void 0),
@@ -428,10 +428,10 @@ function convertToEmote(msg) {
       fe = [
         0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42
       ];
-    var monochromeColor = [0,1,2,3],
-        lightColor = [6,9,12,15,18,21,24,27,30,33,36,39,42],
-        normalColor = [5,8,11,14,17,20,23,26,29,32,35,38,41],
-        darkColor = [4,7,10,13,16,19,22,25,28,31,34,37,40];
+    var monochromeColor = [0],
+        lightColor = [6,9,12,15,18,21,24,27,30,33,36,39,42,3],
+        normalColor = [5,8,11,14,17,20,23,26,29,32,35,38,41,2],
+        darkColor = [4,7,10,13,16,19,22,25,28,31,34,37,40,1];
     function ve(e) {
       for (var t = n, r = 0; r < se["length"]; r++) if (fe[r] == e) return r;
       return -1;
