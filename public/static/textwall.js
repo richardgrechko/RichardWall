@@ -248,7 +248,6 @@ function convertToEmote(msg) {
         "PT Mono": 16,
         "Roboto Mono": 17,
         "Segoe Mono Boot": 18,
-        "Sometype Mono": 17,
         "Source Code Pro": 17,
         "Space Mono": 16,
         "Terminus": 0,
