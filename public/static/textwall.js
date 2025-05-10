@@ -349,7 +349,7 @@ function convertToEmote(msg) {
         '#936406',
         '#f6ab13',
         '#face75',
-        '#dda808',
+        '#cfaa17',
         '#f6f613',
         '#effa75',
         '#5e8a05',
@@ -3275,7 +3275,7 @@ function convertToEmote(msg) {
       return " " == e || e == V;
     }
     function Qn(e, t) {
-      return Gn(e) && 0 == (2 & t) && 0 == (1 & t);
+      return Gn(e) && 0 == (2 & t) && 0 == (16 & t) && 0 == (1 & t);
     }
     const _n = Math["log"](5 / 3) / 1e3;
     var er = !1;
