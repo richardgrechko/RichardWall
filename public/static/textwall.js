@@ -1829,7 +1829,7 @@ function convertToEmote(msg) {
               /^\/|\/$/g,
               ""
             ),
-            r = 0 == t || t["startsWith"]("~") ? { x: 0, y: 0 } : Lr(t);
+            r = 0 == t || t["startsWith"]("@") ? { x: 0, y: 0 } : Lr(t);
           (document["getElementById"]("tpx")["value"] = r.x),
             (document["getElementById"]("tpy")["value"] = -r.y);
         }
