@@ -1006,7 +1006,7 @@ function convertToEmote(msg) {
                           Math["ceil"](11 * y),
                           Math["ceil"](y)
                         ),
-                      16 & T &&
+                        16 & T &&
                         e["fillRect"](
                           Math["floor"](w - 0.5 * y),
                           Math["round"](M + 0.5 * y),
@@ -3129,6 +3129,7 @@ function convertToEmote(msg) {
           (E = I),
           Gn(L) &&
             Gn(k) &&
+            (16 & M) == (16 & E) &&
             (2 & M) == (2 & E) &&
             (1 & M) == (1 & E) &&
             F == client.color) ||
