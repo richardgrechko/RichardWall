@@ -6053,7 +6053,6 @@ td {
 
 .tool {
 	height: 24px;
-	padding: 5px;
 	border-radius: 5px;
 	cursor: pointer;
 	transition: background-color 0.1s;
