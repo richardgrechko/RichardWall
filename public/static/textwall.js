@@ -307,9 +307,9 @@ function convertToEmote(msg) {
               (r * (20 * v)) / devicePixelRatio +
               qe.offset.y / devicePixelRatio,
           });
-        re.style.width = "100%",
-          (re["style"]["top"] =
-            Math["max"](o.y - re["clientHeight"], 0) + "px");
+        for (let i = 0; i < re.children.length; i++) {
+          re.children[i].style.width = "100%";
+        }
       } else re["style"]["display"] = "flex";
     }
     function ce() {
