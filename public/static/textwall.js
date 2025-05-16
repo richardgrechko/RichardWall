@@ -1163,15 +1163,14 @@ function convertToEmote(msg) {
     function nn(e) {
       var t = n;
       if (e.isTrusted) {
-        if (Ce.y == -44 && Ce.x < 11 && Ce.x >= -11 && W == "textwall") {
-          Ce = 0,
-          window.open("https://fishtextwall.glitch.me/"),
-            Je()
-        }
-        if (Ce.y == -34 && Ce.x < 37 && Ce.x >= 23 && W == "textwall") {
+        if (Ce.y == -32 && Ce.x < 37 && Ce.x >= 23 && W == "textwall") {
           Ce = 0,
           window.open("https://ehtw.glitch.me/"),
             Je()
+        }
+        if (Ce.y == -38 && Ce.x < -33 && Ce.x >= -48 && W == "textwall") {
+          Cn("Richard", "main");
+          Zn(0,0)
         }
         var r = 20 * Math["floor"](Ce.x / 20),
           o = 10 * Math["floor"](Ce.y / 10),
