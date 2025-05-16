@@ -80,6 +80,11 @@ h3 {
   bottom: 0;
   transition: all 0.5s;
 }
+@media only screen and (max-width: 600px) {
+  #info {
+    width: 100%; /* to make it better on mobile */
+  }
+}
 .decoration {
   background-color: #b9b9b9;
   border-radius: 25%;
