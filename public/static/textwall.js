@@ -307,9 +307,7 @@ function convertToEmote(msg) {
               (r * (20 * v)) / devicePixelRatio +
               qe.offset.y / devicePixelRatio,
           });
-        o.x + 15 * v + re["clientWidth"] > window["innerWidth"]
-          ? (re.style["left"] = o.x - re["clientWidth"] - 5 * at + "px")
-          : (re["style"]["left"] = o.x + 15 * at + "px"),
+        re.style.width = "100%",
           (re["style"]["top"] =
             Math["max"](o.y - re["clientHeight"], 0) + "px");
       } else re["style"]["display"] = "flex";
