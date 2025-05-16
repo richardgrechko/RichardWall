@@ -3082,7 +3082,7 @@ function convertToEmote(msg) {
       )
         return 0;
       var i = (e = Array.from(e)[0])["codePointAt"]();
-      if (nt["disableBraille"]["checked"] && qr(i)) return 0;
+     // if (nt["disableBraille"]["checked"] && qr(i)) return 0;
       var c = 20 * Math["floor"](Ce.x / 20),
         l = 10 * Math["floor"](Ce.y / 10),
         u = c + "," + l;
@@ -3320,7 +3320,7 @@ function convertToEmote(msg) {
                 var v =
                     ((s = a[n]),
                     (d = s["codePointAt"]()),
-                    ((d -= d < ue ? 65 : ue) < 0 || d > 495) && (d = 0),
+                    ((d -= d < ue ? 65 : ue) < 0 || d > 991) && (d = 0),
                     d),
                   [m, h] = Zr(v);
                 Qn(f, h) || mr(m), le(h);
