@@ -584,7 +584,143 @@ td {
   font-display: swap;
   src: url(https://cdn.glitch.global/32dadb8b-db6a-421e-8c38-70fd74a12607/A1Gothic.ttf?v=1746331739234)
 }
-
+/* courier prime sans*/
+@font-face {
+  font-family: courier prime sans;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/install.com%2FCourier%20Prime%20Sans.ttf?v=1747372447390)
+}
+@font-face {
+  font-family: courier prime sans;
+  font-style: italic;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/install.com%2FCourier%20Prime%20Sans%20Italic.ttf?v=1747372446317)
+}
+@font-face {
+  font-family: courier prime sans;
+  font-weight: 700;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/install.com%2FCourier%20Prime%20Sans%20Bold%20Italic.ttf?v=1747372443897)
+}
+@font-face {
+  font-family: courier prime sans;
+  font-weight: 700;
+  font-style: italic;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/install.com%2FCourier%20Prime%20Sans%20Bold%20Italic.ttf?v=1747372443897)
+}
+/* dejavu sans mono*/
+@font-face {
+  font-family: dejavu sans mono;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/install.com%2FDejaVuSansMono.ttf?v=1747372451793)
+}
+@font-face {
+  font-family: dejavu sans mono;
+  font-style: italic;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/install.com%2FDejaVuSansMono-Oblique.ttf?v=1747372450514)
+}
+@font-face {
+  font-family: dejavu sans mono;
+  font-weight: 700;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/install.com%2FDejaVuSansMono-Bold.ttf?v=1747372448552)
+}
+@font-face {
+  font-family: dejavu sans mono;
+  font-weight: 700;
+  font-style: italic;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/install.com%2FDejaVuSansMono-BoldOblique.ttf?v=1747372449520)
+}
+/* iosevka */
+@font-face {
+  font-family: iosevka;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/install.com%2FIosevkaFixed-Regular.ttf?v=1747372478925)
+}
+@font-face {
+  font-family: iosevka;
+  font-style: italic;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/install.com%2FIosevkaFixed-Italic.ttf?v=1747372475326)
+}
+@font-face {
+  font-family: iosevka;
+  font-weight: 700;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/install.com%2FIosevkaFixed-Bold.ttf?v=1747372470977)
+}
+@font-face {
+  font-family: iosevka;
+  font-weight: 700;
+  font-style: italic;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/install.com%2FIosevkaFixed-BoldItalic.ttf?v=1747372473095)
+}
+/* iosevka slab */
+@font-face {
+  font-family: iosevka slab;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/install.com%2FIosevkaFixedSlab-Regular.ttf?v=1747372490508)
+}
+@font-face {
+  font-family: iosevka slab;
+  font-style: italic;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/install.com%2FIosevkaFixedSlab-Italic.ttf?v=1747372486028)
+}
+@font-face {
+  font-family: iosevka slab;
+  font-weight: 700;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/install.com%2FIosevkaFixedSlab-Bold.ttf?v=1747372481692)
+}
+@font-face {
+  font-family: iosevka slab;
+  font-weight: 700;
+  font-style: italic;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/install.com%2FIosevkaFixedSlab-BoldItalic.ttf?v=1747372484066)
+}
+/* league mono */
+@font-face {
+  font-family: league mono;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/install.com%2FLeagueMono-Regular.ttf?v=1747372492058)
+}
+@font-face {
+  font-family: league mono;
+  font-weight: 700;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/install.com%2FLeagueMono-Bold.ttf?v=1747372491281)
+}
+@font-face {
+  font-family: ms mincho;
+  font-weight: 400;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/msmincho.ttc?v=1747444649172)
+}
+/* nk57 */
+@font-face {
+  font-family: nk57 mono;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/NK57%20Monospace%20No%20Rg.otf?v=1747446199030)
+}
+@font-face {
+  font-family: nk57 mono;
+  font-style: italic;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/NK57%20Monospace%20No%20Rg%20It.otf?v=1747446185663)
+}
+@font-face {
+  font-family: nk57 mono;
+  font-weight: 700;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/NK57%20Monospace%20No%20Bd.otf?v=1747446205713)
+}
+@font-face {
+  font-family: nk57 mono;
+  font-weight: 700;
+  font-style: italic;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/NK57%20Monospace%20No%20Bd%20It.otf?v=1747446253577)
+}
+/* sf mono */
+@font-face {
+  font-family: sf mono;
+  font-style: italic;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/SFMonoRegularItalic.otf?v=1747445907483)
+}
+@font-face {
+  font-family: sf mono;
+  font-weight: 700;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/SFMonoBold.otf?v=1747445883702)
+}
+@font-face {
+  font-family: sf mono;
+  font-weight: 700;
+  font-style: italic;
+  src: url(https://cdn.glitch.global/8a4d4824-c580-4631-ab70-07c416eefeae/SFMonoBoldItalic.otf?v=1747445891246)
+}
 /* cyrillic */
 @font-face {
   font-family: 'Anonymous Pro';
