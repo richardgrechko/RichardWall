@@ -1003,21 +1003,21 @@ function convertToEmote(msg) {
                           Math["floor"](w - 0.5 * y),
                           Math["round"](M + 17.5 * y),
                           Math["ceil"](11 * y),
-                          Math["ceil"](y)
+                          Math["ceil"](y + ((8 & T)/3))
                         ),
                         16 & T &&
                         e["fillRect"](
-                          Math["floor"](w - 0.5 * y * (8 & t + 1)),
+                          Math["floor"](w - 0.5 * y),
                           Math["round"](M + 0.5 * y),
                           Math["ceil"](11 * y),
-                          Math["ceil"](y)
+                          Math["ceil"](y + ((8 & T)/3))
                         ),
                         1 & T &&
                           e.fillRect(
                             Math["floor"](w - 0.5 * y),
                             Math["floor"](M + 9 * y),
                             Math.ceil(11 * y),
-                            Math["ceil"](y)
+                            Math["ceil"](y + ((8 & T)/3))
                           );
                     }
                   }
