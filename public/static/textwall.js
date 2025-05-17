@@ -958,7 +958,7 @@ function convertToEmote(msg) {
                          (u >= 58368 && u <= 58879) ||
                           qr(B))
                       )
-                        (e["font"] = Math["round"](20 * y) + "px Fairfax Special"),
+                        (e["font"] = Math["round"](20 * y) + "px Special"),
                           e["fillText"](
                             S,
                             Math["round"](w),
