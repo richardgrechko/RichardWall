@@ -955,7 +955,7 @@ function convertToEmote(msg) {
                          (u >= 58368 && u <= 58879) ||
                           qr(B))
                       )
-                        (e["font"] = Math["round"](20 * y) + "px Special"),
+                        (e["font"] = Math["round"](20 * y) + "px Fairfax Special"),
                           e["fillText"](
                             S,
                             Math["round"](w),
@@ -1007,7 +1007,7 @@ function convertToEmote(msg) {
                         ),
                         16 & T &&
                         e["fillRect"](
-                          Math["floor"](w - 0.5 * y),
+                          Math["floor"](w - 0.5 * y * (8 & t + 1)),
                           Math["round"](M + 0.5 * y),
                           Math["ceil"](11 * y),
                           Math["ceil"](y)
@@ -1162,9 +1162,9 @@ function convertToEmote(msg) {
       var t = n;
       if (e.isTrusted) {
         if (Ce.y == -32 && Ce.x < 37 && Ce.x >= 23 && W == "textwall") {
-          Ce = 0,
           window.open("https://ehtw.glitch.me/"),
             Je()
+          Cn("textwall", "main")
         }
         if (Ce.y == -38 && Ce.x < -33 && Ce.x >= -48 && W == "textwall") {
           Cn("Richard", "main");
