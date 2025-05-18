@@ -28,7 +28,7 @@ var port = 8080;
 var loginToType = false;
 var registrationClosed = false;
 var serverClosing = false;
-const admins = ["uni", "falling1"];
+const admins = ["textwall", "ollet", "richard_11729"];
 var uptime = Math.floor(Date.now() / 1000);
 var upfor = new Date().toString();
 // public/static/colors.js
