@@ -431,9 +431,18 @@ function convertToEmote(msg) {
         20,26,14,13,27,28,21,3,22,6,29,40,34,39,33,32,37,38,36,35,41,42,31
       ];
     var monochromeColor = [0],
-        lightColor = [3,6,9,12,15,18,21,24,27,30,33,36,39,42],
-        normalColor = [2,5,8,11,14,17,20,23,26,29,32,35,38,41],
-        darkColor = [1,4,7,10,13,16,19,22,25,28,31,34,37,40];
+        lightColor = Array.from({length: 14},(_,i)=>{
+          console.log(3*i+1)
+	        return fe[3*i+1]
+        }),
+        normalColor = Array.from({length: 14},(_,i)=>{
+          console.log(3*i+2)
+	        return fe[3*i+2]
+        }),
+        darkColor = Array.from({length: 14},(_,i)=>{
+          console.log(3*i+3)
+	        return fe[3*i+3]
+        });
     function ve(e) {
       for (var t = n, r = 0; r < se["length"]; r++) if (fe[r] == e) return r;
       return -1;
@@ -867,7 +876,6 @@ function convertToEmote(msg) {
       tt["disablecolour"]["checked"] && (t = 0),
         (e["fillStyle"] = xe && 0 == t ? "#ffffff" : se[t]);
     }
-    
     function Xt(e, t) {
       var r = n,
         a = we["get"](e);
