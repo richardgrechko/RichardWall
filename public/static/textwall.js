@@ -3438,13 +3438,13 @@ function convertToEmote(msg) {
           for (let i = 0; i < monochromeColor.length; i++) {
             var mono = document.createElement("div");
             mono["classList"]["add"]("colour")
-            mono["style"]["backgroundColor"] = se[monochromeColor[i]]
+            mono["style"]["backgroundColor"] = se[fe.indexOf(monochromeColor[i])]
             mono.addEventListener("click", function (t) {
-              mr(monochromeColor[i]), nn(t);
+              mr(fe.indexOf(monochromeColor[i])), nn(t);
             })
             mono.setAttribute("id", monochromeColor[i]),
-            (mono["style"]["backgroundColor"] = se[monochromeColor[i]]),
-            (mono["title"] = de[monochromeColor[i]])
+            (mono["style"]["backgroundColor"] = se[fe.indexOf(monochromeColor[i])]),
+            (mono["title"] = de[fe.indexOf(monochromeColor[i])])
             monocolourlist.appendChild(mono);
           }
           monocolourlist.appendChild(monocolourtext);
@@ -3461,13 +3461,13 @@ function convertToEmote(msg) {
           for (let i = 0; i < lightColor.length; i++) {
             var light = document.createElement("div");
             light["classList"]["add"]("colour")
-            light["style"]["backgroundColor"] = se[lightColor[i]]
+            light["style"]["backgroundColor"] = se[fe.indexOf(lightColor[i])]
             light.addEventListener("click", function (t) {
-              mr(lightColor[i]), nn(t);
+              mr(fe.indexOf(lightColor[i])), nn(t);
             })
             light.setAttribute("id", lightColor[i]),
-            (light["style"]["backgroundColor"] = se[lightColor[i]]),
-            (light["title"] = de[lightColor[i]])
+            (light["style"]["backgroundColor"] = se[fe.indexOf(lightColor[i])]),
+            (light["title"] = de[fe.indexOf(lightColor[i])])
             lightcolourlist.appendChild(light);
           }
           lightcolourlist.appendChild(lightcolourtext);
@@ -3484,13 +3484,13 @@ function convertToEmote(msg) {
           for (let i = 0; i < normalColor.length; i++) {
             var normal = document.createElement("div");
             normal["classList"]["add"]("colour")
-            normal["style"]["backgroundColor"] = se[normalColor[i]]
+            normal["style"]["backgroundColor"] = se[fe.indexOf(normalColor[i])]
             normal.addEventListener("click", function (t) {
-              mr(normalColor[i]), nn(t);
+              mr(fe.indexOf(normalColor[i])), nn(t);
             })
             normal.setAttribute("id", normalColor[i]),
-            (normal["style"]["backgroundColor"] = se[normalColor[i]]),
-            (normal["title"] = de[normalColor[i]])
+            (normal["style"]["backgroundColor"] = se[fe.indexOf(normalColor[i])]),
+            (normal["title"] = de[fe.indexOf(normalColor[i])])
             normalcolourlist.appendChild(normal);
           }
           normalcolourlist.appendChild(normalcolourtext);
@@ -3507,13 +3507,13 @@ function convertToEmote(msg) {
           for (let i = 0; i < darkColor.length; i++) {
             var dark = document.createElement("div");
             dark["classList"]["add"]("colour")
-            dark["style"]["backgroundColor"] = se[darkColor[i]]
+            dark["style"]["backgroundColor"] = se[fe.indexOf(darkColor[i])]
             dark.addEventListener("click", function (t) {
-              mr(darkColor[i]), nn(t);
+              mr(fe.indexOf(darkColor[i])), nn(t);
             })
             dark.setAttribute("id", darkColor[i]),
-            (dark["style"]["backgroundColor"] = se[darkColor[i]]),
-            (dark["title"] = de[darkColor[i]])
+            (dark["style"]["backgroundColor"] = se[fe.indexOf(darkColor[i])]),
+            (dark["title"] = de[fe.indexOf(darkColor[i])])
             darkcolourlist.appendChild(dark);
           }
           darkcolourlist.appendChild(darkcolourtext);
