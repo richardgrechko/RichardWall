@@ -867,6 +867,7 @@ function convertToEmote(msg) {
       tt["disablecolour"]["checked"] && (t = 0),
         (e["fillStyle"] = xe && 0 == t ? "#ffffff" : se[t]);
     }
+    
     function Xt(e, t) {
       var r = n,
         a = we["get"](e);
@@ -955,10 +956,10 @@ function convertToEmote(msg) {
                           !(u >= 9548 && u <= 9551)) ||
                           (u >= 117760 && u <= 118527) ||
                           (u >= 129792 && u <= 130047) ||
-                         (u >= 58368 && u <= 58879) ||
+                         (u >= 58368 && u <= 58895) ||
                           qr(B))
                       )
-                        (e["font"] = Math["round"](20 * y) + "px Special"),
+                        (e["font"] = Math["round"](20 * y) + "px Fairfax2 Special"),
                           e["fillText"](
                             S,
                             Math["round"](w),
@@ -1006,21 +1007,21 @@ function convertToEmote(msg) {
                           Math["floor"](w - 0.5 * y),
                           Math["round"](M + 17.5 * y),
                           Math["ceil"](11 * y),
-                          Math["ceil"](y + ((8 & T)/3))
+                          Math["ceil"](y + ((8 & T)/4))
                         ),
                         16 & T &&
                         e["fillRect"](
                           Math["floor"](w - 0.5 * y),
                           Math["round"](M + 0.5 * y),
                           Math["ceil"](11 * y),
-                          Math["ceil"](y + ((8 & T)/3))
+                          Math["ceil"](y + ((8 & T)/4))
                         ),
                         1 & T &&
                           e.fillRect(
                             Math["floor"](w - 0.5 * y),
                             Math["floor"](M + 9 * y),
                             Math.ceil(11 * y),
-                            Math["ceil"](y + ((8 & T)/3))
+                            Math["ceil"](y + ((8 & T)/4))
                           );
                     }
                   }
