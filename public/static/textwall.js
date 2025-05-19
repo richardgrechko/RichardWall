@@ -369,7 +369,7 @@ function convertToEmote(msg) {
         '#134cf6',
         '#7596fa',
         '#312183',
-        '#452eb8',
+        '#4c33cc',
         '#9485e0',
         '#5e069d',
         '#9813f6',
@@ -1180,7 +1180,7 @@ function convertToEmote(msg) {
     function nn(e) {
       var t = n;
       if (e.isTrusted) {
-        if (Ce.y == -32 && Ce.x < 37 && Ce.x >= 23 && W == "textwall") {
+        if (Ce.y == -32 && Ce.x < 46 && Ce.x >= 23 && W == "textwall") {
           window.open("https://ehtw.glitch.me/"),
             Je()
           Cn("textwall", "main")
@@ -3036,6 +3036,7 @@ function convertToEmote(msg) {
     rainbowModeMap.set("Normal",normalRainbow),
     rainbowModeMap.set("Dark",darkRainbow),
     rainbowModeMap.set("Monochromatic",[30, 1, 2, 1]);
+    rainbowModeMap.set("Classic",[30, 1, 2, 1]);
     if (localStorage.rainbowmode == "Light") {
       Jn = lightRainbow
     } else if (localStorage.rainbowmode == "Normal") {
