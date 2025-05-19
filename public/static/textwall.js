@@ -336,7 +336,7 @@ function convertToEmote(msg) {
         br("strikethrough", Boolean(1 & e));
     }
     const ue = 192,
-      se = [
+      colorCodes = [
         '#141617',
         '#3d4043',
         '#798086',
@@ -381,7 +381,7 @@ function convertToEmote(msg) {
         '#bf9339',
         '#fbdeb6',
       ],
-      de = [
+      colorNames = [
         "Black/White",
         "Dark Gray",
         "Gray",
@@ -430,6 +430,14 @@ function convertToEmote(msg) {
         0,30,1,2,23,15,4,5,7,24,16,9,8,17,18,25,12,11,10,19,
         20,26,14,13,27,28,21,3,22,6,29,40,34,39,33,32,37,38,36,35,41,42,31
       ];
+    var se = Array.from({length: 14},(_,i)=>{
+          console.log(3*i+3)
+	        return colorCodes[fe[3*i+3]]
+        }),
+    de = Array.from({length: 14},(_,i)=>{
+          console.log(3*i+3)
+	        return colorNames[fe[3*i+3]]
+        });
     var monochromeColor = [0],
         lightColor = Array.from({length: 14},(_,i)=>{
           console.log(3*i+3)
@@ -1382,14 +1390,14 @@ function convertToEmote(msg) {
             else if (e["altKey"])
               1 == Math.sign(e["deltaY"])
                 ? mr(
-                    client.color == fe[se["length"] - 1]
+                    client.color == fe[se["length"]]
                       ? fe[0]
-                      : fe[ve(client.color) + 1]
+                      : fe[ve(client.color)]
                   )
                 : mr(
                     client.color == fe[0]
-                      ? fe[se["length"] - 1]
-                      : fe[ve(client.color) - 1]
+                      ? fe[se["length"]]
+                      : fe[ve(client.color)]
                   );
             else {
               var r = e.deltaX,
@@ -3016,7 +3024,7 @@ function convertToEmote(msg) {
     rainbowModeMap.set("Light",[0x6, 0x9, 0xC, 0xF, 0x12, 0x15, 0x18, 0x1B, 0x1E, 0x21, 0x24, 0x27]),
     rainbowModeMap.set("Normal",[0x5, 0x8, 0xB, 0xE, 0x11, 0x14, 0x17, 0x1A, 0x1D, 0x20, 0x23, 0x26]),
     rainbowModeMap.set("Dark",[0x4, 0x7, 0xA, 0xD, 0x10, 0x13, 0x16, 0x19, 0x1C, 0x1F, 0x22, 0x25]),
-    rainbowModeMap.set("Monochromatic",[0x1, 0x2, 0x3, 0x2]);
+    rainbowModeMap.set("Monochromatic",[30, 1, 2, 1]);
     var rainbowOption;
     for (var rainbowModeLength = 0; rainbowModeLength < rainbowArray["length"]; rainbowModeLength++)
       (rainbowOption = document["createElement"]("option")),
