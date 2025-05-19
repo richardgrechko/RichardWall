@@ -3051,6 +3051,11 @@ function convertToEmote(msg) {
     } else if (localStorage.rainbowmode == "Classic") {
       Jn = [7, 9, 18, 26, 20, 14, 21, 35, 39, 37, 15]
     }
+    if (localStorage.rainbowmode != "None") {
+      document.getElementById("rainbow").value = "on"
+    } else {
+      document.getElementById("rainbow").value = "off"
+    }
     var rainbowOption;
     for (var rainbowModeLength = 0; rainbowModeLength < rainbowArray["length"]; rainbowModeLength++)
       (rainbowOption = document["createElement"]("option")),
