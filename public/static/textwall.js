@@ -426,7 +426,7 @@ function convertToEmote(msg) {
         "Wood",
         "Sand",
       ],
-      fe = [0, 30, 1, 2, 23, 15, 4, 5, 7, 24, 16, 9, 8, 17, 18, 25, 12, 11, 10, 19, 20, 26, 14, 13, 27, 28, 21, 3, 22, 6, 29, 40, 34, 39, 33, 32, 37, 38, 36, 35, 41, 42, 31];
+      fe = [0, 2, 3, 27, 6, 7, 29, 8, 12, 11, 18, 17, 16, 23, 22, 5, 10, 13, 14, 19, 20, 26, 28, 4, 9, 15, 21, 24, 25, 30, 1, 40, 34, 39, 33, 32, 37, 38, 36, 35, 41, 42, 31];
     var se = Array.from({length: 43},(_,i)=>{
           console.log(i)
 	        return colorCodes[fe[i]]
@@ -3016,14 +3016,26 @@ function convertToEmote(msg) {
       k["addEventListener"]("touchend", function (e) {
         Nn && ((Dn = void 0), (jn = 0), (Nn = !1), i["blur"]());
       });
+    var lightRainbow = [];
+    for (let lv = 0; lv <= lightColor.length-3; lv++) {
+      lightRainbow.push(lightColor[lv+1])
+    }
+    var normalRainbow = [];
+    for (let lv = 0; lv <= normalColor.length-3; lv++) {
+      normalRainbow.push(normalColor[lv+1])
+    }
+    var darkRainbow = [];
+    for (let lv = 0; lv <= darkColor.length-3; lv++) {
+      darkRainbow.push(darkColor[lv+1])
+    }
     var zn = 0,
       qn = performance["now"](),
-      Yn = 0, Jn = [0x5, 0x8, 0xB, 0xE, 0x11, 0x14, 0x17, 0x1A, 0x1D, 0x20, 0x23, 0x26], rainbowMode,
+      Yn = 0, Jn = normalRainbow, rainbowMode,
         rainbowModeMap = new Map(), rainbowArray = ["Light", "Normal", "Dark", "Monochromatic"];
-    rainbowModeMap.set("Light",[0x6, 0x9, 0xC, 0xF, 0x12, 0x15, 0x18, 0x1B, 0x1E, 0x21, 0x24, 0x27]),
-    rainbowModeMap.set("Normal",[0x5, 0x8, 0xB, 0xE, 0x11, 0x14, 0x17, 0x1A, 0x1D, 0x20, 0x23, 0x26]),
-    rainbowModeMap.set("Dark",[0x4, 0x7, 0xA, 0xD, 0x10, 0x13, 0x16, 0x19, 0x1C, 0x1F, 0x22, 0x25]),
-    rainbowModeMap.set("Monochromatic",[0x1, 0x2, 0x3, 0x2]);
+    rainbowModeMap.set("Light",lightRainbow),
+    rainbowModeMap.set("Normal",normalRainbow),
+    rainbowModeMap.set("Dark",darkRainbow),
+    rainbowModeMap.set("Monochromatic",[30, 1, 2, 1]);
     var rainbowOption;
     for (var rainbowModeLength = 0; rainbowModeLength < rainbowArray["length"]; rainbowModeLength++)
       (rainbowOption = document["createElement"]("option")),
