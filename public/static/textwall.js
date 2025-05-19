@@ -1208,11 +1208,11 @@ function convertToEmote(msg) {
             Je()
           Cn("textwall", "main")
         }
-        if (Ce.y == -38 && Ce.x < -37 && Ce.x >= -44 && W == "textwall") {
+        if (Ce.y == -38 && Ce.x < -36 && Ce.x >= -43 && W == "textwall") {
           Cn("Richard", "main");
           Zn(0,0)
         }
-        if (Ce.y == -39 && Ce.x < -33 && Ce.x >= -48 && W == "textwall") {
+        if (Ce.y == -39 && Ce.x < -31 && Ce.x >= -46 && W == "textwall") {
           Cn("textwall", "colornames");
           Zn(0,0)
         }
