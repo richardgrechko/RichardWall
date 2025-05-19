@@ -1203,7 +1203,7 @@ function convertToEmote(msg) {
     function nn(e) {
       var t = n;
       if (e.isTrusted) {
-        if (Ce.y == -32 && Ce.x < 46 && Ce.x >= 23 && W == "textwall") {
+        if (Ce.y == -32 && Ce.x < 44 && Ce.x >= 21 && W == "textwall") {
           window.open("https://ehtw.glitch.me/"),
             Je()
           Cn("textwall", "main")
@@ -1214,6 +1214,18 @@ function convertToEmote(msg) {
         }
         if (Ce.y == -39 && Ce.x < -33 && Ce.x >= -48 && W == "textwall") {
           Cn("textwall", "colornames");
+          Zn(0,0)
+        }
+        if (Ce.y == -40 && Ce.x < -30 && Ce.x >= -50 && W == "textwall") {
+          Cn("Richard", "SocialMedia");
+          Zn(0,0)
+        }
+        if (Ce.y == -10 && Ce.x < 0 && Ce.x >= -19 && W == "Richard" && H == "SocialMedia") {
+          window.open("https://www.youtube.com/@RichardGrechko2025");
+          Zn(0,0)
+        }
+        if (Ce.y == -1 && Ce.x < 19 && Ce.x >= 15 && W == "Richard" && H == "SocialMedia") {
+          Cn("textwall", "main");
           Zn(0,0)
         }
         var r = 20 * Math["floor"](Ce.x / 20),
