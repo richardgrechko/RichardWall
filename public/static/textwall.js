@@ -236,7 +236,7 @@ function convertToEmote(msg) {
         "Envy Code R": 19,
         "Everson Mono": 16,
         "Fairfax HD": 20,
-        "Fairfax Special": 20,
+        "Fairfax2 Special": 20,
         "Fantasque Sans Mono": 18,
         "Fira Code": 18,
         "Fira Mono": 18,
@@ -259,13 +259,11 @@ function convertToEmote(msg) {
         "MS Gothic Neue": 18,
         "MS Mincho": 18,
         "Nanum Gothic Coding": 19,
-        "NK57 Mono": 13,
         "Noto Sans Mono": 16,
         "Overpass Mono": 16,
         "Oxygen Mono": 17,
         "Pixel Plus10": 16,
         "PT Mono": 16,
-        "Reddit Mono": 16,
         "Red Hat Mono": 16,
         "Roboto Mono": 17,
         "Segoe Mono Boot": 16,
@@ -769,7 +767,7 @@ function convertToEmote(msg) {
     }
     !(function () {
       var e = n;
-      (E["font"] = "10px Fairfax2 Special"),
+      (E["font"] = "10px Fairfax Special"),
         E["fillText"]("abc", 0, 10),
         (E["font"] = Q),
         E["fillText"]("abc", 0, 10);
