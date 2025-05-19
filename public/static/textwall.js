@@ -1224,6 +1224,7 @@ function convertToEmote(msg) {
           window.open("https://www.youtube.com/@RichardGrechko2025");
           Zn(0,0)
         }
+        /*https://scratch.mit.edu/users/rg736_/*/
         if (Ce.y == -1 && Ce.x < 19 && Ce.x >= 15 && W == "Richard" && H == "SocialMedia") {
           Cn("textwall", "main");
           Zn(0,0)
