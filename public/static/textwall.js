@@ -3036,6 +3036,15 @@ function convertToEmote(msg) {
     rainbowModeMap.set("Normal",normalRainbow),
     rainbowModeMap.set("Dark",darkRainbow),
     rainbowModeMap.set("Monochromatic",[30, 1, 2, 1]);
+    if (localStorage.rainbowmode == "Light") {
+      Jn = lightRainbow
+    } else if (localStorage.rainbowmode == "Normal") {
+      Jn = normalRainbow
+    } else if (localStorage.rainbowmode == "Dark") {
+      Jn = darkRainbow
+    } else if (localStorage.rainbowmode == "Monochromatic") {
+      Jn = [30, 1, 2, 1]
+    }
     var rainbowOption;
     for (var rainbowModeLength = 0; rainbowModeLength < rainbowArray["length"]; rainbowModeLength++)
       (rainbowOption = document["createElement"]("option")),
