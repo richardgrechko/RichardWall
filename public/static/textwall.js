@@ -430,14 +430,16 @@ function convertToEmote(msg) {
         0,30,1,2,23,15,4,5,7,24,16,9,8,17,18,25,12,11,10,19,
         20,26,14,13,27,28,21,3,22,6,29,40,34,39,33,32,37,38,36,35,41,42,31
       ];
-    var se = Array.from({length: 14},(_,i)=>{
-          console.log(3*i+3)
-	        return colorCodes[fe[3*i+3]]
+    var se = Array.from({length: 43},(_,i)=>{
+          console.log(i)
+	        return colorCodes[fe[i]]
         }),
-    de = Array.from({length: 14},(_,i)=>{
-          console.log(3*i+3)
-	        return colorNames[fe[3*i+3]]
+    de = Array.from({length: 43},(_,i)=>{
+          console.log(i)
+	        return colorNames[fe[i]]
         });
+    console.log(se)
+    console.log(de)
     var monochromeColor = [0],
         lightColor = Array.from({length: 14},(_,i)=>{
           console.log(3*i+3)
@@ -3446,13 +3448,13 @@ function convertToEmote(msg) {
           for (let i = 0; i < monochromeColor.length; i++) {
             var mono = document.createElement("div");
             mono["classList"]["add"]("colour")
-            mono["style"]["backgroundColor"] = se[fe.indexOf(monochromeColor[i])]
+            mono["style"]["backgroundColor"] = se[monochromeColor[i]]
             mono.addEventListener("click", function (t) {
               mr(monochromeColor[i]), nn(t);
             })
             mono.setAttribute("id", monochromeColor[i]),
-            (mono["style"]["backgroundColor"] = se[fe.indexOf(monochromeColor[i])]),
-            (mono["title"] = de[fe.indexOf(monochromeColor[i])])
+            (mono["style"]["backgroundColor"] = se[monochromeColor[i]]),
+            (mono["title"] = de[monochromeColor[i]])
             monocolourlist.appendChild(mono);
           }
           monocolourlist.appendChild(monocolourtext);
@@ -3469,13 +3471,13 @@ function convertToEmote(msg) {
           for (let i = 0; i < lightColor.length; i++) {
             var light = document.createElement("div");
             light["classList"]["add"]("colour")
-            light["style"]["backgroundColor"] = se[fe.indexOf(lightColor[i])]
+            light["style"]["backgroundColor"] = se[lightColor[i]]
             light.addEventListener("click", function (t) {
               mr(lightColor[i]), nn(t);
             })
             light.setAttribute("id", lightColor[i]),
-            (light["style"]["backgroundColor"] = se[fe.indexOf(lightColor[i])]),
-            (light["title"] = de[fe.indexOf(lightColor[i])])
+            (light["style"]["backgroundColor"] = se[lightColor[i]]),
+            (light["title"] = de[lightColor[i]])
             lightcolourlist.appendChild(light);
           }
           lightcolourlist.appendChild(lightcolourtext);
@@ -3492,13 +3494,13 @@ function convertToEmote(msg) {
           for (let i = 0; i < normalColor.length; i++) {
             var normal = document.createElement("div");
             normal["classList"]["add"]("colour")
-            normal["style"]["backgroundColor"] = se[fe.indexOf(normalColor[i])]
+            normal["style"]["backgroundColor"] = se[normalColor[i]]
             normal.addEventListener("click", function (t) {
               mr(normalColor[i]), nn(t);
             })
             normal.setAttribute("id", normalColor[i]),
-            (normal["style"]["backgroundColor"] = se[fe.indexOf(normalColor[i])]),
-            (normal["title"] = de[fe.indexOf(normalColor[i])])
+            (normal["style"]["backgroundColor"] = se[normalColor[i]]),
+            (normal["title"] = de[normalColor[i]])
             normalcolourlist.appendChild(normal);
           }
           normalcolourlist.appendChild(normalcolourtext);
@@ -3515,13 +3517,13 @@ function convertToEmote(msg) {
           for (let i = 0; i < darkColor.length; i++) {
             var dark = document.createElement("div");
             dark["classList"]["add"]("colour")
-            dark["style"]["backgroundColor"] = se[fe.indexOf(darkColor[i])]
+            dark["style"]["backgroundColor"] = se[darkColor[i]]
             dark.addEventListener("click", function (t) {
               mr(darkColor[i]), nn(t);
             })
             dark.setAttribute("id", darkColor[i]),
-            (dark["style"]["backgroundColor"] = se[fe.indexOf(darkColor[i])]),
-            (dark["title"] = de[fe.indexOf(darkColor[i])])
+            (dark["style"]["backgroundColor"] = se[darkColor[i]]),
+            (dark["title"] = de[darkColor[i]])
             darkcolourlist.appendChild(dark);
           }
           darkcolourlist.appendChild(darkcolourtext);
