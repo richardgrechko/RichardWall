@@ -3031,13 +3031,16 @@ function convertToEmote(msg) {
     var zn = 0,
       qn = performance["now"](),
       Yn = 0, Jn = normalRainbow, rainbowMode,
-        rainbowModeMap = new Map(), rainbowArray = ["Light", "Normal", "Dark", "Monochromatic"];
+        rainbowModeMap = new Map(), rainbowArray = ["None", "Light", "Normal", "Dark", "Monochromatic", "Classic"];
+    rainbowModeMap.set("None",client.color),
     rainbowModeMap.set("Light",lightRainbow),
     rainbowModeMap.set("Normal",normalRainbow),
     rainbowModeMap.set("Dark",darkRainbow),
     rainbowModeMap.set("Monochromatic",[30, 1, 2, 1]);
-    rainbowModeMap.set("Classic",[30, 1, 2, 1]);
-    if (localStorage.rainbowmode == "Light") {
+    rainbowModeMap.set("Classic",[7, 9, 18, 26, 20, 14, 21, 35, 39, 37, 15]);
+    if (localStorage.rainbowmode == "None") {
+      Jn = client.color
+    } else if (localStorage.rainbowmode == "Light") {
       Jn = lightRainbow
     } else if (localStorage.rainbowmode == "Normal") {
       Jn = normalRainbow
@@ -3045,6 +3048,8 @@ function convertToEmote(msg) {
       Jn = darkRainbow
     } else if (localStorage.rainbowmode == "Monochromatic") {
       Jn = [30, 1, 2, 1]
+    } else if (localStorage.rainbowmode == "Classic") {
+      Jn = [7, 9, 18, 26, 20, 14, 21, 35, 39, 37, 15]
     }
     var rainbowOption;
     for (var rainbowModeLength = 0; rainbowModeLength < rainbowArray["length"]; rainbowModeLength++)
