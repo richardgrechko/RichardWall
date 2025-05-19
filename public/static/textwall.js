@@ -215,48 +215,72 @@ function convertToEmote(msg) {
       V = String.fromCharCode(10240),
       Z = String["fromCharCode"](27),
       $ = {
+        "Andalé Mono": 17,
         "Anonymous Pro": 18,
         "Atkinson Hyperlegible Mono": 17,
         "Azeret Mono": 15,
         "B612 Mono": 15,
+        "Cascadia Code": 17,
         "Cascadia Mono": 17,
         "Chivo Mono": 17,
         "CMU Typewriter Text": 19,
         "Consolas": 18,
         "Courier New": 16,
-        "Courier Prime": 16,
-        "Courier Prime Sans": 16,
+        "Courier Prime": 17,
+        "Courier Prime Code": 17,
+        "Courier Prime Sans": 17,
         "Cousine": 16,
         "Cutive Mono": 18,
         "DejaVu Sans Mono": 16,
-        "DM Mono": 18,
+        "DM Mono": 12,
+        "Envy Code R": 19,
+        "Everson Mono": 16,
+        "Fairfax HD": 20,
+        "Fairfax Special": 20,
         "Fantasque Sans Mono": 18,
-        "Fragment Mono": 16,
         "Fira Code": 18,
         "Fira Mono": 18,
+        "Fixedsys": 17,
+        "Fragment Mono": 16,
+        "Geist Mono": 16,
         "IBM Plex Mono": 16,
         "Inconsolata": 18,
         "Iosevka": 18,
-        "JetBrains Mono": 17,
+        "Iosevka Slab": 18,
+        "Jetbrains Mono": 17,
         "Kode Mono": 17,
+        "League Mono": 14,
         "Lekton": 19,
-        "Lucida Sans Mono": 16,
+        "Libertinus Mono": 16,
+        "Lucida Sans Typewriter": 16,
         "Martian Mono": 15,
+        "Monofur": 18,
+        "M PLUS1 Code": 16,
         "MS Gothic Neue": 18,
-        "monospace": 18,
+        "MS Mincho": 18,
         "Nanum Gothic Coding": 19,
+        "NK57 Mono": 13,
         "Noto Sans Mono": 16,
         "Overpass Mono": 16,
+        "Oxygen Mono": 17,
+        "Pixel Plus10": 16,
         "PT Mono": 16,
+        "Reddit Mono": 16,
+        "Red Hat Mono": 16,
         "Roboto Mono": 17,
-        "Segoe Mono Boot": 18,
+        "Segoe Mono Boot": 16,
+        "SF Mono": 16,
+        "Share Tech Mono": 17,
+        "Sometype Mono": 17,
         "Source Code Pro": 17,
         "Space Mono": 16,
+        "Spline Sans Mono": 15,
         "Terminus": 0,
         "Ubuntu Mono": 19,
         "Ubuntu Sans Mono": 17,
         "Unifont": 0,
         "Victor Mono": 15,
+        "Xanh Mono": 15,
         "Yu Mono Gothic": 18,
         Custom: 20,                                                 
         };
@@ -640,7 +664,12 @@ function convertToEmote(msg) {
           localStorage["setItem"]("customfontsize", i),
           (o = '"' + (o || "monospace") + '"'))
         : D.classList["add"]("hidden"),
-        (Q = Math["floor"](i * v) + "px " + o + ", monospace, Special"),
+        (Q = Math["floor"](i * v) + "px " + o + 
+          (o == "Ubuntu Sans Mono" ? ", Ubuntu Mono" :
+            (o == "Jetbrains Mono" ? ", Iosevka" :
+              (o == "Lucida Sans Typewriter" ? ", Lucida Console" : ""
+           ))) +
+         ", monospace, Iosevka, Fairfax2 Special"),
         localStorage["setItem"]("font", G),
         (document.getElementById("fontselect")["value"] = G),
         (ge = !0);
@@ -740,7 +769,7 @@ function convertToEmote(msg) {
     }
     !(function () {
       var e = n;
-      (E["font"] = "10px Special"),
+      (E["font"] = "10px Fairfax2 Special"),
         E["fillText"]("abc", 0, 10),
         (E["font"] = Q),
         E["fillText"]("abc", 0, 10);
@@ -974,7 +1003,7 @@ function convertToEmote(msg) {
                          (u >= 58368 && u <= 58895) ||
                           qr(B))
                       )
-                        (e["font"] = Math["round"](20 * y) + "px Fairfax2 Special"),
+                        (e["font"] = Math["round"](20 * y) + `px ${G}, monospace, Iosevka, Fairfax2 Special`),
                           e["fillText"](
                             S,
                             Math["round"](w),
@@ -1000,7 +1029,7 @@ function convertToEmote(msg) {
                           (u >= 74787 && u <= 74795) ||
                         [65021, 74795].includes(u))
                       )
-                        (e["font"] = Math["round"](10 * y) + "px Yu Gothic"),
+                        (e["font"] = Math["round"](20 * y) + "px Fairfax2 Special"),
                           e["fillText"](
                             S,
                             Math["round"](w),
@@ -1185,8 +1214,12 @@ function convertToEmote(msg) {
             Je()
           Cn("textwall", "main")
         }
-        if (Ce.y == -38 && Ce.x < -33 && Ce.x >= -48 && W == "textwall") {
+        if (Ce.y == -38 && Ce.x < -37 && Ce.x >= -44 && W == "textwall") {
           Cn("Richard", "main");
+          Zn(0,0)
+        }
+        if (Ce.y == -39 && Ce.x < -33 && Ce.x >= -48 && W == "textwall") {
+          Cn("textwall", "colornames");
           Zn(0,0)
         }
         var r = 20 * Math["floor"](Ce.x / 20),
