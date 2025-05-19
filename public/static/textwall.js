@@ -256,20 +256,16 @@ function convertToEmote(msg) {
         "Martian Mono": 15,
         "Monofur": 18,
         "M PLUS1 Code": 16,
-        "MS Gothic Neue": 18,
         "MS Mincho": 18,
         "Nanum Gothic Coding": 19,
         "Noto Sans Mono": 16,
         "Overpass Mono": 16,
-        "Oxygen Mono": 17,
-        "Pixel Plus10": 16,
         "PT Mono": 16,
         "Red Hat Mono": 16,
         "Roboto Mono": 17,
         "Segoe Mono Boot": 16,
         "SF Mono": 16,
         "Share Tech Mono": 17,
-        "Sometype Mono": 17,
         "Source Code Pro": 17,
         "Space Mono": 16,
         "Spline Sans Mono": 15,
@@ -767,7 +763,7 @@ function convertToEmote(msg) {
     }
     !(function () {
       var e = n;
-      (E["font"] = "10px Fairfax Special"),
+      (E["font"] = "10px Fairfax2 Special"),
         E["fillText"]("abc", 0, 10),
         (E["font"] = Q),
         E["fillText"]("abc", 0, 10);
@@ -987,21 +983,21 @@ function convertToEmote(msg) {
                       var P = !1;
                       8 & T && ((P = !0), Wt(e));
                       var L = !1;
+                      8 & T && ((P = !0), Wt(e));
+                      var L = !1;
                       if (
                         (4 & T && ((L = !0), Ht(e)),
                         (h = B) >= 58112 &&
                           h <= 58367 &&
                           ((B = Rt(B)), (S = String["fromCodePoint"](B))),
                         ((u = B) >= 9472 &&
-                          u <= 9631 &&
-                          !(u >= 9476 && u <= 9483) &&
-                          !(u >= 9548 && u <= 9551)) ||
+                          u <= 9631)||
                           (u >= 117760 && u <= 118527) ||
                           (u >= 129792 && u <= 130047) ||
                          (u >= 58368 && u <= 58895) ||
                           qr(B))
                       )
-                        (e["font"] = Math["round"](20 * y) + `px ${G}, monospace, Iosevka, Fairfax2 Special`),
+                        (e["font"] = Math["round"](20 * y) + "px Fairfax2 Special"),
                           e["fillText"](
                             S,
                             Math["round"](w),
@@ -1027,7 +1023,7 @@ function convertToEmote(msg) {
                           (u >= 74787 && u <= 74795) ||
                         [65021, 74795].includes(u))
                       )
-                        (e["font"] = Math["round"](20 * y) + "px Fairfax2 Special"),
+                        (e["font"] = Math["round"](10 * y) + "px Yu Gothic"),
                           e["fillText"](
                             S,
                             Math["round"](w),
