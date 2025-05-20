@@ -423,6 +423,7 @@ td {
   top: 0;
   right: 0;
   display: flex;
+  width: 30%;
   height: 50%;
   transition: all 0.5s;
   pointer-events: none;
@@ -432,7 +433,7 @@ td {
   transform: translateX(0px);
 }
 .chatcontainer {
-  width: 350px;
+  width: 100%;
 	border-radius: 0 0 0 5px;
 	height: 100%;
 	gap: 7px;
