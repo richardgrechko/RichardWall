@@ -444,9 +444,7 @@ function convertToEmote(msg) {
         "Wood",
         "Sand",
       ],
-      fe = [
-        //0, 2, 3, 27, 6, 7, 29, 8, 12, 11, 18, 17, 16, 23, 22, 5, 10, 13, 14, 19, 20, 26, 28, 4, 9, 15, 21, 24, 25, 30, 1, 40, 34, 39, 33, 32, 37, 38, 36, 35, 41, 42, 31
-        0,2,3,39,8,11,10,14,17,20,30,29,28,35,34,5,19,22,23,31,32,38,13,4,15,24,33,36,37,12,1,7,16,25,26,27,6,21,9,18,41,42,40];
+      fe = [0,2,3,39,8,11,10,14,17,20,30,29,28,35,34,5,19,42,23,31,32,38,13,4,15,24,33,36,37,12,1,7,16,25,26,27,6,21,9,18,17,22,40];
     var se = Array.from({length: 43},(_,i)=>{
           console.log(i)
 	        return colorCodes[fe[i]]
@@ -3088,7 +3086,7 @@ function convertToEmote(msg) {
     } else if (localStorage.rainbowmode == "Monochromatic") {
       Jn = [30, 1, 2, 1]
     } else if (localStorage.rainbowmode == "Classic") {
-      Jn = [7, 9, 18, 26, 20, 14, 21, 35, 39, 37, 15]
+      Jn = [4,5,7,8,9,18,11,20,13,21,15]
     }
     var rainbowOption;
     for (var rainbowModeLength = 0; rainbowModeLength < rainbowArray["length"]; rainbowModeLength++)
