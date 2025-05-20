@@ -2486,9 +2486,11 @@ function convertToEmote(msg) {
       s.innerHTML = correct(s.innerHTML,atob('bmlnZ2E='),"black person");
       s.innerHTML = correct(s.innerHTML,atob('bmlnZ2Vy'),"black person");
       s.innerHTML = correct(s.innerHTML,atob('eXVuYQ=='),"going to die");
+      if (s.innerText.startsWith(">")) {
+        s.innerHTML = `<msg style="color: #480">${s.innerText}</msg>`;
+      }
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
-      twemoji.parse(c, { base: "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/" }); // twemoji isnt defined
       c.innerHTML = convertToEmote(c.innerHTML);
       c.childNodes[0].onclick = l.onclick;
       i.appendChild(c),
