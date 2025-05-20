@@ -3076,7 +3076,7 @@ function convertToEmote(msg) {
     rainbowModeMap.set("Normal",normalRainbow),
     rainbowModeMap.set("Dark",darkRainbow),
     rainbowModeMap.set("Monochromatic",[30, 1, 2, 1]),
-    rainbowModeMap.set("Classic",[7, 9, 18, 26, 20, 14, 21, 35, 39, 37, 15]);
+    rainbowModeMap.set("Classic",[7, 9, 18, 11, 20, 14, 21, 35, 39, 37, 15]);
     if (localStorage.rainbowmode == "Light") {
       Jn = lightRainbow
     } else if (localStorage.rainbowmode == "Normal") {
@@ -3411,7 +3411,7 @@ function convertToEmote(msg) {
               switch (((zn = 0), Vn(f, 1))) {
                 case 0:
                 case 1:
-                  return setTimeout(e, 0 / 1.5, n + 1, o);
+                  return setTimeout(e, 3 / 1.5, n + 1, o);
                 default:
                   return setTimeout(
                     e,
