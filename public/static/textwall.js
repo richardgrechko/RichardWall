@@ -3078,7 +3078,7 @@ function convertToEmote(msg) {
     rainbowModeMap.set("Normal",normalRainbow),
     rainbowModeMap.set("Dark",darkRainbow),
     rainbowModeMap.set("Monochromatic",[30, 1, 2, 1]),
-    rainbowModeMap.set("Classic",[7, 9, 18, 11, 20, 14, 21, 35, 39, 37, 15]);
+    rainbowModeMap.set("Classic",[4,5,7,8,9,18,11,20,13,21,15]);
     if (localStorage.rainbowmode == "Light") {
       Jn = lightRainbow
     } else if (localStorage.rainbowmode == "Normal") {
