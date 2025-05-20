@@ -2485,9 +2485,13 @@ function convertToEmote(msg) {
       s.innerHTML = correct(s.innerHTML,"numberblocks","badass show");
       s.innerHTML = correct(s.innerHTML,atob('bmlnZ2E='),"black person");
       s.innerHTML = correct(s.innerHTML,atob('bmlnZ2Vy'),"black person");
-      s.innerHTML = correct(s.innerHTML,atob('eXVuYQ=='),"going to die");
+      s.innerHTML = correct(s.innerHTML,atob('eXVuYQ=='),"https://discord.gg/23eESSV9xR");
+      s.innerHTML = s.innerHTML.replace(
+        /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
+        '<a href="/$1" target="_blank">$1</a>'
+      );
       if (s.innerText.startsWith(">")) {
-        s.innerHTML = `<msg style="color: #480">${s.innerText}</msg>`;
+        s.innerHTML = `<msg style="color: #62c; font-style: italic;">${s.innerText}</msg>`;
       }
       var u =
         Math["abs"](i["scrollHeight"] - i["scrollTop"] - i["clientHeight"]) < 5;
