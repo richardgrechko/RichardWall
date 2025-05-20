@@ -1220,12 +1220,19 @@ function convertToEmote(msg) {
           Cn("Richard", "SocialMedia");
           Zn(0,0)
         }
+        if (Ce.y == -40 && Ce.x < 7 && Ce.x >= -20 && W == "textwall") {
+          Cn("Richard", "ColorCompatibs");
+          Zn(0,0)
+        }
         if (Ce.y == -10 && Ce.x < 0 && Ce.x >= -19 && W == "Richard" && H == "SocialMedia") {
           window.open("https://www.youtube.com/@RichardGrechko2025");
           Zn(0,0)
         }
-        /*https://scratch.mit.edu/users/rg736_/*/
         if (Ce.y == -1 && Ce.x < 19 && Ce.x >= 15 && W == "Richard" && H == "SocialMedia") {
+          Cn("textwall", "main");
+          Zn(0,0)
+        }
+        if (Ce.y == 9 && Ce.x < 19 && Ce.x >= 15 && W == "Richard" && H == "ColorCompatibs") {
           Cn("textwall", "main");
           Zn(0,0)
         }
