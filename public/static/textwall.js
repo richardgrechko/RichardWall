@@ -400,7 +400,7 @@ function convertToEmote(msg) {
         '#fbdeb6',
       ],
       colorNames = [
-        "Black/White",
+        "Mono",
         "Dark Gray",
         "Gray",
         "Silver",
@@ -408,7 +408,7 @@ function convertToEmote(msg) {
         "Red",
         "Cherry",
         "Bronze",
-        "Vermillion",
+        "Scarlet",
         "Tan",
         "Brown",
         "Orange",
@@ -441,10 +441,10 @@ function convertToEmote(msg) {
         "Magenta",
         "Pink",
         "Chocolate",
-        "Wood",
-        "Sand",
+        "Oak",
+        "Birch",
       ],
-      fe = [0,2,3,39,8,11,10,14,17,20,30,29,28,35,34,5,19,22,23,31,32,38,13,4,15,24,33,36,37,12,1,7,16,25,26,27,6,21,9,18,41,42,40];
+      fe = [0, 2, 3, 39, 8, 11, 10, 14, 17, 20, 27, 26, 25, 35, 34, 5, 19, 22, 23, 31, 32, 38, 40, 4, 15, 24, 33, 36, 37, 12, 1, 7, 16, 28, 29, 30, 6, 21, 9, 18, 41, 42, 13];
     var se = Array.from({length: 43},(_,i)=>{
           console.log(i)
 	        return colorCodes[fe[i]]
@@ -3599,10 +3599,10 @@ function convertToEmote(msg) {
           break;
       }
     }
-    addColors("mono");
-    addColors("light");
-    addColors("normal");
     addColors("dark");
+    addColors("normal");
+    addColors("light");
+    addColors("mono");
     function sr(e) {
       var t = n,
         r = document.createElement("div");
