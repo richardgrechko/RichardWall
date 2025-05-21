@@ -116,7 +116,7 @@ h3 {
   pointer-events: auto;
   transition: all 0.5s;
   display: flex;
-  width: 40%;
+  width: 20%;
   height: 40%;
   max-height: 70vh;
   justify-content: space-between;
@@ -423,11 +423,11 @@ td {
   top: 0;
   right: 0;
   display: flex;
-  width: 40%;
+  width: 400px;
   height: 40%;
   transition: all 0.5s;
   pointer-events: none;
-  transform: translateX(350px);
+  transform: translateX(400px);
 }
 #chat.open {
   transform: translateX(0px);
