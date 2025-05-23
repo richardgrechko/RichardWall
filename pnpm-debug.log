@@ -1,0 +1,45 @@
+---
+  0 debug pnpm:scope: 
+    selected: 1
+    workspacePrefix: null
+  1 info pnpm: 
+    message: "A store server is running. All store manipulations are delegated to it."
+    prefix: "/app"
+  2 debug pnpm:package-json: 
+    initial: 
+      name: "textwall"
+      version: "1.0.0"
+      description: "textwall server"
+      dependencies: 
+        cookie: "^0.6.0"
+        discord-oauth2: "^2.12.0"
+        express: "^4.18.2"
+        sqlite3: "^5.1.7"
+        ws: "^8.16.0"
+        better-sqlite3: "^9.3.0"
+      private: true
+      scripts: 
+        start: "node server.js"
+      main: "server.js"
+      devDependencies: {}
+      author: ""
+      license: "ISC"
+      gitHead: "adbd32a1ee5fe7cb28a87bcc52b761006119bd44"
+      readme: "ERROR: No README data found!"
+      _id: "textwall@1.0.0"
+    prefix: "/app"
+  3 warn pnpm: 
+    message: "Moving cookie that was installed by a different package manager to \"node_modules/.ignored"
+    prefix: "/app"
+  4 error pnpm: 
+    message: 
+      errno: -39
+      code: "ENOTEMPTY"
+      syscall: "rename"
+      path: "/rbd/pnpm-volume/2c724c57-2f3d-4ea6-b456-e15fa098a60e/node_modules/cookie"
+      dest: "/rbd/pnpm-volume/2c724c57-2f3d-4ea6-b456-e15fa098a60e/node_modules/.ignored/cookie"
+    err: 
+      name: "Error"
+      message: "ENOTEMPTY: directory not empty, rename '/rbd/pnpm-volume/2c724c57-2f3d-4ea6-b456-e15fa098a60e/node_modules/cookie' -> '/rbd/pnpm-volume/2c724c57-2f3d-4ea6-b456-e15fa098a60e/node_modules/.ignored/cookie'"
+      code: "ENOTEMPTY"
+      stack: "Error: ENOTEMPTY: directory not empty, rename '/rbd/pnpm-volume/2c724c57-2f3d-4ea6-b456-e15fa098a60e/node_modules/cookie' -> '/rbd/pnpm-volume/2c724c57-2f3d-4ea6-b456-e15fa098a60e/node_modules/.ignored/cookie'"

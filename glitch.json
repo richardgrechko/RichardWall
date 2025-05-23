@@ -1,0 +1,10 @@
+{
+  "install": "",
+  "start": "/opt/nvm/versions/node/v16.14.2/bin/node .",
+  "watch": {
+    "install": {
+      "include": ["^package\\.json$"]
+    },
+    "throttle": 500
+  }
+}
