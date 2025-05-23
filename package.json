@@ -1,0 +1,26 @@
+{
+  "name": "textwall",
+  "version": "1.0.0",
+  "description": "textwall server",
+  "dependencies": {
+    "better-sqlite3": "^9.4.1",
+    "body-parser": "^1.20.2",
+    "cookie": "^0.6.0",
+    "discord-oauth2": "^2.12.1",
+    "discord.js": "^13.17.1",
+    "express": "^4.18.3",
+    "node-fetch": "^2.7.0",
+    "sqlite3": "^5.1.7",
+    "ws": "^8.16.0"
+  },
+  "engines": {
+    "node": "16.x"
+  },
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "main": "server.js",
+  "author": "",
+  "license": "ISC"
+}
