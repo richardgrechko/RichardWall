@@ -839,8 +839,8 @@ function convertToEmote(msg) {
     function UppNums(e) {
       return "0123456789QWERTYUIOPASDFGHJKLZCVBNM"[Math["floor"](35 * e)]["codePointAt"]();
     }
-    function OBreak(e) {
-      return "oooooooooooooooo"[Math["floor"](16 * e)]["codePointAt"]();
+    function BrailleA(e) {
+      return 10240 + Math.floor(256 * e);
     }
     function Rt(e) {
       const t = Math.random();
@@ -872,7 +872,7 @@ function convertToEmote(msg) {
         case 12:
           return Ot(t);
       }
-      return OBreak(t*1.01); // has a 1 in 101 chance to break
+      return BrailleA(t); // has a 1 in 101 chance to break
     }
     function Dt(e) {
       return (e + 2) % 20 < 2;
