@@ -1,0 +1,54 @@
+<html lang="en">
+  <head>
+    <title>Send a Mail</title>
+  </head>
+  <body style="text-align: center; color: #ffffff; background-color: #000000; font-family: sans-serif;">
+    <form id="sendmail">
+      <h1>Send a mail</h1>
+      <p>
+        got a bug report and can't
+        <a href="https://discord.gg/fctwf5mSd6">join the discord</a>? MAIL IT
+        HERE<br />
+        got a(n) idea/suggestion? MAIL IT HERE<br />
+        got a misbehaving user? MAIL IT HERE!<br />
+      </p>
+      <textarea
+        type="text"
+        id="message"
+        maxlength="1000"
+        style="width: 600px; height: 300px"
+      ></textarea
+      ><br />
+      <br />
+      <button type="submit" id="submitbtn">Send Mail</button>
+    </form>
+    <p>
+      if urgent or important, you can include
+      <input value="<@836988339491962881>" readonly id="addping" /> in the mail
+      to notify the owner of the site.
+    </p>
+    <script>
+      sendmail.onsubmit = (e) => {
+        e.preventDefault();
+        submitbtn.disabled = true;
+        fetch("/sendmail", {
+          headers: { "Content-Type": "text/plain" },
+          body: message.value,
+          method: "POST",
+        }).then(() => ((submitbtn.disabled = false), (message.value = "")));
+      };
+      addping.onclick = () => {
+        message.value += "<@836988339491962881>";
+        message.focus();
+        message.selectionStart = message.value.length - 21;
+        message.selectionEnd = message.value.length;
+      };
+      // if the localstorage key "username" doesnt exist, use "an anonymous user" instead
+      var nickname = localStorage.getItem("username");
+      if (nickname === null) {
+          nickname = "an anonymous user";
+      }
+      message.value = "mail from " + nickname + ": please";
+    </script>
+  </body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<head>
+  <meta property="og:title" content="RichardWall Maintenance" />
+  <meta property="og:type" content="website" />
+  <meta
+    property="og:description"
+    content="We're making new things."
+  />
+  <meta property="og:url" content="https://unitextwall.glitch.me/" />
+
+  <meta
+    property="og:image"
+    content="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/down%20icon.png?v=1705588490580"
+  />
+  <link
+    rel="icon"
+    sizes="80x80"
+    href="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/down%20web%20icon.png?v=1705589045674"
+  />
+  <title>RichardWall Maintenance</title>
+  <style>
+    body {
+      background-image: url("https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/maintenance_bg.png?v=1744408112909");
+      /* https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/maintenance%20bg%202.png */
+      color: white;
+      font-family: sans-serif;
+      font-size: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100vh;
+      justify-content: center;
+      margin: 0;
+      background-position: bottom;
+      text-align: center;
+      background-repeat: repeat-x;
+      background-color: #460082; /*320084*/
+    }
+  </style>
+</head>
+<body>
+  <span>RichardWall is currently under maintenance.</span>
+  <span>We're making new things...</span><br />
+  <audio
+    src="https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/cqd6i7.mp3"
+  ></audio>
+  <noscript>
+    <small>
+      (You can join the
+      <a href="https://discord.gg/rDXPEgFA6m" style="color: #0096ff"
+        >Discord server</a
+      >
+      while you wait)<br /></small
+    ><br />
+  </noscript>
+  <iframe
+    src="https://discord.com/widget?id=1196101562741825677&theme=dark"
+    width="350"
+    height="350"
+    allowtransparency="true"
+    frameborder="0"
+    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+    style="float: left; text-align: left"
+  ></iframe>
+  <script>
+    var audioCtx = new AudioContext();
+    var buffer;
+    fetch(
+      "https://media.discordapp.net/attachments/1063116432646340681/1154782835295670272/vine-boom.mp3"
+    )
+      .then((r) => r.arrayBuffer())
+      .then((r) => audioCtx.decodeAudioData(r))
+      .then((b) => (buffer = b));
+
+    function playVineBoom() {
+      var track = audioCtx.createBufferSource();
+      track.buffer = buffer;
+      track.connect(audioCtx.destination);
+      track.start();
+    }
+    document.addEventListener("touchstart", playVineBoom);
+    document.addEventListener("pointerdown", playVineBoom);
+    console.log("Uni's TextWall is under maintenance.");
+    console.log("Join the Discord Server at https://discord.gg/rDXPEgFA6m");
+    function checkSite() {
+      fetch("/")
+        .then((res) => {
+          res.status == 200 && (location.href = "/");
+          setTimeout(checkSite, 7000);
+        })
+        .catch((err) => (location.href = "/"));
+      //load the site in the background and see if its up, if it is then redirect
+      //if there was an error like your internet is down it will also redirect so you can see the No internet message
+    }
+    checkSite();
+  </script>
+</body>

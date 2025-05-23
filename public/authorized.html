@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>Authorized</title>
+  </head>
+  <body style="color: #edf2ff; background-color: #2b2c2e"><center>
+    <h1>
+      Authorized
+    </h1>
+    <hr>
+    <p>
+      Thank you for signing up for Dimka's TextWall. (with discord)<br />
+      <small>If you pressed cancel instead, nothing actually happened then.</small>
+    </p>
+    <a href="/">Go home</a>
+  </center>
+  <script>
+    var searchParams = new URL(location).searchParams;
+    self.onmessage = e => {
+      e.source.postMessage(Object.fromEntries(searchParams), e.origin);
+    };
+  </script></body>
+</html>

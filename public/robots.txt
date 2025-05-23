@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /authorized.html
+Disallow: /banscreen.html
