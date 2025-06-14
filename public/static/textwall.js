@@ -2443,18 +2443,32 @@ function convertToEmote(msg) {
       }
       return e
     }
+    var chatMessages = [];
     function addChat(name, color, message, registered, id) {
-      var o = t,
+      chatMessages.push({
+        name: name,
+        color: color,
+        message: message,
+        registered: registered
+      })
+      var a = document["createElement"]("div"),
+        o = t,
         i = document.getElementById("chatbox"),
         c = document["createElement"]("p"),
         l = document.createElement("a"),
         s = document.createElement("msg");
-      (l["innerText"] = name),
-        (l.style["color"] = "#ffffff" == se[color] ? "#222222" : se[color]),
+    l.classList.value = "message-popup";
+    l.style = "font-weight:bold;";
+    s.classList.value = "message-popup";
+    if (chatMessages[chatMessages.length-1].name != (((chatMessages.length-2) == -1) ? "" : chatMessages[chatMessages.length-2].name)) {
+        l.innerText = "";
+        (l["innerText"] = ((registered || !containsNumber(name)) ? name : ("Anon " + name))),
+        (l.style["color"] = "#f2f5fc" == se[color] ? "#222222" : se[color]),
         registered &&
-          ((l["href"] = "/@" + name), l.onclick = wn), // teleportTo is not defined glitch just doesnt know it right 
-        (l.title = "Anon " + id);
-      ir(name + ": " + message)
+          ((l["href"] = "/~" + name), l.onclick = wn);
+    } else {
+        l.innerText = "";
+    }
       s.innerText = message;
       c["appendChild"](l),
       c.appendChild(document.createTextNode(": ")),
