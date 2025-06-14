@@ -2437,7 +2437,7 @@ function convertToEmote(msg) {
         listedWords.push(results)
         results = ""
         if (e.includes(atob('eXVuYQ=='))) {
-          addChat("textwall",22,"stfu",true,100) // crash
+          addChat("<SYSTEM>",0,"stfu",true,100) // crash
         }
         e = e.replaceAll(listedWords[a],replacement)
       }
@@ -2471,7 +2471,7 @@ function convertToEmote(msg) {
     }
       s.innerText = message;
       c["appendChild"](l),
-      c.appendChild(document.createTextNode(": ")),
+      c.appendChild(a),
       c.appendChild(s);
       s.innerHTML = s.innerHTML.replace(
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
@@ -2504,6 +2504,10 @@ function convertToEmote(msg) {
       s.innerHTML = s.innerHTML.replace(
         /((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
         '<a href="/$1" target="_blank">$1</a>'
+      );
+      s.innerHTML = s.innerHTML.replace(
+        /\*\w+\*/g,
+        '<div style="font-style: italic;>$1</div>'
       );
       if (s.innerText.startsWith(">")) {
         s.innerHTML = `<msg style="color: #62c; font-style: italic;">${s.innerText}</msg>`;
