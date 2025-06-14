@@ -423,11 +423,12 @@ td {
   top: 0;
   right: 0;
   display: flex;
-  width: 400px;
+  width: 40%;
   height: 40%;
+  max-width: 300px;
   transition: all 0.5s;
   pointer-events: none;
-  transform: translateX(400px);
+  transform: translateX(300px);
 }
 #chat.open {
   transform: translateX(0px);
@@ -445,6 +446,14 @@ td {
   display: flex;
   justify-content: stretch;
 }
+.message-popup {
+    animation: message-popup 1s cubic-bezier(0.25, 1, 1, 1);
+}
+@keyframes message-popup {
+    0% {
+        color:transparent;
+    }
+}
 #chatbox {
 	color: black;
 	background-color: rgba(230, 210, 255, 1);
@@ -456,8 +465,20 @@ td {
 	overflow-x: hidden;
 	overflow-y: auto;
 }
-#chatbox p {
-  margin: 5px;
+#chatbox p{
+    display: flex;
+    position: relative;
+    margin:5px;
+    animation: message-slide 1s cubic-bezier(0.25, 1, 1, 1);
+    flex-direction: column;
+}
+@keyframes message-slide {
+    0% {
+        right:25px;
+    }
+    100% {
+        right:0px;
+    }
 }
 #chatmsg {
   border-radius: 5px;
@@ -473,6 +494,9 @@ td {
   width: 20px;
   padding: 5px;
   margin: 5px 0 0 5px;
+}
+msg {
+    color: #444;
 }
 #unread {
   width: 10px;
