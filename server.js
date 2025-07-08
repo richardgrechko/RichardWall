@@ -201,7 +201,7 @@ client.on("messageCreate", (msg) => {
     })
   );
 });
-var db = sql(".data/data.sqlite3");
+var db = sql("data.sqlite3");
 async function getDiscordUser(code) {
   var accessToken = await oauth.tokenRequest({
     code,
@@ -321,12 +321,12 @@ app.use("/*", adminStuff);
 app.use("/*", maintenancePage);
 app.use(express.static("public"));
 app.use(bodyParser.text());
-app.get("/.data/data.sqlite3", (req, res, next) => {
+app.get("/data.sqlite3", (req, res, next) => {
   if (
     cookie.parse(req.headers.cookie + "").adminthing != process.env.adminthing
   )
     return next();
-  res.sendFile(__dirname + "/.data/data.sqlite3");
+  res.sendFile(__dirname + "/data.sqlite3");
 });
 app.post("/sendmail", (req, res) => {
   if (req.body.length > 2000) return;
