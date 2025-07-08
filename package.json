@@ -14,7 +14,7 @@
     "ws": "^8.16.0"
   },
   "engines": {
-    "node": "16.x"
+    "node": "22.x"
   },
   "private": true,
   "scripts": {
