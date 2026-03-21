@@ -22,7 +22,7 @@ var port = settings.port;
 var muteDbPath = settings.db.chatMutePath;
 var staticPath = "../client";
 
-var db = sql(settings.db.path);
+var db = sql("data.sqlite3");
 
 
 var pw_encryption = "sha512WithRSAEncryption";
