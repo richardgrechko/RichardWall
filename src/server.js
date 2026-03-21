@@ -10,9 +10,7 @@ var path = require("path"); // essential
 const { notDeepEqual } = require("assert");
 var anonymous = [] // so suspicious!
 
-let customSettingsPath = process.argv[2];
 var settings = JSON.parse(fs.readFileSync(
-	(customSettingsPath && customSettingsPath.includes("/")) ? customSettingsPath :
 	"../data/settings.json"
 ));
 
