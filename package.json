@@ -4,13 +4,8 @@
   "description": "textwall server",
   "dependencies": {
 		"better-sqlite3": "^12.2.0",
-    "body-parser": "^1.20.2",
     "cookie": "^0.6.0",
-    "discord-oauth2": "^2.12.1",
-    "discord.js": "^13.17.1",
 		"express": "^5.1.0",
-    "node-fetch": "^2.7.0",
-    "sqlite3": "^5.1.7",
 		"ws": "^8.12.1"
   },
   "engines": {
