@@ -358,10 +358,10 @@ function convertToEmote(msg) {
 			colorCodes = [
 				'#141617',
 				'#3d4043',
-				'#5d6164',
-				'#798086',
-				'#bcbfc2',
-				'#cfd3d8',
+				'#6b6f72',
+				'#899299',
+				'#b8bdc4',
+				'#d1d7df',
 				'#7b0404',
 				'#b40505',
 				'#db0f20',
@@ -491,29 +491,26 @@ function convertToEmote(msg) {
 				"Pink-1",
 				"Pink-2",
 			],
-			fe = [0, 2, 3, 39, 8, 11, 10, 14, 17, 20, 27, 26, 25, 35, 34, 5, 19, 22, 23, 31, 32, 38, 40, 4, 15, 24, 33, 36, 37, 12, 1, 7, 16, 28, 29, 30, 6, 21, 9, 18, 41, 42, 13];
-		var se = Array.from({length: 43},(_,i)=>{
-					console.log(i)
-					return colorCodes[fe[i]]
+			fe = [0, 44, 30, 1, 2, 33, 43, 23, 15, 36, 52, 62, 65, 4, 40, 47, 22, 6, 5, 29, 61, 54, 64, 7, 24, 34, 57, 45, 8, 37, 63, 55, 16, 9, 51, 46, 17, 18, 25, 10, 49, 38, 12, 11, 48, 41, 50, 59, 53, 31, 56, 42, 19, 20, 26, 35, 39, 14, 13, 27, 60, 32, 28, 21, 3, 58];
+		var se = Array.from({length: 66},(_,i)=>{
+					return colorCodes[fe.indexOf(i)]
 				}),
-		de = Array.from({length: 43},(_,i)=>{
-					console.log(i)
-					return colorNames[fe[i]]
+		de = Array.from({length: 66},(_,i)=>{
+					return colorNames[fe.indexOf(i)]
 				});
 		console.log(se)
 		console.log(de)
 		var monochromeColor = [0],
 				lightColor = Array.from({length: 14},(_,i)=>{
-					console.log(3*i+3)
-					return fe.indexOf(3*i+3)
+					return fe.indexOf(5*i+4)
+					return fe.indexOf(5*i+5)
 				}),
 				normalColor = Array.from({length: 14},(_,i)=>{
-					console.log(3*i+2)
-					return fe.indexOf(3*i+2)
+					return fe.indexOf(5*i+3)
 				}),
 				darkColor = Array.from({length: 14},(_,i)=>{
-					console.log(3*i+1)
-					return fe.indexOf(3*i+1)
+					return fe.indexOf(5*i+1)
+					return fe.indexOf(5*i+2)
 				});
 		function ve(e) {
 			for (var t = n, r = 0; r < se["length"]; r++) if (fe[r] == e) return r;
