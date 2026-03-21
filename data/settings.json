@@ -2,9 +2,9 @@
 	"port": 8080,
 	"useStatic": true,
 	"db": {
-		"chatMutePath": "../data/chat_mutes.json",
-		"canvasMutePath": "../data/canvas_mutes.json",
-		"whitelistPath": "../data/whitelist.json"
+		"chatMutePath": "./chat_mutes.json",
+		"canvasMutePath": "./canvas_mutes.json",
+		"whitelistPath": "./whitelist.json"
 	},
 	"log": {
 		"enabled": false,
