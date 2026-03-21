@@ -4,7 +4,6 @@ var querystring = require("querystring");
 var url_parse = require("url");
 var ws = require("ws");
 var sql = require("better-sqlite3");
-var cookieParser = require('cookie-parser');
 var crypto = require("crypto");
 var express = require("express");
 var path = require("path"); // essential
@@ -626,7 +625,6 @@ async function runserver() {
 	var twrApp = express();
 	twrApp.use(express.urlencoded({ extended: true }));
 	twrApp.use(express.json());
-	twrApp.use(cookieParser());
 
 	httpServer = http.createServer(twrApp);
 
