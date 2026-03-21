@@ -1,0 +1,10 @@
+{
+    "regclosed": false,
+    "l": false,
+    "script_settings": {
+        "starter_scripts": false,
+        "world_scripts": false
+    },
+    "ratelimit": true,
+    "max_scripts": 6
+}

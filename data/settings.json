@@ -1,0 +1,15 @@
+{
+	"port": 8080,
+	"useStatic": true,
+	"db": {
+		"path": "../data/data.sqlite3",
+		"chatMutePath": "../data/chat_mutes.json",
+		"canvasMutePath": "../data/canvas_mutes.json",
+		"whitelistPath": "../data/whitelist.json"
+	},
+	"log": {
+		"enabled": false,
+		"path": "./log.txt"
+	},
+	"adminList": ["h"]
+}
