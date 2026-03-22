@@ -389,7 +389,7 @@ function convertToEmote(msg) {
 				'#cff0af',
 				'#078349',
 				'#0ba751',
-				'#07c507',
+				'#07c537',
 				'#75fa75',
 				'#a8f0a8',
 				'#066656',
