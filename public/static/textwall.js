@@ -502,15 +502,13 @@ function convertToEmote(msg) {
 		console.log(de)
 		var monochromeColor = [0],
 				lightColor = Array.from({length: 14},(_,i)=>{
-					return fe.indexOf(5*i+4)
-					return fe.indexOf(5*i+5)
+					return fe[5*i+5]
 				}),
 				normalColor = Array.from({length: 14},(_,i)=>{
-					return fe.indexOf(5*i+3)
+					return fe[5*i+3]
 				}),
 				darkColor = Array.from({length: 14},(_,i)=>{
-					return fe.indexOf(5*i+1)
-					return fe.indexOf(5*i+2)
+					return fe[5*i+1]
 				});
 		function ve(e) {
 			for (var t = n, r = 0; r < se["length"]; r++) if (fe[r] == e) return r;

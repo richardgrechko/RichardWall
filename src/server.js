@@ -1954,7 +1954,7 @@ function init_ws() {
 				if (message.length > 256) return;
 				if (!sdata.isAuthenticated || !isWhitelisted(sdata.authUser)) {
 					send(ws, encodeMsgpack({
-						msg: ["[SERVER]", 4, "You are not authorized", true]
+						msg: ["System", 0, "You're unauthorized.", false]
 					}));
 					return;
 				}
@@ -1969,7 +1969,7 @@ function init_ws() {
 
 				if ((chatMutesByIP[sdata.ipAddr] || (sdata.isAuthenticated && chatMutesByUserIDs[sdata.authUserId])) && (sdata.authUser != "textwall") && (!settings.adminList.includes(sdata.authUser))) {
 					send(ws, encodeMsgpack({
-						msg: ["[SERVER]", 4, "You are muted", true]
+						msg: ["System", 0, "You've been muted.", false]
 					}));
 					return;
 				}
@@ -1986,7 +1986,7 @@ function init_ws() {
 							isCommand = true;
 							// admincheck
 							if (!settings.adminList.map(a => a.toLowerCase()).includes(sdata.authUser.toLowerCase())) {
-								commandResponse = "HAHA NO, YOU CANNOT GO ANONYMOUS!";
+								commandResponse = "You can't go anonymous lol";
 
 							} else {
 								// decrease online count by 1 temporarily
@@ -2017,13 +2017,13 @@ function init_ws() {
 								commandResponse = "ANONYMOUS MODE: OFF";
 
 							} else {
-								commandResponse = "HEY, DUDE DON'T TRY TO BE SLICK!";
+								commandResponse = "Don't try to be slick.";
 							}
 						} else if (command === "announcement") {
 							isCommand = true;
 							var msg = args.join(" ").trim();
 							if (!msg) {
-								commandResponse = "SERIOUSLY?! WHAT DO YOU WANNA ANNOUNCE IF YOU DON'T GIVE ME A MESSAGE?";
+								commandResponse = "No message provided.";
 							} else {
 
 								// broadcast to all worlds
@@ -2041,10 +2041,10 @@ function init_ws() {
 							let oldId = sdata.clientId;
 							let newId = parseInt(args[0], 0)
 							if (!newId) {
-								commandResponse = "HEY! YOU DIDN'T GIVE ME AN ID!";
+								commandResponse = "No ID provided.";
 
 							} else if (isNaN(newId)) {
-								commandResponse = "HEY! THAT'S NOT A VALID ID!";
+								commandResponse = "Invalid ID";
 							} else {
 								sdata.clientId = newId.toString();
 								clientRecord[sdata.clientId] = sdata;
@@ -2062,30 +2062,30 @@ function init_ws() {
 							isCommand = true;
 
 							if (!args || args.length === 0) {
-								commandResponse = "HEY! YOU DIDN'T GIVE ME ANY ARGUMENTS!";
+								commandResponse = "Invalid number of arguments";
 							} else {
 
 								let nick = args[0];
 								if (!nick || typeof nick !== "string") {
-									commandResponse = "HEY! INVALID NICKNAME!";
+									commandResponse = "Invalid nickname";
 								} else {
 									nick = nick.trim();
 									if (!nick) {
-										commandResponse = "HEY! INVALID NICKNAME!";
+										commandResponse = "Invalid nickname";
 									} else if (nick.length > 48) {
-										commandResponse = "HEY! THAT NAME IS TOO LONG!";
+										commandResponse = "Nickname too long";
 									} else {
 
 										let color = args[1];
 										if (color === undefined || isNaN(Number(color))) {
-											commandResponse = "HEY! COLOR MUST BE A NUMBER!";
+											commandResponse = "Color must be a number";
 										} else {
 											color = Number(color);
 
 
 											let auth = args[2];
 											if (typeof auth !== "string" || (auth.toLowerCase() !== "true" && auth.toLowerCase() !== "false")) {
-												commandResponse = "HEY! AUTH MUST BE 'true' OR 'false'!";
+												commandResponse = "Auth must be a boolean.";
 											} else {
 												auth = auth.toLowerCase() === "true";
 
@@ -2094,9 +2094,9 @@ function init_ws() {
 												let msg = msgParts.join(" ").trim();
 
 												if (!msg) {
-													commandResponse = "HEY! YOU DIDN'T GIVE ME A MESSAGE TO SEND!";
+													commandResponse = "No message provided.";
 												} else if (msg.length > 255) {
-													commandResponse = "HEY! YOUR MESSAGE IS TOO LONG!";
+													commandResponse = "Message too long";
 												} else {
 
 													try {
@@ -2105,7 +2105,7 @@ function init_ws() {
 														}));
 														commandResponse = "";
 													} catch (err) {
-														commandResponse = "ERROR: FAILED TO SEND MESSAGE! IT'S YOUR FAULT FOR SENDING SOMETHING WEIRD!";
+														commandResponse = "Your fault, dude";
 														console.error(err);
 													}
 												}
@@ -2286,13 +2286,13 @@ function init_ws() {
 							}
 
 							if (target == sdata.authUser.toLowerCase()) {
-								commandResponse = "MUTE YOURSELF? OKAY, SUIT YOURSELF!";
+								commandResponse = "Why mute yourself?";
 							} else if (target == "") {
-								commandResponse = "MUTE NOBODY? OKAY, MUTING NOBODY!";
+								commandResponse = "No target provided.";
 							} else if (target == "textwall") {
-								commandResponse = "MUTE TEXTWALL? OKAY, SUIT YOURSELF!"
+								commandResponse = "Cannot mute official account"
 							} else if (settings.adminList.includes(target)) {
-								commandResponse = "MUTE AN ADMIN? OKAY, SUIT YOURSELF!"
+								commandResponse = "Cannot mute admins"
 							}
 
 
@@ -2378,7 +2378,7 @@ function init_ws() {
 					}
 				} else if (commandResponse) {
 					send(ws, encodeMsgpack({
-						msg: ["[SERVER]", 4, commandResponse, true]
+						msg: ["System", 0, commandResponse, false]
 					}));
 				}
 			} else if ("register" == packetType) {
