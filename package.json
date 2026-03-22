@@ -9,7 +9,7 @@
 		"ws": "^8.12.1"
   },
   "engines": {
-    "node": "v24.11.1"
+    "node": "v20.x"
   },
   "private": true,
   "scripts": {
