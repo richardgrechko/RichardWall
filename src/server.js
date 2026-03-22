@@ -1119,7 +1119,6 @@ function is_whole_number(x) {
 	return false
 }
 
-
 var ipConnLim = {};
 
 
@@ -1571,6 +1570,8 @@ let saveMuteInterval = setInterval(function () {
 	}
 }, 1000 * 5);
 
+var chatMessages = [];
+var chatMessageNumber = -1;
 function init_ws() {
 	wss = new ws.Server({ server: httpServer });
 

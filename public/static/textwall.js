@@ -2485,13 +2485,14 @@ function convertToEmote(msg) {
 			return e
 		}
 		var chatMessages = [];
-		function addChat(name, color, message, registered, id) {
+		var chatMessageNumber = -1;
+		function addChat(name, color, message, registered, isAdmin) {
 			chatMessages.push({
 				name: name,
 				color: color,
 				message: message,
 				registered: registered
-			})
+			});
 			var a = document["createElement"]("div"),
 				o = t,
 				i = document.getElementById("chatbox"),
@@ -2503,7 +2504,7 @@ function convertToEmote(msg) {
 		s.classList.value = "message-popup";
 		if (chatMessages[chatMessages.length-1].name != (((chatMessages.length-2) == -1) ? "" : chatMessages[chatMessages.length-2].name)) {
 				l.innerText = "";
-				(l["innerText"] = ((registered || !containsNumber(name)) ? name : ("Anon " + name))),
+				(l["innerText"] += ((registered || !containsNumber(name)) ? name : ("Anon " + name))),
 				(l.style["color"] = "#f2f5fc" == se[color] ? "#222222" : se[color]),
 				registered &&
 					((l["href"] = "/~" + name), l.onclick = wn);
@@ -2525,21 +2526,15 @@ function convertToEmote(msg) {
 			// main brainrot words will be corrected
 			s.innerHTML = correct(s.innerHTML,"rizz","charisma"); // charismaler 😭
 			s.innerHTML = correct(s.innerHTML,"gyat","but");
-			s.innerHTML = correct(s.innerHTML,"ohio","australia"); // if this is where you live, i am sorry (anyways ohio memes are dead)
+			s.innerHTML = correct(s.innerHTML,"ohio","australia");
 			s.innerHTML = correct(s.innerHTML,"sigma","σ");
 			s.innerHTML = correct(s.innerHTML,"beta","β");
 			s.innerHTML = correct(s.innerHTML,"alpha","α");
-			s.innerHTML = correct(s.innerHTML,"αbet","alphabet"); // okay fuck
+			s.innerHTML = correct(s.innerHTML,"αbet","alphabet");
 			s.innerHTML = correct(s.innerHTML,"αnumeric","alphanumeric"); 
 			s.innerHTML = correct(s.innerHTML,"dandy's world","badass game");
 			s.innerHTML = correct(s.innerHTML,"fanum tax","food theft auto");
-			s.innerHTML = correct(s.innerHTML,"skibidi","cringe");
-			s.innerHTML = correct(s.innerHTML,"yapped","spoke");
-			s.innerHTML = correct(s.innerHTML,"yapp","speak");
-			s.innerHTML = correct(s.innerHTML,"yap","speak");
-			s.innerHTML = correct(s.innerHTML,"im cooke","im fucke");
-			s.innerHTML = correct(s.innerHTML,"i'm cooke","i'm fucke");
-			s.innerHTML = correct(s.innerHTML,"am i cooke","am i fucke");
+			s.innerHTML = correct(s.innerHTML,"skibidi","cringe"); // cringe toilet????
 			s.innerHTML = correct(s.innerHTML,"numberblocks","badass show");
 			s.innerHTML = correct(s.innerHTML,"prairie " + atob('bmlnZ2E='),"native american");
 			s.innerHTML = correct(s.innerHTML,"prairie " + atob('bmlnZ2Vy'),"native american");
@@ -2553,8 +2548,7 @@ function convertToEmote(msg) {
 			s.innerHTML = correct(s.innerHTML,atob('bmVncml0bw=='),"black child");
 			s.innerHTML = correct(s.innerHTML,atob('ZmFn') + "s","LGBTQ+ people");
 			s.innerHTML = correct(s.innerHTML,atob('ZmFnZ290') + "s","LGBTQ+ people");
-			s.innerHTML = correct(s.innerHTML,atob('ZmFn'),"LGBTQ+ person"); /* i do NOT tolerate the F slur, this shit discriminates
-											LGBTQ+ people - windowsrichard */
+			s.innerHTML = correct(s.innerHTML,atob('ZmFn'),"LGBTQ+ person"); // get ou
 			s.innerHTML = correct(s.innerHTML,atob('ZmFnZ290'),"LGBTQ+ person");
 			s.innerHTML = correct(s.innerHTML,atob('Y2hpbmcgY2hvbmc=') + "s","chinese people");
 			s.innerHTML = correct(s.innerHTML,atob('Y2hpbmcgY2hvbmc='),"chinese person");
@@ -2576,7 +2570,7 @@ function convertToEmote(msg) {
 			s.innerHTML = correct(s.innerHTML,"it pmo","it pisses me off");
 			s.innerHTML = correct(s.innerHTML,"pmo","piss me off");
 			s.innerHTML = correct(s.innerHTML,"gng","gang");
-			s.innerHTML = correct(s.innerHTML,"vro","brother");
+			s.innerHTML = correct(s.innerHTML,"vro","bro");
 			s.innerText = s.innerText.slice(0,1200)
 			s.innerHTML = s.innerHTML.replace(
 				/((http|https|ftp):\/\/[\w?=&.\/-;#~%-]+(?![\w\s?&.\/;#~%"=-]*>))/g,
