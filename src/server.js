@@ -10,7 +10,7 @@ var path = require("path"); // essential
 const { notDeepEqual } = require("assert");
 var anonymous = [] // so suspicious!
 
-var settings = JSON.parse("./data/settings.json");
+var settings = require("../data/settings.json");
 
 console.log("Starting server...");
 
