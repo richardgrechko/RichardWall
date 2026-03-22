@@ -12,5 +12,6 @@
     "node":"v24.11.1",
     "pnpm":"10.23.0"
   },
+  "main": "./src/server.js",
   "private": true
 }
