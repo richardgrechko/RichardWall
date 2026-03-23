@@ -16,7 +16,7 @@ console.log("Starting server...");
 
 var port = settings.port;
 var muteDbPath = settings.db.chatMutePath;
-var staticPath = "../client";
+var staticPath = "./client";
 
 var db = sql("data.sqlite3");
 
