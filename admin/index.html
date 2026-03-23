@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <script src="admin.js" defer></script>
+    <style>
+        * {
+            font-family: monospace;
+        }
+
+        body {
+
+            margin: 20px;
+            background-color: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
+        }
+
+        input[type="file"],
+        button {
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        button:hover {
+            background-color: rgb(200, 200, 200);
+            cursor: pointer;
+        }
+
+        button:active {
+            background-color: #b9b9b9;
+        }
+
+        button:disabled {
+            color: white;
+            cursor: not-allowed;
+        }
+
+        a {
+            color: #7293ff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        #warning {
+            color: rgb(255, 136, 0)
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid rgb(255, 255, 255);
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            padding: 8px 16.6px;
+            cursor: pointer;
+            border: 1px solid rgb(255, 255, 255);
+            background-color: rgb(0, 0, 0);
+            margin-right: 2px;
+        }
+
+
+        .tab:hover {
+            background-color: #bbb;
+            /* gray on hover */
+        }
+
+        .not-allowed {
+            color: #909090;
+            cursor: not-allowed;
+        }
+
+        .tab.active {
+            font-weight: bolder;
+            background-color: rgb(105, 105, 105);
+        }
+
+
+        .tab-content {
+            overflow: auto;
+            background-color: rgb(20, 20, 20);
+            display: none;
+            padding: 20px;
+            border: 1px solid rgb(255, 255, 255);
+            height: 450px
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        tbody td {
+            padding: 8px 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tabs">
+
+        <div class="tab active" data-tab="Home">Home</div>
+        <div class="tab" data-tab="Settings">Settings</div>
+        <div class="tab" data-tab="Connections">Connections</div>
+        <div class="tab" data-tab="Starter-Scripts">Starter Scripts</div>
+        <div class="tab" data-tab="Remote Scripts">Remote Scripts</div>
+        <div class="tab" data-tab="Accounts">Accounts</div>
+        <div class="tab" data-tab="Worlds">Worlds</div>
+        <div class="tab" data-tab="Notice">Notice</div>
+        <div class="tab" data-tab="Ratelimit">Ratelimit</div>
+        <div class="tab" data-tab="Actions">Actions</div>
+    </div>
+    <div class="tab-content" id="Settings">
+        <h3>Whitelist</h3>
+        <br>
+        A whitelist is a system that only accepts requests from allowed clients below in the whitelist.
+        <br>
+        <input type="checkbox" id="enable">Enable whitelist
+        <br/>
+        <br/>
+
+        Add users here:
+        <input type="text" id="whadduser">
+        <hr>
+        <fieldset id="users">
+            <legend>Whitelisted users</legend>
+            <!--the below, has buttons, and clicking them will remove them out of whitelist-->
+        </fieldset>
+        
+    </div>
+    <div class="tab-content" id="Accounts">
+        <div class="controls" style="margin-bottom:10px; display:flex; gap:10px; align-items:center;">
+            <input type="text" id="accSearchInput" placeholder="Search users..." style="padding:5px; flex:1;" />
+            <button id="accRefreshBtn"
+                style="padding:5px; background:#1e5bb8; color:#fff; border:2px solid #fff; cursor:pointer;">Refresh</button>
+        </div>
+        <table id="accountsTable" border="1" cellspacing="0" cellpadding="5"
+            style="width:100%; border-collapse:collapse; background:#0c1a3c; color:#fff;">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>ID</th>
+                    <th>Online</th>
+                    <th>Where</th>
+                    <th>Date Joined</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="accPagination" style="margin-top:10px; display:flex; justify-content:center; gap:10px;"></div>
+    </div>
+
+    <div class="tab-content" id="Connections">
+        <div class="controls" style="margin-bottom:10px; display:flex; gap:10px; align-items:center;">
+            <input type="text" id="connSearchInput" placeholder="Search connections..." style="padding:5px; flex:1;" />
+            <button id="connRefreshBtn"
+                style="padding:5px; background:#1e5bb8; color:#fff; border:2px solid #fff; cursor:pointer;">Refresh</button>
+        </div>
+        <table id="connectionsTable" border="1" cellspacing="0" cellpadding="5"
+            style="width:100%; border-collapse:collapse; background:#0c1a3c; color:#fff;">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>ID</th>
+                    <th>Admin</th>
+                    <th>Authenticated</th>
+                    <th>Worlds</th>
+                    <th>XY</th>
+                    <th>Anonymous</th>
+                    <th>Date Connected</th>
+                    <th>Color</th>
+                    <th>Where</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="connPagination" style="margin-top:10px; display:flex; justify-content:center; gap:10px;"></div>
+    </div>
+
+    <div class="tab-content" id="Worlds">
+        <div class="controls" style="margin-bottom:10px; display:flex; gap:10px; align-items:center;">
+            <input type="text" id="worldSearchInput" placeholder="Search worlds..." style="padding:5px; flex:1;" />
+            <button id="worldRefreshBtn"
+                style="padding:5px; background:#1e5bb8; color:#fff; border:2px solid #fff; cursor:pointer;">Refresh</button>
+        </div>
+        <table id="worldsTable" border="1" cellspacing="0" cellpadding="5"
+            style="width:100%; border-collapse:collapse; background:#0c1a3c; color:#fff;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Namespace</th>
+                    <th>Name</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div id="worldPagination" style="margin-top:10px; display:flex; justify-content:center; gap:10px;"></div>
+    </div>
+    <div class="tab-content" id="Remote Scripts">
+        <div style="margin-bottom:10px;">
+            <label for="targetId">Target user:</label>
+            <select id="targetId">
+                <option value="">-- Select Target --</option>
+                <option value="all">Broadcast</option>
+            </select>
+        </div>
+
+        <div id="remoteEditor" style="height:300px; border:1px solid #ccc;"></div>
+
+        <div style="margin-top:10px;">
+            <button id="executeScript">Execute</button>
+            <button id="clearScript">Clear</button>
+            <button id="loadScript">Load</button>
+            <button id="saveScript">Save</button>
+            <input type="file" id="fileInput" accept=".js,.txt" style="display:inline-block;">
+        </div>
+
+        <div id="remoteStatus" style="margin-top:10px; color:green;"></div>
+    </div>
+    <div class="tab-content active" id="Home">
+        <h2>Home</h2>
+        <p>Welcome, <span id="usr">???</span></p>
+        <br>
+        <span id="warning">Use this panel responsibly. Every action here affects accounts, scripts, server settings, and
+            system records. Only proceed if you understand the consequences and are certain of your actions.
+        </span>
+        <br>
+        <br>
+        <br>
+        This admin panel allows you to manage settings, monitor active and past connections, execute and schedule
+        scripts, control user accounts and permissions, track records and system logs, oversee worlds, handle
+        notices and alerts, manage rate-limits for scripts and actions, review historical data, and perform
+        administrative actions with full system access. All of these operations are centralized in one interface to
+        streamline management, provide full oversight, and ensure efficiency while maintaining control over critical
+        server functions.
+
+        (This panel is WIP, some features are not implemented yet)
+        <br>
+        <br>
+        <hr>
+        Server Uptime: <span id="started">January 1, 1980, 12:00 AM</span>
+        <br>
+
+        <br>
+        <hr>
+        <button id="logout">Logout</button>
+        <br>
+        <br>
+        <br>
+        Version: 1.0.0 Alpha
+
+    </div>
+    <span id="chk"></span>
+    <script>
+        const tabs = document.querySelectorAll('.tab');
+        const contents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                if (tab.classList.contains("not-allowed")) return;
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+
+                tab.classList.add('active');
+                document.getElementById(tab.dataset.tab).classList.add('active');
+            });
+        });
+    </script>
+    <script>
+        var t = localStorage.getItem("usr") ?? "???"
+        document.getElementById("usr").textContent = t
+        async function checkAdmin() {
+            try {
+                const checkResponse = await fetch('/admin/check', {
+                    method: 'POST',
+                    credentials: 'include', // in case cookies are used
+                });
+                const checkData = await checkResponse.json();
+                if (!checkData.authenticated) {
+                    const username = prompt("Enter username:");
+                    const password = prompt("Enter password:");
+
+                    if (!username || !password) {
+                        alert("Credentials required!");
+                        return;
+                    }
+
+                    const credResponse = await fetch('/admin/credentials', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ username, password }),
+                        credentials: 'include'
+                    });
+
+                    const credData = await credResponse.json();
+
+                    if (credData.success) {
+                        t = username
+                        localStorage.setItem("usr", username)
+                    } else {
+                        alert("Login failed! Wrong credentials.");
+                    }
+                }
+
+            } catch (err) {
+                console.error("Error checking admin:", err);
+            }
+        }
+        checkAdmin();
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.43.0/min/vs/loader.min.js"></script>
+</body>
+
+</html>
