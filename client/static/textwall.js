@@ -500,21 +500,21 @@ function convertToEmote(msg) {
 				});
 		console.log(se)
 		console.log(de)
-		var monochromeColor = [0],
-				lightColor2 = Array.from({length: 13},(_,i)=>{
-					return fe[5*i+5]
+		var monochromeColor = [0, 44, 30, 1, 2, 33],
+				lightColor2 = Array.from({length: 12},(_,i)=>{
+					return fe[5*i+10]
 				}),
-				lightColor = Array.from({length: 13},(_,i)=>{
-					return fe[5*i+4]
+				lightColor = Array.from({length: 12},(_,i)=>{
+					return fe[5*i+9]
 				}),
-				normalColor = Array.from({length: 13},(_,i)=>{
-					return fe[5*i+3]
+				normalColor = Array.from({length: 12},(_,i)=>{
+					return fe[5*i+8]
 				}),
-				darkColor = Array.from({length: 13},(_,i)=>{
-					return fe[5*i+2]
+				darkColor = Array.from({length: 12},(_,i)=>{
+					return fe[5*i+7]
 				}),
-				darkColor2 = Array.from({length: 13},(_,i)=>{
-					return fe[5*i+1]
+				darkColor2 = Array.from({length: 12},(_,i)=>{
+					return fe[5*i+6]
 				});
 		function ve(e) {
 			for (var t = n, r = 0; r < se["length"]; r++) if (fe[r] == e) return r;
@@ -3769,7 +3769,7 @@ function convertToEmote(msg) {
 			for (let i of tabs) {
 				document.getElementById(i).style.display = "none"
 			}
-			document.getElementById(color+"colourlist").style.display = "inline"
+			document.getElementById(color+"colourlist").style.display = "flex"
 			for (let i of tab_buttons.map(e=>e+"colortab")) {
 				document.getElementById(i).disabled = true
 			}
