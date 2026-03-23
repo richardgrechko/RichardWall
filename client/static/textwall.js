@@ -287,13 +287,15 @@ function convertToEmote(msg) {
 			_["set"]("Fixed", void 0);
 		const ee = Object.keys($)["length"],
 			te = document.querySelector("select#fontselect");
-		for (var ne = 0; te["length"] > 0; ne++);
-		var option;
-		for (ne = 0; ne < ee; ne++)
-			(option = document["createElement"]("option")),
-				(option["text"] = Object.keys($)[ne]),
-				te.add(option);
-		te["value"] = G;
+		if (te) {
+			for (var ne = 0; te["length"] > 0; ne++);
+			var option;
+			for (ne = 0; ne < ee; ne++)
+				(option = document["createElement"]("option")),
+					(option["text"] = Object.keys($)[ne]),
+					te.add(option);
+			te["value"] = G;
+		}
 		const re = document.getElementById("decorations");
 		re.style = "display: inline;"
 		re["addEventListener"]("contextmenu", function (e) {
