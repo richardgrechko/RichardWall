@@ -649,11 +649,6 @@ document.getElementById('eruda').disabled = true;
 				</div>
 			</div>
     </div>
-    <script src="/static/colors.js"></script>
-    <script src="/static/pep.min.js"></script>
-    <script src="/static/textwall.js"></script>
-    <script src="/static/discordlogin.js"></script>
-    <script src="/static/scriptloader.js"></script>
     <script>
       document.addEventListener("keydown", function (event) {
         if (event.key === "F1") {
@@ -661,55 +656,14 @@ document.getElementById('eruda').disabled = true;
         }
       });
     </script>
-
-    <!-- oneko cat functions -->
-    <script>
-      var catsToSpawn = 0;
-      function summonOneko() {
-        // load oneko.js once and if the user spawns more than one
-        // while it's loading then it will spawn oneko that many times
-        // when its loaded
-        if (!window.oneko) {
-          loadScript("/static/oneko.js", () => {
-            for (let i = 0; i < catsToSpawn; i++) oneko();
-          });
-          window.oneko = () => catsToSpawn++;
-        } else oneko();
-      }
-      var onekoIntervals = [];
-      function onekoDisaster() {
-        onekoIntervals.push(setInterval(summonOneko, 1000));
-      }
-      function superOnekoDisaster() {
-        onekoIntervals.push(setInterval(onekoDisaster, 4000));
-      }
-      function ultraOnekoDisaster() {
-        onekoIntervals.push(setInterval(superOnekoDisaster, 1000));
-      }
-      function removeOneko() {
-        document.getElementById("oneko").remove();
-      }
-      function removeDisasters() {
-        while (onekoIntervals.length) {
-          clearInterval(onekoIntervals.shift());
-        }
-      }
-    </script>
-    <script>
-      /*if ('serviceWorker' in navigator) {
-		window.addEventListener('load', function() {
-			navigator.serviceWorker.register('/service-worker.js').then(function(registration) {})
-		});
-		}*/
-    </script>
-    <script>
-      if (navigator.userAgent.includes("median")) {
-        document.getElementById("navigation").style = "display: block;";
-      }
-    </script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
       console.log("if you're seeing this, the html should have loaded");
     </script>
+    <script src="/static/colors.js"></script>
+    <script src="/static/pep.min.js"></script>
+    <script src="/static/textwall.js"></script>
+    <script src="/static/discordlogin.js"></script>
+    <script src="/static/scriptloader.js"></script>
   </body>
 </html>
