@@ -5,8 +5,4 @@ function loadScript(url, callback) {
   document.head.appendChild(elem);
   elem.onload = callback;
 }
-if (wallName == "cat") {
-  loadScript("/static/oneko.js");
-  console.log("/cat, activated oneko cat");
-}
 console.log("loaded scripts for walls")
