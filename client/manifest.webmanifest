@@ -1,15 +1,7 @@
 {
-    "short_name": "Uni's TextWall",
-    "name": "Uni's TextWall",
+    "short_name": "Our Text Realm",
+    "name": "Our Text Realm",
     "description": "A clone of a multiplayer text editor, but better.",
-    "icons": [
-      {
-        "src": "https://cdn.glitch.global/2c724c57-2f3d-4ea6-b456-e15fa098a60e/image(6).png",
-        "type": "image/png",
-        "sizes": "512x512",
-        "purpose": "any maskable"
-      }
-    ],
     "start_url": "/",
     "background_color": "#222222",
     "display": "standalone",
