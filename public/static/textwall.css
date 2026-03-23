@@ -242,6 +242,11 @@ input {
 .tabs::-webkit-scrollbar {
 	display: none;
 }
+        
+.tab-button {
+	cursor: pointer;
+	margin: 10px;
+}
 .colour {
 	min-width: 30px;
 	height: 30px;

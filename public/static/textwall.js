@@ -501,13 +501,19 @@ function convertToEmote(msg) {
 		console.log(se)
 		console.log(de)
 		var monochromeColor = [0],
-				lightColor = Array.from({length: 14},(_,i)=>{
+				lightColor2 = Array.from({length: 13},(_,i)=>{
 					return fe[5*i+5]
 				}),
-				normalColor = Array.from({length: 14},(_,i)=>{
+				lightColor = Array.from({length: 13},(_,i)=>{
+					return fe[5*i+4]
+				}),
+				normalColor = Array.from({length: 13},(_,i)=>{
 					return fe[5*i+3]
 				}),
-				darkColor = Array.from({length: 14},(_,i)=>{
+				darkColor = Array.from({length: 13},(_,i)=>{
+					return fe[5*i+2]
+				}),
+				darkColor2 = Array.from({length: 13},(_,i)=>{
 					return fe[5*i+1]
 				});
 		function ve(e) {
@@ -3624,9 +3630,34 @@ function convertToEmote(msg) {
 					monocolourlist.appendChild(monocolourtext);
 					w.appendChild(monocolourlist);
 					break;
+				case "light2":
+					var lightcolourlist = document.createElement("div");
+					lightcolourlist.id = "lightercolourlist";
+					lightcolourlist.style.display = "none";
+					lightcolourlist["classList"]["add"]("small-scrollbar")
+					lightcolourlist["classList"]["add"]("colourlist")
+					var lightcolourtext = document.createElement("div");
+					lightcolourtext.innerText = "Lighter";
+					lightcolourlist["classList"]["add"]("colourtext");
+					for (let i = 0; i < lightColor2.length; i++) {
+						var light = document.createElement("div");
+						light["classList"]["add"]("colour")
+						light["style"]["backgroundColor"] = se[lightColor2[i]]
+						light.addEventListener("click", function (t) {
+							mr(lightColor2[i]), nn(t);
+						})
+						light.setAttribute("id", lightColor2[i]),
+						(light["style"]["backgroundColor"] = se[lightColor2[i]]),
+						(light["title"] = de[lightColor2[i]])
+						lightcolourlist.appendChild(light);
+					}
+					lightcolourlist.appendChild(lightcolourtext);
+					w.appendChild(lightcolourlist);
+					break;
 				case "light":
 					var lightcolourlist = document.createElement("div");
 					lightcolourlist.id = "lightcolourlist";
+					lightcolourlist.style.display = "none";
 					lightcolourlist["classList"]["add"]("small-scrollbar")
 					lightcolourlist["classList"]["add"]("colourlist")
 					var lightcolourtext = document.createElement("div");
@@ -3673,6 +3704,7 @@ function convertToEmote(msg) {
 				case "dark":
 					var darkcolourlist = document.createElement("div");
 					darkcolourlist.id = "darkcolourlist";
+					darkcolourlist.style.display = "none";
 					darkcolourlist["classList"]["add"]("small-scrollbar")
 					darkcolourlist["classList"]["add"]("colourlist")
 					var darkcolourtext = document.createElement("div");
@@ -3693,11 +3725,66 @@ function convertToEmote(msg) {
 					darkcolourlist.appendChild(darkcolourtext);
 					w.appendChild(darkcolourlist);
 					break;
+				case "dark2":
+					var darkcolourlist = document.createElement("div");
+					darkcolourlist.id = "darkercolourlist";
+					darkcolourlist.style.display = "none";
+					darkcolourlist["classList"]["add"]("small-scrollbar")
+					darkcolourlist["classList"]["add"]("colourlist")
+					var darkcolourtext = document.createElement("div");
+					darkcolourtext.innerText = "Darker";
+					darkcolourlist["classList"]["add"]("colourtext");
+					for (let i = 0; i < darkColor2.length; i++) {
+						var dark = document.createElement("div");
+						dark["classList"]["add"]("colour")
+						dark["style"]["backgroundColor"] = se[darkColor2[i]]
+						dark.addEventListener("click", function (t) {
+							mr(darkColor2[i]), nn(t);
+						})
+						dark.setAttribute("id", darkColor2[i]),
+						(dark["style"]["backgroundColor"] = se[darkColor2[i]]),
+						(dark["title"] = de[darkColor2[i]])
+						darkcolourlist.appendChild(dark);
+					}
+					darkcolourlist.appendChild(darkcolourtext);
+					w.appendChild(darkcolourlist);
+					break;
 			}
 		}
+		let tab_buttons = [
+			"lighter",
+			"light",
+			"normal",
+			"dark",
+			"darker"
+		];
+		function changeColorTabs(color) {
+			let tabs = [
+				"lightercolourlist",
+				"lightcolourlist",
+				"normalcolourlist",
+				"darkcolourlist",
+				"darkercolourlist"
+			];
+			for (let i of tabs) {
+				document.getElementById(i).style.display = "none"
+			}
+			document.getElementById(color+"colourlist").style.display = "inline"
+			for (let i of tab_buttons.map(e=>e+"colortab")) {
+				document.getElementById(i).disabled = true
+			}
+			document.getElementById(color+"colortab").disabled = false
+		}
+		for (let i in tab_buttons.map(e=>e+"colortab")) {
+			document.getElementById(tab_buttons.map(e=>e+"colortab")[i]).addEventListener("click",_=>{
+				changeColorTabs(tab_buttons[i])
+			})
+		}
+		addColors("dark2");
 		addColors("dark");
 		addColors("normal");
 		addColors("light");
+		addColors("light2");
 		addColors("mono");
 		function sr(e) {
 			var t = n,
