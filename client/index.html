@@ -29,23 +29,28 @@
   </head>
   <body>
     <script>
-      var $buoop = {
-        required: { e: 79, f: 117, o: 100, s: -6, c: 116 },
-        insecure: true,
-        unsupported: true,
-        style: "bottom",
-        api: 2024.06,
+    (function() {
+      var _orig = document.getElementById.bind(document);
+      var noopFn = function() { return noopEl; };
+      var noopStyle = new Proxy({}, { get: function() { return ''; }, set: function() { return true; } });
+      var noopEl = new Proxy(noopFn, {
+        get: function(_, p) {
+          if (p === 'value') return '';
+          if (p === 'checked' || p === 'disabled') return false;
+          if (p === 'style') return noopStyle;
+          if (p === 'length') return 0;
+          if (p === 'className' || p === 'innerHTML' || p === 'textContent' || p === 'id') return '';
+          if (p === Symbol.toPrimitive || p === 'toString') return function() { return ''; };
+          if (p === 'readyState') return WebSocket ? WebSocket.CLOSED : 3;
+          return noopEl;
+        },
+        set: function() { return true; },
+        apply: function() { return noopEl; }
+      });
+      document.getElementById = function(id) {
+        return _orig(id) || noopEl;
       };
-      function $buo_f() {
-        var e = document.createElement("script");
-        e.src = "//browser-update.org/update.min.js";
-        document.body.appendChild(e);
-      }
-      try {
-        document.addEventListener("DOMContentLoaded", $buo_f, false);
-      } catch (e) {
-        window.attachEvent("onload", $buo_f);
-      }
+    })();
     </script>
     <textarea id="clipboard"></textarea>
     <textarea
