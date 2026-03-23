@@ -286,8 +286,7 @@ function convertToEmote(msg) {
 			_["set"]("Terminus", void 0),
 			_["set"]("Fixed", void 0);
 		const ee = Object.keys($)["length"],
-			te = document["getElementById"]("fontselect")??document.createElement("select");
-			te.id = "fontselect"
+			te = document["getElementById"]("fontselect");
 		for (var ne = 0; te["length"] > 0; ne++);
 		var option;
 		for (ne = 0; ne < ee; ne++)
