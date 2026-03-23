@@ -583,10 +583,10 @@ function convertToEmote(msg) {
 		for (ne = 0; ne < 200; ne++) _e[ne] = " ";
 		var et = [];
 		for (ne = 0; ne < 200; ne++) et[ne] = 0;
-		document.getElementById("fontselect")["onchange"] = function (e) {
+		{ const _fsel = document.getElementById("fontselect"); if (_fsel) _fsel["onchange"] = function (e) {
 			var t = n;
 			vt(e["target"]["value"]);
-		};
+		}; }
 		const tt = {
 			showothercurs: document.getElementById("showothercurs"),
 			shownametags: document["getElementById"]("shownametags"),
@@ -713,7 +713,7 @@ function convertToEmote(msg) {
 					 ))) +
 				 ", monospace, Iosevka, Fairfax2 Special"),
 				localStorage["setItem"]("font", G),
-				(document.getElementById("fontselect")["value"] = G),
+				(document.getElementById("fontselect") ? (document.getElementById("fontselect")["value"] = G) : null),
 				(ge = !0);
 		}
 		function mt() {
